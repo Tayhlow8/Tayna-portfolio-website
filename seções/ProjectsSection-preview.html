@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ProjectsSection — Preview</title>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"/>
+  <style>
+    :root {
+      --accent      : #F0185A;
+      --accent-glow : rgba(240,24,90,.12);
+      --accent-soft : rgba(240,24,90,.4);
+      --font-display: 'Clash Display', sans-serif;
+      --font-body   : 'DM Sans', sans-serif;
+      --ease-expo   : cubic-bezier(.16,1,.3,1);
+    }
+    .theme-dark {
+      --bg           : #070711;
+      --fg           : #F0EFF8;
+      --fg-muted     : #6B6A82;
+      --fg-faint     : #22213A;
+      --border       : rgba(255,255,255,.07);
+      --ghost-border : rgba(255,255,255,.11);
+      --btn-fill     : #070711;
+      --grain-opacity: .04;
+    }
+    .theme-light {
+      --bg           : #F5F3FF;
+      --fg           : #0D0C1A;
+      --fg-muted     : #62607A;
+      --fg-faint     : #D2CFEA;
+      --border       : rgba(0,0,0,.08);
+      --ghost-border : rgba(13,12,26,.12);
+      --btn-fill     : #F5F3FF;
+      --grain-opacity: .025;
+    }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    a { color:inherit; text-decoration:none; }
+    body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+    /* Controls */
+    .controls {
+      position:fixed; top:1rem; right:1rem; z-index:999;
+      display:flex; gap:.4rem; flex-wrap:wrap;
+    }
+    .ctrl-btn {
+      font-family:var(--font-body); font-size:.5rem; font-weight:500;
+      letter-spacing:.12em; text-transform:uppercase;
+      padding:.4rem .75rem;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(7,7,17,.85); color:#F0EFF8;
+      cursor:pointer; backdrop-filter:blur(8px);
+      transition:border-color .2s, color .2s;
+    }
+    .ctrl-btn:hover,.ctrl-btn.active { border-color:#F0185A; color:#F0185A; }
+
+    /* Root */
+    .projects-root {
+      background:var(--bg); color:var(--fg);
+      font-family:var(--font-body);
+      position:relative; overflow-x:hidden;
+      transition:background .5s ease, color .5s ease;
+    }
+    .pf-grain {
+      position:absolute; inset:0; z-index:1; pointer-events:none;
+      opacity:var(--grain-opacity);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size:180px 180px;
+    }
+    .projects-wrap {
+      position:relative; z-index:2;
+      padding:5rem 1.5rem; max-width:1120px; margin:0 auto;
+    }
+    .pf-eyebrow {
+      display:flex; align-items:center; gap:.5rem;
+      font-size:.6rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--fg-muted); margin-bottom:1.5rem;
+      animation:pf-up .7s var(--ease-expo) both;
+    }
+    .pf-dot {
+      width:5px; height:5px; border-radius:50%;
+      background:var(--accent); flex-shrink:0;
+      animation:pf-pulse 2.5s ease-in-out infinite;
+    }
+    .projects-header {
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:2rem; margin-bottom:1.75rem;
+      animation:pf-up .85s var(--ease-expo) both; animation-delay:.1s;
+    }
+    .projects-heading {
+      font-family:var(--font-display); font-weight:600;
+      font-size:clamp(2rem,7vw,4.5rem);
+      line-height:.92; letter-spacing:-.025em; color:var(--fg);
+    }
+    .projects-heading em { font-style:italic; color:var(--accent); }
+
+    /* Ghost button */
+    .pf-btn {
+      position:relative; display:inline-flex; align-items:center;
+      justify-content:center; height:44px; padding:0 1.5rem;
+      overflow:hidden; outline:none; transition:transform .15s ease;
+      border-radius:0; min-width:140px; cursor:pointer;
+    }
+    .pf-btn:active { transform:scale(.97); }
+    .pf-ring { position:absolute; inset:-100%; animation:pf-spin-ring 3s linear infinite; opacity:0; transition:opacity .4s ease; pointer-events:none; }
+    .pf-btn:hover .pf-ring { opacity:1; }
+    .pf-veil { position:absolute; inset:0; transition:opacity .4s ease; pointer-events:none; }
+    .pf-btn:hover .pf-veil { opacity:0; }
+    .pf-core { position:absolute; inset:1px; z-index:1; pointer-events:none; }
+    .pf-btn-lbl { position:relative; z-index:2; font-size:.6rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; transition:color .2s; }
+    .pf-arr { display:inline-block; transition:transform .2s ease; }
+    .pf-btn:hover .pf-arr { transform:translateX(4px); }
+    .pf-btn--ghost .pf-ring  { background:conic-gradient(from 90deg at 50% 50%,transparent 0%,transparent 75%,var(--accent) 100%); }
+    .pf-btn--ghost .pf-veil  { background:var(--ghost-border); }
+    .pf-btn--ghost .pf-core  { background:var(--btn-fill); }
+    .pf-btn--ghost .pf-btn-lbl { color:var(--fg); }
+    .projects-all-link { display:none; }
+
+    .pf-rule {
+      width:100%; height:1px;
+      background:linear-gradient(90deg, rgba(240,24,90,.55) 0%, transparent 65%);
+      margin-bottom:3rem;
+      animation:pf-up .85s var(--ease-expo) both; animation-delay:.2s;
+    }
+
+    /* Grid */
+    .projects-grid {
+      display:grid; grid-template-columns:1fr; gap:1px;
+      background:var(--border); border:1px solid var(--border);
+      animation:pf-up .9s var(--ease-expo) both; animation-delay:.25s;
+    }
+
+    /* Card */
+    .card {
+      position:relative; display:flex; flex-direction:column;
+      background:var(--bg); overflow:hidden; cursor:pointer;
+      transition:background .3s ease; text-decoration:none; color:inherit;
+    }
+    .card-corner {
+      position:absolute; top:0; right:0;
+      width:0; height:0; border-style:solid;
+      border-width:0 28px 28px 0;
+      border-color:transparent var(--accent) transparent transparent;
+      opacity:0; transition:opacity .3s ease;
+    }
+    .card:hover .card-corner { opacity:1; }
+    .card-img-wrap { position:relative; overflow:hidden; flex-shrink:0; }
+    .card-img {
+      width:100%; display:flex; align-items:center; justify-content:center;
+      transition:transform .6s var(--ease-expo);
+    }
+    .card:hover .card-img { transform:scale(1.03); }
+    .card-img-inner { width:100%; padding:1rem; }
+    .card-img-inner svg { width:100%; height:auto; display:block; }
+    .card-img-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom, transparent 50%, rgba(7,7,17,.85) 100%);
+      pointer-events:none;
+    }
+    .theme-light .card-img-overlay { background:linear-gradient(to bottom,transparent 50%,rgba(245,243,255,.85) 100%); }
+    .card::before {
+      content:''; position:absolute; inset:0;
+      background:var(--accent-glow); opacity:0;
+      transition:opacity .35s ease; pointer-events:none; z-index:1;
+    }
+    .card:hover::before { opacity:1; }
+    .card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0;
+      height:2px; background:var(--accent);
+      transform:scaleX(0); transform-origin:left;
+      transition:transform .4s var(--ease-expo); z-index:2;
+    }
+    .card:hover::after { transform:scaleX(1); }
+    .card-body {
+      position:relative; z-index:2;
+      padding:1.5rem; display:flex; flex-direction:column; gap:.6rem; flex:1;
+    }
+    .card-meta { display:flex; align-items:center; gap:.75rem; }
+    .card-tag {
+      font-size:.52rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--accent); border:1px solid rgba(240,24,90,.25); padding:.2rem .55rem;
+    }
+    .card-client {
+      font-family:var(--font-display); font-weight:600;
+      line-height:1.1; letter-spacing:-.01em; color:var(--fg); transition:color .2s;
+    }
+    .card-impact { font-size:.82rem; font-weight:300; line-height:1.7; color:var(--fg-muted); }
+    .card-cta {
+      display:flex; align-items:center; gap:.5rem;
+      margin-top:auto; padding-top:.75rem; border-top:1px solid var(--border);
+      font-size:.55rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--fg-muted); transition:color .2s;
+    }
+    .card:hover .card-cta { color:var(--accent); }
+    .card-cta-arr { display:inline-block; transition:transform .2s ease; }
+    .card:hover .card-cta-arr { transform:translateX(4px); }
+
+    /* Featured */
+    .card--featured .card-img { height:280px; }
+    .card--featured .card-client { font-size:clamp(1.4rem,4vw,2rem); }
+    .card--featured .card-impact { font-size:.9rem; max-width:52ch; }
+
+    /* Small */
+    .card--small { animation:pf-up .9s var(--ease-expo) both; animation-delay:var(--delay,.3s); }
+    .card--small .card-img { height:180px; }
+    .card--small .card-client { font-size:clamp(1rem,3vw,1.3rem); }
+
+    @media (min-width:640px) {
+      .projects-wrap { padding:6rem 3rem; }
+      .projects-all-link { display:inline-flex; }
+      .card--featured .card-img { height:340px; }
+    }
+    @media (min-width:768px) {
+      .projects-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto auto; }
+      .card--featured { grid-column:1/2; grid-row:1/3; }
+      .card--small .card-img { height:160px; }
+    }
+    @media (min-width:1024px) {
+      .projects-wrap { padding:8rem 7rem; }
+      .card--featured .card-img { height:420px; }
+      .card--small .card-img { height:180px; }
+    }
+    @media (min-width:1400px) { .projects-wrap { padding:9rem 10rem; } }
+
+    @keyframes pf-up {
+      from { opacity:0; transform:translateY(24px); filter:blur(8px); }
+      to   { opacity:1; transform:translateY(0); filter:blur(0); }
+    }
+    @keyframes pf-spin-ring { to { transform:rotate(360deg); } }
+    @keyframes pf-pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:.3; transform:scale(.75); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="controls">
+  <button class="ctrl-btn active" onclick="setTheme('dark')">Dark</button>
+  <button class="ctrl-btn" onclick="setTheme('light')">Light</button>
+  <button class="ctrl-btn active" id="lang-PT" onclick="setLang('PT')">PT</button>
+  <button class="ctrl-btn" id="lang-EN" onclick="setLang('EN')">EN</button>
+  <button class="ctrl-btn" id="lang-ES" onclick="setLang('ES')">ES</button>
+  <button class="ctrl-btn" id="lang-DE" onclick="setLang('DE')">DE</button>
+</div>
+
+<section class="projects-root theme-dark" id="root">
+  <div class="pf-grain" aria-hidden="true"></div>
+  <div class="projects-wrap">
+
+    <div class="pf-eyebrow">
+      <span class="pf-dot"></span>
+      <span id="eyebrow">Projetos Selecionados</span>
+    </div>
+
+    <div class="projects-header">
+      <h2 class="projects-heading">
+        <span id="h1">cases que</span><br/>
+        <em id="h2">falam por si</em>
+      </h2>
+      <a href="#" class="pf-btn pf-btn--ghost projects-all-link">
+        <span class="pf-ring"></span><span class="pf-veil"></span><span class="pf-core"></span>
+        <span class="pf-btn-lbl" id="all-lbl">Ver todos <span class="pf-arr">→</span></span>
+      </a>
+    </div>
+
+    <div class="pf-rule"></div>
+
+    <div class="projects-grid">
+
+      <!-- FEATURED: Rodobens -->
+      <a href="#" class="card card--featured">
+        <div class="card-img-wrap">
+          <div class="card-img" style="background:linear-gradient(135deg,#0c0b1e 0%,#16122e 100%); height:280px;">
+            <div class="card-img-inner">
+              <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="320" height="180" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <rect x="36" y="36" width="120" height="8" rx="2" fill="rgba(255,255,255,0.12)"/>
+                <rect x="36" y="52" width="80" height="6" rx="2" fill="rgba(255,255,255,0.06)"/>
+                <rect x="36" y="80" width="288" height="1" fill="rgba(255,255,255,0.06)"/>
+                <rect x="36" y="96" width="60" height="60" rx="4" fill="rgba(240,24,90,0.15)" stroke="rgba(240,24,90,0.3)" stroke-width="1"/>
+                <text x="66" y="131" font-family="sans-serif" font-size="14" font-weight="700" fill="rgba(240,24,90,0.8)" text-anchor="middle">R$</text>
+                <rect x="112" y="96" width="212" height="12" rx="2" fill="rgba(255,255,255,0.06)"/>
+                <rect x="112" y="116" width="160" height="8" rx="2" fill="rgba(255,255,255,0.04)"/>
+                <rect x="112" y="132" width="180" height="8" rx="2" fill="rgba(255,255,255,0.04)"/>
+                <rect x="36" y="158" width="288" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+                <rect x="36" y="158" width="180" height="4" rx="2" fill="rgba(240,24,90,0.6)"/>
+                <rect x="36" y="172" width="100" height="28" rx="2" fill="rgba(240,24,90,0.9)"/>
+                <rect x="148" y="172" width="100" height="28" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-tag" id="tag-rodobens">Product Design</span></div>
+          <h3 class="card-client">Rodobens</h3>
+          <p class="card-impact" id="impact-rodobens">Redesign do fluxo de crédito que reduziu abandono em 38%</p>
+          <div class="card-cta"><span id="view-lbl-1">Ver projeto</span><span class="card-cta-arr"> →</span></div>
+        </div>
+        <div class="card-corner"></div>
+      </a>
+
+      <!-- SMALL: Master Globo -->
+      <a href="#" class="card card--small" style="--delay:.15s">
+        <div class="card-img-wrap">
+          <div class="card-img" style="background:linear-gradient(135deg,#0a0a18 0%,#121224 100%); height:180px;">
+            <div class="card-img-inner">
+              <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="220" height="180" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <rect x="36" y="36" width="90" height="7" rx="2" fill="rgba(255,255,255,0.1)"/>
+                <rect x="36" y="52" width="60" height="5" rx="2" fill="rgba(255,255,255,0.05)"/>
+                <rect x="36" y="68" width="188" height="44" rx="4" fill="rgba(240,24,90,0.12)" stroke="rgba(240,24,90,0.2)" stroke-width="1"/>
+                <rect x="48" y="78" width="80" height="6" rx="2" fill="rgba(255,255,255,0.15)"/>
+                <rect x="48" y="90" width="55" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+                <rect x="36" y="120" width="188" height="44" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <rect x="48" y="130" width="70" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
+                <rect x="48" y="142" width="50" height="5" rx="2" fill="rgba(255,255,255,0.05)"/>
+                <rect x="256" y="20" width="84" height="180" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <circle cx="298" cy="60" r="20" fill="rgba(240,24,90,0.15)" stroke="rgba(240,24,90,0.25)" stroke-width="1"/>
+                <text x="298" y="65" font-family="sans-serif" font-size="10" font-weight="700" fill="rgba(240,24,90,0.9)" text-anchor="middle">78%</text>
+              </svg>
+            </div>
+          </div>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-tag" id="tag-master">UX Design</span></div>
+          <h3 class="card-client">Master Globo</h3>
+          <p class="card-impact" id="impact-master">Plataforma educacional para 120 mil alunos do Grupo Globo</p>
+          <div class="card-cta"><span id="view-lbl-2">Ver projeto</span><span class="card-cta-arr"> →</span></div>
+        </div>
+        <div class="card-corner"></div>
+      </a>
+
+      <!-- SMALL: Lancôme -->
+      <a href="#" class="card card--small" style="--delay:.25s">
+        <div class="card-img-wrap">
+          <div class="card-img" style="background:linear-gradient(135deg,#110810 0%,#1a0d18 100%); height:180px;">
+            <div class="card-img-inner">
+              <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="160" height="180" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <rect x="36" y="36" width="128" height="100" rx="2" fill="rgba(240,24,90,0.07)"/>
+                <ellipse cx="100" cy="86" rx="28" ry="36" fill="rgba(240,24,90,0.2)" stroke="rgba(240,24,90,0.4)" stroke-width="1"/>
+                <rect x="36" y="148" width="90" height="6" rx="2" fill="rgba(255,255,255,0.12)"/>
+                <rect x="36" y="162" width="60" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+                <rect x="36" y="176" width="50" height="16" rx="2" fill="rgba(240,24,90,0.9)"/>
+                <rect x="196" y="20" width="144" height="180" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <rect x="208" y="36" width="80" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
+                <rect x="208" y="52" width="120" height="30" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <rect x="208" y="90" width="120" height="30" rx="2" fill="rgba(240,24,90,0.1)" stroke="rgba(240,24,90,0.2)" stroke-width="1"/>
+                <rect x="208" y="128" width="120" height="30" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-tag" id="tag-lancome">UX Design</span></div>
+          <h3 class="card-client">Lancôme Brazil</h3>
+          <p class="card-impact" id="impact-lancome">E-commerce de beleza com aumento de 52% na conversão</p>
+          <div class="card-cta"><span id="view-lbl-3">Ver projeto</span><span class="card-cta-arr"> →</span></div>
+        </div>
+        <div class="card-corner"></div>
+      </a>
+
+      <!-- SMALL: YSL -->
+      <a href="#" class="card card--small" style="--delay:.35s">
+        <div class="card-img-wrap">
+          <div class="card-img" style="background:linear-gradient(135deg,#0d0d0d 0%,#1a1010 100%); height:180px;">
+            <div class="card-img-inner">
+              <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="320" height="180" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <rect x="20" y="20" width="180" height="180" rx="4" fill="rgba(240,24,90,0.08)"/>
+                <text x="110" y="115" font-family="serif" font-size="36" font-weight="700" fill="rgba(240,24,90,0.25)" text-anchor="middle">YSL</text>
+                <rect x="216" y="44" width="100" height="8" rx="1" fill="rgba(255,255,255,0.1)"/>
+                <rect x="216" y="60" width="80" height="6" rx="1" fill="rgba(255,255,255,0.06)"/>
+                <rect x="216" y="76" width="112" height="1" fill="rgba(255,255,255,0.06)"/>
+                <rect x="216" y="88" width="108" height="5" rx="1" fill="rgba(255,255,255,0.05)"/>
+                <rect x="216" y="100" width="90" height="5" rx="1" fill="rgba(255,255,255,0.05)"/>
+                <rect x="216" y="148" width="90" height="28" rx="0" fill="rgba(240,24,90,0.85)"/>
+                <circle cx="236" cy="188" r="3" fill="rgba(240,24,90,0.9)"/>
+                <circle cx="248" cy="188" r="2" fill="rgba(255,255,255,0.2)"/>
+                <circle cx="258" cy="188" r="2" fill="rgba(255,255,255,0.2)"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-img-overlay"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-tag" id="tag-ysl">Brand Experience</span></div>
+          <h3 class="card-client">Yves Saint Laurent</h3>
+          <p class="card-impact" id="impact-ysl">Experiência de marca digital para lançamento global</p>
+          <div class="card-cta"><span id="view-lbl-4">Ver projeto</span><span class="card-cta-arr"> →</span></div>
+        </div>
+        <div class="card-corner"></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+const copy = {
+  PT: {
+    eyebrow:'Projetos Selecionados', h1:'cases que', h2:'falam por si',
+    all:'Ver todos', view:'Ver projeto',
+    catProduct:'Product Design', catUX:'UX Design', catBrand:'Brand Experience',
+    i1:'Redesign do fluxo de crédito que reduziu abandono em 38%',
+    i2:'Plataforma educacional para 120 mil alunos do Grupo Globo',
+    i3:'E-commerce de beleza com aumento de 52% na conversão',
+    i4:'Experiência de marca digital para lançamento global',
+  },
+  EN: {
+    eyebrow:'Selected Projects', h1:'cases that', h2:'speak for themselves',
+    all:'View all', view:'View project',
+    catProduct:'Product Design', catUX:'UX Design', catBrand:'Brand Experience',
+    i1:'Credit flow redesign that reduced drop-off by 38%',
+    i2:'Educational platform serving 120k students at Grupo Globo',
+    i3:'Beauty e-commerce with a 52% conversion uplift',
+    i4:'Digital brand experience for a global launch',
+  },
+  ES: {
+    eyebrow:'Proyectos Seleccionados', h1:'casos que', h2:'hablan por sí solos',
+    all:'Ver todos', view:'Ver proyecto',
+    catProduct:'Product Design', catUX:'UX Design', catBrand:'Brand Experience',
+    i1:'Rediseño del flujo de crédito con 38% menos abandono',
+    i2:'Plataforma educativa para 120 mil alumnos de Grupo Globo',
+    i3:'E-commerce de belleza con +52% de conversión',
+    i4:'Experiencia de marca digital para lanzamiento global',
+  },
+  DE: {
+    eyebrow:'Ausgewählte Projekte', h1:'cases, die', h2:'für sich sprechen',
+    all:'Alle ansehen', view:'Projekt ansehen',
+    catProduct:'Product Design', catUX:'UX Design', catBrand:'Brand Experience',
+    i1:'Kreditfluss-Redesign mit 38 % weniger Abbrüchen',
+    i2:'Bildungsplattform für 120.000 Grupo-Globo-Studierende',
+    i3:'Beauty-E-Commerce mit 52 % mehr Conversions',
+    i4:'Digitales Markenerlebnis für globalen Launch',
+  },
+};
+
+function setTheme(t) {
+  document.getElementById('root').className = `projects-root theme-${t}`;
+  document.querySelectorAll('.controls .ctrl-btn').forEach(b => {
+    if (b.textContent.trim() === (t==='dark'?'Dark':'Light')) b.classList.add('active');
+    else if (b.textContent.trim()==='Dark'||b.textContent.trim()==='Light') b.classList.remove('active');
+  });
+}
+function setLang(l) {
+  const c = copy[l];
+  document.getElementById('eyebrow').textContent = c.eyebrow;
+  document.getElementById('h1').textContent = c.h1;
+  document.getElementById('h2').textContent = c.h2;
+  document.getElementById('all-lbl').innerHTML = c.all + ' <span class="pf-arr">→</span>';
+  ['view-lbl-1','view-lbl-2','view-lbl-3','view-lbl-4'].forEach(id => {
+    document.getElementById(id).textContent = c.view;
+  });
+  document.getElementById('impact-rodobens').textContent = c.i1;
+  document.getElementById('impact-master').textContent   = c.i2;
+  document.getElementById('impact-lancome').textContent  = c.i3;
+  document.getElementById('impact-ysl').textContent      = c.i4;
+  document.getElementById('tag-rodobens').textContent    = c.catProduct;
+  document.getElementById('tag-master').textContent      = c.catUX;
+  document.getElementById('tag-lancome').textContent     = c.catUX;
+  document.getElementById('tag-ysl').textContent         = c.catBrand;
+  ['PT','EN','ES','DE'].forEach(code => {
+    document.getElementById(`lang-${code}`).classList.toggle('active', code === l);
+  });
+}
+</script>
+</body>
+</html>

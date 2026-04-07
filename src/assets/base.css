@@ -1,0 +1,135 @@
+/* ═══════════════════════════════════════════════════════════
+   BASE / RESET — Portfolio Tayná
+   Importado DEPOIS de tokens.css
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Reset ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Root ───────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg, #070711);
+  color: var(--fg, #F0EFF8);
+  min-height: 100svh;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* ── Selection ──────────────────────────────────────────── */
+::selection {
+  background: rgba(240, 24, 90, 0.25);
+  color: var(--fg);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL KEYFRAMES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Entrada com blur → limpo */
+@keyframes pf-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Spinning border ring */
+@keyframes pf-spin-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dot pulse */
+@keyframes pf-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.75);
+  }
+}
+
+/* Scroll indicator pulse */
+@keyframes pf-scroll-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scaleY(1.25);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DECORATIONS (grain + glow)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Grain texture overlay */
+.pf-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Ambient accent glow */
+.pf-glow {
+  position: absolute;
+  top: -18%;
+  right: -12%;
+  width: 75vw;
+  height: 75vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(ellipse at 65% 25%, var(--accent-glow) 0%, transparent 62%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+
+.theme-light .pf-glow {
+  opacity: 0.45;
+}

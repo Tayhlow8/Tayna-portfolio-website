@@ -1,0 +1,225 @@
+/* ═══════════════════════════════════════════════════════════
+   main.css — Estilos Globais do Portfolio Tayná
+   Fonte canônica: design-system.html / HeroSection.vue
+   ═══════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════════════
+   1. DESIGN TOKENS
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Accent ─────────────────────────────────────────── */
+  --accent          : #F0185A;
+  --accent-glow     : rgba(240, 24, 90, 0.12);
+  --accent-soft     : rgba(240, 24, 90, 0.4);
+
+  /* ── Typography ─────────────────────────────────────── */
+  --font-display    : 'Clash Display', sans-serif;
+  --font-body       : 'DM Sans', sans-serif;
+
+  /* ── Easing ─────────────────────────────────────────── */
+  --ease-expo       : cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Spacing scale (4px base grid) ──────────────────── */
+  --sp-1  : 0.25rem;   /* 4px  */
+  --sp-2  : 0.5rem;    /* 8px  */
+  --sp-3  : 0.75rem;   /* 12px */
+  --sp-4  : 1rem;      /* 16px */
+  --sp-5  : 1.25rem;   /* 20px */
+  --sp-6  : 1.5rem;    /* 24px */
+  --sp-8  : 2rem;      /* 32px */
+  --sp-10 : 2.5rem;    /* 40px */
+  --sp-12 : 3rem;      /* 48px */
+  --sp-16 : 4rem;      /* 64px */
+  --sp-20 : 5rem;      /* 80px */
+  --sp-24 : 6rem;      /* 96px */
+
+  /* ── Radius ─────────────────────────────────────────── */
+  --radius-none : 0;
+  --radius-sm   : 4px;
+  --radius-full : 9999px;
+
+  /* ── Default theme values (dark) ────────────────────── */
+  /* Garante que body/html tenham --bg e --fg antes do Vue montar */
+  --bg            : #070711;
+  --fg            : #F0EFF8;
+  --fg-muted      : #6B6A82;
+  --fg-faint      : #22213A;
+  --border        : rgba(255, 255, 255, 0.07);
+  --ghost-border  : rgba(255, 255, 255, 0.11);
+  --btn-fill      : #070711;
+  --grain-opacity : 0.04;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   2. THEME: DARK (default)
+   ═══════════════════════════════════════════════════════════ */
+
+.theme-dark {
+  --bg            : #070711;
+  --fg            : #F0EFF8;
+  --fg-muted      : #6B6A82;
+  --fg-faint      : #22213A;
+  --border        : rgba(255, 255, 255, 0.07);
+  --ghost-border  : rgba(255, 255, 255, 0.11);
+  --btn-fill      : #070711;
+  --grain-opacity : 0.04;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   3. THEME: LIGHT
+   ═══════════════════════════════════════════════════════════ */
+
+.theme-light {
+  --bg            : #F5F3FF;
+  --fg            : #0D0C1A;
+  --fg-muted      : #62607A;
+  --fg-faint      : #D2CFEA;
+  --border        : rgba(0, 0, 0, 0.08);
+  --ghost-border  : rgba(13, 12, 26, 0.12);
+  --btn-fill      : #F5F3FF;
+  --grain-opacity : 0.025;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   4. RESET
+   ═══════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   5. ROOT / BODY
+   ═══════════════════════════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100svh;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+::selection {
+  background: rgba(240, 24, 90, 0.25);
+  color: var(--fg);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   6. GLOBAL KEYFRAMES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Entrada com blur → limpo */
+@keyframes pf-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Spinning border ring (botões) */
+@keyframes pf-spin-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dot pulse */
+@keyframes pf-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.75);
+  }
+}
+
+/* Scroll indicator pulse */
+@keyframes pf-scroll-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scaleY(1.25);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   7. DECORATIONS (grain + glow)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Grain texture overlay */
+.pf-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Ambient accent glow */
+.pf-glow {
+  position: absolute;
+  top: -18%;
+  right: -12%;
+  width: 75vw;
+  height: 75vw;
+  max-width: 900px;
+  max-height: 900px;
+  background: radial-gradient(ellipse at 65% 25%, var(--accent-glow) 0%, transparent 62%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s ease;
+}
+
+.theme-light .pf-glow {
+  opacity: 0.45;
+}
