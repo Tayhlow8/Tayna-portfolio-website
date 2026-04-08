@@ -2,10 +2,7 @@
   <div :class="['rc-root', `theme-${theme}`]">
     <div class="rc-grain" aria-hidden="true"></div>
 
-    <a href="/" class="rc-back">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      {{ t.back }}
-    </a>
+    <NavBar v-model:lang="lang" v-model:theme="theme" />
 
     <!-- 01 HERO -->
     <section class="rc-hero">
@@ -20,12 +17,11 @@
       <div class="rc-hero-right">
         <div class="rc-stats-grid">
           <div class="rc-stat"><b class="rc-sn" style="color:#F0185A">129</b><span class="rc-sl">{{ t.stats.profiles }}</span></div>
-          <div class="rc-stat"><b class="rc-sn" style="color:#0CFDB5">603</b><span class="rc-sl">{{ t.stats.users }}</span></div>
+          <div class="rc-stat"><b class="rc-sn rc-teal">603</b><span class="rc-sl">{{ t.stats.users }}</span></div>
           <div class="rc-stat"><b class="rc-sn" style="color:#FF7C43">6</b><span class="rc-sl">{{ t.stats.months }}</span></div>
           <div class="rc-stat"><b class="rc-sn" style="color:#F0185A">7</b><span class="rc-sl">{{ t.stats.legacy }}</span></div>
         </div>
-        <div class="rc-screen"><div class="rc-browser"><span class="rc-dot rc-dot-r"></span><span class="rc-dot rc-dot-y"></span><span class="rc-dot rc-dot-g"></span><span class="rc-url">unica.rodobens.com.br</span></div><img src="https://www.figma.com/api/mcp/asset/ca2eb9d6-c8e1-48cc-9bc8-7881999914b6" alt="Interface Unica — tela principal" loading="lazy" class="rc-screen-img"/></div>
-        <div class="rc-screen"><div class="rc-browser"><span class="rc-dot rc-dot-r"></span><span class="rc-dot rc-dot-y"></span><span class="rc-dot rc-dot-g"></span><span class="rc-url">unica.rodobens.com.br</span></div><img src="https://www.figma.com/api/mcp/asset/82bb21f8-6629-473f-8ddf-bb5c9e1fe1be" alt="Interface Unica — painel" loading="lazy" class="rc-screen-img"/></div>
+        <div class="rc-screen"><div class="rc-browser"><span class="rc-dot rc-dot-r"></span><span class="rc-dot rc-dot-y"></span><span class="rc-dot rc-dot-g"></span><span class="rc-url">unica.rodobens.com.br/analise</span></div><img :src="creditDashImg" alt="Interface Unica — análise de crédito" loading="lazy" class="rc-screen-img"/></div>
       </div>
     </section>
 
@@ -57,9 +53,23 @@
       <p class="rc-section-intro">{{ t.designIntro }}</p>
 
       <div class="rc-screens-list">
-        <div v-for="s in designScreens" :key="s.img" class="rc-design-screen">
+        <div v-for="(s, i) in designScreens" :key="s.img" class="rc-design-screen">
           <div class="rc-ds-header"><h3 class="rc-ds-title">{{ s.title }}</h3><p class="rc-ds-desc">{{ s.desc }}</p></div>
-          <div class="rc-screen"><div class="rc-browser"><span class="rc-dot rc-dot-r"></span><span class="rc-dot rc-dot-y"></span><span class="rc-dot rc-dot-g"></span><span class="rc-url">{{ s.url }}</span></div><img :src="s.img" :alt="s.title" loading="lazy" class="rc-screen-img"/></div>
+          <div class="rc-screen rc-screen--switchable">
+            <div class="rc-browser">
+              <span class="rc-dot rc-dot-r"></span><span class="rc-dot rc-dot-y"></span><span class="rc-dot rc-dot-g"></span>
+              <span class="rc-url">{{ oldView[i] ? 'Sistema legado · vTiger' : s.url }}</span>
+            </div>
+            <div class="rc-img-wrap">
+              <Transition name="rc-flip" mode="out-in">
+                <img :key="oldView[i] ? 'old' : 'new'" :src="oldView[i] ? s.oldImg : s.img" :alt="s.title" loading="lazy" class="rc-screen-img"/>
+              </Transition>
+              <button v-if="s.oldImg" class="rc-before-btn" :class="{ 'rc-before-btn--active': oldView[i] }" @click="toggleOld(i)" type="button">
+                <span class="rc-before-icon" aria-hidden="true">{{ oldView[i] ? '←' : '⟵' }}</span>
+                <span>{{ oldView[i] ? 'Ver versão nova' : 'Como era antes' }}</span>
+              </button>
+            </div>
+          </div>
           <p v-if="s.note" class="rc-ds-note">{{ s.note }}</p>
         </div>
       </div>
@@ -80,7 +90,7 @@
         <p class="rc-dec-sub">{{ t.decisionSub }}</p>
         <div class="rc-dec-cols">
           <div class="rc-dec-col">
-            <h4 class="rc-dec-col-title" style="color:#0CFDB5">{{ t.decisionBenefitsTitle }}</h4>
+            <h4 class="rc-dec-col-title rc-teal">{{ t.decisionBenefitsTitle }}</h4>
             <ul class="rc-dec-list"><li v-for="b in t.decisionBenefits" :key="b.label"><b>{{ b.label }}</b> {{ b.body }}</li></ul>
           </div>
           <div class="rc-dec-col">
@@ -176,7 +186,7 @@
       <div class="rc-reflexoes">
         <div v-for="r in t.reflexoes" :key="r.question" class="rc-reflexao">
           <div class="rc-reflexao-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
           </div>
           <div><h4 class="rc-ref-q">{{ r.question }}</h4><p class="rc-ref-a">{{ r.answer }}</p></div>
         </div>
@@ -199,8 +209,26 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import NavBar from './NavBar.vue'
+
+import loginImg           from '../imagens cases/rodobens/login.png'
+import kanbanImg          from '../imagens cases/rodobens/kanban.png'
+import simulacaoImg       from '../imagens cases/rodobens/simulação.png'
+import creditDashImg      from '../imagens cases/rodobens/Credit Analysis Dashboard Layout.png'
+import notifImg           from '../imagens cases/rodobens/central de notificações.png'
+import loginAntigoImg     from '../imagens cases/rodobens/ANTIGAS/login antigo.png'
+import simulacaoAntigaImg from '../imagens cases/rodobens/ANTIGAS/simulação antiga.jpeg'
+import negociacaoAntigaImg from '../imagens cases/rodobens/ANTIGAS/negociação antiga.png'
+import menuAntigoImg      from '../imagens cases/rodobens/ANTIGAS/MENU antigo.png'
+
 const props = defineProps({ lang: { type: String, default: 'PT' }, theme: { type: String, default: 'dark' } })
-const visC = ref(false)
+
+// Local mutable copies so NavBar can toggle theme/lang on this page
+const lang  = ref(props.lang)
+const theme = ref(props.theme)
+const visC    = ref(false)
+const oldView = ref({}  )   // { [screenIndex]: true } when showing old version
+const toggleOld = (i) => { oldView.value = { ...oldView.value, [i]: !oldView.value[i] } }
 const cRefs = ref([])
 const setRef = (el, i) => { if (el) cRefs.value[i] = el }
 let observer = null
@@ -211,10 +239,11 @@ onMounted(() => {
 onUnmounted(() => observer?.disconnect())
 
 const designScreens = [
-  { title: 'Login & Autenticação', desc: 'Nova experiência de login com mensagens humanizadas e branding fortalecido', url: 'unica.rodobens.com.br/login', img: 'https://www.figma.com/api/mcp/asset/c303ea6d-5f67-49fa-af02-3202c47f9e3f', note: null },
-  { title: 'Novo Simulador de Crédito', desc: 'Design focado em hierarquia de elementos com heurística de estética e design minimalista', url: 'unica.rodobens.com.br/simulador', img: 'https://www.figma.com/api/mcp/asset/942098d2-fdd7-4115-a055-3081e992eef3', note: null },
-  { title: 'Kanban Comercial', desc: 'Gestão visual de negociações com comunicação Salesforce para acompanhamento centralizado', url: 'unica.rodobens.com.br/kanban', img: 'https://www.figma.com/api/mcp/asset/acd65b85-4368-45b4-951d-31839f9e9f5b', note: null },
-  { title: 'Central de Notificações', desc: 'Sistema unificado de alertas e notificações contextuais', url: 'unica.rodobens.com.br/notificacoes', img: 'https://www.figma.com/api/mcp/asset/65a9fced-ee27-471f-9bf5-4ac1826f6781', note: 'O cliente não possuía funcionalidade de notificações anteriormente. Todas as comunicações eram feitas externamente em outra aplicação.' },
+  { title: 'Login & Autenticação', desc: 'Nova experiência de login com mensagens humanizadas e branding fortalecido', url: 'unica.rodobens.com.br/login', img: loginImg, oldImg: loginAntigoImg, note: null },
+  { title: 'Novo Simulador de Crédito', desc: 'Design focado em hierarquia de elementos com heurística de estética e design minimalista', url: 'unica.rodobens.com.br/simulador', img: simulacaoImg, oldImg: simulacaoAntigaImg, note: null },
+  { title: 'Kanban Comercial', desc: 'Gestão visual de negociações com comunicação Salesforce para acompanhamento centralizado', url: 'unica.rodobens.com.br/kanban', img: kanbanImg, oldImg: negociacaoAntigaImg, note: null },
+  { title: 'Dashboard de Análise de Crédito', desc: 'Visão centralizada de propostas com SLA, alçadas e indicadores de urgência para analistas e gestores', url: 'unica.rodobens.com.br/analise', img: creditDashImg, oldImg: null, note: 'A tela substitui um processo manual em planilhas externas, unificando todas as propostas em andamento com rastreabilidade de prazo e responsável.' },
+  { title: 'Central de Notificações', desc: 'Sistema unificado de alertas e notificações contextuais', url: 'unica.rodobens.com.br/notificacoes', img: notifImg, oldImg: menuAntigoImg, note: 'O cliente não possuía funcionalidade de notificações anteriormente. Todas as comunicações eram feitas externamente em outra aplicação.' },
 ]
 const palette = [{ name: 'Primary Green', hex: '#0A5331' }, { name: 'Secondary Green', hex: '#05B44C' }, { name: 'Orange CTA', hex: '#FF7C43' }]
 
@@ -349,7 +378,7 @@ const copy = {
     footerTag: 'Rodobens Unica Platform · 2025',
   },
 }
-const t = computed(() => copy[props.lang] || copy['PT'])
+const t = computed(() => copy[lang.value] || copy['PT'])
 </script>
 
 <style>
@@ -367,9 +396,9 @@ const t = computed(() => copy[props.lang] || copy['PT'])
 .rc-sep,.rc-year{color:var(--fg-muted,#6B6A82)}
 .rc-title{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(2.5rem,9vw,6rem);line-height:1;letter-spacing:-.03em}
 .rc-title em{font-style:italic;color:#F0185A}
-.rc-subtitle{font-size:clamp(.9rem,2.2vw,1.05rem);font-weight:300;line-height:1.7;color:var(--fg-muted,#6B6A82)}
-.rc-accent{font-size:clamp(.8rem,1.8vw,.9rem);font-weight:500;line-height:1.65;color:#F0185A;opacity:.85}
-.rc-ctx{border-left:2px solid rgba(240,24,90,.35);padding-left:1rem;font-size:clamp(.8rem,1.8vw,.875rem);font-weight:300;line-height:1.9;color:var(--fg-muted,#6B6A82)}
+.rc-subtitle{font-size:clamp(1.125rem,2.5vw,1.35rem);font-weight:300;line-height:1.7;color:var(--fg-muted,#6B6A82)}
+.rc-accent{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:500;line-height:1.65;color:#F0185A;opacity:.85}
+.rc-ctx{border-left:2px solid rgba(240,24,90,.35);padding-left:1rem;font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;line-height:1.9;color:var(--fg-muted,#6B6A82)}
 .rc-roles{display:flex;flex-wrap:wrap;gap:.3rem}
 .rc-role{font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted,#6B6A82);border:1px solid rgba(255,255,255,.08);padding:.25rem .55rem;transition:color .2s,border-color .2s}
 .rc-role:hover{color:#F0185A;border-color:rgba(240,24,90,.35)}
@@ -390,16 +419,16 @@ const t = computed(() => copy[props.lang] || copy['PT'])
 .rc-rule{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
 .rc-rule-label{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#F0185A;white-space:nowrap;flex-shrink:0}
 .rc-rule-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(240,24,90,.4) 0%,transparent 70%)}
-.rc-section-intro{font-size:clamp(.85rem,2vw,.9rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82);max-width:65ch;margin-bottom:2.5rem}
+.rc-section-intro{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82);max-width:65ch;margin-bottom:2.5rem}
 .rc-sub-heading{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:-.015em;color:var(--fg,#F0EFF8);margin-bottom:1.25rem}
 .rc-complaints-grid{display:grid;grid-template-columns:1fr;gap:.6rem}
 .rc-complaint{display:flex;align-items:flex-start;gap:.8rem;border:1px solid rgba(255,255,255,.06);padding:.9rem 1rem;opacity:0;transform:translateY(14px);transition:opacity .5s ease calc(var(--ci,0)*.08s),transform .5s cubic-bezier(.16,1,.3,1) calc(var(--ci,0)*.08s),border-color .2s}
 .rc-complaint--vis{opacity:1;transform:translateY(0)}
 .rc-complaint:hover{border-color:rgba(240,24,90,.25)}
 .rc-cnum{font-family:'Clash Display',sans-serif;font-weight:700;font-size:.6rem;color:#F0185A;opacity:.5;flex-shrink:0;letter-spacing:.1em}
-.rc-ctxt{font-size:clamp(.8rem,1.8vw,.875rem);font-weight:300;line-height:1.7;color:var(--fg-muted,#6B6A82)}
+.rc-ctxt{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;line-height:1.7;color:var(--fg-muted,#6B6A82)}
 .rc-overview-row{display:flex;flex-direction:column;gap:1.25rem;margin-bottom:2rem}
-.rc-overview-body{font-size:clamp(.875rem,2vw,.975rem);font-weight:300;line-height:1.9;color:var(--fg-muted,#6B6A82);max-width:65ch}
+.rc-overview-body{font-size:clamp(1.125rem,2vw,1.3rem);font-weight:300;line-height:1.9;color:var(--fg-muted,#6B6A82);max-width:65ch}
 .rc-deliverables{display:flex;flex-wrap:wrap;gap:.35rem}
 .rc-del{display:inline-flex;align-items:center;gap:.35rem;font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--fg,#F0EFF8);background:rgba(240,24,90,.07);border:1px solid rgba(240,24,90,.18);padding:.25rem .55rem}
 .rc-del-dot{width:4px;height:4px;border-radius:50%;background:#F0185A;flex-shrink:0}
@@ -408,40 +437,40 @@ const t = computed(() => copy[props.lang] || copy['PT'])
 .rc-triad::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#F0185A;opacity:0;transition:opacity .3s}
 .rc-triad:hover::before{opacity:1}
 .rc-triad-t{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(.95rem,2.5vw,1.2rem);letter-spacing:-.01em;color:var(--fg,#F0EFF8);margin-bottom:.5rem}
-.rc-triad-b{font-size:clamp(.8rem,1.8vw,.875rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82)}
+.rc-triad-b{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82)}
 .rc-screens-list{display:flex;flex-direction:column;gap:2.5rem;margin-bottom:3rem}
 .rc-ds-header{margin-bottom:.85rem}
 .rc-ds-title{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.1rem,3vw,1.45rem);letter-spacing:-.015em;color:var(--fg,#F0EFF8);margin-bottom:.3rem}
-.rc-ds-desc{font-size:clamp(.8rem,1.8vw,.875rem);font-weight:300;color:var(--fg-muted,#6B6A82);line-height:1.6;max-width:60ch}
-.rc-ds-note{font-size:.75rem;font-style:italic;color:var(--fg-muted,#6B6A82);margin-top:.65rem;border-left:2px solid rgba(240,24,90,.3);padding-left:.75rem}
-.rc-ds-banner{background:linear-gradient(135deg,#0A5331,#05B44C);border-radius:8px;padding:1.75rem 1.5rem;margin-bottom:2.5rem}
+.rc-ds-desc{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;color:var(--fg-muted,#6B6A82);line-height:1.6;max-width:60ch}
+.rc-ds-note{font-size:1.125rem;font-style:italic;color:var(--fg-muted,#6B6A82);margin-top:.65rem;border-left:2px solid rgba(240,24,90,.3);padding-left:.75rem}
+.rc-ds-banner{background:#F0185A;border-radius:8px;padding:1.75rem 1.5rem;margin-bottom:2.5rem}
 .rc-ds-banner-title{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.05rem,3vw,1.5rem);color:#fff;line-height:1.2;margin-bottom:.6rem}
-.rc-ds-banner-sub{font-size:clamp(.8rem,1.8vw,.875rem);color:rgba(255,255,255,.85);font-weight:300;line-height:1.75}
+.rc-ds-banner-sub{font-size:clamp(1.125rem,2vw,1.25rem);color:rgba(255,255,255,.85);font-weight:300;line-height:1.75}
 .rc-principles{display:grid;grid-template-columns:1fr;gap:.65rem;margin-bottom:2.5rem}
 .rc-principle{border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--acc,#F0185A);padding:.9rem 1rem;transition:border-color .2s}
 .rc-principle:hover{border-color:rgba(240,24,90,.25)}
 .rc-pr-title{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(.9rem,2vw,1rem);color:var(--fg,#F0EFF8);margin-bottom:.3rem}
-.rc-pr-body{font-size:clamp(.75rem,1.6vw,.82rem);font-weight:300;color:var(--fg-muted,#6B6A82);line-height:1.7}
+.rc-pr-body{font-size:clamp(1.125rem,1.8vw,1.25rem);font-weight:300;color:var(--fg-muted,#6B6A82);line-height:1.7}
 .rc-decision{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-left:3px solid #0CFDB5;padding:1.25rem 1.35rem;margin-bottom:2.5rem}
 .rc-dec-title{font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(.95rem,2.5vw,1.25rem);color:var(--fg,#F0EFF8);margin-bottom:.3rem}
-.rc-dec-sub{font-size:.78rem;color:var(--fg-muted,#6B6A82);margin-bottom:1.1rem}
+.rc-dec-sub{font-size:1.125rem;color:var(--fg-muted,#6B6A82);margin-bottom:1.1rem}
 .rc-dec-cols{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-bottom:1.1rem}
 .rc-dec-col-title{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.65rem}
 .rc-dec-list{list-style:none;display:flex;flex-direction:column;gap:.45rem}
-.rc-dec-list li{font-size:clamp(.75rem,1.6vw,.82rem);font-weight:300;color:var(--fg-muted,#6B6A82);line-height:1.7}
+.rc-dec-list li{font-size:clamp(1.125rem,1.8vw,1.25rem);font-weight:300;color:var(--fg-muted,#6B6A82);line-height:1.7}
 .rc-dec-list li b{font-weight:500;color:var(--fg,#F0EFF8)}
 .rc-dec-custom-item{display:flex;align-items:flex-start;gap:.45rem}
 .rc-dec-swatch{width:11px;height:11px;border-radius:2px;flex-shrink:0;margin-top:.18rem}
-.rc-dec-quote{font-style:italic;font-size:clamp(.78rem,1.8vw,.875rem);color:var(--fg-muted,#6B6A82);border-left:2px solid rgba(240,24,90,.3);padding-left:.8rem;line-height:1.8}
+.rc-dec-quote{font-style:italic;font-size:clamp(1.125rem,2vw,1.25rem);color:var(--fg-muted,#6B6A82);border-left:2px solid rgba(240,24,90,.3);padding-left:.8rem;line-height:1.8}
 .rc-comps-title{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.05rem,3vw,1.4rem);letter-spacing:-.015em;color:var(--fg,#F0EFF8);margin-bottom:1.1rem}
 .rc-comps-grid{display:grid;grid-template-columns:1fr;gap:.65rem}
 .rc-comp-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1rem;transition:border-color .2s}
 .rc-comp-card:hover{border-color:rgba(240,24,90,.2)}
 .rc-comp-title{font-family:'Clash Display',sans-serif;font-weight:600;font-size:.9rem;color:var(--fg,#F0EFF8);margin-bottom:.75rem}
-.rc-comp-note{font-size:.62rem;color:var(--fg-muted,#6B6A82);margin-top:.65rem}
+.rc-comp-note{font-size:1.125rem;color:var(--fg-muted,#6B6A82);margin-top:.65rem}
 .rc-comp-note--i{font-style:italic}
 .rc-comp-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
-.rc-comp-list li{font-size:.75rem;color:var(--fg-muted,#6B6A82);padding-left:.75rem;position:relative}
+.rc-comp-list li{font-size:1.125rem;color:var(--fg-muted,#6B6A82);padding-left:.75rem;position:relative}
 .rc-comp-list li::before{content:'·';position:absolute;left:0;color:#F0185A}
 .rc-badges-preview{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.4rem}
 .rc-badge-pill{font-size:.58rem;font-weight:500;color:#fff;padding:.2rem .6rem;border-radius:999px;white-space:nowrap}
@@ -466,23 +495,23 @@ const t = computed(() => copy[props.lang] || copy['PT'])
 .rc-btn-eg--primary{background:#FF7C43;color:#fff}
 .rc-btn-eg--secondary{background:transparent;border:2px solid #0A5331;color:#0A5331}
 .rc-deliverables-list{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.75rem}
-.rc-deliv-item{display:flex;align-items:center;gap:.65rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.8rem .9rem;font-size:clamp(.8rem,1.8vw,.875rem);color:var(--fg,#F0EFF8);font-weight:300}
+.rc-deliv-item{display:flex;align-items:center;gap:.65rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.8rem .9rem;font-size:clamp(1.125rem,2vw,1.25rem);color:var(--fg,#F0EFF8);font-weight:300}
 .rc-deliv-dot{width:6px;height:6px;border-radius:50%;background:#F0185A;flex-shrink:0}
-.rc-deliv-quote{font-style:italic;font-size:clamp(.82rem,2vw,.9rem);color:var(--fg,#F0EFF8);border-left:3px solid #F0185A;padding:.9rem 1.1rem;background:rgba(240,24,90,.05);margin-bottom:2rem;line-height:1.8}
+.rc-deliv-quote{font-style:italic;font-size:clamp(1.125rem,2vw,1.3rem);color:var(--fg,#F0EFF8);border-left:3px solid #F0185A;padding:.9rem 1.1rem;background:rgba(240,24,90,.05);margin-bottom:2rem;line-height:1.8}
 .rc-impact-grid{display:grid;grid-template-columns:1fr;gap:.65rem}
-.rc-metric{background:linear-gradient(135deg,#0A5331,#05B44C);border-radius:8px;padding:1.1rem 1.25rem}
+.rc-metric{background:#F0185A;border-radius:8px;padding:1.1rem 1.25rem}
 .rc-metric-n{display:block;font-family:'Clash Display',sans-serif;font-weight:700;font-size:clamp(1.75rem,5vw,2.5rem);color:#fff;line-height:1;margin-bottom:.3rem}
-.rc-metric-l{font-size:clamp(.75rem,1.8vw,.875rem);color:rgba(255,255,255,.85);font-weight:300}
+.rc-metric-l{font-size:clamp(1.125rem,2vw,1.25rem);color:rgba(255,255,255,.85);font-weight:300}
 .rc-team{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2rem}
 .rc-team-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:.65rem .9rem}
-.rc-team-role{display:block;font-size:.68rem;font-weight:500;color:var(--fg,#F0EFF8);margin-bottom:.15rem}
-.rc-team-name{font-size:.62rem;color:var(--fg-muted,#6B6A82)}
+.rc-team-role{display:block;font-size:1.125rem;font-weight:500;color:var(--fg,#F0EFF8);margin-bottom:.15rem}
+.rc-team-name{font-size:1rem;color:var(--fg-muted,#6B6A82)}
 .rc-reflexoes{display:flex;flex-direction:column;gap:.85rem}
 .rc-reflexao{display:flex;align-items:flex-start;gap:.9rem;border:1px solid rgba(255,255,255,.07);padding:1.1rem;transition:border-color .2s}
 .rc-reflexao:hover{border-color:rgba(240,24,90,.25)}
-.rc-reflexao-icon{width:34px;height:34px;background:#0A5331;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.rc-ref-q{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(.88rem,2vw,1rem);color:#0CFDB5;margin-bottom:.5rem}
-.rc-ref-a{font-size:clamp(.78rem,1.8vw,.875rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82)}
+.rc-reflexao-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#F0185A}
+.rc-ref-q{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.125rem,2vw,1.35rem);color:#F0185A;margin-bottom:.5rem}
+.rc-ref-a{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82)}
 .rc-footer{position:relative;z-index:1;background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.07);padding:1.75rem 1.5rem}
 .rc-footer-inner{display:flex;justify-content:space-between;align-items:center;margin-bottom:.85rem;flex-wrap:wrap;gap:.65rem}
 .rc-footer-tag{font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted,#6B6A82)}
@@ -493,4 +522,35 @@ const t = computed(() => copy[props.lang] || copy['PT'])
 @media(min-width:640px){.rc-hero{padding:8rem 3rem 4rem}.rc-section{padding:5rem 3rem}.rc-back{left:3rem}.rc-complaints-grid{grid-template-columns:repeat(2,1fr)}.rc-triads{grid-template-columns:repeat(3,1fr)}.rc-principles{grid-template-columns:repeat(2,1fr)}.rc-comps-grid{grid-template-columns:repeat(2,1fr)}.rc-impact-grid{grid-template-columns:repeat(2,1fr)}.rc-dec-cols{grid-template-columns:repeat(2,1fr)}.rc-footer{padding:2rem 3rem}}
 @media(min-width:1024px){.rc-hero{padding:9rem 7rem 5rem;flex-direction:row;align-items:flex-start;gap:4rem}.rc-hero-left{flex:1}.rc-hero-right{flex:0 0 460px}.rc-section{padding:6rem 7rem}.rc-back{left:7rem}.rc-overview-row{flex-direction:row;align-items:flex-start;gap:2.5rem}.rc-overview-body{flex:1.3}.rc-deliverables{flex:1;flex-direction:column}.rc-del{width:100%}.rc-complaints-grid{grid-template-columns:repeat(3,1fr)}.rc-principles{grid-template-columns:repeat(3,1fr)}.rc-comps-grid{grid-template-columns:repeat(3,1fr)}.rc-impact-grid{grid-template-columns:repeat(5,1fr)}.rc-footer{padding:2.5rem 7rem}}
 @media(min-width:1400px){.rc-hero{padding:10rem 10rem 5rem}.rc-section{padding:7rem 10rem}.rc-back{left:10rem}.rc-footer{padding:3rem 10rem}}
+
+/* ── Teal token — high contrast in both themes ── */
+.rc-root{--teal:#0CFDB5}
+.theme-light.rc-root{--teal:#007A52}
+.rc-teal{color:var(--teal)}
+.rc-ref-q{color:var(--teal)!important}
+
+/* ── Before/After toggle ── */
+.rc-img-wrap{position:relative;overflow:hidden}
+.rc-before-btn{
+  position:absolute;bottom:.85rem;right:.85rem;
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(7,7,17,.82);color:#F0EFF8;
+  border:1px solid rgba(255,255,255,.18);
+  padding:.45rem .85rem;border-radius:2px;
+  cursor:pointer;backdrop-filter:blur(8px);
+  transition:background .2s,border-color .2s,color .2s;
+  z-index:10;
+}
+.theme-light .rc-before-btn{background:rgba(245,243,255,.88);color:#0D0C1A;border-color:rgba(0,0,0,.18)}
+.rc-before-btn:hover{background:#F0185A;border-color:#F0185A;color:#fff}
+.rc-before-btn--active{background:#0A5331;border-color:#05B44C;color:#fff}
+.rc-before-btn--active:hover{background:#05B44C}
+.rc-before-icon{font-size:.85rem;line-height:1}
+
+/* ── Flip transition ── */
+.rc-flip-enter-active,.rc-flip-leave-active{transition:opacity .25s ease,transform .25s ease}
+.rc-flip-enter-from{opacity:0;transform:scale(.98)}
+.rc-flip-leave-to{opacity:0;transform:scale(1.01)}
 </style>

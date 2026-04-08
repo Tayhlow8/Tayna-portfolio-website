@@ -8,6 +8,13 @@
       :theme="theme"
     />
 
+    <!-- ── Case: Rodobens ─────────────────────────────────── -->
+    <RodobensCase
+      v-else-if="route.params.slug === 'rodobens'"
+      :lang="lang"
+      :theme="theme"
+    />
+
     <!-- ── Portfolio principal ────────────────────────────── -->
     <template v-else>
       <NavBar v-model:lang="lang" v-model:theme="theme" />
@@ -49,6 +56,7 @@ import ProcessSection     from './components/ProcessSection.vue'
 import TestimonialsSection from '../seções/TestimonialsSection.vue'
 import ContactSection     from '../seções/ContactSection.vue'
 import StoryPage          from '../seções/StoryPage.vue'
+import RodobensCase       from '../seções/RodobensCase.vue'
 
 const route = useRoute()
 
