@@ -39,7 +39,8 @@
           <!-- Image area -->
           <div class="card-img-wrap">
             <div class="card-img" :style="{ background: featured.bg }" aria-hidden="true">
-              <div class="card-img-inner" v-html="featured.visual"></div>
+              <img v-if="featured.image" :src="featured.image" class="card-img-photo" alt="" />
+              <div v-else class="card-img-inner" v-html="featured.visual"></div>
             </div>
             <div class="card-img-overlay" aria-hidden="true"></div>
           </div>
@@ -73,7 +74,8 @@
           <!-- Image area -->
           <div class="card-img-wrap">
             <div class="card-img" :style="{ background: project.bg }" aria-hidden="true">
-              <div class="card-img-inner" v-html="project.visual"></div>
+              <img v-if="project.image" :src="project.image" class="card-img-photo" alt="" />
+              <div v-else class="card-img-inner" v-html="project.visual"></div>
             </div>
             <div class="card-img-overlay" aria-hidden="true"></div>
           </div>
@@ -101,6 +103,10 @@
 
 <script setup>
 import { computed } from 'vue'
+import rodobensCover from '../../imagens cases/rodobens/cover rodobens novo.png'
+import masterCover   from '../../imagens cases/master globo/master globo avatars.avif'
+import lancomeCover  from '../../imagens cases/Lancme brazil/case desktp.avif'
+import yslCover      from '../../imagens cases/YSL Y intense/mobile exp.avif'
 
 const props = defineProps({
   theme: { type: String, default: 'dark' },
@@ -121,8 +127,8 @@ const copy = {
       brand    : 'Brand Experience',
     },
     impacts: {
-      rodobens : 'Redesign do fluxo de crédito que reduziu abandono em 38%',
-      master   : 'Plataforma educacional para 120 mil alunos do Grupo Globo',
+      rodobens : 'Como transformei um sistema legado antigo, lento, não escalável e dependente de processos externos em uma plataforma única, escalável, rápida e intuitiva para seus mais de 600 usuários.',
+      master   : 'Pesquisa quantitativa e qualitativa com a base de dados da plataforma educacional para lançamento de novo formato de produto.',
       lancome  : 'E-commerce de beleza com aumento de 52% na conversão',
       ysl      : 'Experiência de marca digital para lançamento global',
     },
@@ -139,7 +145,7 @@ const copy = {
       brand    : 'Brand Experience',
     },
     impacts: {
-      rodobens : 'Credit flow redesign that reduced drop-off by 38%',
+      rodobens : 'How I transformed an old, slow, non-scalable legacy system dependent on external processes into a single, scalable, fast and intuitive platform for its 600+ users.',
       master   : 'Educational platform serving 120k students at Grupo Globo',
       lancome  : 'Beauty e-commerce with a 52% conversion uplift',
       ysl      : 'Digital brand experience for a global launch',
@@ -157,7 +163,7 @@ const copy = {
       brand    : 'Brand Experience',
     },
     impacts: {
-      rodobens : 'Rediseño del flujo de crédito con 38% menos abandono',
+      rodobens : 'Cómo transformé un sistema legado antiguo, lento, no escalable y dependiente de procesos externos en una plataforma única, escalable, rápida e intuitiva para sus más de 600 usuarios.',
       master   : 'Plataforma educativa para 120 mil alumnos de Grupo Globo',
       lancome  : 'E-commerce de belleza con +52% de conversión',
       ysl      : 'Experiencia de marca digital para lanzamiento global',
@@ -175,7 +181,7 @@ const copy = {
       brand    : 'Brand Experience',
     },
     impacts: {
-      rodobens : 'Kreditfluss-Redesign mit 38 % weniger Abbrüchen',
+      rodobens : 'Wie ich ein altes, langsames, nicht skalierbares Legacy-System, das von externen Prozessen abhängig war, in eine einheitliche, skalierbare, schnelle und intuitive Plattform für über 600 Nutzer verwandelt habe.',
       master   : 'Bildungsplattform für 120.000 Grupo-Globo-Studierende',
       lancome  : 'Beauty-E-Commerce mit 52 % mehr Conversions',
       ysl      : 'Digitales Markenerlebnis für globalen Launch',
@@ -275,6 +281,7 @@ const projects = computed(() => [
     impact  : t.value.impacts.rodobens,
     bg      : 'linear-gradient(135deg, #0c0b1e 0%, #16122e 100%)',
     visual  : visualRodobens,
+    image   : rodobensCover,
     featured: true,
   },
   {
@@ -284,6 +291,7 @@ const projects = computed(() => [
     impact  : t.value.impacts.master,
     bg      : 'linear-gradient(135deg, #0a0a18 0%, #121224 100%)',
     visual  : visualMaster,
+    image   : masterCover,
     featured: false,
   },
   {
@@ -293,6 +301,7 @@ const projects = computed(() => [
     impact  : t.value.impacts.lancome,
     bg      : 'linear-gradient(135deg, #110810 0%, #1a0d18 100%)',
     visual  : visualLancome,
+    image   : lancomeCover,
     featured: false,
   },
   {
@@ -302,6 +311,7 @@ const projects = computed(() => [
     impact  : t.value.impacts.ysl,
     bg      : 'linear-gradient(135deg, #0d0d0d 0%, #1a1010 100%)',
     visual  : visualYSL,
+    image   : yslCover,
     featured: false,
   },
 ])
@@ -540,6 +550,12 @@ a { color: inherit; text-decoration: none; }
 }
 .card:hover .card-img { transform: scale(1.03); }
 
+.card-img-photo {
+  width      : 100%;
+  height     : 100%;
+  object-fit : cover;
+  display    : block;
+}
 .card-img-inner {
   width    : 100%;
   padding  : 1rem;
@@ -625,7 +641,7 @@ a { color: inherit; text-decoration: none; }
 .card:hover .card-client { color: var(--fg); }
 
 .card-impact {
-  font-size   : .82rem;
+  font-size   : 1.125rem;
   font-weight : 300;
   line-height : 1.7;
   color       : var(--fg-muted);
@@ -655,7 +671,7 @@ a { color: inherit; text-decoration: none; }
 /* ── Featured card specifics ── */
 .card--featured .card-img { height: 280px; }
 .card--featured .card-client { font-size: clamp(1.4rem, 4vw, 2rem); }
-.card--featured .card-impact { font-size: .9rem; max-width: 52ch; }
+.card--featured .card-impact { font-size: 1.125rem; max-width: 52ch; }
 
 /* ── Small card specifics ── */
 .card--small {

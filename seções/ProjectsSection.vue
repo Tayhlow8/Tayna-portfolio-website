@@ -627,7 +627,7 @@ a { color: inherit; text-decoration: none; }
 .card:hover .card-client { color: var(--fg); }
 
 .card-impact {
-  font-size   : .82rem;
+  font-size   : 1.125rem;
   font-weight : 300;
   line-height : 1.7;
   color       : var(--fg-muted);
@@ -657,7 +657,7 @@ a { color: inherit; text-decoration: none; }
 /* ── Featured card specifics ── */
 .card--featured .card-img { height: 280px; }
 .card--featured .card-client { font-size: clamp(1.4rem, 4vw, 2rem); }
-.card--featured .card-impact { font-size: .9rem; max-width: 52ch; }
+.card--featured .card-impact { font-size: 1.125rem; max-width: 52ch; }
 
 /* ── Small card specifics ── */
 .card--small {

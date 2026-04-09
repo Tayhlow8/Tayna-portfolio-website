@@ -5,6 +5,7 @@ const routes = [
   { path: '/historia', component: () => import('../App.vue') },
   { path: '/projetos', component: () => import('../App.vue') },
   { path: '/projetos/:slug', component: () => import('../App.vue') },
+  { path: '/cv',            component: () => import('../App.vue') },
 ]
 
 export default createRouter({

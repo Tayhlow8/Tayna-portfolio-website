@@ -50,12 +50,12 @@
 
         <div class="pf-ctas" role="group" :aria-label="t.cta1 + ' / ' + t.cta2">
           <!-- CTA primário: fill sólido rosa -->
-          <PfButton variant="solid">
+          <PfButton variant="solid" @click="scrollToProjects">
             {{ t.cta1 }} <span class="pf-arr" aria-hidden="true"> →</span>
           </PfButton>
 
           <!-- CTA secundário: ghost -->
-          <PfButton variant="ghost">
+          <PfButton variant="ghost" @click="scrollToAbout">
             {{ t.cta2 }}
           </PfButton>
         </div>
@@ -128,6 +128,14 @@ const t = computed(() => copy[props.lang])
 // ── Cursor glow (desktop / fine pointer only) ───────────────
 const cursorGlow = ref(null)
 let rafId = null
+
+function scrollToProjects () {
+  document.getElementById('projetos')?.scrollIntoView({ behavior: 'smooth' })
+}
+
+function scrollToAbout () {
+  document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' })
+}
 
 function onMouseMove(e) {
   if (!cursorGlow.value) return
@@ -259,7 +267,7 @@ onUnmounted(() => {
 }
 
 .pf-sub {
-  font-size: clamp(0.85rem, 2.2vw, 0.975rem);
+  font-size: clamp(1.125rem, 2.2vw, 1.35rem);
   font-weight: 300;
   line-height: 1.85;
   color: var(--fg-muted);

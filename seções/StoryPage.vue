@@ -2,15 +2,7 @@
   <div :class="['sp-root', `theme-${theme}`]">
     <div class="sp-grain" aria-hidden="true"></div>
 
-    <!-- ── Back link ─────────────────────────────────── -->
-    <button class="sp-back" @click="goBack">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M19 12H5M12 5l-7 7 7 7"/>
-      </svg>
-      {{ t.back }}
-    </button>
+    <NavBar v-model:lang="lang" v-model:theme="theme" />
 
     <div class="sp-layout">
 
@@ -113,6 +105,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import NavBar from './NavBar.vue'
 import PfButton from '../src/components/PfButton.vue'
 
 const props = defineProps({
@@ -120,8 +113,11 @@ const props = defineProps({
   theme : { type: String, default: 'dark' },
 })
 
+// Cópias locais mutáveis para o NavBar poder atualizar tema/idioma
+const lang  = ref(props.lang)
+const theme = ref(props.theme)
+
 const router = useRouter()
-const goBack = () => router.push({ path: '/', query: { lang: props.lang } })
 
 // ── Scroll reveal ─────────────────────────────────────────────
 const chapterRefs = ref([])
@@ -389,7 +385,7 @@ const copy = {
   },
 }
 
-const t = computed(() => copy[props.lang])
+const t = computed(() => copy[lang.value] ?? copy['PT'])
 </script>
 
 <style>
@@ -418,37 +414,11 @@ const t = computed(() => copy[props.lang])
   background-size  : 180px;
 }
 
-/* ── Back button ────────────────────────────────────── */
-.sp-back {
-  position       : fixed;
-  top            : 1.5rem;
-  left           : 1.5rem;
-  z-index        : 100;
-  display        : inline-flex;
-  align-items    : center;
-  gap            : 0.4rem;
-  font-size      : 0.6rem;
-  font-weight    : 500;
-  letter-spacing : 0.12em;
-  text-transform : uppercase;
-  cursor         : pointer;
-  color          : var(--fg-muted, #6B6A82);
-  border         : 1px solid var(--border, rgba(255,255,255,.07));
-  padding        : 0.4rem 0.75rem;
-  transition     : color 0.2s, border-color 0.2s;
-  background     : var(--bg, #070711);
-  font-family    : 'DM Sans', sans-serif;
-}
-.sp-back:hover {
-  color        : #F0185A;
-  border-color : rgba(240,24,90,.35);
-}
-
 /* ── Hero ───────────────────────────────────────────── */
 .sp-hero {
   position      : relative;
   z-index       : 1;
-  padding       : 8rem 1.5rem 5rem;
+  padding       : calc(56px + 5rem) 1.5rem 5rem;
   max-width     : 900px;
   margin        : 0 auto;
 }
@@ -775,16 +745,13 @@ const t = computed(() => copy[props.lang])
 
 /* ── Responsivo ─────────────────────────────────────── */
 @media (min-width: 640px) {
-  .sp-hero     { padding: 9rem 3rem 5rem; }
+  .sp-hero     { padding: calc(56px + 5rem) 3rem 5rem; }
   .sp-timeline { padding: 0 3rem 4rem; }
   .sp-chapter  { gap: 2.5rem; }
-  .sp-back     { left: 3rem; }
 }
 
 /* ── Desktop: two-column sticky layout ─────────────── */
 @media (min-width: 1024px) {
-
-  .sp-back { left: 2.5rem; top: 2rem; }
 
   /* Grid: fixed hero left | scrollable timeline right */
   .sp-layout {
@@ -795,11 +762,11 @@ const t = computed(() => copy[props.lang])
     z-index             : 1;
   }
 
-  /* Left column — sticks to viewport while right scrolls */
+  /* Left column — sticks abaixo da navbar */
   .sp-hero {
     position        : sticky;
-    top             : 0;
-    height          : 100svh;
+    top             : 56px;
+    height          : calc(100svh - 56px);
     display         : flex;
     flex-direction  : column;
     justify-content : center;
@@ -830,7 +797,6 @@ const t = computed(() => copy[props.lang])
 }
 
 @media (min-width: 1400px) {
-  .sp-back     { left: 3rem; }
   .sp-hero     { padding: 2rem 4rem 2rem 8rem; }
   .sp-title    { font-size: clamp(2.25rem, 3.2vw, 4rem); }
   .sp-timeline { padding: 9rem 7rem 2rem 5rem; }

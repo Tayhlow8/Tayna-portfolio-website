@@ -276,7 +276,7 @@ const t = computed(() => copy[props.lang])
 
 /* ── Sub ──────────────────────────────────────────────────── */
 .ct-sub {
-  font-size   : clamp(0.85rem, 2vw, 1rem);
+  font-size   : clamp(1.125rem, 2vw, 1.25rem);
   font-weight : 300;
   line-height : 1.75;
   color       : var(--fg-muted);

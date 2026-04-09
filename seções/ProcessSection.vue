@@ -354,7 +354,7 @@ const t = computed(() => copy[props.lang])
 
 /* Descrição */
 .ps-step-desc {
-  font-size     : clamp(0.8rem, 2vw, 0.875rem);
+  font-size     : clamp(1.125rem, 2vw, 1.25rem);
   font-weight   : 300;
   line-height   : 1.85;
   color         : var(--fg-muted);
