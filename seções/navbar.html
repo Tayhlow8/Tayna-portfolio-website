@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Navbar — Portfolio Tayná</title>
+
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"/>
+
+  <style>
+/* ══════════════════════════════════════════════════
+   DESIGN TOKENS — extraídos do design system
+   ══════════════════════════════════════════════════ */
+:root {
+  --accent        : #F0185A;
+  --accent-glow   : rgba(240,24,90,.12);
+  --accent-soft   : rgba(240,24,90,.4);
+  --font-display  : 'Clash Display', sans-serif;
+  --font-body     : 'DM Sans', sans-serif;
+  --ease-expo     : cubic-bezier(.16,1,.3,1);
+
+  --sp-1: .25rem; --sp-2: .5rem;  --sp-3: .75rem;
+  --sp-4: 1rem;   --sp-5: 1.25rem;--sp-6: 1.5rem;
+  --sp-8: 2rem;   --sp-10:2.5rem; --sp-12:3rem;
+  --sp-16:4rem;   --sp-20:5rem;   --sp-24:6rem;
+
+  --radius-none: 0;
+  --radius-sm  : 4px;
+  --radius-full: 9999px;
+
+  /* Glass config — replicado do Figma: Light -45° 80%, Refraction 80, Depth 20, Dispersion 50, Frost 4 */
+  --glass-blur        : 20px;
+  --glass-refraction  : 2px;
+  --glass-depth-shadow: 20px;
+}
+
+/* ══ TEMAS ══ */
+.theme-dark {
+  --bg          : #070711;
+  --fg          : #F0EFF8;
+  --fg-muted    : #6B6A82;
+  --fg-faint    : #22213A;
+  --border      : rgba(255,255,255,.07);
+  --ghost-border: rgba(255,255,255,.11);
+  --btn-fill    : #070711;
+  --grain-opacity: .04;
+
+  /* Glass dark — mais profundo, sutil */
+  --glass-bg    : rgba(7,7,17,.45);
+  --glass-border: rgba(255,255,255,.09);
+  --glass-highlight: rgba(255,255,255,.06);
+  --glass-shadow: rgba(0,0,0,.45);
+}
+
+.theme-light {
+  --bg          : #F5F3FF;
+  --fg          : #0D0C1A;
+  --fg-muted    : #62607A;
+  --fg-faint    : #D2CFEA;
+  --border      : rgba(0,0,0,.08);
+  --ghost-border: rgba(13,12,26,.12);
+  --btn-fill    : #F5F3FF;
+  --grain-opacity: .025;
+
+  /* Glass light — translúcido rosado-lilás */
+  --glass-bg    : rgba(245,243,255,.52);
+  --glass-border: rgba(240,24,90,.13);
+  --glass-highlight: rgba(255,255,255,.72);
+  --glass-shadow: rgba(13,12,26,.12);
+}
+
+/* ══ RESET ══ */
+*,*::before,*::after { box-sizing:border-box;margin:0;padding:0 }
+button { font-family:inherit;cursor:pointer;background:none;border:none }
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  min-height: 200vh;
+}
+
+/* ══ DEMO PAGE ══ */
+.demo-page {
+  background: var(--bg);
+  color: var(--fg);
+  transition: background .5s ease, color .5s ease;
+  position: relative;
+}
+
+.demo-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.demo-glow {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(ellipse at 65% 25%, var(--accent-glow) 0%, transparent 62%);
+  transition: opacity .5s;
+}
+.theme-light .demo-glow { opacity: .6; }
+.demo-grain {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ══════════════════════════════════════════════════
+   NAVBAR
+   ══════════════════════════════════════════════════ */
+.pf-nav {
+  position: fixed;
+  top: var(--sp-5);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: calc(100% - var(--sp-16));
+  max-width: 1080px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+
+  height: 56px;
+  padding: 0 var(--sp-6);
+
+  /* Glass effect */
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0;
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+
+  /* Profundidade — luz vinda de -45° */
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    inset -1px 0 0 rgba(255,255,255,.03),
+    0 var(--glass-depth-shadow) 40px var(--glass-shadow),
+    0 2px 8px rgba(0,0,0,.12);
+
+  /* Dispersion: sutil brilho cúbico nas bordas */
+  outline: 1px solid transparent;
+
+  animation: nav-in .8s var(--ease-expo) both;
+}
+
+@keyframes nav-in {
+  from { opacity:0; transform:translateX(-50%) translateY(-16px); filter:blur(8px); }
+  to   { opacity:1; transform:translateX(-50%) translateY(0);     filter:blur(0);   }
+}
+
+/* Fita de refração no topo (Frost 4) */
+.pf-nav::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent 0%, var(--glass-highlight) 40%, rgba(240,24,90,.18) 65%, transparent 100%);
+  pointer-events:none;
+}
+
+/* ── LOGO SLOT ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+.nav-logo-mark {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--ghost-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color .3s;
+}
+.nav-logo-mark::after {
+  content:'';
+  position:absolute;
+  inset:4px;
+  background: var(--accent);
+  opacity:.18;
+  transition: opacity .3s;
+}
+.nav-logo-mark:hover {
+  border-color: var(--accent-soft);
+}
+.nav-logo-mark:hover::after {
+  opacity:.35;
+}
+.nav-logo-mark svg {
+  position: relative;
+  z-index:1;
+  color: var(--accent);
+}
+
+.nav-logo-label {
+  font-family: var(--font-display);
+  font-size: .55rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ── NAV LINKS ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-right: var(--sp-8);
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 var(--sp-5);
+  font-size: .58rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  cursor: pointer;
+  transition: color .25s var(--ease-expo);
+  border: none;
+  background: none;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:50%; right:50%;
+  height:1px;
+  background: var(--accent);
+  transition: left .3s var(--ease-expo), right .3s var(--ease-expo);
+}
+
+.nav-link:hover {
+  color: var(--fg);
+}
+.nav-link:hover::after {
+  left: var(--sp-5);
+  right: var(--sp-5);
+}
+
+.nav-link.active {
+  color: var(--accent);
+}
+.nav-link.active::after {
+  left: var(--sp-5);
+  right: var(--sp-5);
+  background: var(--accent);
+}
+
+/* ── RIGHT CONTROLS ── */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-shrink: 0;
+  min-width: 120px;
+  justify-content: flex-end;
+}
+
+/* ── LANGUAGE SELECTOR ── */
+.nav-lang {
+  position: relative;
+}
+
+.nav-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 32px;
+  padding: 0 var(--sp-3);
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  border: 1px solid var(--ghost-border);
+  background: transparent;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+  white-space: nowrap;
+}
+.nav-lang-btn:hover {
+  color: var(--fg);
+  border-color: var(--accent-soft);
+}
+.nav-lang-btn svg {
+  transition: transform .3s var(--ease-expo);
+  flex-shrink:0;
+}
+.nav-lang-btn.open svg.chevron {
+  transform: rotate(180deg);
+}
+
+/* Globe icon */
+.nav-lang-btn .globe { color: var(--fg-muted); }
+
+.nav-lang-dropdown {
+  position: absolute;
+  top: calc(100% + var(--sp-2));
+  right: 0;
+  min-width: 130px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 12px 32px var(--glass-shadow);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .25s var(--ease-expo), transform .25s var(--ease-expo);
+  z-index: 200;
+}
+
+.nav-lang-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  transition: color .2s, background .2s;
+}
+.lang-option:hover {
+  color: var(--fg);
+  background: var(--glass-highlight);
+}
+.lang-option.selected {
+  color: var(--accent);
+}
+.lang-flag {
+  font-size: .85rem;
+  line-height: 1;
+}
+
+/* ── THEME TOGGLE ── */
+.nav-theme-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  border: 1px solid var(--ghost-border);
+  background: transparent;
+  cursor: pointer;
+  transition: color .2s, border-color .2s;
+  flex-shrink:0;
+}
+.nav-theme-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
+
+/* ── CTA BUTTON — seguindo o design system ── */
+.pf-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 var(--sp-5);
+  overflow: hidden;
+  outline: none;
+  transition: transform .15s ease;
+  flex-shrink: 0;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  min-width: 140px;
+}
+.pf-btn:active { transform: scale(.97); }
+
+.pf-ring {
+  position: absolute;
+  inset: -100%;
+  animation: pf-spin-ring 3s linear infinite;
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.pf-btn:hover .pf-ring { opacity: 1; }
+
+.pf-veil {
+  position: absolute;
+  inset: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.pf-btn:hover .pf-veil { opacity: 0; }
+
+.pf-core {
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  pointer-events: none;
+  transition: background .4s ease;
+}
+
+.pf-btn-lbl {
+  position: relative;
+  z-index: 2;
+  font-size: .55rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+
+.pf-arr {
+  display: inline-block;
+  transition: transform .2s ease;
+}
+.pf-btn:hover .pf-arr { transform: translateX(4px); }
+
+/* CTA — pink em default, hover diferente por tema */
+/* === DARK MODE === pink → white on hover */
+.theme-dark .pf-btn--cta .pf-ring {
+  background: conic-gradient(from 90deg at 50% 50%, transparent 0%, transparent 75%, rgba(255,255,255,.85) 100%);
+}
+.theme-dark .pf-btn--cta .pf-veil { background: #F0185A; }
+.theme-dark .pf-btn--cta .pf-core { background: #F0185A; }
+.theme-dark .pf-btn--cta .pf-btn-lbl { color: #fff; }
+
+/* On hover dark: label muda para escuro sobre fundo branco */
+.theme-dark .pf-btn--cta:hover .pf-core { background: #F0EFF8; }
+.theme-dark .pf-btn--cta:hover .pf-btn-lbl { color: #070711; }
+
+/* === LIGHT MODE === pink → gray on hover */
+.theme-light .pf-btn--cta .pf-ring {
+  background: conic-gradient(from 90deg at 50% 50%, transparent 0%, transparent 75%, rgba(240,24,90,.8) 100%);
+}
+.theme-light .pf-btn--cta .pf-veil { background: #F0185A; }
+.theme-light .pf-btn--cta .pf-core { background: #F0185A; }
+.theme-light .pf-btn--cta .pf-btn-lbl { color: #fff; }
+
+/* On hover light: label muda para fg sobre fundo fg-faint */
+.theme-light .pf-btn--cta:hover .pf-core { background: #62607A; }
+.theme-light .pf-btn--cta:hover .pf-btn-lbl { color: #F5F3FF; }
+
+@keyframes pf-spin-ring { to { transform: rotate(360deg); } }
+
+/* ══ DEMO CONTENT ══ */
+.demo-content {
+  position: relative;
+  z-index: 1;
+  padding: 160px var(--sp-16) var(--sp-24);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.demo-eyebrow {
+  font-size: .6rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+}
+.pf-dot {
+  width:5px; height:5px;
+  border-radius:50%;
+  background:var(--accent);
+  animation: pf-pulse 2.5s ease-in-out infinite;
+}
+@keyframes pf-pulse {
+  0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.75)}
+}
+
+.demo-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem,10vw,6.5rem);
+  line-height: .84;
+  letter-spacing: -.025em;
+  margin-bottom: var(--sp-8);
+}
+.demo-title em { font-style:italic; color:var(--accent); }
+
+.demo-body {
+  font-size: clamp(.85rem,1.5vw,.95rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fg-muted);
+  max-width: 38ch;
+}
+
+/* ══ INDICADOR DE MODO ══ */
+.demo-mode-label {
+  position: fixed;
+  bottom: var(--sp-6);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .5rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 50;
+}
+</style>
+</head>
+
+<body>
+<div class="demo-page theme-dark" id="root">
+  <div class="demo-bg" aria-hidden="true">
+    <div class="demo-glow"></div>
+    <div class="demo-grain"></div>
+  </div>
+
+  <!-- ════════════════════════════════
+       NAVBAR
+  ════════════════════════════════ -->
+  <nav class="pf-nav" role="navigation" aria-label="Main navigation">
+
+    <!-- LOGO SLOT -->
+    <div class="nav-logo">
+      <div class="nav-logo-mark" aria-label="Logo placeholder">
+        <!-- Ícone estilo crescent/lua — mesma linha do ícone enviado -->
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+        </svg>
+      </div>
+      <span class="nav-logo-label">Logo</span>
+    </div>
+
+    <!-- NAV LINKS -->
+    <div class="nav-links" role="list">
+      <button class="nav-link active" role="listitem" onclick="setActive(this)">
+        Minha história
+      </button>
+      <button class="nav-link" role="listitem" onclick="setActive(this)">
+        Projetos
+      </button>
+      <button class="nav-link" role="listitem" onclick="setActive(this)">
+        CV
+      </button>
+    </div>
+
+    <!-- RIGHT CONTROLS -->
+    <div class="nav-controls">
+
+      <!-- LANGUAGE SELECTOR -->
+      <div class="nav-lang">
+        <button class="nav-lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" onclick="toggleLang()">
+          <!-- Globe icon — mesmo estilo do ícone de lua enviado -->
+          <svg class="globe" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+          <span id="langCurrent">EN</span>
+          <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        <div class="nav-lang-dropdown" id="langDropdown" role="listbox" aria-label="Select language">
+          <button class="lang-option selected" onclick="selectLang('EN','🇺🇸',this)">
+            <span class="lang-flag">🇺🇸</span> English
+          </button>
+          <button class="lang-option" onclick="selectLang('PT','🇧🇷',this)">
+            <span class="lang-flag">🇧🇷</span> Português
+          </button>
+          <button class="lang-option" onclick="selectLang('ES','🇪🇸',this)">
+            <span class="lang-flag">🇪🇸</span> Español
+          </button>
+          <button class="lang-option" onclick="selectLang('DE','🇩🇪',this)">
+            <span class="lang-flag">🇩🇪</span> Deutsch
+          </button>
+        </div>
+      </div>
+
+      <!-- THEME TOGGLE -->
+      <button class="nav-theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle light/dark mode">
+        <svg id="iconSun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg id="iconMoon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+        </svg>
+      </button>
+
+      <!-- CTA PRINCIPAL -->
+      <button class="pf-btn pf-btn--cta" aria-label="Send a message">
+        <span class="pf-ring"></span>
+        <span class="pf-veil"></span>
+        <span class="pf-core"></span>
+        <span class="pf-btn-lbl">Send a message <span class="pf-arr">→</span></span>
+      </button>
+
+    </div><!-- /nav-controls -->
+  </nav>
+
+  <!-- DEMO CONTENT -->
+  <div class="demo-content" aria-hidden="true">
+    <div class="demo-eyebrow">
+      <span class="pf-dot"></span>
+      UX Designer · Brasil → Global
+    </div>
+    <h1 class="demo-title">
+      TAY<em>NÁ</em><br>
+    </h1>
+    <p class="demo-body">
+      Transformo complexidade em experiências que as pessoas amam usar — e as empresas querem construir.
+    </p>
+  </div>
+
+  <div class="demo-mode-label" id="modeLabel">Dark mode</div>
+
+</div><!-- /root -->
+
+<script>
+/* ── THEME TOGGLE ── */
+const root = document.getElementById('root');
+const modeLabel = document.getElementById('modeLabel');
+const iconSun = document.getElementById('iconSun');
+const iconMoon = document.getElementById('iconMoon');
+let isDark = true;
+
+function toggleTheme() {
+  isDark = !isDark;
+  root.classList.toggle('theme-dark', isDark);
+  root.classList.toggle('theme-light', !isDark);
+  modeLabel.textContent = isDark ? 'Dark mode' : 'Light mode';
+  iconSun.style.display = isDark ? 'none' : 'block';
+  iconMoon.style.display = isDark ? 'block' : 'none';
+}
+
+/* ── LANGUAGE SELECTOR ── */
+const langBtn = document.getElementById('langBtn');
+const langDropdown = document.getElementById('langDropdown');
+const langCurrent = document.getElementById('langCurrent');
+let langOpen = false;
+
+function toggleLang() {
+  langOpen = !langOpen;
+  langBtn.classList.toggle('open', langOpen);
+  langDropdown.classList.toggle('open', langOpen);
+  langBtn.setAttribute('aria-expanded', langOpen);
+}
+
+function selectLang(code, flag, el) {
+  langCurrent.textContent = code;
+  document.querySelectorAll('.lang-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  toggleLang();
+}
+
+/* Close lang on outside click */
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.nav-lang')) {
+    langOpen = false;
+    langBtn.classList.remove('open');
+    langDropdown.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', false);
+  }
+});
+
+/* ── ACTIVE NAV LINK ── */
+function setActive(el) {
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

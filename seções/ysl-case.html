@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YSL Brazil — Y EAU DE PARFUM INTENSE · Tayná</title>
+
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"/>
+
+  <style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+   ═══════════════════════════════════════════ */
+:root {
+  --accent        : #F0185A;
+  --accent-glow   : rgba(240,24,90,.12);
+  --accent-soft   : rgba(240,24,90,.4);
+  --font-display  : 'Clash Display', sans-serif;
+  --font-body     : 'DM Sans', sans-serif;
+  --ease-expo     : cubic-bezier(.16,1,.3,1);
+
+  --bg            : #070711;
+  --fg            : #F0EFF8;
+  --fg-muted      : #6B6A82;
+  --fg-faint      : #22213A;
+  --border        : rgba(255,255,255,.07);
+  --ghost-border  : rgba(255,255,255,.11);
+  --btn-fill      : #070711;
+  --grain-opacity : .04;
+
+  --sp-1:.25rem; --sp-2:.5rem;  --sp-3:.75rem;
+  --sp-4:1rem;   --sp-5:1.25rem;--sp-6:1.5rem;
+  --sp-8:2rem;   --sp-10:2.5rem;--sp-12:3rem;
+  --sp-16:4rem;  --sp-20:5rem;  --sp-24:6rem;
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--fg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;background:none;border:none}
+
+/* ═══════════════════════════════════════════
+   ATMOSPHERE
+   ═══════════════════════════════════════════ */
+.page-glow{
+  position:fixed;top:-10%;right:-10%;
+  width:70vw;height:70vw;max-width:800px;max-height:800px;
+  pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at 70% 20%,var(--accent-glow) 0%,transparent 60%);
+}
+.page-grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:var(--grain-opacity);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* ═══════════════════════════════════════════
+   TOPBAR
+   ═══════════════════════════════════════════ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--sp-5) var(--sp-6);
+  background:rgba(7,7,17,.72);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.topbar-logo{font-family:var(--font-display);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted)}
+.topbar-logo span{color:var(--accent)}
+.topbar-back{display:flex;align-items:center;gap:var(--sp-2);font-size:.55rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted);transition:color .2s}
+.topbar-back:hover{color:var(--accent)}
+.topbar-back svg{transition:transform .2s var(--ease-expo)}
+.topbar-back:hover svg{transform:translateX(-3px)}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+.page-wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 var(--sp-6)}
+
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:end;
+  gap:var(--sp-12);
+  padding-top:100px;
+  padding-bottom:var(--sp-16);
+}
+.hero-left{}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:var(--sp-2);
+  font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--fg-muted);margin-bottom:var(--sp-6);
+  animation:pf-up .85s var(--ease-expo) both;
+}
+.pf-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pf-pulse 2.5s ease-in-out infinite}
+.hero-brand{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(.65rem,1.8vw,.85rem);
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--fg-muted);margin-bottom:var(--sp-4);
+  animation:pf-up .85s var(--ease-expo) .05s both;
+}
+.hero-title{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.8rem,9vw,6rem);
+  line-height:.88;letter-spacing:-.025em;
+  margin-bottom:var(--sp-8);
+  animation:pf-up .85s var(--ease-expo) .1s both;
+}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-title .sub{
+  display:block;
+  font-size:clamp(1rem,3vw,1.8rem);
+  font-weight:400;letter-spacing:.02em;
+  color:var(--fg-muted);margin-top:var(--sp-3);
+}
+
+.hero-rule{width:100%;height:1px;background:linear-gradient(90deg,rgba(240,24,90,.55) 0%,transparent 65%);margin-bottom:var(--sp-8);animation:pf-up .85s var(--ease-expo) .2s both}
+
+.hero-meta{display:flex;flex-wrap:wrap;gap:var(--sp-6);margin-bottom:var(--sp-8);animation:pf-up .85s var(--ease-expo) .25s both}
+.hero-meta-item{display:flex;flex-direction:column;gap:3px}
+.hero-meta-label{font-size:.5rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted)}
+.hero-meta-value{font-size:.75rem;font-weight:400;color:var(--fg)}
+
+/* Hero tag badges */
+.hero-tags{display:flex;flex-wrap:wrap;gap:var(--sp-2);animation:pf-up .85s var(--ease-expo) .3s both}
+.hero-tag{
+  display:inline-flex;align-items:center;
+  padding:var(--sp-1) var(--sp-3);
+  border:1px solid var(--border);
+  font-size:.5rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fg-muted);
+}
+.hero-tag.accent{border-color:var(--accent-soft);color:var(--accent)}
+
+/* Hero right — image */
+.hero-right{animation:pf-up .85s var(--ease-expo) .15s both}
+.hero-img-wrap{position:relative}
+.hero-img-wrap::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:40%;
+  background:linear-gradient(to top,var(--bg) 0%,transparent 100%);
+  pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════ */
+.section{margin-bottom:var(--sp-24)}
+.section-eyebrow{
+  font-family:var(--font-display);font-weight:600;font-size:.65rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--sp-8);
+  display:flex;align-items:center;gap:var(--sp-3);
+}
+.section-eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pf-pulse 2.5s ease-in-out infinite}
+.section-title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.4rem,4.5vw,2.5rem);
+  line-height:1.1;letter-spacing:-.015em;margin-bottom:var(--sp-6);
+}
+.section-body{
+  font-size:clamp(.85rem,2.2vw,.975rem);font-weight:300;
+  line-height:1.85;color:var(--fg-muted);max-width:55ch;
+}
+
+/* ═══════════════════════════════════════════
+   CONTEXT — event strip
+   ═══════════════════════════════════════════ */
+.context-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+  margin-top:var(--sp-10);
+}
+.context-cell{
+  background:var(--bg);padding:var(--sp-6);
+  transition:background .3s;
+}
+.context-cell:hover{background:rgba(240,24,90,.04)}
+.context-cell-label{font-size:.45rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:var(--sp-2)}
+.context-cell-value{font-family:var(--font-display);font-size:.95rem;font-weight:600;line-height:1.2}
+.context-cell-sub{font-size:.7rem;font-weight:300;color:var(--fg-muted);margin-top:var(--sp-1)}
+
+/* ═══════════════════════════════════════════
+   CHALLENGE — highlight box
+   ═══════════════════════════════════════════ */
+.challenge-block{
+  border:1px solid var(--border);
+  padding:var(--sp-10) var(--sp-12);
+  position:relative;overflow:hidden;
+  margin-top:var(--sp-10);
+}
+.challenge-block::before{
+  content:'';position:absolute;top:0;left:0;width:2px;height:100%;
+  background:linear-gradient(to bottom,var(--accent) 0%,transparent 100%);
+}
+.challenge-block::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 0% 50%,var(--accent-glow) 0%,transparent 55%);
+  pointer-events:none;
+}
+.challenge-quote{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.1rem,3vw,1.7rem);
+  line-height:1.3;letter-spacing:-.015em;
+  position:relative;z-index:1;
+}
+.challenge-quote em{font-style:italic;color:var(--accent)}
+.challenge-footnote{
+  margin-top:var(--sp-6);font-size:.8rem;font-weight:300;
+  line-height:1.75;color:var(--fg-muted);
+  max-width:60ch;position:relative;z-index:1;
+}
+
+/* ═══════════════════════════════════════════
+   INNOVATION — scroll anim feature
+   ═══════════════════════════════════════════ */
+.innovation-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:var(--sp-8);align-items:center;
+  margin-top:var(--sp-10);
+}
+.innovation-left{}
+.innovation-tag{
+  display:inline-flex;align-items:center;gap:var(--sp-2);
+  padding:var(--sp-1) var(--sp-3);
+  border:1px solid var(--accent-soft);
+  font-size:.5rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:var(--sp-6);
+}
+.innovation-title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.1rem,3.5vw,1.8rem);
+  line-height:1.15;letter-spacing:-.015em;margin-bottom:var(--sp-6);
+}
+.innovation-body{
+  font-size:.9rem;font-weight:300;line-height:1.85;
+  color:var(--fg-muted);margin-bottom:var(--sp-6);
+}
+.innovation-body strong{color:var(--fg);font-weight:500}
+
+/* Scroll anim diagram */
+.scroll-diagram{
+  border:1px solid var(--border);padding:var(--sp-8);
+  position:relative;overflow:hidden;
+}
+.scroll-diagram::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(240,24,90,.07) 0%,transparent 60%);
+}
+.scroll-diagram-label{
+  font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fg-muted);margin-bottom:var(--sp-6);position:relative;z-index:1;
+}
+/* Visual: scroll = video progress */
+.scroll-viz{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;gap:var(--sp-4);
+}
+.scroll-row{
+  display:flex;align-items:center;gap:var(--sp-4);
+}
+.scroll-icon{
+  width:32px;height:32px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:var(--fg-muted);font-size:.7rem;
+}
+.scroll-arrow{color:var(--accent);font-size:.75rem;flex-shrink:0}
+.scroll-bar-wrap{flex:1;height:3px;background:var(--fg-faint);position:relative}
+.scroll-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));transition:width .6s var(--ease-expo)}
+.scroll-cap{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);white-space:nowrap}
+
+/* ═══════════════════════════════════════════
+   PROCESS — timeline
+   ═══════════════════════════════════════════ */
+.process-list{display:flex;flex-direction:column;gap:0;margin-top:var(--sp-10)}
+.process-item{
+  display:grid;grid-template-columns:80px 1fr;gap:var(--sp-8);
+  padding:var(--sp-8) 0;border-top:1px solid var(--border);
+}
+.process-item:last-child{border-bottom:1px solid var(--border)}
+.process-num{font-family:var(--font-display);font-size:2.5rem;font-weight:700;color:var(--fg-faint);line-height:1;transition:color .3s}
+.process-item:hover .process-num{color:var(--accent)}
+.process-title{font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--sp-3)}
+.process-body{font-size:.875rem;font-weight:300;line-height:1.8;color:var(--fg-muted)}
+.process-body strong{color:var(--fg);font-weight:500}
+
+/* ═══════════════════════════════════════════
+   IMAGE GRID
+   ═══════════════════════════════════════════ */
+.photos-grid-ysl{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--sp-4);
+  margin-top:var(--sp-8);
+}
+.photos-grid-ysl .span-full{grid-column:1/-1}
+
+/* ═══════════════════════════════════════════
+   IMAGE PLACEHOLDERS
+   ═══════════════════════════════════════════ */
+.img-placeholder{
+  width:100%;background:var(--fg-faint);border:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:var(--sp-3);color:var(--fg-muted);
+  font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  position:relative;overflow:hidden;
+}
+.img-placeholder::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(240,24,90,.06) 0%,transparent 60%);
+}
+.img-placeholder svg{opacity:.35}
+.img-placeholder .img-num{
+  font-family:var(--font-display);font-size:2.5rem;font-weight:700;
+  color:var(--fg-faint);line-height:1;position:relative;z-index:1;
+}
+.img-placeholder span{position:relative;z-index:1}
+.img-full-ph{aspect-ratio:16/9}
+.img-half-ph{aspect-ratio:4/3}
+.img-tall-ph{aspect-ratio:3/4}
+
+/* ═══════════════════════════════════════════
+   MORE YSL WORK
+   ═══════════════════════════════════════════ */
+.more-ysl-grid{
+  display:flex;flex-direction:column;gap:var(--sp-4);margin-top:var(--sp-10);
+}
+.more-ysl-card{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--border);overflow:hidden;
+  transition:border-color .3s;
+}
+.more-ysl-card:hover{border-color:var(--accent-soft)}
+.more-ysl-card:nth-child(even){direction:rtl}
+.more-ysl-card:nth-child(even) > *{direction:ltr}
+.more-ysl-img{aspect-ratio:4/3;overflow:hidden}
+.more-ysl-img .img-placeholder{height:100%;aspect-ratio:unset}
+.more-ysl-info{
+  padding:var(--sp-10);
+  display:flex;flex-direction:column;justify-content:center;gap:var(--sp-4);
+}
+.more-ysl-label{
+  font-size:.5rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);
+}
+.more-ysl-title{
+  font-family:var(--font-display);font-size:clamp(1rem,2.5vw,1.4rem);
+  font-weight:600;letter-spacing:-.015em;line-height:1.15;
+}
+.more-ysl-body{
+  font-size:.875rem;font-weight:300;line-height:1.8;
+  color:var(--fg-muted);max-width:38ch;
+}
+.more-ysl-tags{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-2)}
+
+@media(max-width:640px){
+  .more-ysl-card{grid-template-columns:1fr}
+  .more-ysl-card:nth-child(even){direction:ltr}
+  .more-ysl-info{padding:var(--sp-6)}
+}
+
+/* ═══════════════════════════════════════════
+   LEARNINGS
+   ═══════════════════════════════════════════ */
+.learnings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-4);margin-top:var(--sp-8)}
+.learning-card{
+  border:1px solid var(--border);padding:var(--sp-6);
+  transition:border-color .3s,transform .4s var(--ease-expo);
+}
+.learning-card:hover{border-color:var(--accent-soft);transform:translateY(-4px)}
+.learning-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--accent);opacity:.25;line-height:1;margin-bottom:var(--sp-4)}
+.learning-title{font-family:var(--font-display);font-size:.875rem;font-weight:600;margin-bottom:var(--sp-3);letter-spacing:-.01em}
+.learning-body{font-size:.8rem;font-weight:300;line-height:1.75;color:var(--fg-muted)}
+
+/* ═══════════════════════════════════════════
+   BUTTONS (from DS)
+   ═══════════════════════════════════════════ */
+.pf-btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  height:50px;padding:0 1.75rem;overflow:hidden;outline:none;
+  transition:transform .15s ease;min-width:175px;border-radius:0;cursor:pointer;
+}
+.pf-btn:active{transform:scale(.97)}
+.pf-ring{position:absolute;inset:-100%;animation:pf-spin-ring 3s linear infinite;opacity:0;transition:opacity .4s ease;pointer-events:none}
+.pf-btn:hover .pf-ring{opacity:1}
+.pf-veil{position:absolute;inset:0;transition:opacity .4s ease;pointer-events:none}
+.pf-btn:hover .pf-veil{opacity:0}
+.pf-core{position:absolute;inset:1px;z-index:1;pointer-events:none}
+.pf-btn-lbl{position:relative;z-index:2;font-size:.63rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:color .2s}
+.pf-arr{display:inline-block;transition:transform .2s ease}
+.pf-btn:hover .pf-arr{transform:translateX(4px)}
+.pf-btn--solid .pf-ring{background:conic-gradient(from 90deg at 50% 50%,transparent 0%,transparent 75%,rgba(255,255,255,.85) 100%)}
+.pf-btn--solid .pf-veil{background:var(--accent)}
+.pf-btn--solid .pf-core{background:var(--accent)}
+.pf-btn--solid .pf-btn-lbl{color:#fff}
+.pf-btn--ghost .pf-ring{background:conic-gradient(from 90deg at 50% 50%,transparent 0%,transparent 75%,var(--accent) 100%)}
+.pf-btn--ghost .pf-veil{background:var(--ghost-border)}
+.pf-btn--ghost .pf-core{background:var(--btn-fill)}
+.pf-btn--ghost .pf-btn-lbl{color:var(--fg)}
+
+/* ═══════════════════════════════════════════
+   FOOTER CTA
+   ═══════════════════════════════════════════ */
+.case-footer{
+  border-top:1px solid var(--border);
+  padding:var(--sp-20) 0 var(--sp-24);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:var(--sp-8);
+}
+.case-footer-label{font-size:.55rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:var(--sp-3)}
+.case-footer-title{font-family:var(--font-display);font-size:clamp(1.2rem,3.5vw,2rem);font-weight:600;letter-spacing:-.015em}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--ease-expo),transform .9s var(--ease-expo),filter .9s var(--ease-expo)}
+.reveal.visible{opacity:1;transform:translateY(0);filter:blur(0)}
+
+/* ═══════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════ */
+@keyframes pf-up{from{opacity:0;transform:translateY(24px);filter:blur(8px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes pf-spin-ring{to{transform:rotate(360deg)}}
+@keyframes pf-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.75)}}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:var(--sp-8)}
+  .context-strip{grid-template-columns:1fr 1fr}
+  .innovation-grid{grid-template-columns:1fr}
+  .learnings-grid{grid-template-columns:1fr 1fr}
+  .photos-grid-ysl{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .learnings-grid{grid-template-columns:1fr}
+  .context-strip{grid-template-columns:1fr}
+  .process-item{grid-template-columns:50px 1fr;gap:var(--sp-4)}
+  .challenge-block{padding:var(--sp-6)}
+  .case-footer{flex-direction:column;align-items:flex-start}
+}
+@media(min-width:640px){
+  .topbar{padding:var(--sp-6) var(--sp-10)}
+  .page-wrap{padding:0 var(--sp-12)}
+}
+@media(min-width:1024px){
+  .topbar{padding:var(--sp-8) var(--sp-20)}
+  .page-wrap{padding:0 var(--sp-16)}
+}
+  </style>
+</head>
+
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+  <div class="page-grain" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <header class="topbar">
+    <span class="topbar-logo">TAY<span>NÁ</span></span>
+    <a href="#" class="topbar-back">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      All projects
+    </a>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       HERO
+       ══════════════════════════════════════ -->
+  <section class="page-wrap hero">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="pf-dot"></span>
+        UX/UI Design · Luxury Tech
+      </div>
+      <div class="hero-brand">Yves Saint Laurent Beauty</div>
+      <h1 class="hero-title">
+        <em>Y</em> Eau de<br>Parfum Intense
+        <span class="sub">Brazil Launch</span>
+      </h1>
+      <div class="hero-rule"></div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Client</span>
+          <span class="hero-meta-value">YSL Beauty Brazil</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Event</span>
+          <span class="hero-meta-value">The Town Festival, São Paulo</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Scope</span>
+          <span class="hero-meta-value">Landing Page · Lead Capture</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Face of Campaign</span>
+          <span class="hero-meta-value">Ben Harper</span>
+        </div>
+      </div>
+      <div class="hero-tags">
+        <span class="hero-tag accent">Design–dev collaboration</span>
+        <span class="hero-tag">Tight deadline</span>
+        <span class="hero-tag">Scroll animation</span>
+        <span class="hero-tag">Mobile-first</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-img-wrap">
+        <div class="img-placeholder" style="aspect-ratio:3/4">
+          <div class="img-num">01</div>
+          <span>Campaign visual — Ben Harper × YSL Y</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTEXT
+       ══════════════════════════════════════ -->
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">Context</div>
+    <h2 class="section-title">Where luxury met rock 'n' roll</h2>
+    <p class="section-body">
+      The launch of Y EAU DE PARFUM INTENSE in Brazil was positioned around a unique collision of worlds — a heritage luxury fragrance brand activating at the country's biggest rock festival, with Grammy-winning artist Ben Harper as its face.
+    </p>
+
+    <div class="context-strip">
+      <div class="context-cell">
+        <div class="context-cell-label">Brand</div>
+        <div class="context-cell-value">YSL Beauty</div>
+        <div class="context-cell-sub">Luxury fragrance, Paris</div>
+      </div>
+      <div class="context-cell">
+        <div class="context-cell-label">Event</div>
+        <div class="context-cell-value">The Town</div>
+        <div class="context-cell-sub">São Paulo's rock festival</div>
+      </div>
+      <div class="context-cell">
+        <div class="context-cell-label">Ambassador</div>
+        <div class="context-cell-value">Ben Harper</div>
+        <div class="context-cell-sub">Face of the Brazil launch</div>
+      </div>
+      <div class="context-cell">
+        <div class="context-cell-label">Goal</div>
+        <div class="context-cell-value">Lead Capture</div>
+        <div class="context-cell-sub">High-intent audience acquisition</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CHALLENGE
+       ══════════════════════════════════════ -->
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">The Challenge</div>
+    <h2 class="section-title">An experience worth stopping for</h2>
+
+    <div class="challenge-block">
+      <div class="challenge-quote">
+        "The tool couldn't show what the idea was.<br>
+        So I <em>went to where the idea was being built.</em>"
+      </div>
+      <p class="challenge-footnote">
+        The scroll-driven video animation — where the user's scroll position drives a frame-by-frame video playback, exactly like Apple does for hardware launches — was a first for a Brazilian beauty brand. The problem: Figma had no way to prototype this accurately. With a tight campaign deadline and no time to iterate through static handoffs, I made the call to step into the development process directly, working side-by-side with the developer until the experience felt right on every device.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       INNOVATION — scroll animation
+       ══════════════════════════════════════ -->
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">The Real Work</div>
+
+    <div class="innovation-grid">
+      <div class="innovation-left">
+        <div class="innovation-tag">
+          <span class="pf-dot" style="animation:none;opacity:1"></span>
+          Deadline pressure · Cross-functional delivery
+        </div>
+        <h2 class="innovation-title">When the prototype<br>isn't enough, you<br>ship alongside the dev</h2>
+        <p class="innovation-body">
+          The centrepiece of the page was a scroll-driven video animation — as the user scrolls, the Y fragrance bottle animates frame by frame, cinematic and precise. <strong>Figma couldn't prototype this with accuracy.</strong> No static handoff would communicate what needed to happen.
+        </p>
+        <p class="innovation-body">
+          With the campaign date locked and no room to iterate through rounds of misaligned feedback, I made the call to <strong>embed directly in the build</strong>. I sat with the developer through implementation — reviewing each scroll state in the browser, adjusting timing, catching edge cases on mobile — until the animation felt exactly right. The result was a fluid experience that held up on smartphones in the middle of a rock festival crowd.
+        </p>
+      </div>
+
+      <div class="scroll-diagram">
+        <div class="scroll-diagram-label">Scroll position → Video frame progress</div>
+        <div class="scroll-viz">
+          <div class="scroll-row">
+            <div class="scroll-icon">↕</div>
+            <span class="scroll-arrow">→</span>
+            <div style="flex:1">
+              <div style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:var(--sp-2)">Scroll progress</div>
+              <div class="scroll-bar-wrap"><div class="scroll-bar-fill" style="width:72%" id="scrollFill"></div></div>
+            </div>
+            <span class="scroll-cap">72%</span>
+          </div>
+          <div class="scroll-row" style="margin-top:var(--sp-2)">
+            <div class="scroll-icon" style="border-color:var(--accent-soft);color:var(--accent)">▶</div>
+            <span class="scroll-arrow">→</span>
+            <div style="flex:1">
+              <div style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:var(--sp-2)">Video frame</div>
+              <div class="scroll-bar-wrap"><div class="scroll-bar-fill" style="width:72%"></div></div>
+            </div>
+            <span class="scroll-cap">frame 86/120</span>
+          </div>
+          <div style="margin-top:var(--sp-6);padding-top:var(--sp-4);border-top:1px solid var(--border)">
+            <div style="font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted);margin-bottom:var(--sp-3)">Result</div>
+            <div style="display:flex;gap:var(--sp-3)">
+              <div style="border:1px solid var(--border);padding:var(--sp-2) var(--sp-3);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted)">Fluid on mobile</div>
+              <div style="border:1px solid var(--border);padding:var(--sp-2) var(--sp-3);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-muted)">No JS jank</div>
+              <div style="border:1px solid var(--accent-soft);padding:var(--sp-2) var(--sp-3);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Launch success</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROCESS
+       ══════════════════════════════════════ -->
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">Design Process</div>
+    <h2 class="section-title">Design under pressure,<br>delivered with precision</h2>
+
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <div class="process-title">Brief & Alignment</div>
+          <p class="process-body">
+            Aligned with YSL Beauty Brazil's marketing team on campaign goals, audience profile, and lead data requirements. Mapped the product positioning — a premium fragrance at a rock festival — as the core creative tension to design around.
+          </p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <div class="process-title">Conceptual Direction</div>
+          <p class="process-body">
+            Defined the scroll-driven video animation as the hero interaction — a <strong>cinematic product reveal</strong> that puts the Y bottle center-stage before asking anything of the user. This reversed the typical lead-capture logic: experience first, form second.
+          </p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <div class="process-title">Wireframing & UI Design</div>
+          <p class="process-body">
+            Delivered high-fidelity UI screens applying the campaign KV — typography, colors, and Ben Harper's visual identity. Designed the full page flow: scroll animation zone, brand storytelling, and the lead capture form with YSL's luxury aesthetic.
+          </p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <div class="process-title">Embedded Dev Collaboration</div>
+          <p class="process-body">
+            Rather than hand off files and wait for feedback rounds, I embedded directly in the development process. Worked shoulder-to-shoulder with the developer: reviewing scroll states in the browser, adjusting easing curves, testing on real mobile devices. <strong>This was the project where I learned that the best handoff is sometimes no handoff at all</strong> — just being in the room until it's right.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">UI Screens</div>
+    <h2 class="section-title">The final product</h2>
+
+    <div class="photos-grid-ysl" style="grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-top:var(--sp-8)">
+      <div class="img-placeholder img-full-ph span-full" style="aspect-ratio:16/7">
+        <div class="img-num">01</div>
+        <span>Scroll animation — hero state</span>
+      </div>
+      <div class="img-placeholder img-half-ph">
+        <div class="img-num">02</div>
+        <span>Brand storytelling section</span>
+      </div>
+      <div class="img-placeholder img-half-ph">
+        <div class="img-num">03</div>
+        <span>Lead capture form</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       MORE YSL WORK
+       ══════════════════════════════════════ -->
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">More work for YSL Brazil</div>
+    <h2 class="section-title">Two more campaigns,<br>same client trust</h2>
+    <p class="section-body">
+      The Y Intense launch opened the door to further work with YSL Beauty Brazil — two additional lead capture pages, each with its own campaign identity and moment.
+    </p>
+
+    <div class="more-ysl-grid">
+
+      <div class="more-ysl-card">
+        <div class="more-ysl-img">
+          <div class="img-placeholder" style="height:100%">
+            <div class="img-num">04</div>
+            <span>Libre × Dua Lipa — UI screen</span>
+          </div>
+        </div>
+        <div class="more-ysl-info">
+          <div class="more-ysl-label">Campaign 02</div>
+          <div class="more-ysl-title">Libre — Dua Lipa</div>
+          <p class="more-ysl-body">
+            Lead capture landing page for the Libre fragrance launch featuring Dua Lipa as campaign face. Designed to capture the energy of the artist while maintaining YSL's signature luxury positioning.
+          </p>
+          <div class="more-ysl-tags">
+            <span class="hero-tag">Lead capture</span>
+            <span class="hero-tag">Campaign KV</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="more-ysl-card">
+        <div class="more-ysl-img">
+          <div class="img-placeholder" style="height:100%">
+            <div class="img-num">05</div>
+            <span>YSL e-commerce Brazil — UI screen</span>
+          </div>
+        </div>
+        <div class="more-ysl-info">
+          <div class="more-ysl-label">Campaign 03</div>
+          <div class="more-ysl-title">YSL E-commerce — Brazil Launch</div>
+          <p class="more-ysl-body">
+            Landing page announcing YSL Beauty's direct e-commerce arrival in Brazil — a landmark moment for the brand in the country. Designed to build anticipation and capture high-intent leads ahead of the store opening.
+          </p>
+          <div class="more-ysl-tags">
+            <span class="hero-tag">E-commerce</span>
+            <span class="hero-tag">Brand milestone</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       LEARNINGS
+       ══════════════════════════════════════ -->
+  <section class="page-wrap section reveal">
+    <div class="section-eyebrow">Key Takeaways</div>
+    <h2 class="section-title">What this project taught me</h2>
+
+    <div class="learnings-grid">
+      <div class="learning-card">
+        <div class="learning-num">01</div>
+        <div class="learning-title">The best handoff is presence</div>
+        <p class="learning-body">
+          When the prototype can't capture the intent and the deadline is real, being in the room with the developer beats any annotation or spec doc. Proximity closes gaps faster than documentation.
+        </p>
+      </div>
+      <div class="learning-card">
+        <div class="learning-num">02</div>
+        <div class="learning-title">Pressure is a design constraint</div>
+        <p class="learning-body">
+          A tight timeline forced a smarter process — no back-and-forth cycles, no waiting. Pressure clarified what mattered: the scroll feeling right on mobile, nothing else.
+        </p>
+      </div>
+      <div class="learning-card">
+        <div class="learning-num">03</div>
+        <div class="learning-title">Design doesn't end at the file</div>
+        <p class="learning-body">
+          Owning quality through implementation — not just design — is what separates a good designer from a great collaborator. The launch success came from not letting go of the work at handoff.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER CTA
+       ══════════════════════════════════════ -->
+  <div class="page-wrap reveal">
+    <div class="case-footer">
+      <div>
+        <div class="case-footer-label">Next project</div>
+        <div class="case-footer-title">Lancôme Brazil —<br>Sensorial Experience</div>
+      </div>
+      <div style="display:flex;gap:var(--sp-4);flex-wrap:wrap">
+        <a href="#" class="pf-btn pf-btn--solid">
+          <span class="pf-ring"></span><span class="pf-veil"></span><span class="pf-core"></span>
+          <span class="pf-btn-lbl">Next case <span class="pf-arr">→</span></span>
+        </a>
+        <a href="#" class="pf-btn pf-btn--ghost">
+          <span class="pf-ring"></span><span class="pf-veil"></span><span class="pf-core"></span>
+          <span class="pf-btn-lbl">All projects</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Animate scroll viz diagram bars on scroll into view
+    const diagEl = document.querySelector('.scroll-diagram');
+    if (diagEl) {
+      const diagObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            // little demo pulse
+            let pct = 0;
+            const fills = document.querySelectorAll('.scroll-bar-fill');
+            fills.forEach(f => { f.style.width = '0%'; });
+            setTimeout(() => {
+              fills.forEach(f => { f.style.width = '72%'; });
+            }, 300);
+            diagObs.unobserve(diagEl);
+          }
+        });
+      }, { threshold: 0.3 });
+      diagObs.observe(diagEl);
+    }
+  </script>
+</body>
+</html>
