@@ -27,17 +27,6 @@
       </Transition>
     </div>
 
-    <!-- Nome grande -->
-    <div class="pf-name-row">
-      <h1 class="pf-name" lang="pt">TAY<em>NÁ</em></h1>
-      <Transition name="t-soft" mode="out-in">
-        <div class="pf-badge" :key="t.years" :aria-label="`5+ ${t.years}`">
-          <b class="pf-badge-n">5+</b>
-          <span class="pf-badge-t">{{ t.years }}</span>
-        </div>
-      </Transition>
-    </div>
-
     <!-- Linha decorativa -->
     <div class="pf-rule" aria-hidden="true"></div>
 
@@ -45,7 +34,7 @@
     <Transition name="t-soft" mode="out-in">
       <div class="pf-copy" :key="lang">
 
-        <p class="pf-hl">{{ t.headline }}</p>
+        <h1 class="pf-hl" v-html="t.headline"></h1>
         <p class="pf-sub">{{ t.sub }}</p>
 
         <div class="pf-ctas" role="group" :aria-label="t.cta1 + ' / ' + t.cta2">
@@ -91,33 +80,29 @@ const props = defineProps({
 const copy = {
   PT: {
     location : 'Global',
-    years    : 'anos de UX',
-    headline : 'Design que conecta\nnegócio, usuário\ne tecnologia.',
-    sub      : 'Transformo complexidade em experiências que as pessoas amam usar — e as empresas querem construir.',
+    headline : 'Design que <em>conecta</em><br>negócio, usuário e tecnologia.',
+    sub      : 'Oi, eu sou a Tayná Schultz, transformo complexidade em experiências positivas unindo a visão estratégica de negócios, performance e tecnologia com design empático.',
     cta1     : 'Ver projetos',
     cta2     : 'Minha história',
   },
   EN: {
     location : 'Global',
-    years    : 'years in UX',
-    headline : 'Design that bridges\nbusiness, user,\nand technology.',
-    sub      : 'I turn complexity into experiences people love to use — and companies want to build.',
+    headline : 'Design that <em>connects</em><br>business, user and technology.',
+    sub      : 'Hi, I\'m Tayná Schultz — I turn complexity into positive experiences by bridging strategic business vision, performance and technology with empathetic design.',
     cta1     : 'See my work',
     cta2     : 'My story',
   },
   ES: {
     location : 'Global',
-    years    : 'años en UX',
-    headline : 'Diseño que conecta\nnegocio, usuario\ny tecnología.',
-    sub      : 'Transformo la complejidad en experiencias que la gente ama — y las empresas quieren construir.',
+    headline : 'Diseño que <em>conecta</em><br>negocio, usuario y tecnología.',
+    sub      : 'Hola, soy Tayná Schultz, transformo la complejidad en experiencias positivas uniendo la visión estratégica de negocios, performance y tecnología con diseño empático.',
     cta1     : 'Ver proyectos',
     cta2     : 'Mi historia',
   },
   DE: {
     location : 'Global',
-    years    : 'Jahre UX',
-    headline : 'Design, das Business,\nNutzer und Technologie\nverbindet.',
-    sub      : 'Ich verwandle Komplexität in Erlebnisse, die Menschen lieben — und Unternehmen aufbauen wollen.',
+    headline : 'Design, das <em>verbindet</em>:<br>Business, Nutzer und Technologie.',
+    sub      : 'Hallo, ich bin Tayná Schultz — ich verwandle Komplexität in positive Erlebnisse, indem ich strategische Geschäftsvision, Performance und Technologie mit empathischem Design vereine.',
     cta1     : 'Meine Projekte',
     cta2     : 'Meine Geschichte',
   },
@@ -196,54 +181,6 @@ onUnmounted(() => {
 
 .pf-sep { color: var(--fg-faint); }
 
-/* ── Linha do nome ──────────────────────────────────────── */
-.pf-name-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.pf-name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(3.75rem, 21vw, 13rem);
-  line-height: 0.84;
-  letter-spacing: -0.025em;
-  color: var(--fg);
-  animation: pf-up 0.85s var(--ease-expo) both;
-  animation-delay: 0.15s;
-}
-.pf-name em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-/* Badge "5+ anos" */
-.pf-badge {
-  display: flex;
-  flex-direction: column;
-  padding-top: 0.35rem;
-  animation: pf-up 0.85s var(--ease-expo) both;
-  animation-delay: 0.28s;
-}
-.pf-badge-n {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-}
-.pf-badge-t {
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-  white-space: nowrap;
-  margin-top: 0.2rem;
-}
-
 /* ── Linha divisória ────────────────────────────────────── */
 .pf-rule {
   width: 100%;
@@ -251,27 +188,31 @@ onUnmounted(() => {
   background: linear-gradient(90deg, rgba(240, 24, 90, 0.55) 0%, transparent 65%);
   margin-bottom: 1.5rem;
   animation: pf-up 0.85s var(--ease-expo) both;
-  animation-delay: 0.35s;
+  animation-delay: 0.2s;
 }
 
 /* ── Copy ───────────────────────────────────────────────── */
 .pf-hl {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.15rem, 4.5vw, 2.3rem);
-  line-height: 1.18;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  font-size: clamp(2rem, 6.5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
   color: var(--fg);
-  white-space: pre-line;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pf-hl em {
+  font-style: italic;
+  color: var(--accent);
 }
 
 .pf-sub {
-  font-size: clamp(1.125rem, 2.2vw, 1.35rem);
+  font-size: clamp(.9rem, 1.6vw, 1.05rem);
   font-weight: 300;
   line-height: 1.85;
   color: var(--fg-muted);
-  max-width: 42ch;
+  max-width: 52ch;
   margin-bottom: 2.1rem;
 }
 

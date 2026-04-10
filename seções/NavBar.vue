@@ -174,7 +174,7 @@ function goToContact () {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
 
   display: flex;
@@ -349,7 +349,7 @@ function goToContact () {
   transform: translateY(-8px);
   pointer-events: none;
   transition: opacity .25s cubic-bezier(.16,1,.3,1), transform .25s cubic-bezier(.16,1,.3,1);
-  z-index: 200;
+  z-index: 1001;
 }
 .nav-lang-dropdown.open {
   opacity: 1;

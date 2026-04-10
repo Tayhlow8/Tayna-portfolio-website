@@ -114,7 +114,7 @@ const route = useRoute()
 
 // ── Estado global de tema e idioma ──────────────────────────
 const theme = ref('dark')
-const lang  = ref('PT')
+const lang  = ref('EN')
 
 // ── Back to top ─────────────────────────────────────────────
 const showBtt = ref(false)
