@@ -108,7 +108,7 @@
                   <img :key="oldView[i] ? 'old' : 'new'" :src="oldView[i] ? s.oldImg : s.img" :alt="s.title" loading="lazy" class="rc-screen-img"/>
                 </Transition>
                 <button v-if="s.oldImg" class="rc-before-btn" :class="{ 'rc-before-btn--active': oldView[i] }" @click="toggleOld(i)" type="button">
-                  <span>{{ oldView[i] ? 'Ver versão nova' : 'Como era antes' }}</span>
+                  <span>{{ oldView[i] ? t.btnAfter : t.btnBefore }}</span>
                   <span class="rc-before-icon" aria-hidden="true">{{ oldView[i] ? '→' : '←' }}</span>
                 </button>
               </div>
@@ -375,6 +375,7 @@ const palette = [{ name: 'Primary Green', hex: '#0A5331' }, { name: 'Secondary G
 const copy = {
   PT: {
     back: 'Voltar ao portfólio', tag: 'UX · Business Design · Systems',
+    btnBefore: 'Como era antes', btnAfter: 'Ver versão nova',
     title: 'Descomplicando<br><em>o Legado.</em>',
     subtitle: 'Juntamente com a equipe de negócios, desenvolvimento e design, transformamos um sistema legado de 7 anos, que apresentava <b>travas</b> e <b>fragmentação</b> no uso, em uma <b>plataforma coesa</b>. O <b>desafio</b> consistiu na quantidade de <b>bugs</b> e aplicação de regras de negócio e regras de acesso por perfis. Usuários relataram as seguintes <b>dores</b>: <b>travamentos</b>, <b>telas inúteis</b>, <b>quedas frequentes de sistema</b>, <b>falta de automação</b> e <b>dependência forçada</b> de ferramentas <b>externas</b>. Restauramos a <b>eficiência operacional</b> transformando soluções improvisadas em <b>fluxos únicos</b> e <b>integrados</b>.',
     accentLine: 'Mapeamento de 129 perfis de acesso e tradução de regras de negócio complexas em jornadas de usuário escaláveis',
@@ -441,6 +442,7 @@ const copy = {
   },
   EN: {
     back: 'Back to portfolio', tag: 'UX · Business Design · Systems',
+    btnBefore: 'How it was before', btnAfter: 'See new version',
     title: 'Untangling<br><em>the Legacy.</em>',
     subtitle: 'Together with the business, development, and design team, we transformed a 7-year-old legacy system, plagued by <b>bottlenecks</b> and <b>fragmentation</b>, into a <b>cohesive platform</b>. The <b>challenge</b> lay in the volume of <b>bugs</b> and the application of business rules and access rules by profile. Users reported the following <b>pain points</b>: <b>crashes</b>, <b>useless screens</b>, <b>frequent system outages</b>, <b>lack of automation</b>, and <b>forced dependency</b> on <b>external</b> tools. We restored <b>operational efficiency</b> by transforming improvised workarounds into <b>single, integrated</b> flows.',
     accentLine: 'Mapping 129 access profiles and translating complex business rules into scalable user journeys',
@@ -506,6 +508,7 @@ const copy = {
   },
   ES: {
     back: 'Volver al portafolio', tag: 'UX · Business Design · Systems',
+    btnBefore: 'Cómo era antes', btnAfter: 'Ver versión nueva',
     title: 'Desenredando<br><em>el Legado.</em>',
     subtitle: 'Junto con el equipo de negocio, desarrollo y diseño, transformamos un sistema legado de 7 años, que presentaba <b>bloqueos</b> y <b>fragmentación</b>, en una <b>plataforma cohesiva</b>. El <b>desafío</b> consistió en la cantidad de <b>bugs</b> y la aplicación de reglas de negocio y reglas de acceso por perfiles. Los usuarios reportaron los siguientes <b>problemas</b>: <b>bloqueos</b>, <b>pantallas inútiles</b>, <b>caídas frecuentes del sistema</b>, <b>falta de automatización</b> y <b>dependencia forzada</b> de herramientas <b>externas</b>. Restauramos la <b>eficiencia operacional</b> transformando soluciones improvisadas en <b>flujos únicos</b> e <b>integrados</b>.',
     accentLine: 'Mapeo de 129 perfiles de acceso y traducción de reglas de negocio complejas en journeys de usuario escalables',
@@ -572,6 +575,7 @@ const copy = {
   },
   DE: {
     back: 'Zurück zum Portfolio', tag: 'UX · Business Design · Systems',
+    btnBefore: 'So war es vorher', btnAfter: 'Neue Version ansehen',
     title: 'Das Erbe<br><em>entwirren.</em>',
     subtitle: 'Gemeinsam mit dem Business-, Entwicklungs- und Designteam haben wir ein 7 Jahre altes Legacy-System, das durch <b>Blockaden</b> und <b>Fragmentierung</b> geprägt war, in eine <b>kohärente Plattform</b> verwandelt. Die <b>Herausforderung</b> lag in der Menge an <b>Bugs</b> sowie der Anwendung von Geschäfts- und Zugriffsregeln nach Profilen. Nutzer berichteten von folgenden <b>Problemen</b>: <b>Abstürze</b>, <b>nutzlose Screens</b>, <b>häufige Systemausfälle</b>, <b>fehlende Automatisierung</b> und <b>erzwungene Abhängigkeit</b> von <b>externen</b> Tools. Wir stellten die <b>betriebliche Effizienz</b> wieder her, indem wir improvisierte Workarounds in <b>einheitliche, integrierte</b> Flows umwandelten.',
     accentLine: 'Kartierung von 129 Zugriffsprofilen und Übersetzung komplexer Geschäftsregeln in skalierbare User Journeys',

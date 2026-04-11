@@ -28,22 +28,43 @@
           :key="sector.id"
           class="brands-sector"
         >
-          <!-- Sector label -->
-          <div class="sector-label">
+          <!-- Sector label (accordion trigger) -->
+          <button
+            class="sector-label"
+            :aria-expanded="openSectors.has(sector.id)"
+            :aria-controls="`logos-${sector.id}`"
+            @click="toggleSector(sector.id)"
+          >
             <span class="sector-num">{{ sector.num }}</span>
             <span class="sector-name">{{ t.sectors[sector.id] }}</span>
-          </div>
-
-          <!-- Logos grid -->
-          <div class="logos-grid">
-            <div
-              v-for="brand in sector.brands"
-              :key="brand.name"
-              class="logo-card"
-              :title="brand.name"
+            <svg
+              class="sector-chevron"
+              :class="{ 'sector-chevron--open': openSectors.has(sector.id) }"
+              width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"
             >
-              <div class="logo-inner" v-html="brand.svg"></div>
-              <span class="logo-fallback">{{ brand.name }}</span>
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+
+          <!-- Logos grid (collapsible) -->
+          <div
+            :id="`logos-${sector.id}`"
+            class="sector-body"
+            :class="{ 'sector-body--open': openSectors.has(sector.id) }"
+          >
+            <div class="logos-grid">
+              <div
+                v-for="brand in sector.brands"
+                :key="brand.name"
+                class="logo-card"
+                :title="brand.name"
+              >
+                <div class="logo-inner" v-html="brand.svg"></div>
+                <span class="logo-fallback">{{ brand.name }}</span>
+              </div>
             </div>
           </div>
 
@@ -58,12 +79,20 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps({
   theme: { type: String, default: 'dark' },
   lang:  { type: String, default: 'PT'   },
 })
+
+// ── Accordion state (01 Beauty + 02 Finance open by default) ──
+const openSectors = ref(new Set(['beauty', 'finance']))
+function toggleSector(id) {
+  const next = new Set(openSectors.value)
+  next.has(id) ? next.delete(id) : next.add(id)
+  openSectors.value = next
+}
 
 // ── i18n ────────────────────────────────────────────────────────
 const copy = {
@@ -395,12 +424,50 @@ const sectors = [
   margin     : 2.5rem 0;
 }
 
-/* ── Label do nicho ──────────────────────────────────────── */
+/* ── Label do nicho (accordion trigger) ─────────────────── */
 .sector-label {
   display        : flex;
-  align-items    : baseline;
+  align-items    : center;
   gap            : .75rem;
-  margin-bottom  : 1.5rem;
+  margin-bottom  : 0;
+  width          : 100%;
+  background     : none;
+  border         : none;
+  padding        : .75rem 0;
+  cursor         : pointer;
+  color          : inherit;
+  text-align     : left;
+}
+.sector-label:hover .sector-name { color: var(--fg); }
+
+/* ── Chevron ─────────────────────────────────────────────── */
+.sector-chevron {
+  margin-left    : auto;
+  color          : var(--fg-muted);
+  flex-shrink    : 0;
+  transition     : transform .3s var(--ease-expo), color .2s ease;
+}
+.sector-chevron--open {
+  transform : rotate(180deg);
+  color     : var(--accent);
+}
+
+/* ── Collapsible body ────────────────────────────────────── */
+.sector-body {
+  display        : grid;
+  grid-template-rows: 0fr;
+  transition     : grid-template-rows .35s var(--ease-expo), opacity .3s ease;
+  opacity        : 0;
+  overflow       : hidden;
+}
+.sector-body--open {
+  grid-template-rows: 1fr;
+  opacity        : 1;
+}
+.sector-body > .logos-grid {
+  min-height     : 0;
+  margin-top     : 1rem;
+  margin-bottom  : .5rem;
 }
 
 .sector-num {
