@@ -22,6 +22,13 @@
       :theme="theme"
     />
 
+    <!-- ── Case: NV8 ────────────────────────────────────────── -->
+    <NV8Case
+      v-else-if="route.params.slug === 'nv8'"
+      :lang="lang"
+      :theme="theme"
+    />
+
     <!-- ── Case: Rodobens ─────────────────────────────────── -->
     <RodobensCase
       v-else-if="route.params.slug === 'rodobens'"
@@ -112,6 +119,7 @@ import MasterGloboCase    from '../seções/MasterGloboCase.vue'
 import LancomeCase        from '../seções/LancomeCase.vue'
 import YSLCase            from '../seções/YSLCase.vue'
 import CVPage             from '../seções/CVPage.vue'
+import NV8Case           from '../seções/NV8Case.vue'
 import ChatWidget         from '../seções/ChatWidget.vue'
 import photo              from './assets/photo.png'
 

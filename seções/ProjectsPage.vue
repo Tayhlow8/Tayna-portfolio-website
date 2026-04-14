@@ -88,10 +88,11 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import NavBar from './NavBar.vue'
 
-import imgRodobens from '../imagens cases/rodobens/cover rodobens novo.png'
+import imgRodobens from '../imagens cases/rodobens/case rodobens cover 1.png'
 import imgMaster   from '../imagens cases/master globo/master goblo cover.png'
 import imgYSL      from '../imagens cases/YSL Y intense/mobile exp.avif'
 import imgLancome  from '../imagens cases/Lancme brazil/foto 1 lancome.avif'
+import imgNV8      from '../clientes/nv8 case cover.png'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
@@ -416,7 +417,7 @@ const projects = [
     svg  : svgLancome,
   },
   {
-    slug  : 'nv8-tecnologia',
+    slug  : 'nv8',
     client: 'NV8 Tecnologia',
     year  : '2025',
     title : { PT: 'Redesign do Website', EN: 'Website Redesign', ES: 'Rediseño del Website', DE: 'Website Redesign' },
@@ -428,8 +429,9 @@ const projects = [
     },
     tags: ['Web Design', 'Design System', 'Motion', 'Software House'],
     type: 'B2B · Software',
-    bg  : '#07070f',
-    svg : svgNV8,
+    bg   : '#07070f',
+    image: imgNV8,
+    svg  : svgNV8,
   },
 ]
 

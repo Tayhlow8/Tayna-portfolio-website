@@ -39,7 +39,7 @@
           <!-- Image area -->
           <div class="card-img-wrap">
             <div class="card-img" :style="{ background: featured.bg }" aria-hidden="true">
-              <img v-if="featured.image" :src="featured.image" class="card-img-photo" alt="" />
+              <img v-if="featured.image" :src="featured.image" class="card-img-photo" loading="lazy" alt="" />
               <div v-else class="card-img-inner" v-html="featured.visual"></div>
             </div>
             <div class="card-img-overlay" aria-hidden="true"></div>
@@ -74,7 +74,7 @@
           <!-- Image area -->
           <div class="card-img-wrap">
             <div class="card-img" :style="{ background: project.bg }" aria-hidden="true">
-              <img v-if="project.image" :src="project.image" class="card-img-photo" alt="" />
+              <img v-if="project.image" :src="project.image" class="card-img-photo" loading="lazy" alt="" />
               <div v-else class="card-img-inner" v-html="project.visual"></div>
             </div>
             <div class="card-img-overlay" aria-hidden="true"></div>
@@ -103,10 +103,11 @@
 
 <script setup>
 import { computed } from 'vue'
-import rodobensCover from '../../imagens cases/rodobens/cover rodobens novo.png'
+import rodobensCover from '../../imagens cases/rodobens/case rodobens cover 1.png'
 import masterCover   from '../../imagens cases/master globo/master globo avatars.avif'
 import lancomeCover  from '../../imagens cases/Lancme brazil/case desktp.avif'
 import yslCover      from '../../imagens cases/YSL Y intense/mobile exp.avif'
+import nv8Cover      from '../../clientes/nv8 case cover.png'
 
 const props = defineProps({
   theme: { type: String, default: 'dark' },
@@ -131,6 +132,7 @@ const copy = {
       master   : 'Pesquisa quantitativa e qualitativa com a base de dados da plataforma educacional para lançamento de novo formato de produto.',
       lancome  : 'E-commerce de beleza com aumento de 52% na conversão',
       ysl      : 'Experiência de marca digital para lançamento global',
+      nv8      : 'Redesign completo de identidade, arquitetura e stack — de HTML estático a Vue.js com design system próprio, entregue em 1 semana com IA.',
     },
   },
   EN: {
@@ -149,6 +151,7 @@ const copy = {
       master   : 'Educational platform serving 120k students at Grupo Globo',
       lancome  : 'Beauty e-commerce with a 52% conversion uplift',
       ysl      : 'Digital brand experience for a global launch',
+      nv8      : 'Full redesign of identity, architecture, and stack — from static HTML to Vue.js with a custom design system, shipped in 1 week with AI.',
     },
   },
   ES: {
@@ -167,6 +170,7 @@ const copy = {
       master   : 'Plataforma educativa para 120 mil alumnos de Grupo Globo',
       lancome  : 'E-commerce de belleza con +52% de conversión',
       ysl      : 'Experiencia de marca digital para lanzamiento global',
+      nv8      : 'Rediseño completo de identidad, arquitectura y stack — de HTML estático a Vue.js con design system propio, entregado en 1 semana con IA.',
     },
   },
   DE: {
@@ -185,6 +189,7 @@ const copy = {
       master   : 'Bildungsplattform für 120.000 Grupo-Globo-Studierende',
       lancome  : 'Beauty-E-Commerce mit 52 % mehr Conversions',
       ysl      : 'Digitales Markenerlebnis für globalen Launch',
+      nv8      : 'Komplettes Redesign von Identität, Architektur und Stack — von statischem HTML zu Vue.js mit eigenem Design-System, in 1 Woche mit KI umgesetzt.',
     },
   },
 }
@@ -272,6 +277,31 @@ const visualYSL = `
     <circle cx="258" cy="188" r="2" fill="rgba(255,255,255,0.2)"/>
   </svg>`
 
+const visualNV8 = `
+  <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Browser frame -->
+    <rect x="20" y="20" width="320" height="180" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <!-- Browser bar -->
+    <rect x="20" y="20" width="320" height="22" rx="6" fill="rgba(255,255,255,0.05)"/>
+    <circle cx="36" cy="31" r="3" fill="rgba(255,80,80,0.5)"/>
+    <circle cx="48" cy="31" r="3" fill="rgba(255,200,0,0.4)"/>
+    <circle cx="60" cy="31" r="3" fill="rgba(0,200,80,0.4)"/>
+    <rect x="90" y="26" width="160" height="10" rx="3" fill="rgba(255,255,255,0.06)"/>
+    <!-- Hero area -->
+    <rect x="36" y="52" width="140" height="10" rx="2" fill="rgba(12,191,253,0.6)"/>
+    <rect x="36" y="70" width="200" height="7" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="36" y="84" width="160" height="7" rx="2" fill="rgba(255,255,255,0.06)"/>
+    <rect x="36" y="104" width="80" height="22" rx="3" fill="rgba(12,191,253,0.85)"/>
+    <!-- Grid texture -->
+    <line x1="20" y1="44" x2="340" y2="44" stroke="rgba(12,191,253,0.08)" stroke-width="1"/>
+    <line x1="20" y1="98" x2="340" y2="98" stroke="rgba(12,191,253,0.05)" stroke-width="1"/>
+    <!-- Right visual block -->
+    <rect x="220" y="48" width="104" height="140" rx="4" fill="rgba(12,191,253,0.06)" stroke="rgba(12,191,253,0.15)" stroke-width="1"/>
+    <text x="272" y="125" font-family="monospace" font-size="18" font-weight="700" fill="rgba(12,191,253,0.4)" text-anchor="middle">NV8</text>
+    <!-- Footer -->
+    <text x="36" y="196" font-family="monospace" font-size="7" fill="rgba(12,191,253,0.25)" letter-spacing="2">UX · DESIGN SYSTEM · FRONTEND · AI-DRIVEN</text>
+  </svg>`
+
 // ── Projects data ────────────────────────────────────────────────
 const projects = computed(() => [
   {
@@ -312,6 +342,16 @@ const projects = computed(() => [
     bg      : 'linear-gradient(135deg, #0d0d0d 0%, #1a1010 100%)',
     visual  : visualYSL,
     image   : yslCover,
+    featured: false,
+  },
+  {
+    slug    : 'nv8',
+    client  : 'NV8',
+    category: t.value.categories.ux,
+    impact  : t.value.impacts.nv8,
+    bg      : 'linear-gradient(135deg, #050d18 0%, #0a1a2e 100%)',
+    visual  : visualNV8,
+    image   : nv8Cover,
     featured: false,
   },
 ])

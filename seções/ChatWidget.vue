@@ -89,11 +89,15 @@
               <span class="cw-qbtn-arr" aria-hidden="true">→</span>
             </button>
           </div>
+          <div class="cw-footer-projects">
+            <a href="/projetos" class="cw-projects-btn">See all projects →</a>
+          </div>
         </template>
 
         <!-- Post-interaction footer -->
         <template v-else>
           <div class="cw-footer-cta">
+            <a href="/projetos" class="cw-projects-btn cw-projects-btn--full">See all projects →</a>
             Have another question? →
             <a href="mailto:tayna.schultz@gmail.com" class="cw-footer-link">tayna.schultz@gmail.com</a>
           </div>
@@ -127,7 +131,7 @@ let   msgId   = 0
 
 // ─── Hardcoded responses ──────────────────────────────────────────
 const RESPONSES = {
-  cases: `Here are a few cases I brought to life:\n\n**Rodobens Unica** — Transformed a 7-year-old internal leasing & credit system for one of Brazil's largest automotive finance groups. Mapped flows for 600+ users, documented business rules from scratch, and delivered high-fidelity navigable screens — all in 7 months.\n\n**Master Globo** — UX Research and results dashboard for product shipping, translating complex data into a decision-ready interface for the team.\n\n**Lancôme Brazil** — Sensorial experience blending the physical and digital worlds for a brand activation campaign.`,
+  cases: `Here are a few cases I brought to life:\n\n**Rodobens Unica** — Transformed a 7-year-old internal leasing & credit system for one of Brazil's largest automotive finance groups. Mapped flows for 600+ users, documented business rules from scratch, and delivered high-fidelity navigable screens — all in 7 months.\n\n**NV8 Website** — Full redesign of identity, architecture and stack. From static HTML to Vue.js with a custom design system and 6 product pages — shipped in 1 week with AI. → <a href="/cases/nv8" class="cw-inline-link">View case</a>\n\n**Master Globo** — UX Research and results dashboard for product shipping, translating complex data into a decision-ready interface for the team.\n\n**Lancôme Brazil** — Sensorial experience blending the physical and digital worlds for a brand activation campaign.`,
 
   ai: `I use AI to accelerate every phase of the design process — research, ideation, prototyping, coding, and QA.\n\nThe approach isn't one-size-fits-all: I combine tools and strategies based on what each project actually needs. Sometimes that means AI-assisted discovery synthesis, sometimes it's generating and iterating on code directly in the browser.`,
 
@@ -495,6 +499,36 @@ async function askQuick (btn) {
 }
 .cw-qbtn:hover .cw-qbtn-arr { transform: translateX(3px); color: #F0185A; }
 
+/* ── Projects button ── */
+.cw-footer-projects {
+  padding: 0 14px 12px;
+  flex-shrink: 0;
+}
+.cw-projects-btn {
+  display: block;
+  width: 100%;
+  padding: 9px 13px;
+  background: rgba(240,24,90,.1);
+  border: 1px solid rgba(240,24,90,.3);
+  border-radius: 10px;
+  color: #F0185A;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: .06em;
+  text-align: center;
+  text-decoration: none;
+  transition: background .2s, border-color .2s, transform .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.cw-projects-btn:hover {
+  background: rgba(240,24,90,.2);
+  border-color: rgba(240,24,90,.55);
+  transform: translateY(-1px);
+}
+.cw-projects-btn--full {
+  display: block;
+  margin-bottom: 10px;
+}
+
 /* ── Footer CTA ── */
 .cw-footer-cta {
   padding: 12px 16px 14px;
@@ -511,6 +545,14 @@ async function askQuick (btn) {
   transition: opacity .2s;
 }
 .cw-footer-link:hover { opacity: .75; }
+
+/* ── Inline case link ── */
+.cw-bubble :deep(.cw-inline-link) {
+  color: #F0185A;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
 
 /* ── Animations ── */
 @keyframes cw-pulse {

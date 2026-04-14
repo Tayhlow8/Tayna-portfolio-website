@@ -262,9 +262,14 @@ onUnmounted(() => {
   .pf-scroll { left: 7rem; }
 }
 
+@media (min-width: 1280px) {
+  .pf-copy { max-width: 52%; }
+}
+
 @media (min-width: 1400px) {
   .pf-hero   { padding: 10rem 10rem 5rem; }
   .pf-scroll { left: 10rem; }
+  .pf-copy   { max-width: 50%; }
 }
 
 /* ── Figma mockup wrapper ───────────────────────────────── */
