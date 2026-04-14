@@ -1,0 +1,10 @@
+<svg viewBox="0 0 88 108" xmlns="http://www.w3.org/2000/svg" width="88" height="108">
+  <!-- Tayná Schultz — Symbol Mark -->
+  <!-- Accent: #F0185A (from Portfolio Design System) -->
+
+  <!-- Upper chevron module -->
+  <polygon points="4,4 58,4 84,50 84,63 70,63 44,17 4,17" fill="#F0185A"/>
+
+  <!-- Lower chevron module (mirrored) -->
+  <polygon points="84,104 30,104 4,58 4,45 18,45 44,91 84,91" fill="#F0185A"/>
+</svg>

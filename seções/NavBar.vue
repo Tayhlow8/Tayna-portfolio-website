@@ -1,17 +1,16 @@
 <template>
   <nav class="pf-nav" role="navigation" aria-label="Main navigation">
 
-    <!-- LOGO SLOT -->
-    <div class="nav-logo">
-      <div class="nav-logo-mark" aria-label="Logo">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
-        </svg>
-      </div>
-      <span class="nav-logo-label">Tayná</span>
+    <!-- LOGO -->
+    <div class="nav-logo" aria-label="Tayná Schultz">
+      <svg class="nav-logo-mark" viewBox="0 0 88 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="4,4 58,4 84,50 84,63 70,63 44,17 4,17" fill="#F0185A"/>
+        <polygon points="84,104 30,104 4,58 4,45 18,45 44,91 84,91" fill="#F0185A"/>
+      </svg>
+      <span class="nav-logo-label">Tayná Schultz</span>
     </div>
 
-    <!-- NAV LINKS -->
+    <!-- DESKTOP NAV LINKS (centered) -->
     <div class="nav-links" role="list">
       <router-link
         v-for="link in navLinks"
@@ -35,7 +34,7 @@
           :class="{ open: langOpen }"
           aria-haspopup="listbox"
           :aria-expanded="langOpen"
-          @click="toggleLang"
+          @click.stop="toggleLang"
         >
           <svg class="globe" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
@@ -72,31 +71,81 @@
         @click="toggleTheme"
         :aria-label="theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro'"
       >
-        <!-- Sun icon (light mode) -->
         <svg v-if="theme === 'light'" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="4"/>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
         </svg>
-        <!-- Moon icon (dark mode) -->
         <svg v-else width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
         </svg>
       </button>
 
-      <!-- CTA -->
-      <button class="pf-btn pf-btn--cta" @click="goToContact" aria-label="Enviar mensagem">
+      <!-- DESKTOP CTA -->
+      <button class="pf-btn pf-btn--cta nav-cta-desktop" @click="goToContact" aria-label="Enviar mensagem">
         <span class="pf-ring"></span>
         <span class="pf-veil"></span>
         <span class="pf-core"></span>
         <span class="pf-btn-lbl">{{ ctaLabel }} <span class="pf-arr">→</span></span>
       </button>
 
+      <!-- HAMBURGER (mobile only) -->
+      <button
+        class="nav-hamburger"
+        :class="{ open: menuOpen }"
+        :aria-expanded="menuOpen"
+        aria-label="Menu"
+        @click="toggleMenu"
+      >
+        <span class="ham-bar ham-bar--1"></span>
+        <span class="ham-bar ham-bar--2"></span>
+        <span class="ham-bar ham-bar--3"></span>
+      </button>
+
     </div>
+
+    <!-- MOBILE DRAWER -->
+    <Transition name="drawer">
+      <div
+        v-if="menuOpen"
+        class="nav-drawer"
+        :style="{ background: drawerBg }"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu de navegação"
+      >
+        <!-- Drawer links -->
+        <nav class="drawer-links">
+          <router-link
+            v-for="link in navLinks"
+            :key="link.to"
+            :to="link.to"
+            class="drawer-link"
+            :class="{ active: route.path === link.to || (link.to !== '/' && route.path.startsWith(link.to)) }"
+            @click="closeMenu"
+          >
+            <span class="drawer-link-num">{{ link.num }}</span>
+            {{ link.label[lang] || link.label['PT'] }}
+            <span class="drawer-link-arrow">→</span>
+          </router-link>
+        </nav>
+
+        <!-- Drawer CTA -->
+        <div class="drawer-cta-wrap">
+          <button class="pf-btn pf-btn--cta drawer-cta" @click="drawerContact">
+            <span class="pf-ring"></span>
+            <span class="pf-veil"></span>
+            <span class="pf-core"></span>
+            <span class="pf-btn-lbl">{{ ctaLabel }} <span class="pf-arr">→</span></span>
+          </button>
+        </div>
+      </div>
+    </Transition>
+
   </nav>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const props = defineProps({
@@ -111,10 +160,10 @@ const router = useRouter()
 
 // ── Nav links ──────────────────────────────────────────────
 const navLinks = [
-  { to: '/',        label: { PT: 'Início',         EN: 'Home',         ES: 'Inicio',      DE: 'Start' } },
-  { to: '/projetos',label: { PT: 'Projetos',        EN: 'Projects',     ES: 'Proyectos',   DE: 'Projekte' } },
-  { to: '/historia',label: { PT: 'Minha história',  EN: 'My story',     ES: 'Mi historia', DE: 'Meine Geschichte' } },
-  { to: '/cv',      label: { PT: 'CV',              EN: 'CV',           ES: 'CV',          DE: 'CV' } },
+  { to: '/',         num: '01', label: { PT: 'Início',        EN: 'Home',         ES: 'Inicio',      DE: 'Start'           } },
+  { to: '/projetos', num: '02', label: { PT: 'Projetos',       EN: 'Projects',     ES: 'Proyectos',   DE: 'Projekte'        } },
+  { to: '/historia', num: '03', label: { PT: 'Minha história', EN: 'My story',     ES: 'Mi historia', DE: 'Meine Geschichte'} },
+  { to: '/cv',       num: '04', label: { PT: 'CV',             EN: 'CV',           ES: 'CV',          DE: 'CV'              } },
 ]
 
 // ── Language ───────────────────────────────────────────────
@@ -158,13 +207,46 @@ const ctaLabel = computed(() => ({
 }[props.lang] || 'Fale comigo'))
 
 function goToContact () {
-  // se já estiver na home, rola até o contact
   if (route.path === '/') {
     document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
   } else {
     router.push('/#contact')
   }
 }
+
+// ── Hamburger / mobile drawer ──────────────────────────────
+const menuOpen = ref(false)
+
+function toggleMenu () { menuOpen.value = !menuOpen.value }
+function closeMenu ()  { menuOpen.value = false }
+
+function drawerContact () {
+  closeMenu()
+  goToContact()
+}
+
+// Close drawer on route change
+watch(() => route.path, closeMenu)
+
+// Lock body scroll when drawer is open
+watch(menuOpen, (open) => {
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+
+onUnmounted(() => { document.body.style.overflow = '' })
+
+// ── Dropdown / drawer bg (opaque, per theme) ──────────────
+const dropdownBg = computed(() =>
+  props.theme === 'dark'
+    ? 'rgba(7, 7, 17, 0.97)'
+    : 'rgba(255, 255, 255, 0.97)'
+)
+
+const drawerBg = computed(() =>
+  props.theme === 'dark'
+    ? 'rgba(7, 7, 17, 0.98)'
+    : 'rgba(245, 243, 255, 0.98)'
+)
 </script>
 
 <style scoped>
@@ -216,44 +298,36 @@ function goToContact () {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: .55rem;
   flex-shrink: 0;
-  min-width: 120px;
+  text-decoration: none;
+  cursor: default;
 }
 
 .nav-logo-mark {
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--ghost-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: border-color .3s;
-  color: var(--accent);
+  width: 18px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+  transition: opacity .2s ease;
 }
-.nav-logo-mark::after {
-  content:'';
-  position:absolute;
-  inset:4px;
-  background: var(--accent);
-  opacity:.18;
-  transition: opacity .3s;
-}
-.nav-logo-mark:hover { border-color: rgba(240,24,90,.4); }
-.nav-logo-mark:hover::after { opacity:.35; }
-.nav-logo-mark svg { position:relative; z-index:1; }
+.nav-logo:hover .nav-logo-mark { opacity: .8; }
 
 .nav-logo-label {
   font-family: var(--font-display);
-  font-size: .55rem;
+  font-size: .6rem;
   font-weight: 600;
-  letter-spacing: .14em;
+  letter-spacing: .13em;
   text-transform: uppercase;
-  color: var(--fg-muted);
+  color: #F0185A;
 }
 
-/* ── NAV LINKS ── */
+/* Hide name on mobile — symbol only */
+@media (max-width: 768px) {
+  .nav-logo-label { display: none; }
+}
+
+/* ── DESKTOP NAV LINKS ── */
 .nav-links {
   display: flex;
   align-items: center;
@@ -299,9 +373,8 @@ function goToContact () {
 .nav-controls {
   display: flex;
   align-items: center;
-  gap: .75rem;
+  gap: .5rem;
   flex-shrink: 0;
-  min-width: 120px;
   justify-content: flex-end;
 }
 
@@ -339,11 +412,9 @@ function goToContact () {
   top: calc(100% + .5rem);
   right: 0;
   min-width: 130px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 12px 32px var(--glass-shadow);
+  background: v-bind(dropdownBg);
+  border: 1px solid var(--ghost-border);
+  box-shadow: 0 12px 32px rgba(0,0,0,.18);
   overflow: hidden;
   opacity: 0;
   transform: translateY(-8px);
@@ -460,7 +531,6 @@ function goToContact () {
 
 @keyframes pf-spin-ring { to { transform: rotate(360deg); } }
 
-/* ── CTA — accent pink (igual ao pf-btn--solid do design system) ── */
 .pf-btn--cta .pf-ring {
   background: conic-gradient(from 90deg at 50% 50%, transparent 0%, transparent 75%, rgba(255,255,255,.85) 100%);
 }
@@ -468,14 +538,135 @@ function goToContact () {
 .pf-btn--cta .pf-core  { background: var(--accent); }
 .pf-btn--cta .pf-btn-lbl { color: #fff; }
 
-/* Hover: clareia o fundo e escurece o label */
 .pf-btn--cta:hover .pf-core    { background: var(--fg); }
 .pf-btn--cta:hover .pf-btn-lbl { color: var(--bg); }
 
-/* ── MOBILE ── */
+/* ── HAMBURGER ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--ghost-border);
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.ham-bar {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--fg-muted);
+  transform-origin: center;
+  transition: transform .3s cubic-bezier(.16,1,.3,1), opacity .2s ease, width .3s cubic-bezier(.16,1,.3,1);
+}
+
+/* X state */
+.nav-hamburger.open .ham-bar--1 { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open .ham-bar--2 { opacity: 0; width: 0; }
+.nav-hamburger.open .ham-bar--3 { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── MOBILE DRAWER ── */
+.nav-drawer {
+  position: fixed;
+  top: calc(56px + .5rem);
+  right: 1rem;
+  left: 1rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 1.5rem 1.25rem 1.25rem;
+  border: 1px solid var(--ghost-border);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .22);
+  overflow: hidden;
+}
+
+/* Drawer links */
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  color: var(--fg-muted);
+  text-decoration: none;
+  text-align: left;
+  transition: color .2s ease;
+}
+
+.drawer-link:first-child { padding-top: 0; }
+
+.drawer-link:hover,
+.drawer-link.active { color: var(--fg); }
+.drawer-link.active { color: var(--accent); }
+
+.drawer-link-num {
+  font-family: var(--font-body);
+  font-size: .48rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.drawer-link-arrow {
+  margin-left: auto;
+  font-size: .85rem;
+  color: var(--fg-faint);
+  transition: transform .2s ease, color .2s ease;
+}
+.drawer-link:hover .drawer-link-arrow,
+.drawer-link.active .drawer-link-arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* Drawer CTA */
+.drawer-cta-wrap {
+  padding-top: 1rem;
+}
+
+.drawer-cta {
+  width: 100%;
+  height: 44px;
+  min-width: unset;
+}
+
+.drawer-cta .pf-btn-lbl {
+  font-size: .58rem;
+}
+
+/* ── TRANSITIONS ── */
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: opacity .3s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1);
+}
+.drawer-enter-from,
+.drawer-leave-to {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .pf-btn--cta { min-width: unset; padding: 0 1rem; }
-  .pf-btn--cta .pf-btn-lbl { font-size: .5rem; }
+  .nav-links      { display: none; }
+  .nav-cta-desktop { display: none; }
+  .nav-hamburger  { display: flex; }
 }
 </style>

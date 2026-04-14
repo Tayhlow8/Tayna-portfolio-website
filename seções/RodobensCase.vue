@@ -85,6 +85,22 @@
       </div>
     </section>
 
+    <!-- 02 DISCOVERY & MAPPING -->
+    <section class="rc-section">
+      <div class="rc-rule"><span class="rc-rule-label">02 — {{ t.discoveryLabel }}</span><span class="rc-rule-line"></span></div>
+      <p class="rc-section-intro" v-html="t.discoveryBody"></p>
+      <div class="rc-discovery-imgs">
+        <figure class="rc-disc-fig">
+          <img :src="userFlowImg" alt="User flow mapping" class="rc-disc-img" loading="lazy" />
+          <figcaption class="rc-disc-caption">{{ t.discoveryImg1Caption }}</figcaption>
+        </figure>
+        <figure class="rc-disc-fig">
+          <img :src="designCritiqueImg" alt="Design critique session" class="rc-disc-img" loading="lazy" />
+          <figcaption class="rc-disc-caption">{{ t.discoveryImg2Caption }}</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- 03 SOLUÇÃO DE DESIGN -->
     <section class="rc-section">
       <div class="rc-rule"><span class="rc-rule-label">03 — {{ t.designLabel }}</span><span class="rc-rule-line"></span></div>
@@ -296,6 +312,8 @@ import kanbanImg          from '../imagens cases/rodobens/kanban.png'
 import simulacaoImg       from '../imagens cases/rodobens/simulação.png'
 import creditDashImg      from '../imagens cases/rodobens/Dashboard crédito.png'
 import notifImg           from '../imagens cases/rodobens/central de notificações.png'
+import userFlowImg        from '../clientes/user flow.jpg'
+import designCritiqueImg  from '../clientes/design critique.jpg'
 import loginAntigoImg     from '../imagens cases/rodobens/ANTIGAS/login antigo.png'
 import simulacaoAntigaImg from '../imagens cases/rodobens/ANTIGAS/simulação antiga.jpeg'
 import negociacaoAntigaImg from '../imagens cases/rodobens/ANTIGAS/negociação antiga.png'
@@ -377,13 +395,17 @@ const copy = {
     back: 'Voltar ao portfólio', tag: 'UX · Business Design · Systems',
     btnBefore: 'Como era antes', btnAfter: 'Ver versão nova',
     title: 'Descomplicando<br><em>o Legado.</em>',
-    subtitle: 'Juntamente com a equipe de negócios, desenvolvimento e design, transformamos um sistema legado de 7 anos, que apresentava <b>travas</b> e <b>fragmentação</b> no uso, em uma <b>plataforma coesa</b>. O <b>desafio</b> consistiu na quantidade de <b>bugs</b> e aplicação de regras de negócio e regras de acesso por perfis. Usuários relataram as seguintes <b>dores</b>: <b>travamentos</b>, <b>telas inúteis</b>, <b>quedas frequentes de sistema</b>, <b>falta de automação</b> e <b>dependência forçada</b> de ferramentas <b>externas</b>. Restauramos a <b>eficiência operacional</b> transformando soluções improvisadas em <b>fluxos únicos</b> e <b>integrados</b>.',
+    subtitle: 'Redesenhei a plataforma operacional central da Rodobens do zero — um sistema legado carregando <b>7 anos de débito acumulado</b>, <b>100+ bugs documentados</b> e <b>603 usuários ativos</b> absorvendo o custo diário de travamentos, ausência de automação e fluxos fragmentados. O resultado: <b>100+ telas desenhadas</b>, regras de negócio e acesso corretamente aplicadas por perfil, e uma <b>plataforma integrada</b> substituindo um mosaico de dependências externas.',
     accentLine: 'Mapeamento de 129 perfis de acesso e tradução de regras de negócio complexas em jornadas de usuário escaláveis',
     context: 'Equipe transformou um sistema legado de 7 anos — fragmentado e travando — em uma plataforma coesa. O desafio não era a idade do sistema: eram os problemas diários. Travamentos, falta de automação e dependência forçada de ferramentas externas. Restauramos a eficiência operacional transformando soluções improvisadas em fluxos integrados.',
     roles: ['UX Design', 'Business Design', 'Research', 'Facilitação', 'Handoff'],
     stats: { profiles: 'perfis mapeados', users: 'usuários ativos', months: 'meses de projeto', legacy: 'anos de legado' },
     complaintsLabel: 'Principais queixas dos usuários',
     complaints: ['Lentidão extrema e crashes constantes do sistema', 'Falta de automação em diversos processos críticos', 'Mensagens de erro confusas e feedback limitado ou inexistente', 'Tela inicial irrelevante e lenta — não era utilizada no dia a dia', 'Dificuldade e ineficiência no upload de documentos', 'Ausência de relatórios em tempo real — dependência de planilhas e apps externos'],
+    discoveryLabel: 'Discovery & Mapeamento',
+    discoveryBody: 'Cada entrevista era seguida de uma revisão aprofundada da gravação. Mapeei a jornada de cada usuário individualmente, identificando lacunas de usabilidade, dores recorrentes e comportamentos não documentados do sistema que não teriam emergido por um formulário ou pesquisa.<br><br>Para acelerar o processo com mais de 3 horas de entrevistas, utilizei transcrição assistida por IA — garantindo que nenhum bug ou caso de borda se perdesse no volume de dados. O resultado foi um user flow abrangente consolidando os achados em uma visão clara do estado atual.<br><br>A partir daí, o time de design conduziu uma design critique estruturada sobre o user flow. Cada membro trouxe sua expertise — sinalizando inconsistências de UI, pontos de atrito de UX e lacunas na jornada futura. Essa camada colaborativa apurou o diagnóstico antes que qualquer tela fosse desenhada.',
+    discoveryImg1Caption: 'User flow construído a partir dos dados das entrevistas',
+    discoveryImg2Caption: 'Sessão de design critique com o time de design',
     overviewLabel: 'Sobre o Projeto',
     overviewBody: 'O projeto consistiu na <b>modernização do sistema</b> interno do Grupo Rodobens, líder brasileiro com 75 anos de história no setor financeiro e varejo automotivo. O ecossistema abrange desde financiamentos convencionais (CDC) até modelos complexos como o Plano Pontual e Finame. Juntamente com o time de produtos da NV8, minha atuação foi focada na <b>modernização das telas</b> a partir do <b>redesenho do fluxo de usuário</b> com base nas <b>regras de negócio</b>, <b>entrevistas com usuários</b> e <b>intermediação das expectativas dos stakeholders</b>, mediando trade-offs em relação à <b>complexidade do negócio</b> vs <b>tempo total do projeto</b>.',
     deliverables: ['Discovery & Research', 'Mapeamento AS IS × TO BE', 'Arquitetura de Informação', 'Protopersonas', 'User Flow Design', 'Wireframes & UI Design'],
@@ -444,13 +466,17 @@ const copy = {
     back: 'Back to portfolio', tag: 'UX · Business Design · Systems',
     btnBefore: 'How it was before', btnAfter: 'See new version',
     title: 'Untangling<br><em>the Legacy.</em>',
-    subtitle: 'Together with the business, development, and design team, we transformed a 7-year-old legacy system, plagued by <b>bottlenecks</b> and <b>fragmentation</b>, into a <b>cohesive platform</b>. The <b>challenge</b> lay in the volume of <b>bugs</b> and the application of business rules and access rules by profile. Users reported the following <b>pain points</b>: <b>crashes</b>, <b>useless screens</b>, <b>frequent system outages</b>, <b>lack of automation</b>, and <b>forced dependency</b> on <b>external</b> tools. We restored <b>operational efficiency</b> by transforming improvised workarounds into <b>single, integrated</b> flows.',
+    subtitle: 'I redesigned Rodobens\' core operational platform from the ground up — a legacy system carrying <b>7 years of accumulated debt</b>, <b>100+ documented bugs</b>, and <b>603 active users</b> absorbing the daily cost of crashes, missing automation, and fragmented workflows. The result: <b>100+ screens designed</b>, business and access rules properly enforced by profile, and a <b>single integrated platform</b> replacing a patchwork of external dependencies.',
     accentLine: 'Mapping 129 access profiles and translating complex business rules into scalable user journeys',
     context: "The team transformed a 7-year-old fragmented legacy system into a cohesive platform. The challenge wasn't the system's age — it was the daily problems: crashes, lack of automation, and forced dependency on external tools.",
     roles: ['UX Design', 'Business Design', 'Research', 'Facilitation', 'Handoff'],
     stats: { profiles: 'profiles mapped', users: 'active users', months: 'months of project', legacy: 'years of legacy' },
     complaintsLabel: 'Main user complaints',
     complaints: ['Extreme slowness and constant system crashes', 'Lack of automation in several critical processes', 'Confusing error messages and limited or no feedback', 'Irrelevant and slow home screen — not used in day-to-day work', 'Difficulty and inefficiency in document uploads', 'No real-time reports — dependency on spreadsheets and external apps'],
+    discoveryLabel: 'Discovery & Mapping',
+    discoveryBody: 'Every interview was followed by a deep review of the recording. I mapped each user\'s journey individually, identifying usability gaps, recurring pain points, and undocumented system behaviors that wouldn\'t have surfaced through a form or a survey.<br><br>To accelerate the process across 3+ hours of interviews, I used AI-assisted transcription — ensuring no bug or edge case was lost in the volume of data. The result was a comprehensive user flow consolidating the findings into a clear picture of the current state.<br><br>From there, the design team ran a structured design critique over the user flow. Each team member brought their own expertise to the table — flagging UI inconsistencies, UX friction points, and gaps in the to-be journey. This collaborative layer sharpened the diagnosis before a single screen was designed.',
+    discoveryImg1Caption: 'User flow mapping built from interview data',
+    discoveryImg2Caption: 'Design critique session with the design team',
     overviewLabel: 'About the Project',
     overviewBody: 'The project consisted of <b>modernizing the internal system</b> of Rodobens Group, a Brazilian leader with 75 years of history in the financial and automotive retail sector. The ecosystem spans from conventional financing (CDC) to complex models such as Plano Pontual and Finame. Together with the NV8 product team, my role was focused on <b>modernizing the screens</b> through the <b>redesign of user flows</b> based on <b>business rules</b>, <b>user interviews</b>, and <b>stakeholder expectation management</b>, mediating trade-offs between <b>business complexity</b> vs <b>total project timeline</b>.',
     deliverables: ['Discovery & Research', 'AS IS × TO BE Mapping', 'Information Architecture', 'Proto-Personas', 'User Flow Design', 'Wireframes & UI Design'],
@@ -510,13 +536,17 @@ const copy = {
     back: 'Volver al portafolio', tag: 'UX · Business Design · Systems',
     btnBefore: 'Cómo era antes', btnAfter: 'Ver versión nueva',
     title: 'Desenredando<br><em>el Legado.</em>',
-    subtitle: 'Junto con el equipo de negocio, desarrollo y diseño, transformamos un sistema legado de 7 años, que presentaba <b>bloqueos</b> y <b>fragmentación</b>, en una <b>plataforma cohesiva</b>. El <b>desafío</b> consistió en la cantidad de <b>bugs</b> y la aplicación de reglas de negocio y reglas de acceso por perfiles. Los usuarios reportaron los siguientes <b>problemas</b>: <b>bloqueos</b>, <b>pantallas inútiles</b>, <b>caídas frecuentes del sistema</b>, <b>falta de automatización</b> y <b>dependencia forzada</b> de herramientas <b>externas</b>. Restauramos la <b>eficiencia operacional</b> transformando soluciones improvisadas en <b>flujos únicos</b> e <b>integrados</b>.',
+    subtitle: 'Rediseñé la plataforma operacional central de Rodobens desde cero — un sistema legado con <b>7 años de deuda acumulada</b>, <b>más de 100 bugs documentados</b> y <b>603 usuarios activos</b> absorbiendo el costo diario de bloqueos, falta de automatización y flujos fragmentados. El resultado: <b>más de 100 pantallas diseñadas</b>, reglas de negocio y acceso correctamente aplicadas por perfil, y una <b>plataforma integrada</b> que reemplaza un conjunto de dependencias externas.',
     accentLine: 'Mapeo de 129 perfiles de acceso y traducción de reglas de negocio complejas en journeys de usuario escalables',
     context: 'El equipo transformó un sistema legado de 7 años — fragmentado y con bloqueos — en una plataforma cohesiva.',
     roles: ['UX Design', 'Business Design', 'Research', 'Facilitación', 'Handoff'],
     stats: { profiles: 'perfiles mapeados', users: 'usuarios activos', months: 'meses de proyecto', legacy: 'años de legado' },
     complaintsLabel: 'Principales quejas de los usuarios',
     complaints: ['Lentitud extrema y caídas constantes del sistema', 'Falta de automatización en varios procesos críticos', 'Mensajes de error confusos y feedback limitado o inexistente', 'Pantalla de inicio irrelevante y lenta — no se usaba en el día a día', 'Dificultad e ineficiencia en la carga de documentos', 'Sin informes en tiempo real — dependencia de hojas de cálculo y apps externas'],
+    discoveryLabel: 'Discovery & Mapeo',
+    discoveryBody: 'Cada entrevista fue seguida de una revisión profunda de la grabación. Mapeé el recorrido de cada usuario individualmente, identificando brechas de usabilidad, puntos de dolor recurrentes y comportamientos del sistema no documentados que no habrían surgido a través de un formulario o encuesta.<br><br>Para acelerar el proceso en más de 3 horas de entrevistas, utilicé transcripción asistida por IA — garantizando que ningún bug o caso límite se perdiera en el volumen de datos. El resultado fue un user flow integral que consolidó los hallazgos en una imagen clara del estado actual.<br><br>A partir de ahí, el equipo de diseño realizó una design critique estructurada sobre el user flow. Cada miembro aportó su propia experiencia — señalando inconsistencias de UI, puntos de fricción de UX y brechas en el recorrido futuro. Esta capa colaborativa agudizó el diagnóstico antes de que se diseñara una sola pantalla.',
+    discoveryImg1Caption: 'User flow construido a partir de los datos de las entrevistas',
+    discoveryImg2Caption: 'Sesión de design critique con el equipo de diseño',
     overviewLabel: 'Sobre el Proyecto',
     overviewBody: 'El proyecto consistió en la <b>modernización del sistema</b> interno del Grupo Rodobens, líder brasileño con 75 años de historia en el sector financiero y retail automotriz. El ecosistema abarca desde financiamientos convencionales (CDC) hasta modelos complejos como el Plano Pontual y Finame. Junto al equipo de producto de NV8, mi rol se centró en la <b>modernización de las pantallas</b> a partir del <b>rediseño del flujo de usuario</b> con base en las <b>reglas de negocio</b>, <b>entrevistas con usuarios</b> y <b>gestión de expectativas de stakeholders</b>, mediando trade-offs entre <b>complejidad del negocio</b> vs <b>tiempo total del proyecto</b>.',
     deliverables: ['Discovery & Research', 'Mapeo AS IS × TO BE', 'Arquitectura de Información', 'Proto-Personas', 'User Flow Design', 'Wireframes & UI Design'],
@@ -577,13 +607,17 @@ const copy = {
     back: 'Zurück zum Portfolio', tag: 'UX · Business Design · Systems',
     btnBefore: 'So war es vorher', btnAfter: 'Neue Version ansehen',
     title: 'Das Erbe<br><em>entwirren.</em>',
-    subtitle: 'Gemeinsam mit dem Business-, Entwicklungs- und Designteam haben wir ein 7 Jahre altes Legacy-System, das durch <b>Blockaden</b> und <b>Fragmentierung</b> geprägt war, in eine <b>kohärente Plattform</b> verwandelt. Die <b>Herausforderung</b> lag in der Menge an <b>Bugs</b> sowie der Anwendung von Geschäfts- und Zugriffsregeln nach Profilen. Nutzer berichteten von folgenden <b>Problemen</b>: <b>Abstürze</b>, <b>nutzlose Screens</b>, <b>häufige Systemausfälle</b>, <b>fehlende Automatisierung</b> und <b>erzwungene Abhängigkeit</b> von <b>externen</b> Tools. Wir stellten die <b>betriebliche Effizienz</b> wieder her, indem wir improvisierte Workarounds in <b>einheitliche, integrierte</b> Flows umwandelten.',
+    subtitle: 'Ich habe die zentrale Betriebsplattform von Rodobens von Grund auf neu gestaltet — ein Legacy-System mit <b>7 Jahren angesammelter technischer Schulden</b>, <b>über 100 dokumentierten Bugs</b> und <b>603 aktiven Nutzern</b>, die täglich die Kosten von Abstürzen, fehlender Automatisierung und fragmentierten Workflows trugen. Das Ergebnis: <b>100+ gestaltete Screens</b>, Geschäfts- und Zugriffsregeln korrekt nach Profil umgesetzt, und eine <b>integrierte Plattform</b>, die ein Flickwerk externer Abhängigkeiten ersetzt.',
     accentLine: 'Kartierung von 129 Zugriffsprofilen und Übersetzung komplexer Geschäftsregeln in skalierbare User Journeys',
     context: 'Das Team verwandelte ein 7 Jahre altes, fragmentiertes Legacy-System in eine kohärente Plattform.',
     roles: ['UX Design', 'Business Design', 'Research', 'Facilitation', 'Handoff'],
     stats: { profiles: 'kartierte Profile', users: 'aktive Nutzer', months: 'Projektmonate', legacy: 'Jahre Legacy' },
     complaintsLabel: 'Hauptbeschwerden der Nutzer',
     complaints: ['Extreme Langsamkeit und ständige Systemabstürze', 'Fehlende Automatisierung in mehreren kritischen Prozessen', 'Verwirrende Fehlermeldungen und begrenztes oder kein Feedback', 'Irrelevanter und langsamer Startbildschirm — im Alltag nicht genutzt', 'Schwierigkeiten und Ineffizienz beim Hochladen von Dokumenten', 'Keine Echtzeit-Berichte — Abhängigkeit von Tabellenkalkulationen und externen Apps'],
+    discoveryLabel: 'Discovery & Kartierung',
+    discoveryBody: 'Jedes Interview wurde von einer eingehenden Überprüfung der Aufnahme begleitet. Ich kartierte die Journey jedes Nutzers individuell und identifizierte Usability-Lücken, wiederkehrende Schmerzpunkte und undokumentierte Systemverhalten, die durch ein Formular oder eine Umfrage nicht ans Licht gekommen wären.<br><br>Um den Prozess über mehr als 3 Stunden an Interviews zu beschleunigen, nutzte ich KI-gestützte Transkription — um sicherzustellen, dass kein Bug oder Edge Case im Datenvolumen verloren ging. Das Ergebnis war ein umfassender User Flow, der die Erkenntnisse zu einem klaren Bild des aktuellen Zustands konsolidierte.<br><br>Daraufhin führte das Design-Team eine strukturierte Design Critique über den User Flow durch. Jedes Teammitglied brachte seine eigene Expertise ein — markierte UI-Inkonsistenzen, UX-Reibungspunkte und Lücken in der To-Be-Journey. Diese kollaborative Schicht schärfte die Diagnose, bevor ein einziger Screen gestaltet wurde.',
+    discoveryImg1Caption: 'User Flow-Kartierung aus Interviewdaten',
+    discoveryImg2Caption: 'Design Critique-Sitzung mit dem Design-Team',
     overviewLabel: 'Über das Projekt',
     overviewBody: 'Das Projekt bestand in der <b>Modernisierung des internen Systems</b> der Rodobens Group, einem brasilianischen Marktführer mit 75-jähriger Geschichte im Finanz- und Automobileinzelhandel. Das Ökosystem umfasst konventionelle Finanzierungen (CDC) bis hin zu komplexen Modellen wie Plano Pontual und Finame. Gemeinsam mit dem NV8-Produktteam konzentrierte sich meine Arbeit auf die <b>Modernisierung der Oberflächen</b> durch das <b>Redesign der User Flows</b> basierend auf <b>Geschäftsregeln</b>, <b>Nutzerinterviews</b> und <b>Stakeholder-Erwartungsmanagement</b>, mit Abwägung von Trade-offs zwischen <b>Geschäftskomplexität</b> vs. <b>Gesamtprojektlaufzeit</b>.',
     deliverables: ['Discovery & Research', 'AS IS × TO BE Kartierung', 'Informationsarchitektur', 'Proto-Personas', 'User Flow Design', 'Wireframes & UI Design'],
@@ -685,6 +719,10 @@ const t = computed(() => copy[lang.value] || copy['PT'])
 .rc-rule-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(240,24,90,.4) 0%,transparent 70%)}
 .rc-section-intro{font-size:clamp(1.125rem,2vw,1.25rem);font-weight:300;line-height:1.85;color:var(--fg-muted,#6B6A82);max-width:65ch;margin-bottom:2.5rem}
 .rc-section-intro b{font-weight:800;color:var(--fg,#F0EFF8)}
+.rc-discovery-imgs{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:2rem}
+.rc-disc-fig{margin:0;display:flex;flex-direction:column;gap:.65rem}
+.rc-disc-img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-radius:12px;border:1px solid rgba(255,255,255,.07);display:block}
+.rc-disc-caption{font-size:.75rem;font-weight:400;letter-spacing:.06em;color:var(--fg-muted,#6B6A82);text-align:center}
 .rc-hint{font-style:italic;color:#F0185A;font-weight:400}
 .rc-sub-heading{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:-.015em;color:var(--fg,#F0EFF8);margin-bottom:1.25rem}
 .rc-complaints-grid{display:grid;grid-template-columns:1fr;gap:.6rem}
@@ -807,7 +845,7 @@ const t = computed(() => copy[lang.value] || copy['PT'])
 .rc-footer-link{font-size:.58rem;color:var(--fg-muted,#6B6A82);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
 .rc-footer-link:hover{color:#F0185A}
 .rc-footer-copy{font-size:.55rem;color:var(--fg-muted,#6B6A82);opacity:.45;text-align:center}
-@media(min-width:640px){.rc-hero{padding:8rem 3rem 4rem}.rc-section{padding:5rem 3rem}.rc-back{left:3rem}.rc-complaints-grid{grid-template-columns:repeat(2,1fr)}.rc-triads{grid-template-columns:repeat(3,1fr)}.rc-principles{grid-template-columns:repeat(2,1fr)}.rc-comps-grid{grid-template-columns:repeat(2,1fr)}.rc-impact-grid{grid-template-columns:repeat(2,1fr)}.rc-dec-cols{grid-template-columns:repeat(2,1fr)}.rc-footer{padding:2rem 3rem}}
+@media(min-width:640px){.rc-hero{padding:8rem 3rem 4rem}.rc-section{padding:5rem 3rem}.rc-back{left:3rem}.rc-complaints-grid{grid-template-columns:repeat(2,1fr)}.rc-triads{grid-template-columns:repeat(3,1fr)}.rc-principles{grid-template-columns:repeat(2,1fr)}.rc-comps-grid{grid-template-columns:repeat(2,1fr)}.rc-impact-grid{grid-template-columns:repeat(2,1fr)}.rc-dec-cols{grid-template-columns:repeat(2,1fr)}.rc-footer{padding:2rem 3rem}.rc-discovery-imgs{grid-template-columns:1fr 1fr;gap:1.5rem}}
 @media(min-width:1024px){.rc-hero{padding:9rem 7rem 5rem;flex-direction:row;align-items:flex-start;gap:4rem}.rc-hero-left{flex:1}.rc-hero-right{flex:0 0 460px}.rc-section{padding:6rem 7rem}.rc-back{left:7rem}.rc-overview-row{flex-direction:row;align-items:flex-start;gap:2.5rem}.rc-overview-body{flex:1.3}.rc-deliverables{flex:1;flex-direction:column}.rc-del{width:100%}.rc-complaints-grid{grid-template-columns:repeat(3,1fr)}.rc-principles{grid-template-columns:repeat(3,1fr)}.rc-comps-grid{grid-template-columns:repeat(3,1fr)}.rc-impact-grid{grid-template-columns:repeat(5,1fr)}.rc-footer{padding:2.5rem 7rem}}
 @media(min-width:1400px){.rc-hero{padding:10rem 10rem 5rem}.rc-section{padding:7rem 10rem}.rc-back{left:10rem}.rc-footer{padding:3rem 10rem}}
 

@@ -87,6 +87,9 @@
       </button>
     </template>
 
+    <!-- Chat widget — global, all routes -->
+    <ChatWidget :photo="photo" />
+
   </div>
 </template>
 
@@ -109,6 +112,8 @@ import MasterGloboCase    from '../seções/MasterGloboCase.vue'
 import LancomeCase        from '../seções/LancomeCase.vue'
 import YSLCase            from '../seções/YSLCase.vue'
 import CVPage             from '../seções/CVPage.vue'
+import ChatWidget         from '../seções/ChatWidget.vue'
+import photo              from './assets/photo.png'
 
 const route = useRoute()
 

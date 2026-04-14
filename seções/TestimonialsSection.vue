@@ -81,27 +81,18 @@ const props = defineProps({
 const initials = (name) =>
   name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase()
 
-// ── Recomendações (conteúdo fixo — badges não precisam tradução) ──
-const recs = [
-  {
-    name   : 'Camily Rodrigues',
-    role   : 'Product Designer',
-    relKey : 'reportedTo',
-    badges : ['UI Design', 'Empatia', 'Comunicação', 'Formação de Talentos'],
-  },
-  {
-    name   : 'Ilson Júnior',
-    role   : 'Product Designer Sr.',
-    relKey : 'managed',
-    badges : ['Parceria Estratégica', 'Articulação', 'Stakeholders', 'Documentação Técnica', 'Soluções de Design', 'Autoridade'],
-  },
-  {
-    name   : 'Taciana Serafim',
-    role   : 'Especialista Growth & CRO',
-    relKey : 'sameTeam',
-    badges : ['5 marcas L\'Oréal', 'Testes A/B', 'Landing Pages', 'Estratégia de UI', 'Alinhamento a Negócios'],
-  },
+// ── Recomendações (dados estáticos sem badges) ──────────────────
+const recsBase = [
+  { name: 'Camily Rodrigues',  role: 'Product Designer',          relKey: 'reportedTo' },
+  { name: 'Ilson Júnior',      role: 'Product Designer Sr.',       relKey: 'managed'    },
+  { name: 'Taciana Serafim',   role: 'Especialista Growth & CRO',  relKey: 'sameTeam'   },
 ]
+
+// ── Badges traduzidos por idioma ──────────────────────────────
+const recs = computed(() => {
+  const badges = t.value.badges
+  return recsBase.map((r, i) => ({ ...r, badges: badges[i] }))
+})
 
 // ── Copies i18n ───────────────────────────────────────────────
 const copy = {
@@ -116,6 +107,11 @@ const copy = {
       managed    : 'Liderou Tayná diretamente',
       sameTeam   : 'Mesma equipe',
     },
+    badges: [
+      ['UI Design', 'Empatia', 'Comunicação', 'Formação de Talentos'],
+      ['Parceria Estratégica', 'Articulação', 'Stakeholders', 'Documentação Técnica', 'Soluções de Design', 'Autoridade'],
+      ['5 marcas L\'Oréal', 'Testes A/B', 'Landing Pages', 'Estratégia de UI', 'Alinhamento a Negócios'],
+    ],
   },
   EN: {
     sectionLabel : 'Recommendations',
@@ -128,6 +124,11 @@ const copy = {
       managed    : 'Managed Tayná directly',
       sameTeam   : 'Same team',
     },
+    badges: [
+      ['UI Design', 'Empathy', 'Communication', 'Talent Development'],
+      ['Strategic Partnership', 'Articulation', 'Stakeholder Management', 'Technical Documentation', 'Design Solutions', 'Authority'],
+      ['5 L\'Oréal brands', 'A/B Testing', 'Landing Pages', 'UI Strategy', 'Business Alignment'],
+    ],
   },
   ES: {
     sectionLabel : 'Recomendaciones',
@@ -140,6 +141,11 @@ const copy = {
       managed    : 'Lideró a Tayná directamente',
       sameTeam   : 'Mismo equipo',
     },
+    badges: [
+      ['UI Design', 'Empatía', 'Comunicación', 'Formación de Talentos'],
+      ['Alianza Estratégica', 'Articulación', 'Stakeholders', 'Documentación Técnica', 'Soluciones de Diseño', 'Autoridad'],
+      ['5 marcas L\'Oréal', 'Pruebas A/B', 'Landing Pages', 'Estrategia de UI', 'Alineación con Negocio'],
+    ],
   },
   DE: {
     sectionLabel : 'Empfehlungen',
@@ -152,6 +158,11 @@ const copy = {
       managed    : 'Leitete Tayná direkt',
       sameTeam   : 'Gleiches Team',
     },
+    badges: [
+      ['UI Design', 'Empathie', 'Kommunikation', 'Talentförderung'],
+      ['Strategische Partnerschaft', 'Kommunikationsstärke', 'Stakeholder-Management', 'Technische Dokumentation', 'Design-Lösungen', 'Autorität'],
+      ['5 L\'Oréal Marken', 'A/B-Tests', 'Landing Pages', 'UI-Strategie', 'Business-Ausrichtung'],
+    ],
   },
 }
 
