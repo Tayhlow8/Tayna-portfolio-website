@@ -61,7 +61,7 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
   lang:  { type: String, default: 'PT'   },
 })
 

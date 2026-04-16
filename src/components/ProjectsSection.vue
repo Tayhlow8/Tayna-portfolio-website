@@ -49,9 +49,14 @@
           <div class="card-body">
             <div class="card-meta">
               <span class="card-tag">{{ featured.category }}</span>
+              <span class="card-year">{{ featured.year }}</span>
             </div>
             <h3 class="card-client">{{ featured.client }}</h3>
-            <p class="card-impact">{{ featured.impact }}</p>
+            <p class="card-case-title">{{ featured.title }}</p>
+            <p class="card-desc">{{ featured.desc }}</p>
+            <div class="card-tags">
+              <span v-for="tag in featured.tags" :key="tag" class="card-tag-item">{{ tag }}</span>
+            </div>
             <div class="card-cta">
               <span class="card-cta-label">{{ t.viewProject }}</span>
               <span class="card-cta-arr">→</span>
@@ -84,9 +89,14 @@
           <div class="card-body">
             <div class="card-meta">
               <span class="card-tag">{{ project.category }}</span>
+              <span class="card-year">{{ project.year }}</span>
             </div>
             <h3 class="card-client">{{ project.client }}</h3>
-            <p class="card-impact">{{ project.impact }}</p>
+            <p class="card-case-title">{{ project.title }}</p>
+            <p class="card-desc">{{ project.desc }}</p>
+            <div class="card-tags">
+              <span v-for="tag in project.tags" :key="tag" class="card-tag-item">{{ tag }}</span>
+            </div>
             <div class="card-cta">
               <span class="card-cta-label">{{ t.viewProject }}</span>
               <span class="card-cta-arr">→</span>
@@ -110,7 +120,7 @@ import yslCover      from '../../imagens cases/YSL Y intense/mobile exp.avif'
 import nv8Cover      from '../../clientes/nv8 case cover.png'
 
 const props = defineProps({
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
   lang:  { type: String, default: 'PT'  },
 })
 
@@ -303,58 +313,76 @@ const visualNV8 = `
   </svg>`
 
 // ── Projects data ────────────────────────────────────────────────
-const projects = computed(() => [
-  {
-    slug    : 'rodobens',
-    client  : 'Rodobens',
-    category: t.value.categories.product,
-    impact  : t.value.impacts.rodobens,
-    bg      : 'linear-gradient(135deg, #0c0b1e 0%, #16122e 100%)',
-    visual  : visualRodobens,
-    image   : rodobensCover,
-    featured: true,
-  },
-  {
-    slug    : 'master-globo',
-    client  : 'Master Globo',
-    category: t.value.categories.ux,
-    impact  : t.value.impacts.master,
-    bg      : 'linear-gradient(135deg, #0a0a18 0%, #121224 100%)',
-    visual  : visualMaster,
-    image   : masterCover,
-    featured: false,
-  },
-  {
-    slug    : 'lancome-brazil',
-    client  : 'Lancôme Brazil',
-    category: t.value.categories.ux,
-    impact  : t.value.impacts.lancome,
-    bg      : 'linear-gradient(135deg, #110810 0%, #1a0d18 100%)',
-    visual  : visualLancome,
-    image   : lancomeCover,
-    featured: false,
-  },
-  {
-    slug    : 'yves-saint-laurent',
-    client  : 'Yves Saint Laurent',
-    category: t.value.categories.brand,
-    impact  : t.value.impacts.ysl,
-    bg      : 'linear-gradient(135deg, #0d0d0d 0%, #1a1010 100%)',
-    visual  : visualYSL,
-    image   : yslCover,
-    featured: false,
-  },
-  {
-    slug    : 'nv8',
-    client  : 'NV8',
-    category: t.value.categories.ux,
-    impact  : t.value.impacts.nv8,
-    bg      : 'linear-gradient(135deg, #050d18 0%, #0a1a2e 100%)',
-    visual  : visualNV8,
-    image   : nv8Cover,
-    featured: false,
-  },
-])
+const projects = computed(() => {
+  const l = props.lang
+  return [
+    {
+      slug    : 'rodobens',
+      client  : 'Credit & Leasing ERP system',
+      year    : '2026',
+      category: t.value.categories.product,
+      title   : 'DISCOVERY, MAPPING AND PRODUCT',
+      desc    : ({ PT: "Modernização de um ERP legado para um dos maiores conglomerados financeiros do Brasil — reconstruindo 75 anos de fluxo de crédito em um produto escalável e navegável.", EN: "Modernization of a legacy ERP for one of Brazil's largest finantial conglomerates - rebuilding 75 years of credit workflow into a scalable, navigable product.", ES: 'Modernización de un ERP heredado para uno de los mayores conglomerados financieros de Brasil — reconstruyendo 75 años de flujo de crédito en un producto escalable y navegable.', DE: 'Modernisierung eines Legacy-ERP für eines der größten Finanzkonglomerate Brasiliens — 75 Jahre Kreditworkflow in ein skalierbares, navigierbares Produkt umgebaut.' })[l] || '',
+      tags    : ['Product Design', 'Design System', 'B2B · Fintech'],
+      bg      : 'linear-gradient(135deg, #0c0b1e 0%, #16122e 100%)',
+      visual  : visualRodobens,
+      image   : rodobensCover,
+      featured: true,
+    },
+    {
+      slug    : 'master-globo',
+      client  : 'Master Globo',
+      year    : '2025',
+      category: t.value.categories.ux,
+      title   : ({ PT: 'UX Research para lançamento de produto', EN: 'UX research to product launch', ES: 'UX Research al lanzamiento de producto', DE: 'UX Research zum Produktlaunch' })[l] || 'UX research to product launch',
+      desc    : ({ PT: 'Pesquisa quantitativa e qualitativa e dashboard usando a base de dados da plataforma educacional para o lançamento de um novo formato de produto.', EN: "Quantitative and qualitative research and dashboard using the educational platform's database for the launch of a new product format.", ES: 'Investigación cuantitativa y cualitativa y dashboard usando la base de datos de la plataforma educativa para el lanzamiento de un nuevo formato de producto.', DE: 'Quantitative und qualitative Forschung sowie Dashboard mit der Datenbank der Bildungsplattform für den Launch eines neuen Produktformats.' })[l] || '',
+      tags    : ['UX Research', 'Media & Broadcast', 'B2B'],
+      bg      : 'linear-gradient(135deg, #0a0a18 0%, #121224 100%)',
+      visual  : visualMaster,
+      image   : masterCover,
+      featured: false,
+    },
+    {
+      slug    : 'lancome-brazil',
+      client  : 'Lancôme Brazil',
+      year    : '2023',
+      category: t.value.categories.ux,
+      title   : ({ PT: 'Experiência Sensorial Lancôme', EN: "Lancôme's Sensorial Experience", ES: 'Experiencia Sensorial Lancôme', DE: 'Lancôme Sensorisches Erlebnis' })[l] || "Lancôme's Sensorial Experience",
+      desc    : ({ PT: 'Exposição sensorial imersiva e exclusiva em São Paulo celebrando a história da Lancôme por meio de perfume, joias, moda, som e alta gastronomia — projetada para engajar os cinco sentidos.', EN: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.', ES: 'Una exposición sensorial inmersiva y exclusiva en São Paulo que celebra la historia de Lancôme a través del perfume, las joyas, la moda, el sonido y la alta gastronomía.', DE: 'Eine immersive, exklusive Sinnesausstellung in São Paulo zur Geschichte von Lancôme — durch Parfum, Schmuck, Mode, Klang und Haute Cuisine.' })[l] || '',
+      tags    : ['Beauty', 'Brand Experience', 'Exhibition'],
+      bg      : 'linear-gradient(135deg, #110810 0%, #1a0d18 100%)',
+      visual  : visualLancome,
+      image   : lancomeCover,
+      featured: false,
+    },
+    {
+      slug    : 'yves-saint-laurent',
+      client  : 'Yves Saint Laurent',
+      year    : '2023',
+      category: t.value.categories.brand,
+      title   : ({ PT: 'Experiência Digital YSL', EN: 'YSL Digital Experience', ES: 'Experiencia Digital YSL', DE: 'YSL Digitale Erfahrung' })[l] || 'YSL Digital Experience',
+      desc    : ({ PT: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.", EN: "Crafting a digital experience worthy of one of the world's most iconic brands — where rock'n'roll meets luxury.", ES: "Creación de una experiencia digital a la altura de una de las marcas más icónicas del mundo. Donde el rock'n'roll se encuentra con el lujo.", DE: "Gestaltung eines digitalen Erlebnisses für eine der ikonischsten Marken der Welt — wo Rock'n'Roll auf Luxus trifft." })[l] || '',
+      tags    : ['Luxury', 'E-commerce', 'Brand Experience'],
+      bg      : 'linear-gradient(135deg, #0d0d0d 0%, #1a1010 100%)',
+      visual  : visualYSL,
+      image   : yslCover,
+      featured: false,
+    },
+    {
+      slug    : 'nv8',
+      client  : 'NV8',
+      year    : '2025',
+      category: t.value.categories.ux,
+      title   : ({ PT: 'Redesign do Website', EN: 'Website Redesign', ES: 'Rediseño del Website', DE: 'Website Redesign' })[l] || 'Website Redesign',
+      desc    : ({ PT: 'Construindo a presença digital de uma software house brasileira do zero — sombria, cinematográfica, maximalista. Um design system, estratégia de motion e site completo para falar com devs e decisores.', EN: 'Building the digital presence of a Brazilian software house from the ground up — dark, cinematic, maximalist. A design system, motion strategy, and full website built to speak to developers and decision-makers alike.', ES: 'Construyendo la presencia digital de una software house brasileña desde cero — oscura, cinematográfica, maximalista. Un design system, estrategia de motion y sitio completo.', DE: 'Aufbau der digitalen Präsenz eines brasilianischen Software-Hauses von Grund auf — dunkel, cinematisch, maximalistisch. Design System, Motion-Strategie und vollständige Website.' })[l] || '',
+      tags    : ['Web Design', 'Design System', 'Motion'],
+      bg      : 'linear-gradient(135deg, #050d18 0%, #0a1a2e 100%)',
+      visual  : visualNV8,
+      image   : nv8Cover,
+      featured: false,
+    },
+  ]
+})
 
 const featured  = computed(() => projects.value.find(p => p.featured))
 const secondary = computed(() => projects.value.filter(p => !p.featured))
@@ -680,11 +708,46 @@ a { color: inherit; text-decoration: none; }
 }
 .card:hover .card-client { color: var(--fg); }
 
-.card-impact {
-  font-size   : 1.125rem;
+.card-year {
+  font-size      : .52rem;
+  font-weight    : 500;
+  letter-spacing : .1em;
+  color          : var(--fg-muted);
+  opacity        : .6;
+}
+
+.card-case-title {
+  font-size   : .7rem;
+  font-weight : 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color       : var(--accent);
+  margin-bottom: .1rem;
+}
+
+.card-desc {
+  font-size   : .95rem;
   font-weight : 300;
   line-height : 1.7;
   color       : var(--fg-muted);
+}
+
+.card-tags {
+  display   : flex;
+  flex-wrap : wrap;
+  gap       : .35rem;
+}
+
+.card-tag-item {
+  font-size      : .5rem;
+  font-weight    : 500;
+  letter-spacing : .1em;
+  text-transform : uppercase;
+  color          : var(--fg-muted);
+  border         : 1px solid var(--ghost-border);
+  padding        : .2rem .55rem;
+  border-radius  : 2px;
+  opacity        : .7;
 }
 
 .card-cta {
@@ -711,7 +774,7 @@ a { color: inherit; text-decoration: none; }
 /* ── Featured card specifics ── */
 .card--featured .card-img { height: 280px; }
 .card--featured .card-client { font-size: clamp(1.4rem, 4vw, 2rem); }
-.card--featured .card-impact { font-size: 1.125rem; max-width: 52ch; }
+.card--featured .card-desc   { font-size: 1.025rem; max-width: 52ch; }
 
 /* ── Small card specifics ── */
 .card--small {

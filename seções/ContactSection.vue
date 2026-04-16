@@ -89,7 +89,7 @@ import PfButton from '../src/components/PfButton.vue'
 
 const props = defineProps({
   lang  : { type: String, default: 'PT' },
-  theme : { type: String, default: 'dark' },
+  theme : { type: String, default: 'light' },
 })
 
 const year = new Date().getFullYear()

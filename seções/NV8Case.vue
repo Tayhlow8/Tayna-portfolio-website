@@ -139,8 +139,15 @@
 
     <!-- FOOTER -->
     <footer class="nv-footer">
-      <button class="nv-footer-back" @click="$router.push('/projetos')">← {{ t.back }}</button>
-      <span class="nv-footer-tag">{{ t.footerTag }}</span>
+      <div class="nv-footer-inner">
+        <span class="nv-footer-tag">{{ t.footerTag }}</span>
+        <div class="nv-footer-links">
+          <button class="nv-footer-back" @click="$router.push('/projetos')">← {{ t.back }}</button>
+          <a href="mailto:tayna.schultz@gmail.com" class="nv-footer-link">Email</a>
+          <a href="https://www.linkedin.com/in/taynaschultz/" target="_blank" rel="noopener noreferrer" class="nv-footer-link">LinkedIn</a>
+        </div>
+      </div>
+      <p class="nv-footer-copy">© 2026 Tayná Schultz</p>
     </footer>
 
   </div>
@@ -155,7 +162,7 @@ import websiteImg from '../clientes/nv8 website case.png'
 
 const props = defineProps({
   lang:  { type: String, default: 'EN' },
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
 })
 
 const lang  = ref(props.lang)
@@ -677,9 +684,14 @@ const t = computed(() => copy[lang.value] ?? copy.EN)
   padding: 2rem 1.25rem;
   border-top: 1px solid var(--border);
   max-width: 1100px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  flex-wrap: wrap; position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: .85rem;
+  position: relative; z-index: 1;
 }
+.nv-footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .65rem; width: 100%;
+}
+.nv-footer-links { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
 .nv-footer-back {
   font-family: var(--font-body); font-size: .58rem; font-weight: 500;
   letter-spacing: .13em; text-transform: uppercase;
@@ -688,9 +700,19 @@ const t = computed(() => copy[lang.value] ?? copy.EN)
   padding: .5rem 1rem; transition: color .2s, border-color .2s;
 }
 .nv-footer-back:hover { color: var(--accent); border-color: rgba(240,24,90,.4); }
+.nv-footer-link {
+  font-size: .58rem; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--fg-muted);
+  text-decoration: none; transition: color .2s;
+}
+.nv-footer-link:hover { color: var(--accent); }
 .nv-footer-tag {
   font-size: .55rem; font-weight: 500; letter-spacing: .14em;
   text-transform: uppercase; color: var(--fg-muted);
+}
+.nv-footer-copy {
+  font-size: .55rem; color: var(--fg-muted); opacity: .45;
+  text-align: center;
 }
 
 /* ── Animations ── */

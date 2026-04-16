@@ -288,7 +288,7 @@
       <div class="rc-footer-inner">
         <span class="rc-footer-tag">{{ t.footerTag }}</span>
         <div class="rc-footer-links">
-          <a href="/" class="rc-footer-link">{{ t.back }}</a>
+          <a href="/projetos" class="rc-footer-link">{{ t.back }}</a>
           <a href="mailto:tayna.schultz@gmail.com" class="rc-footer-link">Email</a>
           <a href="https://www.linkedin.com/in/taynaschultz/" target="_blank" rel="noopener noreferrer" class="rc-footer-link">LinkedIn</a>
         </div>
@@ -319,7 +319,7 @@ import simulacaoAntigaImg from '../imagens cases/rodobens/ANTIGAS/simulação an
 import negociacaoAntigaImg from '../imagens cases/rodobens/ANTIGAS/negociação antiga.png'
 import menuAntigoImg      from '../imagens cases/rodobens/ANTIGAS/MENU antigo.png'
 
-const props = defineProps({ lang: { type: String, default: 'PT' }, theme: { type: String, default: 'dark' } })
+const props = defineProps({ lang: { type: String, default: 'PT' }, theme: { type: String, default: 'light' } })
 
 // Local mutable copies so NavBar can toggle theme/lang on this page
 const lang  = ref(props.lang)

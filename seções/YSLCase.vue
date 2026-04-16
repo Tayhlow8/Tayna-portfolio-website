@@ -250,7 +250,7 @@
           <router-link to="/projetos/lancome-brazil" class="ysl-btn ysl-btn--solid">
             {{ t.footerNext }} <span class="ysl-arr">→</span>
           </router-link>
-          <router-link to="/" class="ysl-btn ysl-btn--ghost">
+          <router-link to="/projetos" class="ysl-btn ysl-btn--ghost">
             {{ t.footerAll }}
           </router-link>
         </div>
@@ -281,7 +281,7 @@ import ecommYsl   from '../imagens cases/YSL Y intense/ecomm ysl.png'
 
 const props = defineProps({
   lang  : { type: String, default: 'PT' },
-  theme : { type: String, default: 'dark' },
+  theme : { type: String, default: 'light' },
 })
 
 const lang  = ref(props.lang)

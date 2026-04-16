@@ -94,7 +94,7 @@ import { useRouter } from 'vue-router'
 // ── Props: recebe o lang e theme do componente pai ─────
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
 })
 
 const router = useRouter()

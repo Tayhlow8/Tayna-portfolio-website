@@ -96,7 +96,7 @@ import imgNV8      from '../clientes/nv8 case cover.png'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
 })
 
 const lang  = ref(props.lang)
@@ -371,10 +371,10 @@ const projects = [
     year  : '2025',
     title : { PT: 'UX Research to product launch', EN: 'UX Research to product launch', ES: 'UX Research to product launch', DE: 'UX Research to product launch' },
     desc  : {
-      PT: 'Pesquisa quantitativa e qualitativa com a base de dados da plataforma educacional para lançamento de novo formato de produto.',
-      EN: 'Pesquisa quantitativa e qualitativa com a base de dados da plataforma educacional para lançamento de novo formato de produto.',
-      ES: 'Pesquisa quantitativa e qualitativa com a base de dados da plataforma educacional para lançamento de novo formato de produto.',
-      DE: 'Pesquisa quantitativa e qualitativa com a base de dados da plataforma educacional para lançamento de novo formato de produto.',
+      PT: 'Pesquisa quantitativa e qualitativa e dashboard usando a base de dados da plataforma educacional para o lançamento de um novo formato de produto.',
+      EN: "Quantitative and qualitative research and dashboard using the educational platform's database for the launch of a new product format.",
+      ES: 'Investigación cuantitativa y cualitativa y dashboard usando la base de datos de la plataforma educativa para el lanzamiento de un nuevo formato de producto.',
+      DE: 'Quantitative und qualitative Forschung sowie Dashboard mit der Datenbank der Bildungsplattform für den Launch eines neuen Produktformats.',
     },
     tags : ['UX Research', 'Media & Broadcast', 'B2B'],
     type : 'Enterprise · Media',
@@ -389,9 +389,9 @@ const projects = [
     title : { PT: 'Experiência Digital', EN: 'Digital Experience', ES: 'Experiencia Digital', DE: 'Digitale Erfahrung' },
     desc  : {
       PT: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.",
-      EN: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.",
-      ES: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.",
-      DE: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.",
+      EN: "Creating a worthy digital experience for one of the world's most iconic brands. Where rock'n'roll meets luxury.",
+      ES: "Creación de una experiencia digital a la altura de una de las marcas más icónicas del mundo. Donde el rock'n'roll se encuentra con el lujo.",
+      DE: "Schaffung eines würdigen digitalen Erlebnisses für eine der ikonischsten Marken der Welt. Wo Rock'n'Roll auf Luxus trifft.",
     },
     tags : ['Luxury', 'E-commerce', 'Brand Experience'],
     type : 'Retail · Fashion',

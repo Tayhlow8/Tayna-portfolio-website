@@ -260,7 +260,7 @@
           <router-link to="/projetos/rodobens" class="lc-btn lc-btn--solid">
             Next case <span class="lc-arr">→</span>
           </router-link>
-          <router-link to="/" class="lc-btn lc-btn--ghost">
+          <router-link to="/projetos" class="lc-btn lc-btn--ghost">
             All projects
           </router-link>
         </div>
@@ -290,7 +290,7 @@ import foto4 from '../imagens cases/Lancme brazil/foto 4 lancome.avif'
 
 const props = defineProps({
   lang  : { type: String, default: 'PT' },
-  theme : { type: String, default: 'dark' },
+  theme : { type: String, default: 'light' },
 })
 
 const lang  = ref(props.lang)

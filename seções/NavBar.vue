@@ -2,13 +2,13 @@
   <nav class="pf-nav" role="navigation" aria-label="Main navigation">
 
     <!-- LOGO -->
-    <div class="nav-logo" aria-label="Tayná Schultz">
+    <router-link to="/" class="nav-logo" aria-label="Tayná Schultz — Home">
       <svg class="nav-logo-mark" viewBox="0 0 88 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <polygon points="4,4 58,4 84,50 84,63 70,63 44,17 4,17" fill="#F0185A"/>
         <polygon points="84,104 30,104 4,58 4,45 18,45 44,91 84,91" fill="#F0185A"/>
       </svg>
       <span class="nav-logo-label">Tayná Schultz</span>
-    </div>
+    </router-link>
 
     <!-- DESKTOP NAV LINKS (centered) -->
     <div class="nav-links" role="list">
@@ -150,7 +150,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
 })
 
 const emit = defineEmits(['update:lang', 'update:theme'])
@@ -207,11 +207,7 @@ const ctaLabel = computed(() => ({
 }[props.lang] || 'Fale comigo'))
 
 function goToContact () {
-  if (route.path === '/') {
-    document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })
-  } else {
-    router.push('/#contact')
-  }
+  window.location.href = 'mailto:tayna.schultz@gmail.com'
 }
 
 // ── Hamburger / mobile drawer ──────────────────────────────
@@ -301,7 +297,7 @@ const drawerBg = computed(() =>
   gap: .55rem;
   flex-shrink: 0;
   text-decoration: none;
-  cursor: default;
+  cursor: pointer;
 }
 
 .nav-logo-mark {

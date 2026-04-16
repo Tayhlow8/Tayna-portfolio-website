@@ -91,7 +91,7 @@
           <!-- NV8 -->
           <div class="exp-item">
             <div class="exp-header">
-              <div class="exp-title">Product Designer Pleno</div>
+              <div class="exp-title">{{ lang === 'EN' ? 'Product Designer' : 'Product Designer Pleno' }}</div>
               <div class="exp-period">Sep 2025 — Mar 2026</div>
             </div>
             <div class="exp-company">
@@ -111,7 +111,7 @@
           <!-- VML -->
           <div class="exp-item">
             <div class="exp-header">
-              <div class="exp-title">UX/UI Designer Pleno</div>
+              <div class="exp-title">{{ lang === 'EN' ? 'UX/UI Designer' : 'UX/UI Designer Pleno' }}</div>
               <div class="exp-period">Jul 2021 — Jun 2025</div>
             </div>
             <div class="exp-company">
@@ -350,6 +350,7 @@
               <span class="skill-tag">Design Thinking</span>
               <span class="skill-tag">Design Sprints</span>
               <span class="skill-tag">Interaction Design</span>
+              <span class="skill-tag">UI</span>
               <span class="skill-tag">UX Writing</span>
               <span class="skill-tag">Accessibility</span>
               <span class="skill-tag">Vibe Code</span>
@@ -386,6 +387,7 @@
             <span class="skill-tag">Code QA</span>
             <span class="skill-tag">Motion Design</span>
             <span class="skill-tag">User-Centered Design</span>
+            <span class="skill-tag">Automation</span>
           </div>
         </div>
 
@@ -429,7 +431,7 @@ import NavBar from './NavBar.vue'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
 })
 
 const lang  = ref(props.lang)

@@ -110,7 +110,7 @@ import PfButton from '../src/components/PfButton.vue'
 
 const props = defineProps({
   lang  : { type: String, default: 'PT' },
-  theme : { type: String, default: 'dark' },
+  theme : { type: String, default: 'light' },
 })
 
 // Cópias locais mutáveis para o NavBar poder atualizar tema/idioma

@@ -1,5 +1,5 @@
 <template>
-  <figure class="fm-root" aria-hidden="true" role="presentation">
+  <figure class="fm-root" :class="{ 'fm-root--light': theme === 'light' }" aria-hidden="true" role="presentation">
 
     <!-- ── Chrome ─────────────────────────────────────────── -->
     <div class="fm-chrome">
@@ -72,6 +72,12 @@
 
   </figure>
 </template>
+
+<script setup>
+defineProps({
+  theme: { type: String, default: 'light' },
+})
+</script>
 
 <style scoped>
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
@@ -319,5 +325,33 @@
   .fm-sel--h, .fm-sel--b,
   .fm-tip--h, .fm-tip--b { animation: none; }
   .fm-sel--h { opacity: 0.4; }
+}
+
+/* ── Light mode ─────────────────────────────────────────────── */
+.fm-root--light {
+  background  : rgba(248, 247, 255, 0.97);
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow  :
+    0 0 0 1px rgba(240, 24, 90, 0.06),
+    0 32px 80px rgba(0, 0, 0, 0.12),
+    0 4px 20px rgba(0, 0, 0, 0.06);
+}
+.fm-root--light .fm-chrome {
+  background   : rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+.fm-root--light .fm-tool     { color: rgba(0, 0, 0, 0.30); }
+.fm-root--light .fm-tool--on { color: rgba(0, 0, 0, 0.65); }
+.fm-root--light .fm-filename { color: rgba(0, 0, 0, 0.38); }
+.fm-root--light .fm-canvas   { background: rgba(0, 0, 0, 0.05); }
+.fm-root--light .fm-frame-lbl{ color: rgba(0, 0, 0, 0.28); }
+.fm-root--light .fm-frame {
+  border-color: rgba(0, 0, 0, 0.10);
+  background  : rgba(255, 255, 255, 0.85);
+}
+.fm-root--light .fm-el-head  { color: #0D0C1A; }
+.fm-root--light .fm-cursor path {
+  fill  : #1e1e2e;
+  stroke: rgba(255, 255, 255, 0.65);
 }
 </style>

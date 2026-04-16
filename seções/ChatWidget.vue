@@ -220,6 +220,15 @@ async function askQuick (btn) {
 
   addMsg('assistant', RESPONSES[btn.responseKey])
   mode.value = 'done'
+
+  // Scroll to the START of the response bubble, not the bottom.
+  // setTimeout(0) is a macrotask — runs after scrollBottom's nextTick microtask.
+  setTimeout(() => {
+    const bubbles = bodyRef.value?.querySelectorAll('.cw-bubble')
+    if (bubbles?.length) {
+      bubbles[bubbles.length - 1].scrollIntoView({ block: 'start', behavior: 'smooth' })
+    }
+  }, 0)
 }
 </script>
 

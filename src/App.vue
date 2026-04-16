@@ -126,7 +126,7 @@ import photo              from './assets/photo.png'
 const route = useRoute()
 
 // ── Estado global de tema e idioma ──────────────────────────
-const theme = ref('dark')
+const theme = ref('light')
 const lang  = ref('EN')
 
 // ── Back to top ─────────────────────────────────────────────

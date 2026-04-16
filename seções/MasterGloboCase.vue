@@ -184,8 +184,15 @@
 
     <!-- FOOTER -->
     <footer class="mg-footer">
-      <span class="mg-footer-tag">{{ t.footerTag }}</span>
-      <span class="mg-footer-copy">© 2025 Tayná Schultz</span>
+      <div class="mg-footer-inner">
+        <span class="mg-footer-tag">{{ t.footerTag }}</span>
+        <div class="mg-footer-links">
+          <button class="mg-footer-back" @click="$router.push('/projetos')">← {{ t.btnBack }}</button>
+          <a href="mailto:tayna.schultz@gmail.com" class="mg-footer-link">Email</a>
+          <a href="https://www.linkedin.com/in/taynaschultz/" target="_blank" rel="noopener noreferrer" class="mg-footer-link">LinkedIn</a>
+        </div>
+      </div>
+      <p class="mg-footer-copy">© 2026 Tayná Schultz</p>
     </footer>
 
     <!-- Back to top -->
@@ -205,7 +212,7 @@ import interviewImg from '../imagens cases/master globo/master globo interview.w
 
 const props = defineProps({
   lang  : { type: String, default: 'PT' },
-  theme : { type: String, default: 'dark' },
+  theme : { type: String, default: 'light' },
 })
 
 const lang  = ref(props.lang)
@@ -632,13 +639,20 @@ onUnmounted(() => window.removeEventListener('scroll', onScrollBtt))
 .theme-light .mg-btn--ghost{border-color:rgba(0,0,0,.15);color:#0D0C1A}
 
 /* ── Footer ───────────────────────────────────────────────── */
-.mg-footer{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;border-top:1px solid rgba(255,255,255,.07);padding:1.75rem 1.5rem}
+.mg-footer{position:relative;z-index:2;display:flex;flex-direction:column;gap:.85rem;border-top:1px solid rgba(255,255,255,.07);padding:1.75rem 1.5rem}
 @media(min-width:640px){.mg-footer{padding:2rem 3rem}}
 @media(min-width:1024px){.mg-footer{padding:2.5rem 7rem}}
 @media(min-width:1400px){.mg-footer{padding:3rem 10rem}}
 .theme-light .mg-footer{border-top-color:rgba(0,0,0,.08)}
+.mg-footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.65rem;width:100%}
+.mg-footer-links{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.mg-footer-back{font-family:var(--font-body);font-size:.58rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-muted);background:none;border:1px solid rgba(255,255,255,.12);cursor:pointer;padding:.5rem 1rem;transition:color .2s,border-color .2s}
+.mg-footer-back:hover{color:#F0185A;border-color:rgba(240,24,90,.4)}
+.theme-light .mg-footer-back{border-color:rgba(0,0,0,.15)}
+.mg-footer-link{font-size:.58rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);text-decoration:none;transition:color .2s}
+.mg-footer-link:hover{color:#F0185A}
 .mg-footer-tag{font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted)}
-.mg-footer-copy{font-size:.55rem;color:var(--fg-muted);opacity:.5}
+.mg-footer-copy{font-size:.55rem;color:var(--fg-muted);opacity:.45;text-align:center}
 
 /* ── Back to top ──────────────────────────────────────────── */
 .btt-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;width:44px;height:44px;border:1px solid rgba(255,255,255,.12);background:rgba(7,7,17,.7);color:#F0EFF8;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease,border-color .2s ease}

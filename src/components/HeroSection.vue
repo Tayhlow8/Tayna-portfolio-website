@@ -54,7 +54,7 @@
 
     <!-- Figma mockup: in-flow on mobile, absolute on desktop -->
     <div class="pf-mockup-wrap" aria-hidden="true">
-      <FigmaMockup />
+      <FigmaMockup :theme="theme" />
     </div>
 
     <!-- Indicador de scroll -->
@@ -72,7 +72,7 @@ import FigmaMockup from './FigmaMockup.vue'
 
 // ── Props ───────────────────────────────────────────────────
 const props = defineProps({
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
   lang:  { type: String, default: 'PT'  },
 })
 

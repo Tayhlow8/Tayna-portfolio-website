@@ -60,7 +60,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
-  theme: { type: String, default: 'dark' },
+  theme: { type: String, default: 'light' },
 })
 
 const sectionRef = ref(null)
