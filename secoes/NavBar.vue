@@ -3,11 +3,7 @@
 
     <!-- LOGO -->
     <router-link to="/" class="nav-logo" aria-label="Tayná Schultz — Home">
-      <svg class="nav-logo-mark" viewBox="0 0 88 108" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <polygon points="4,4 58,4 84,50 84,63 70,63 44,17 4,17" fill="#F0185A"/>
-        <polygon points="84,104 30,104 4,58 4,45 18,45 44,91 84,91" fill="#F0185A"/>
-      </svg>
-      <span class="nav-logo-label">Tayná Schultz</span>
+      <img :src="logoImg" class="nav-logo-img" alt="Tayná Schultz" />
     </router-link>
 
     <!-- DESKTOP NAV LINKS (centered) -->
@@ -147,6 +143,7 @@
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import logoImg from '../LOGO grande.png'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
@@ -294,34 +291,19 @@ const drawerBg = computed(() =>
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: .55rem;
   flex-shrink: 0;
   text-decoration: none;
   cursor: pointer;
 }
 
-.nav-logo-mark {
-  width: 18px;
-  height: auto;
+.nav-logo-img {
+  height: 22px;
+  width: auto;
   display: block;
   flex-shrink: 0;
   transition: opacity .2s ease;
 }
-.nav-logo:hover .nav-logo-mark { opacity: .8; }
-
-.nav-logo-label {
-  font-family: var(--font-display);
-  font-size: .6rem;
-  font-weight: 600;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: #F0185A;
-}
-
-/* Hide name on mobile — symbol only */
-@media (max-width: 768px) {
-  .nav-logo-label { display: none; }
-}
+.nav-logo:hover .nav-logo-img { opacity: .8; }
 
 /* ── DESKTOP NAV LINKS ── */
 .nav-links {
