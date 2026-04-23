@@ -1,5 +1,7 @@
 <template>
-  <article class="case-page" :class="theme === 'light' ? 'theme-light' : 'theme-dark'">
+  <article ref="rootEl" :class="['case-page', `theme-${theme}`]">
+
+    <NavBar v-model:lang="lang" v-model:theme="theme" />
 
     <!-- Grain overlay -->
     <div class="grain" aria-hidden="true"></div>
@@ -218,6 +220,9 @@
       </div>
     </section>
 
+    <!-- ── FOOTER ───────────────────────────────────────────── -->
+    <ContactSection :lang="lang" :theme="theme" />
+
     <!-- ── NAV FOOTER ────────────────────────────────────────── -->
     <nav class="case-footer-nav" aria-label="Case study navigation">
       <div class="case-wrap">
@@ -238,12 +243,45 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import NavBar        from '../../../secoes/NavBar.vue'
+import ContactSection from '../../../secoes/ContactSection.vue'
 import imgBefore from '../../../imagens cases/dermaclub/checkout before.avif'
 import imgAfter  from '../../../imagens cases/dermaclub/checkout after.avif'
 
 const props = defineProps({
-  lang:  { type: String, default: 'en' },
-  theme: { type: String, default: 'dark' }
+  lang:  { type: String, default: 'EN' },
+  theme: { type: String, default: 'light' }
+})
+
+const lang  = ref(props.lang)
+const theme = ref(props.theme)
+
+// ── Parallax ─────────────────────────────────────────────────
+const rootEl = ref(null)
+let rafId = null
+
+function updateParallax () {
+  if (!rootEl.value) return
+  rootEl.value.querySelectorAll('.result-num, .result-card-num').forEach(el => {
+    const rect   = el.getBoundingClientRect()
+    const offset = (rect.top + rect.height / 2) - window.innerHeight / 2
+    el.style.transform = `translateY(${offset * -0.08}px)`
+  })
+}
+
+function onScroll () {
+  if (rafId) cancelAnimationFrame(rafId)
+  rafId = requestAnimationFrame(updateParallax)
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  updateParallax()
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  if (rafId) cancelAnimationFrame(rafId)
 })
 
 const decisions = [
@@ -468,6 +506,8 @@ const results = [
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
+  will-change: transform;
+  display: inline-block;
 }
 .result-label {
   font-size: .55rem;
@@ -702,6 +742,8 @@ const results = [
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
+  will-change: transform;
+  display: inline-block;
 }
 .result-card-label {
   font-size: .55rem;
