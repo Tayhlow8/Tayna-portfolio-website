@@ -44,7 +44,7 @@
         <router-link
           v-for="(project, i) in projects"
           :key="project.slug"
-          :to="`/projetos/${project.slug}`"
+          :to="project.path || `/projetos/${project.slug}`"
           class="project-card"
           :class="{ visible: visible[i] }"
           :ref="el => setRef(el, i)"
@@ -93,6 +93,7 @@ import imgMaster   from '../imagens cases/master globo/master goblo cover.png'
 import imgYSL      from '../imagens cases/YSL Y intense/mobile exp.avif'
 import imgLancome  from '../imagens cases/Lancme brazil/foto 1 lancome.avif'
 import imgNV8      from '../clientes/nv8 case cover.png'
+import imgDermaClub from '../imagens cases/dermaclub/checkout after.avif'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
@@ -137,8 +138,8 @@ const copy = {
   PT: {
     eyebrow : 'Trabalho selecionado',
     title   : 'PRO<em>JETOS</em>',
-    desc    : 'De experiências de marca de luxo a plataformas enterprise — quatro projetos que mostram como o design conecta complexidade de negócio e necessidades humanas reais.',
-    count   : '05 projetos',
+    desc    : 'De checkout de e-commerce a plataformas enterprise e experiências de marca de luxo — seis projetos que mostram como o design conecta complexidade de negócio e necessidades humanas reais.',
+    count   : '06 projetos',
     sort    : 'Por recência',
     viewCase: 'Ver case',
     statLabels: ['+300 experiências desenhadas', '+6 diferentes setores', '2026 trabalho mais recente'],
@@ -146,8 +147,8 @@ const copy = {
   EN: {
     eyebrow : 'Selected work',
     title   : 'PRO<em>JECTS</em>',
-    desc    : 'From luxury brand experiences to enterprise platforms — four projects that show how design bridges business complexity and real human needs.',
-    count   : '05 projects',
+    desc    : 'From e-commerce checkout optimization to enterprise platforms and luxury brand experiences — six projects that show how design bridges business complexity and real human needs.',
+    count   : '06 projects',
     sort    : 'Sorted by recency',
     viewCase: 'View case study',
     statLabels: ['+300 experiences designed', '+6 different sectors', '2026 latest work'],
@@ -155,8 +156,8 @@ const copy = {
   ES: {
     eyebrow : 'Trabajo seleccionado',
     title   : 'PRO<em>YECTOS</em>',
-    desc    : 'De experiencias de marca de lujo a plataformas enterprise — cuatro proyectos que demuestran cómo el diseño conecta la complejidad empresarial con las necesidades humanas reales.',
-    count   : '05 proyectos',
+    desc    : 'De la optimización de checkout e-commerce a plataformas enterprise y experiencias de marca de lujo — seis proyectos que demuestran cómo el diseño conecta complejidad empresarial con necesidades humanas.',
+    count   : '06 proyectos',
     sort    : 'Por recencia',
     viewCase: 'Ver caso de estudio',
     statLabels: ['+300 experiencias diseñadas', '+6 sectores diferentes', '2026 trabajo más reciente'],
@@ -164,8 +165,8 @@ const copy = {
   DE: {
     eyebrow : 'Ausgewählte Arbeit',
     title   : 'PRO<em>JEKTE</em>',
-    desc    : 'Von Luxusmarkenerlebnissen bis zu Enterprise-Plattformen — vier Projekte, die zeigen, wie Design Geschäftskomplexität und menschliche Bedürfnisse verbindet.',
-    count   : '05 Projekte',
+    desc    : 'Von Checkout-Optimierung über Enterprise-Plattformen bis zu Luxusmarkenerlebnissen — sechs Projekte, die zeigen, wie Design Geschäftskomplexität und menschliche Bedürfnisse verbindet.',
+    count   : '06 Projekte',
     sort    : 'Nach Aktualität',
     viewCase: 'Case ansehen',
     statLabels: ['+300 gestaltete Erfahrungen', '+6 verschiedene Sektoren', '2026 neueste Arbeit'],
@@ -432,6 +433,23 @@ const projects = [
     bg   : '#07070f',
     image: imgNV8,
     svg  : svgNV8,
+  },
+  {
+    slug  : 'dermaclub',
+    path  : '/work/dermaclub',
+    client: 'L\'Oréal · DermaClub',
+    year  : '2024',
+    title : { PT: 'Checkout A/B Test', EN: 'Checkout A/B Test', ES: 'Checkout A/B Test', DE: 'Checkout A/B Test' },
+    desc  : {
+      PT: 'Redesign de um checkout quebrado orientado por heatmaps e dados de comportamento — uma variante que aumentou a receita em +7,1% para a maior plataforma de skincare por assinatura do Brasil.',
+      EN: 'Redesigning a broken checkout experience through heatmap-driven insights — shipping a variant that lifted revenue by +7.1% for Brazil\'s largest subscription skincare platform.',
+      ES: 'Rediseño de una experiencia de checkout rota mediante heatmaps — una variante que aumentó los ingresos en +7,1% para la mayor plataforma de skincare por suscripción de Brasil.',
+      DE: 'Redesign eines fehlerhaften Checkouts auf Basis von Heatmap-Daten — eine Variante, die den Umsatz um +7,1% für Brasiliens größte Abo-Skincare-Plattform steigerte.',
+    },
+    tags : ['E-commerce', 'A/B Testing', 'Checkout UX'],
+    type : 'Beauty · E-commerce',
+    bg   : '#070f11',
+    image: imgDermaClub,
   },
 ]
 
@@ -711,6 +729,7 @@ onUnmounted(() => observer?.disconnect())
 .project-card:nth-child(3) { transition-delay: .19s }
 .project-card:nth-child(4) { transition-delay: .26s }
 .project-card:nth-child(5) { transition-delay: .05s }
+.project-card:nth-child(6) { transition-delay: .12s }
 
 /* ── Thumbnail ──────────────────────────────────────────────── */
 .card-thumb {

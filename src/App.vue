@@ -57,6 +57,13 @@
       :theme="theme"
     />
 
+    <!-- ── Case: DermaClub ──────────────────────────────── -->
+    <DermaCluCase
+      v-else-if="route.path === '/work/dermaclub'"
+      :lang="lang"
+      :theme="theme"
+    />
+
     <!-- ── Portfolio principal ────────────────────────────── -->
     <template v-else>
       <NavBar v-model:lang="lang" v-model:theme="theme" />
@@ -121,6 +128,7 @@ import YSLCase            from '../secoes/YSLCase.vue'
 import CVPage             from '../secoes/CVPage.vue'
 import NV8Case           from '../secoes/NV8Case.vue'
 import ChatWidget         from '../secoes/ChatWidget.vue'
+import DermaCluCase       from './views/cases/DermaCluCase.vue'
 import photo              from './assets/photo.png'
 
 const route = useRoute()
