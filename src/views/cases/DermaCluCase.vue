@@ -263,10 +263,14 @@ let rafId = null
 
 function updateParallax () {
   if (!rootEl.value) return
+  const vh = window.innerHeight
   rootEl.value.querySelectorAll('.result-num, .result-card-num').forEach(el => {
-    const rect   = el.getBoundingClientRect()
-    const offset = (rect.top + rect.height / 2) - window.innerHeight / 2
-    el.style.transform = `translateY(${offset * -0.08}px)`
+    const rect = el.getBoundingClientRect()
+    if (rect.top > vh || rect.bottom < 0) { el.style.transform = ''; return }
+    // t: 0 when element center is at top of viewport, 1 when at bottom
+    const t      = (rect.top + rect.height / 2) / vh
+    // shift from +25px (entering from bottom) to -25px (leaving top)
+    el.style.transform = `translateY(${(t - 0.5) * 50}px)`
   })
 }
 
@@ -277,7 +281,6 @@ function onScroll () {
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
-  updateParallax()
 })
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll)
