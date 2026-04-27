@@ -84,8 +84,35 @@
           </div>
         </div>
 
-        <!-- EXPERIENCE -->
+        <!-- AI IN MY WORKFLOW -->
         <div class="cv-section cv-section--2">
+          <div class="cv-section-label">{{ t.sec_ai }}</div>
+          <div class="ai-grid">
+            <div class="ai-card">
+              <div class="ai-card-tool">NotebookLM</div>
+              <div class="ai-card-project">Rodobens</div>
+              <p class="ai-card-result">{{ t.ai1_result }}</p>
+            </div>
+            <div class="ai-card">
+              <div class="ai-card-tool">Figma Make</div>
+              <div class="ai-card-project">Rodobens</div>
+              <p class="ai-card-result">{{ t.ai2_result }}</p>
+            </div>
+            <div class="ai-card">
+              <div class="ai-card-tool">Claude Code + Claude</div>
+              <div class="ai-card-project">NV8</div>
+              <p class="ai-card-result">{{ t.ai3_result }}</p>
+            </div>
+            <div class="ai-card">
+              <div class="ai-card-tool">OpenAI / nanobanana</div>
+              <div class="ai-card-project">{{ t.ai_current }}</div>
+              <p class="ai-card-result">{{ t.ai4_result }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="cv-section cv-section--3">
           <div class="cv-section-label">{{ t.sec_exp }}</div>
 
           <!-- NV8 -->
@@ -150,7 +177,7 @@
         </div>
 
         <!-- EDUCATION -->
-        <div class="cv-section cv-section--3">
+        <div class="cv-section cv-section--4">
           <div class="cv-section-label">{{ t.sec_edu }}</div>
 
           <div class="edu-item">
@@ -184,7 +211,7 @@
         </div>
 
         <!-- CERTIFICATIONS -->
-        <div class="cv-section cv-section--4">
+        <div class="cv-section cv-section--5">
           <div class="cv-section-label">{{ t.sec_cert }}</div>
 
           <div class="edu-item">
@@ -353,7 +380,7 @@
               <span class="skill-tag">UI</span>
               <span class="skill-tag">UX Writing</span>
               <span class="skill-tag">Accessibility</span>
-              <span class="skill-tag">Vibe Code</span>
+              <span class="skill-tag">AI-First Design</span>
               <span class="skill-tag">HTML</span>
             </div>
           </div>
@@ -365,6 +392,9 @@
               <span class="skill-tag">ChatGPT</span>
               <span class="skill-tag">Gemini</span>
               <span class="skill-tag">Generative AI</span>
+              <span class="skill-tag">AI-Assisted UX</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">Claude Code</span>
             </div>
           </div>
 
@@ -441,12 +471,12 @@ const theme = ref(props.theme)
 const copy = {
   PT: {
     hero_eyebrow  : 'Currículo',
-    hero_role     : 'Designer UX/UI com 6 anos de experiência em design estratégico para e-commerce e 1 ano de Vibe Code Design — unindo pesquisa, estratégia de conversão e liderança de design.',
+    hero_role     : 'Designer UX/UI com 6 anos de experiência em design estratégico para e-commerce e posicionamento como AI-First Designer — unindo pesquisa, estratégia de conversão e liderança de design.',
     stat_exp      : 'Anos de UX',
     stat_lang     : 'Idiomas',
     stat_en       : 'Nível de inglês',
     sec_objective : 'Objetivo',
-    obj_text      : 'Atuar como Design Lead Estratégico — aplicando design orientado a dados, pesquisa UX e liderança para gerar soluções focadas em conversão, crescimento de receita e sistemas de alta complexidade para e-commerce global e produtos digitais.',
+    obj_text      : 'Atuar como AI-First Design Lead — aplicando design orientado a dados, pesquisa UX e liderança para gerar soluções focadas em conversão, crescimento de receita e sistemas de alta complexidade para e-commerce global e produtos digitais.',
     sec_exp       : 'Experiência',
     remote        : 'Remoto, Brasil',
     exp1_lead     : 'Criação de um sistema interno de leasing e crédito para o Grupo Rodobens — projeto de seis meses modernizando um sistema interno legado de uma empresa brasileira de 75 anos do setor financeiro e varejo automotivo.',
@@ -469,6 +499,12 @@ const copy = {
     edu4_name     : 'Comunicação — Jornalismo',
     sec_cert      : 'Certificações & Treinamentos',
     cert3_name    : 'Product Design: da colaboração à estratégia',
+    sec_ai        : 'IA no Meu Fluxo',
+    ai_current    : 'Atual',
+    ai1_result    : 'Revisão agêntica de entrevistas com usuários — mapeou dores e refinou a jornada TO-BE com base nos 129 perfis de acesso.',
+    ai2_result    : 'Ideação de telas com assistência de IA — acelerou a exploração de UI nas fases iniciais do design.',
+    ai3_result    : 'Construiu o design system e codificou o site institucional; usou Claude para gestão estratégica de marketing e comunicações.',
+    ai4_result    : 'Geração de imagens com IA integrada a projetos ativos em produção.',
     sec_contact   : 'Contato',
     contact_phone : 'Telefone',
     contact_location: 'Localização',
@@ -496,12 +532,12 @@ const copy = {
   },
   EN: {
     hero_eyebrow  : 'Curriculum Vitae',
-    hero_role     : 'UX/UI Designer with 6 years of experience in strategic design for e-commerce and 1 year of Vibe Code Design — bridging research, conversion strategy, and design leadership.',
+    hero_role     : 'UX/UI Designer with 6 years of experience in strategic design for e-commerce and a positioning as AI-First Designer — bridging research, conversion strategy, and design leadership.',
     stat_exp      : 'Years of UX',
     stat_lang     : 'Languages',
     stat_en       : 'English level',
     sec_objective : 'Objective',
-    obj_text      : 'To act as a Strategic Design Lead — applying data-driven design strategy, UX research, and leadership to generate solutions focused on conversion, revenue growth, and high-complexity systems for global e-commerce and digital products.',
+    obj_text      : 'To act as an AI-First Design Lead — applying data-driven design strategy, UX research, and leadership to generate solutions focused on conversion, revenue growth, and high-complexity systems for global e-commerce and digital products.',
     sec_exp       : 'Experience',
     remote        : 'Remote, Brazil',
     exp1_lead     : 'Creation of an internal leasing and credit system for Grupo Rodobens — a six-month project modernizing a legacy internal system of a 75-year-old Brazilian company in the financial and automotive retail sector.',
@@ -524,6 +560,12 @@ const copy = {
     edu4_name     : 'Communication — Journalism',
     sec_cert      : 'Certifications & Training',
     cert3_name    : 'Product Design: from collaboration to strategy',
+    sec_ai        : 'AI in My Workflow',
+    ai_current    : 'Current',
+    ai1_result    : 'Agentic review of user interviews — mapped pain points and refined the TO-BE journey across 129 access profiles.',
+    ai2_result    : 'AI-assisted screen ideation — accelerated UI exploration in the early design phases.',
+    ai3_result    : 'Built the design system and coded the institutional site; used Claude for strategic marketing management and communications.',
+    ai4_result    : 'AI image generation integrated into active production projects.',
     sec_contact   : 'Contact',
     contact_phone : 'Phone',
     contact_location: 'Location',
@@ -551,12 +593,12 @@ const copy = {
   },
   ES: {
     hero_eyebrow  : 'Currículum Vitae',
-    hero_role     : 'Diseñadora UX/UI con 6 años de experiencia en diseño estratégico para e-commerce y 1 año de Vibe Code Design — conectando investigación, estrategia de conversión y liderazgo de diseño.',
+    hero_role     : 'Diseñadora UX/UI con 6 años de experiencia en diseño estratégico para e-commerce y posicionamiento como AI-First Diseñadora — conectando investigación, estrategia de conversión y liderazgo de diseño.',
     stat_exp      : 'Años de UX',
     stat_lang     : 'Idiomas',
     stat_en       : 'Nivel de inglés',
     sec_objective : 'Objetivo',
-    obj_text      : 'Actuar como Design Lead Estratégico — aplicando estrategia de diseño basada en datos, investigación UX y liderazgo para generar soluciones enfocadas en conversión, crecimiento de ingresos y sistemas de alta complejidad para e-commerce global y productos digitales.',
+    obj_text      : 'Actuar como AI-First Design Lead — aplicando estrategia de diseño basada en datos, investigación UX y liderazgo para generar soluciones enfocadas en conversión, crecimiento de ingresos y sistemas de alta complejidad para e-commerce global y productos digitales.',
     sec_exp       : 'Experiencia',
     remote        : 'Remoto, Brasil',
     exp1_lead     : 'Creación de un sistema interno de leasing y crédito para el Grupo Rodobens — un proyecto de seis meses que moderniza un sistema interno legado de una empresa brasileña de 75 años del sector financiero y comercio automotriz.',
@@ -579,6 +621,12 @@ const copy = {
     edu4_name     : 'Comunicación — Periodismo',
     sec_cert      : 'Certificaciones & Formación',
     cert3_name    : 'Product Design: de la colaboración a la estrategia',
+    sec_ai        : 'IA en Mi Flujo de Trabajo',
+    ai_current    : 'Actual',
+    ai1_result    : 'Revisión agéntica de entrevistas con usuarios — mapeó puntos de dolor y refinó el journey TO-BE en los 129 perfiles de acceso.',
+    ai2_result    : 'Ideación de pantallas asistida por IA — aceleró la exploración de UI en las fases iniciales de diseño.',
+    ai3_result    : 'Construyó el sistema de diseño y codificó el sitio institucional; usó Claude para gestión estratégica de marketing y comunicaciones.',
+    ai4_result    : 'Generación de imágenes con IA integrada en proyectos activos de producción.',
     sec_contact   : 'Contacto',
     contact_phone : 'Teléfono',
     contact_location: 'Ubicación',
@@ -606,12 +654,12 @@ const copy = {
   },
   DE: {
     hero_eyebrow  : 'Lebenslauf',
-    hero_role     : 'UX/UI-Designerin mit 6 Jahren Erfahrung im strategischen Design für E-Commerce und 1 Jahr Vibe Code Design — Verbindung von Forschung, Conversion-Strategie und Design-Leadership.',
+    hero_role     : 'UX/UI-Designerin mit 6 Jahren Erfahrung im strategischen Design für E-Commerce und Positionierung als AI-First Designerin — Verbindung von Forschung, Conversion-Strategie und Design-Leadership.',
     stat_exp      : 'Jahre UX',
     stat_lang     : 'Sprachen',
     stat_en       : 'Englischniveau',
     sec_objective : 'Ziel',
-    obj_text      : 'Als Strategic Design Lead tätig sein — datengetriebene Designstrategie, UX-Forschung und Leadership anwenden, um Lösungen zu entwickeln, die auf Conversion, Umsatzwachstum und hochkomplexe Systeme für globalen E-Commerce und digitale Produkte ausgerichtet sind.',
+    obj_text      : 'Als AI-First Design Lead tätig sein — datengetriebene Designstrategie, UX-Forschung und Leadership anwenden, um Lösungen zu entwickeln, die auf Conversion, Umsatzwachstum und hochkomplexe Systeme für globalen E-Commerce und digitale Produkte ausgerichtet sind.',
     sec_exp       : 'Erfahrung',
     remote        : 'Remote, Brasilien',
     exp1_lead     : 'Erstellung eines internen Leasing- und Kreditsystems für die Grupo Rodobens — ein sechsmonatiges Projekt zur Modernisierung eines Legacy-Systems eines 75 Jahre alten brasilianischen Unternehmens im Finanz- und Automobilhandel.',
@@ -634,6 +682,12 @@ const copy = {
     edu4_name     : 'Kommunikation — Journalismus',
     sec_cert      : 'Zertifikate & Weiterbildung',
     cert3_name    : 'Product Design: von der Zusammenarbeit zur Strategie',
+    sec_ai        : 'KI in meinem Workflow',
+    ai_current    : 'Aktuell',
+    ai1_result    : 'Agentisches Review von Nutzerinterviews — Pain Points gemappt und die TO-BE-Journey über 129 Zugriffsprofile verfeinert.',
+    ai2_result    : 'KI-gestützte Screen-Ideation — UI-Exploration in frühen Designphasen beschleunigt.',
+    ai3_result    : 'Design-System erstellt und Institutionenwebsite codiert; Claude für strategisches Marketing-Management und Kommunikation eingesetzt.',
+    ai4_result    : 'KI-Bildgenerierung in aktive Produktionsprojekte integriert.',
     sec_contact   : 'Kontakt',
     contact_phone : 'Telefon',
     contact_location: 'Standort',
@@ -814,6 +868,7 @@ function printCV() {
 .cv-section--2 { animation-delay: .6s; }
 .cv-section--3 { animation-delay: .7s; }
 .cv-section--4 { animation-delay: .8s; }
+.cv-section--5 { animation-delay: .9s; }
 
 .cv-section-label {
   display: flex; align-items: center; gap: .75rem;
@@ -877,6 +932,42 @@ function printCV() {
 .edu-year {
   font-family: var(--font-display); font-size: .75rem; font-weight: 700;
   color: var(--accent); white-space: nowrap;
+}
+
+/* ── AI Workflow grid ────────────────────────────────────── */
+.ai-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.ai-grid::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, var(--accent) 0%, transparent 70%);
+  z-index: 1; pointer-events: none;
+}
+.ai-card {
+  background: var(--bg); padding: 1.25rem 1.5rem;
+  transition: background .2s;
+}
+.ai-card:hover { background: var(--glass-hi, rgba(255,255,255,.04)); }
+.ai-card-tool {
+  font-family: var(--font-display); font-size: .68rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: .35rem; line-height: 1.1;
+}
+.ai-card-project {
+  font-size: .45rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--fg-muted); margin-bottom: .65rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.ai-card-project::before {
+  content: ''; width: 3px; height: 3px; border-radius: 50%;
+  background: var(--accent-soft); flex-shrink: 0;
+}
+.ai-card-result {
+  font-size: clamp(.75rem, 1.1vw, .82rem); font-weight: 300;
+  line-height: 1.75; color: var(--fg-muted);
 }
 
 /* ── Objective box ───────────────────────────────────────── */
@@ -1038,55 +1129,83 @@ function printCV() {
 
 /* ── Print / PDF ─────────────────────────────────────────── */
 @media print {
-  /* Force light background for readability */
+  /* ── Ocultar chrome ── */
+  .pf-ambient,
+  .cv-download,
+  nav { display: none !important; }
+
+  /* ── Base ── */
   .pf-page {
     background: #fff !important;
     color: #0D0C1A !important;
   }
 
-  /* Hide non-content chrome */
-  .pf-ambient,
-  .cv-download,
-  nav { display: none !important; }
-
-  /* Remove animations so content is visible */
+  /* ── Força visibilidade — remove reveals ── */
   .cv-section,
-  .sidebar-section { animation: none !important; opacity: 1 !important; transform: none !important; }
-
-  /* Reset hero padding (no navbar offset needed) */
-  .cv-hero { padding-top: 2rem !important; }
-
-  /* Flatten sticky sidebar */
-  .cv-sidebar { position: static !important; }
-
-  /* Page layout */
-  .cv-content {
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 2rem;
+  .sidebar-section {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
-  /* Borders visible in print */
+  /* ── Hero: 2 colunas, padding compacto ── */
+  .cv-hero {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 2rem !important;
+    align-items: end !important;
+  }
+
+  .hero-name { font-size: 2rem !important; }
+
+  /* ── Stats: horizontal lado a lado ── */
+  .hero-meta {
+    flex-direction: row !important;
+    gap: 2rem !important;
+    align-items: flex-end !important;
+  }
+  .hero-stat { text-align: right; }
+
+  /* ── Content: 2 colunas, gap reduzido ── */
+  .cv-sidebar { position: static !important; }
+  .cv-content {
+    display: grid !important;
+    grid-template-columns: 1fr 260px !important;
+    gap: 1.5rem !important;
+  }
+
+  /* ── Bordas visíveis ── */
   .cv-section-label,
   .exp-item,
   .edu-item,
   .lang-item,
   .contact-item,
   .skill-tag,
-  .objective-box { border-color: #ccc !important; }
-
+  .objective-box,
+  .ai-grid,
+  .ai-card { border-color: #ccc !important; }
+  .ai-grid { background: #ccc !important; }
+  .ai-card { background: #fff !important; }
+  .ai-card-tool { color: #F0185A !important; }
   .exp-period { border-color: #F0185A !important; }
 
-  /* Accent color survives print */
+  /* ── Accent sobrevive ao print ── */
   .hero-name em,
   .cv-section-label,
+  .cv-section-label::before,
+  .pf-dot,
+  .lang-dot.filled,
   .hero-stat-n,
   .exp-period,
   .edu-year { color: #F0185A !important; }
+  .lang-dot.filled { background: #F0185A !important; }
 
-  /* Avoid breaking items across pages */
+  /* ── Evitar quebra de itens ── */
   .exp-item,
-  .edu-item { page-break-inside: avoid; }
+  .edu-item,
+  .ai-card { page-break-inside: avoid; }
 
   @page {
     margin: 1.5cm 1.8cm;
