@@ -272,16 +272,13 @@
       <span class="lc-footer-copy">© 2026 Tayná Schultz</span>
     </footer>
 
-    <!-- Back to top -->
-    <button class="btt-btn" :class="{ 'btt-btn--visible': showBtt }" @click="scrollToTop" aria-label="Voltar ao topo">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from './NavBar.vue'
+import { useLang } from '../src/composables/useLang'
 
 import foto1 from '../imagens cases/Lancme brazil/foto 1 lancome.avif'
 import foto2 from '../imagens cases/Lancme brazil/foto 2 lancome.avif'
@@ -293,7 +290,7 @@ const props = defineProps({
   theme : { type: String, default: 'light' },
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 onMounted(() => {
@@ -309,15 +306,6 @@ onMounted(() => {
   document.querySelectorAll('.lc-reveal').forEach(el => observer.observe(el))
 })
 
-// ── Back to top ───────────────────────────────────────────────
-const showBtt = ref(false)
-function onScrollBtt () {
-  const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
-  showBtt.value = scrolled >= (window.innerWidth < 768 ? 0.30 : 0.65)
-}
-function scrollToTop () { window.scrollTo({ top: 0, behavior: 'smooth' }) }
-onMounted(()   => window.addEventListener('scroll', onScrollBtt, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScrollBtt))
 </script>
 
 <style>

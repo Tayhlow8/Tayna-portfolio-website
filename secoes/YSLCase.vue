@@ -262,16 +262,13 @@
       <span>© 2026 Tayná Schultz</span>
     </footer>
 
-    <!-- Back to top -->
-    <button class="btt-btn" :class="{ 'btt-btn--visible': showBtt }" @click="scrollToTop" aria-label="Voltar ao topo">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import NavBar from './NavBar.vue'
+import { useLang } from '../src/composables/useLang'
 
 import captacao   from '../imagens cases/YSL Y intense/captação 1.webp'
 import mobileExp  from '../imagens cases/YSL Y intense/mobile exp.avif'
@@ -284,7 +281,7 @@ const props = defineProps({
   theme : { type: String, default: 'light' },
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 const diagRef     = ref(null)
@@ -487,15 +484,6 @@ onMounted(() => {
   }
 })
 
-// ── Back to top ───────────────────────────────────────────────
-const showBtt = ref(false)
-function onScrollBtt () {
-  const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
-  showBtt.value = scrolled >= (window.innerWidth < 768 ? 0.30 : 0.65)
-}
-function scrollToTop () { window.scrollTo({ top: 0, behavior: 'smooth' }) }
-onMounted(()   => window.addEventListener('scroll', onScrollBtt, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScrollBtt))
 </script>
 
 <style>

@@ -458,13 +458,14 @@
 <script setup>
 import { ref, computed } from 'vue'
 import NavBar from './NavBar.vue'
+import { useLang } from '../src/composables/useLang'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
   theme: { type: String, default: 'light' },
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 // ── Translations ─────────────────────────────────────────────

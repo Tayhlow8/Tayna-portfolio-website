@@ -156,6 +156,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import NavBar from './NavBar.vue'
+import { useLang } from '../src/composables/useLang'
 import coverImg   from '../clientes/nv8 case cover.png'
 import oldImg     from '../clientes/nv8 antigo.png'
 import websiteImg from '../clientes/nv8 website case.png'
@@ -165,7 +166,7 @@ const props = defineProps({
   theme: { type: String, default: 'light' },
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 const copy = {

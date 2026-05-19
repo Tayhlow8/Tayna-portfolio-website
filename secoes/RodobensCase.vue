@@ -17,6 +17,18 @@
         <div class="rc-roles">
           <span v-for="r in t.roles" :key="r" class="rc-role">{{ r }}</span>
         </div>
+
+        <nav class="rc-toc" aria-label="Table of contents">
+          <span class="rc-toc-label">{{ t.tocLabel }}</span>
+          <ol class="rc-toc-list">
+            <li v-for="item in tocItems" :key="item.id" class="rc-toc-item">
+              <a :href="`#${item.id}`" class="rc-toc-link">
+                <span class="rc-toc-num">{{ item.num }}</span>
+                <span class="rc-toc-name">{{ item.label }}</span>
+              </a>
+            </li>
+          </ol>
+        </nav>
       </div>
       <div class="rc-hero-right">
         <div class="rc-stats-grid">
@@ -48,7 +60,8 @@
             :src="creditDashImg"
             alt="Interface Unica — análise de crédito"
             loading="lazy"
-            class="rc-screen-img"
+            class="rc-screen-img rc-zoomable"
+            @click="openLightbox(creditDashImg, 'Interface Unica — análise de crédito')"
           />
         </div>
       </div>
@@ -172,7 +185,7 @@
     </section>
 
     <!-- OVERVIEW -->
-    <section class="rc-section">
+    <section id="rc-overview" class="rc-section">
       <div class="rc-rule">
         <span class="rc-rule-label">01 — {{ t.overviewLabel }}</span
         ><span class="rc-rule-line"></span>
@@ -194,7 +207,7 @@
     </section>
 
     <!-- 02 DISCOVERY & MAPPING -->
-    <section class="rc-section">
+    <section id="rc-discovery" class="rc-section">
       <div class="rc-rule">
         <span class="rc-rule-label">02 — {{ t.discoveryLabel }}</span
         ><span class="rc-rule-line"></span>
@@ -207,8 +220,9 @@
           <img
             :src="userFlowImg"
             alt="User flow mapping"
-            class="rc-disc-img"
+            class="rc-disc-img rc-zoomable"
             loading="lazy"
+            @click="openLightbox(userFlowImg, t.discoveryImg1Caption, t.discoveryImg1Caption)"
           />
           <figcaption class="rc-disc-caption">
             {{ t.discoveryImg1Caption }}
@@ -218,8 +232,9 @@
           <img
             :src="designCritiqueImg"
             alt="Design critique session"
-            class="rc-disc-img"
+            class="rc-disc-img rc-zoomable"
             loading="lazy"
+            @click="openLightbox(designCritiqueImg, t.discoveryImg2Caption, t.discoveryImg2Caption)"
           />
           <figcaption class="rc-disc-caption">
             {{ t.discoveryImg2Caption }}
@@ -235,7 +250,7 @@
     </section>
 
     <!-- 03 SOLUÇÃO DE DESIGN -->
-    <section class="rc-section">
+    <section id="rc-design" class="rc-section">
       <div class="rc-rule">
         <span class="rc-rule-label">03 — {{ t.designLabel }}</span
         ><span class="rc-rule-line"></span>
@@ -270,7 +285,8 @@
                     :src="oldView[i] ? s.oldImg : s.img"
                     :alt="s.title"
                     loading="lazy"
-                    class="rc-screen-img"
+                    class="rc-screen-img rc-zoomable"
+                    @click="openLightbox(oldView[i] ? s.oldImg : s.img, s.title, s.title)"
                   />
                 </Transition>
                 <button
@@ -519,7 +535,7 @@
     </section>
 
     <!-- 04 ENTREGÁVEIS -->
-    <section class="rc-section rc-section--dark">
+    <section id="rc-deliverables" class="rc-section rc-section--dark">
       <div class="rc-rule">
         <span class="rc-rule-label">04 — {{ t.delivLabel }}</span
         ><span class="rc-rule-line"></span>
@@ -532,6 +548,7 @@
       </div>
       <blockquote class="rc-deliv-quote">{{ t.delivQuote }}</blockquote>
       <h3 class="rc-sub-heading">{{ t.impactHeading }}</h3>
+      <p class="rc-impact-method">{{ t.impactMethodology }}</p>
       <div class="rc-impact-grid">
         <div v-for="m in t.metrics" :key="m.num" class="rc-metric">
           <b class="rc-metric-n">{{ m.num }}</b
@@ -541,7 +558,7 @@
     </section>
 
     <!-- 05 REFLEXÕES -->
-    <section class="rc-section">
+    <section id="rc-reflexoes" class="rc-section">
       <div class="rc-rule">
         <span class="rc-rule-label">05 — {{ t.reflexLabel }}</span
         ><span class="rc-rule-line"></span>
@@ -601,31 +618,39 @@
       </p>
     </footer>
 
-    <button
-      class="btt-btn"
-      :class="{ 'btt-btn--visible': showBtt }"
-      @click="scrollToTop"
-      aria-label="Voltar ao topo"
-    >
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <polyline points="18 15 12 9 6 15" />
-      </svg>
-    </button>
+    <Teleport to="body">
+      <Transition name="rc-lb">
+        <div
+          v-if="lightboxSrc"
+          class="rc-lightbox"
+          @click.self="closeLightbox"
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            class="rc-lb-close"
+            @click="closeLightbox"
+            aria-label="Fechar"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+          <figure class="rc-lb-figure" @click.stop>
+            <img :src="lightboxSrc" :alt="lightboxAlt" class="rc-lb-img" />
+            <figcaption v-if="lightboxCaption" class="rc-lb-caption">{{ lightboxCaption }}</figcaption>
+          </figure>
+        </div>
+      </Transition>
+    </Teleport>
+
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import NavBar from "./NavBar.vue";
+import { useLang } from "../src/composables/useLang";
 
 import loginImg from "../imagens cases/rodobens/login.png";
 import kanbanImg from "../imagens cases/rodobens/kanban.png";
@@ -644,13 +669,31 @@ const props = defineProps({
   theme: { type: String, default: "light" },
 });
 
-const lang = ref(props.lang);
+const { lang } = useLang();
 const theme = ref(props.theme);
 const visC = ref(false);
 const oldView = ref({});
 const toggleOld = (i) => {
   oldView.value = { ...oldView.value, [i]: !oldView.value[i] };
 };
+
+const lightboxSrc = ref(null);
+const lightboxAlt = ref('');
+const lightboxCaption = ref('');
+function openLightbox(src, alt, caption = '') {
+  lightboxSrc.value = src;
+  lightboxAlt.value = alt || '';
+  lightboxCaption.value = caption || '';
+}
+function closeLightbox() {
+  lightboxSrc.value = null;
+  lightboxCaption.value = '';
+}
+function onKeydownLightbox(e) {
+  if (e.key === 'Escape') closeLightbox();
+}
+onMounted(() => window.addEventListener('keydown', onKeydownLightbox));
+onUnmounted(() => window.removeEventListener('keydown', onKeydownLightbox));
 const cRefs = ref([]);
 const setRef = (el, i) => {
   if (el) cRefs.value[i] = el;
@@ -667,20 +710,6 @@ onMounted(() => {
 });
 onUnmounted(() => observer?.disconnect());
 
-const showBtt = ref(false);
-function onScrollBtt() {
-  const scrolled =
-    window.scrollY /
-    (document.documentElement.scrollHeight - window.innerHeight);
-  showBtt.value = scrolled >= (window.innerWidth < 768 ? 0.3 : 0.65);
-}
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-onMounted(() =>
-  window.addEventListener("scroll", onScrollBtt, { passive: true }),
-);
-onUnmounted(() => window.removeEventListener("scroll", onScrollBtt));
 
 const screensCopy = {
   PT: [
@@ -820,6 +849,14 @@ const designScreens = computed(() => {
   const texts = screensCopy[lang.value] || screensCopy["PT"];
   return texts.map((s, i) => ({ ...s, ...imgs[i] }));
 });
+const tocItems = computed(() => [
+  { num: '01', label: t.value.overviewLabel,  id: 'rc-overview'     },
+  { num: '02', label: t.value.discoveryLabel, id: 'rc-discovery'    },
+  { num: '03', label: t.value.designLabel,    id: 'rc-design'       },
+  { num: '04', label: t.value.delivLabel,     id: 'rc-deliverables' },
+  { num: '05', label: t.value.reflexLabel,    id: 'rc-reflexoes'    },
+]);
+
 const palette = [
   { name: "Primary Green", hex: "#0A5331" },
   { name: "Secondary Green", hex: "#05B44C" },
@@ -829,6 +866,7 @@ const palette = [
 const copy = {
   PT: {
     back: "Voltar ao portfólio",
+    tocLabel: "Conteúdo",
     tag: "UX · Business Design · Systems",
     btnBefore: "Como era antes",
     btnAfter: "Ver versão nova",
@@ -912,17 +950,17 @@ const copy = {
       },
       {
         title: "Escaneabilidade Aumentada",
-        body: "Usuários identificam prioridades em 3 segundos vs. 30+ segundos anteriormente",
+        body: "Analistas identificam status críticos em segundos — vs. varredura manual linha a linha no legado",
         color: "#0CFDB5",
       },
       {
         title: "Redução de Fadiga Visual",
-        body: "Tabelas com ~20 linhas vs. ~50 comprimidas, melhorando precisão na leitura",
+        body: "Densidade ajustada por perfil — menos ruído visual, mais foco no que importa para cada função",
         color: "#FF7C43",
       },
       {
         title: "Formulários Progressivos",
-        body: "Divisão de ~50 campos em 4–5 steps lógicos, diminuindo taxa de abandono",
+        body: "Formulários progressivos em 4–5 etapas — contribuíram para a queda de 25% em erros de digitação",
         color: "#F0185A",
       },
       {
@@ -1004,19 +1042,39 @@ const copy = {
       "Discovery completo com mapeamento de 129 perfis",
       "User flows documentados (AS IS × TO BE)",
       "Wireframes de todas as telas principais",
-      "Telas finais navegáveis (além do contrato inicial de wireframes)",
+      "Telas finais navegáveis de 8 perfis de acesso (além do contrato inicial de wireframes)",
       "Regras de negócio documentadas",
       "Sistema escalável com possibilidade de adição de novas features",
     ],
     delivQuote:
       "Entregamos telas navegáveis versão final, além do contrato que previa wireframes, bem como toda a documentação das regras de negócio, fluxos validados e um sistema que as pessoas conseguem usar de verdade — sem workarounds, sem WhatsApp como ferramenta de trabalho.",
     impactHeading: "Impacto do Projeto",
+    impactHeading: "Impacto do Projeto",
+    impactMethodology:
+      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem própria. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Medimos então cada tarefa separadamente dentro da mesma jornada e aplicamos um NPS ao final de cada jornada completa, pedindo ao usuário a percepção de tempo estimado em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%). 131 de 603 usuários responderam.",
     metrics: [
-      { num: "129", label: "perfis de acesso mapeados" },
-      { num: "603", label: "usuários contemplados" },
-      { num: "6", label: "meses de migração" },
-      { num: "7", label: "anos de sistema legado modernizado" },
-      { num: "100%", label: "das regras de negócio documentadas" },
+      {
+        num: "42%",
+        label:
+          "ganho percebido de eficiência na jornada de cadastro — melhor resultado do NPS",
+      },
+      {
+        num: "31%",
+        label: "ganho percebido de eficiência na jornada de simulação",
+      },
+      {
+        num: "92%",
+        label:
+          "redução no tempo de cadastro com integração nativa vs. cópia manual anterior",
+      },
+      {
+        num: "25%",
+        label: "queda nas propostas devolvidas por erro de digitação",
+      },
+      {
+        num: "131",
+        label: "usuários responderam ao NPS de percepção de tempo",
+      },
     ],
     reflexLabel: "Reflexões & Aprendizados",
     teamHeading: "Equipe",
@@ -1048,6 +1106,7 @@ const copy = {
   },
   EN: {
     back: "Back to portfolio",
+    tocLabel: "Contents",
     tag: "UX · Business Design · Systems",
     btnBefore: "How it was before",
     btnAfter: "See new version",
@@ -1130,17 +1189,17 @@ const copy = {
       },
       {
         title: "Increased Scannability",
-        body: "Users identify priorities in 3 seconds vs. 30+ seconds previously",
+        body: "Analysts identify critical statuses in seconds — vs. manual line-by-line scanning in the legacy system",
         color: "#0CFDB5",
       },
       {
         title: "Visual Fatigue Reduction",
-        body: "Tables with ~20 rows vs. ~50 compressed, improving reading accuracy",
+        body: "Density adjusted per profile — less visual noise, more focus on what matters for each role",
         color: "#FF7C43",
       },
       {
         title: "Progressive Forms",
-        body: "Splitting ~50 fields into 4–5 logical steps, reducing abandonment rate",
+        body: "Progressive forms in 4–5 steps — contributed to the 25% drop in data entry errors",
         color: "#F0185A",
       },
       {
@@ -1229,12 +1288,28 @@ const copy = {
     delivQuote:
       "We delivered final navigable screens, beyond the wireframe contract, as well as full business rule documentation, validated flows, and a system people can actually use — no workarounds, no WhatsApp as a work tool.",
     impactHeading: "Project Impact",
+    impactMethodology:
+      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. So we measured each task <b>individually</b> within the same journey, then applied an NPS at the end of each completed journey asking users to estimate <b>perceived</b> time compared to the legacy system. We classified responses as: much worse (−10%), worse (−5%), same (0%), faster (+5%), or much faster (+10%). 131 of 603 users responded.",
     metrics: [
-      { num: "129", label: "access profiles mapped" },
-      { num: "603", label: "users served" },
-      { num: "6", label: "months of migration" },
-      { num: "7", label: "years of legacy modernized" },
-      { num: "100%", label: "of business rules documented" },
+      {
+        num: "42%",
+        label:
+          "perceived efficiency gain on the registration journey — best NPS result",
+      },
+      {
+        num: "31%",
+        label: "perceived efficiency gain on the simulation journey",
+      },
+      {
+        num: "92%",
+        label:
+          "reduction in registration time with native integration vs. previous manual copy",
+      },
+      {
+        num: "25%",
+        label: "drop in proposals returned due to data entry errors",
+      },
+      { num: "131", label: "users responded to the perceived time NPS" },
     ],
     reflexLabel: "Reflections & Learnings",
     teamHeading: "Team",
@@ -1266,6 +1341,7 @@ const copy = {
   },
   ES: {
     back: "Volver al portafolio",
+    tocLabel: "Contenido",
     tag: "UX · Business Design · Systems",
     btnBefore: "Cómo era antes",
     btnAfter: "Ver versión nueva",
@@ -1485,6 +1561,7 @@ const copy = {
   },
   DE: {
     back: "Zurück zum Portfolio",
+    tocLabel: "Inhalt",
     tag: "UX · Business Design · Systems",
     btnBefore: "So war es vorher",
     btnAfter: "Neue Version ansehen",
@@ -1844,6 +1921,73 @@ const t = computed(() => copy[lang.value] || copy["PT"]);
   color: #f0185a;
   border-color: rgba(240, 24, 90, 0.35);
 }
+/* ── Table of contents ── */
+.rc-toc {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+.theme-light .rc-toc {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+.rc-toc-label {
+  display: block;
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-muted, #6b6a82);
+  margin-bottom: 0.85rem;
+}
+.rc-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.rc-toc-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.theme-light .rc-toc-item {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+.rc-toc-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  text-decoration: none;
+  color: var(--fg-muted, #6b6a82);
+  transition: color 0.2s;
+}
+.rc-toc-link:hover {
+  color: var(--fg, #f0eff8);
+}
+.theme-light .rc-toc-link:hover {
+  color: #0d0c1a;
+}
+.rc-toc-link:hover .rc-toc-num {
+  color: #f0185a;
+}
+.rc-toc-num {
+  font-family: "Clash Display", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(240, 24, 90, 0.45);
+  flex-shrink: 0;
+  width: 1.6rem;
+  transition: color 0.2s;
+}
+.rc-toc-name {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .rc-hero-right {
   display: flex;
   flex-direction: column;
@@ -1966,7 +2110,7 @@ const t = computed(() => copy[lang.value] || copy["PT"]);
   font-size: clamp(1.125rem, 2vw, 1.25rem);
   font-weight: 300;
   line-height: 1.85;
-  color: var(--fg-muted, #6b6a82);
+  color: var(--fg, #f0eff8);
   max-width: 65ch;
   margin-bottom: 2.5rem;
 }
@@ -2554,6 +2698,16 @@ const t = computed(() => copy[lang.value] || copy["PT"]);
   margin-bottom: 2rem;
   line-height: 1.8;
 }
+.rc-impact-method {
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fg-muted, #6b6a82);
+  max-width: 65ch;
+  margin-bottom: 1.75rem;
+  border-left: 2px solid rgba(240, 24, 90, 0.3);
+  padding-left: 1rem;
+}
 .rc-impact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -2873,5 +3027,88 @@ const t = computed(() => copy[lang.value] || copy["PT"]);
   .rc-design-screen:nth-child(even) {
     flex-direction: row-reverse;
   }
+}
+.rc-impact-method {
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fg-muted, #6b6a82);
+  max-width: 65ch;
+  margin-bottom: 1.75rem;
+  border-left: 2px solid rgba(240, 24, 90, 0.3);
+  padding-left: 1rem;
+}
+
+/* ── Lightbox ── */
+.rc-zoomable {
+  cursor: zoom-in;
+}
+.rc-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 7, 17, 0.93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+.rc-lb-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  cursor: default;
+  max-width: 100%;
+}
+.rc-lb-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  display: block;
+}
+.rc-lb-caption {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240, 239, 248, 0.55);
+  text-align: center;
+  max-width: 55ch;
+  line-height: 1.6;
+}
+.rc-lb-close {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+  z-index: 10000;
+}
+.rc-lb-close:hover {
+  background: rgba(240, 24, 90, 0.25);
+  border-color: #f0185a;
+}
+.rc-lb-enter-active,
+.rc-lb-leave-active {
+  transition: opacity 0.2s ease;
+}
+.rc-lb-enter-from,
+.rc-lb-leave-to {
+  opacity: 0;
 }
 </style>

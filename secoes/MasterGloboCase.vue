@@ -195,16 +195,13 @@
       <p class="mg-footer-copy">© 2026 Tayná Schultz</p>
     </footer>
 
-    <!-- Back to top -->
-    <button class="btt-btn" :class="{ 'btt-btn--visible': showBtt }" @click="scrollToTop" :aria-label="t.bttLabel">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-    </button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import NavBar from './NavBar.vue'
+import { useLang } from '../src/composables/useLang'
 
 import coverImg     from '../imagens cases/master globo/master goblo cover.png'
 import avatarsImg   from '../imagens cases/master globo/master globo avatars.avif'
@@ -215,7 +212,7 @@ const props = defineProps({
   theme : { type: String, default: 'light' },
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 // ── i18n ──────────────────────────────────────────────────────
@@ -487,15 +484,6 @@ const copy = {
 
 const t = computed(() => copy[lang.value] ?? copy.EN)
 
-// ── Back to top ───────────────────────────────────────────────
-const showBtt = ref(false)
-function onScrollBtt () {
-  const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
-  showBtt.value = scrolled >= (window.innerWidth < 768 ? 0.30 : 0.65)
-}
-function scrollToTop () { window.scrollTo({ top: 0, behavior: 'smooth' }) }
-onMounted(()   => window.addEventListener('scroll', onScrollBtt, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScrollBtt))
 </script>
 
 <style>
@@ -654,11 +642,6 @@ onUnmounted(() => window.removeEventListener('scroll', onScrollBtt))
 .mg-footer-tag{font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted)}
 .mg-footer-copy{font-size:.55rem;color:var(--fg-muted);opacity:.45;text-align:center}
 
-/* ── Back to top ──────────────────────────────────────────── */
-.btt-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;width:44px;height:44px;border:1px solid rgba(255,255,255,.12);background:rgba(7,7,17,.7);color:#F0EFF8;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease,border-color .2s ease}
-.btt-btn--visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.btt-btn:hover{border-color:rgba(255,255,255,.35)}
-.theme-light .btt-btn{background:rgba(245,243,255,.85);border-color:rgba(0,0,0,.12);color:#0D0C1A}
 
 /* ── Animations ───────────────────────────────────────────── */
 @keyframes mg-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.75)}}

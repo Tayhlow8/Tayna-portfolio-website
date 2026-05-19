@@ -245,6 +245,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar        from '../../../secoes/NavBar.vue'
+import { useLang }   from '../../composables/useLang'
 import ContactSection from '../../../secoes/ContactSection.vue'
 import imgBefore from '../../../imagens cases/dermaclub/checkout before.avif'
 import imgAfter  from '../../../imagens cases/dermaclub/checkout after.avif'
@@ -254,7 +255,7 @@ const props = defineProps({
   theme: { type: String, default: 'light' }
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 // ── Parallax ─────────────────────────────────────────────────

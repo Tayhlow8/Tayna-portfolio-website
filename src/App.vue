@@ -88,18 +88,19 @@
       <TestimonialsSection :theme="theme" :lang="lang" />
       <ContactSection      :theme="theme" :lang="lang" />
 
-      <!-- Back to top -->
-      <button
-        class="btt-btn"
-        :class="{ 'btt-btn--visible': showBtt }"
-        @click="scrollToTop"
-        aria-label="Voltar ao topo"
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="18 15 12 9 6 15"/>
-        </svg>
-      </button>
     </template>
+
+    <!-- Back to top — global, all routes -->
+    <button
+      class="btt-btn"
+      :class="{ 'btt-btn--visible': showBtt }"
+      @click="scrollToTop"
+      aria-label="Voltar ao topo"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"/>
+      </svg>
+    </button>
 
     <!-- Chat widget — global, all routes -->
     <ChatWidget :photo="photo" />
@@ -110,6 +111,7 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute }   from 'vue-router'
+import { useLang }    from './composables/useLang'
 
 import NavBar             from '../secoes/NavBar.vue'
 import ProjectsPage       from '../secoes/ProjectsPage.vue'
@@ -135,7 +137,7 @@ const route = useRoute()
 
 // ── Estado global de tema e idioma ──────────────────────────
 const theme = ref('light')
-const lang  = ref('EN')
+const { lang } = useLang()
 
 // ── Back to top ─────────────────────────────────────────────
 const showBtt = ref(false)
@@ -176,9 +178,9 @@ watch(
 /* ── Back to top ────────────────────────────────────────────── */
 .btt-btn {
   position  : fixed;
-  bottom    : 2rem;
-  right     : 2rem;
-  z-index   : 999;
+  bottom    : 6rem;
+  right     : 1.5rem;
+  z-index   : 10000;
   width     : 44px;
   height    : 44px;
   border    : 1px solid rgba(255, 255, 255, 0.12);

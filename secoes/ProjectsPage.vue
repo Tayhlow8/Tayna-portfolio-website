@@ -87,6 +87,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import NavBar from './NavBar.vue'
+import { useLang } from '../src/composables/useLang'
 
 import imgRodobens from '../imagens cases/rodobens/case rodobens cover 1.png'
 import imgMaster   from '../imagens cases/master globo/master goblo cover.png'
@@ -100,7 +101,7 @@ const props = defineProps({
   theme: { type: String, default: 'light' },
 })
 
-const lang  = ref(props.lang)
+const { lang } = useLang()
 const theme = ref(props.theme)
 
 // ── Helpers ─────────────────────────────────────────────────────
