@@ -42,6 +42,14 @@
             </svg>
             linkedin.com/in/taynaschultz
           </a>
+          <a class="hero-contact-item" href="https://taynart.com/" target="_blank" rel="noopener">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            taynart.com
+          </a>
           <span class="hero-contact-item">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
@@ -277,14 +285,22 @@
             </svg>
             <div><div class="contact-label">{{ t.contact_phone }}</div>+55 (21) 99876-1604</div>
           </div>
-          <div class="contact-item">
+          <a class="contact-item" href="https://linkedin.com/in/taynaschultz" target="_blank" rel="noopener">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
               <rect x="2" y="9" width="4" height="12"/>
               <circle cx="4" cy="4" r="2"/>
             </svg>
             <div><div class="contact-label">LinkedIn</div>taynaschultz</div>
-          </div>
+          </a>
+          <a class="contact-item" href="https://taynart.com/" target="_blank" rel="noopener">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            <div><div class="contact-label">{{ t.contact_portfolio }}</div>taynart.com</div>
+          </a>
           <div class="contact-item">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
@@ -508,6 +524,7 @@ const copy = {
     ai4_result    : 'Geração de imagens com IA integrada a projetos ativos em produção.',
     sec_contact   : 'Contato',
     contact_phone : 'Telefone',
+    contact_portfolio: 'Portfólio',
     contact_location: 'Localização',
     sec_languages : 'Idiomas',
     lang_pt       : 'Português',
@@ -569,6 +586,7 @@ const copy = {
     ai4_result    : 'AI image generation integrated into active production projects.',
     sec_contact   : 'Contact',
     contact_phone : 'Phone',
+    contact_portfolio: 'Portfolio',
     contact_location: 'Location',
     sec_languages : 'Languages',
     lang_pt       : 'Portuguese',
@@ -630,6 +648,7 @@ const copy = {
     ai4_result    : 'Generación de imágenes con IA integrada en proyectos activos de producción.',
     sec_contact   : 'Contacto',
     contact_phone : 'Teléfono',
+    contact_portfolio: 'Portafolio',
     contact_location: 'Ubicación',
     sec_languages : 'Idiomas',
     lang_pt       : 'Portugués',
@@ -691,6 +710,7 @@ const copy = {
     ai4_result    : 'KI-Bildgenerierung in aktive Produktionsprojekte integriert.',
     sec_contact   : 'Kontakt',
     contact_phone : 'Telefon',
+    contact_portfolio: 'Portfolio',
     contact_location: 'Standort',
     sec_languages : 'Sprachen',
     lang_pt       : 'Portugiesisch',
@@ -1029,6 +1049,7 @@ function printCV() {
   display: flex; align-items: center; gap: .75rem;
   padding: .75rem 0; border-bottom: 1px solid var(--border);
   font-size: .75rem; font-weight: 300; color: var(--fg-muted); transition: color .2s;
+  text-decoration: none;
 }
 .contact-item:last-child { border-bottom: none; }
 .contact-item:hover { color: var(--fg); }

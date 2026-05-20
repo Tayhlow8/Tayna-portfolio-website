@@ -572,4 +572,7 @@ async function askQuick (btn) {
   0%, 80%, 100% { transform: translateY(0); opacity: .4; }
   40%           { transform: translateY(-5px); opacity: 1; }
 }
+@media print {
+  .cw-root { display: none !important; }
+}
 </style>

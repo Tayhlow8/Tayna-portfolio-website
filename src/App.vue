@@ -223,4 +223,7 @@ watch(
 .ps-root {
   margin-top: var(--sp-24);
 }
+@media print {
+  .btt-btn { display: none !important; }
+}
 </style>
