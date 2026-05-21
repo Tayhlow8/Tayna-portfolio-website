@@ -393,6 +393,33 @@
       </section>
     </div>
     <!-- /.sp-slides -->
+
+    <!-- Mobile prev/next arrows — visible only on mobile -->
+    <div class="sp-mobile-nav" aria-label="Navegação entre slides">
+      <button
+        class="sp-nav-btn"
+        :disabled="currentSlide === 0 || isTransitioning"
+        @click="goToSlide(currentSlide - 1)"
+        aria-label="Slide anterior"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <span class="sp-nav-counter">
+        {{ currentSlide + 1 }}<span class="sp-nav-total"> / {{ LAST_SLIDE + 1 }}</span>
+      </span>
+      <button
+        class="sp-nav-btn"
+        :disabled="currentSlide === LAST_SLIDE || isTransitioning"
+        @click="goToSlide(currentSlide + 1)"
+        aria-label="Próximo slide"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -508,6 +535,7 @@ function goToSlide(n) {
 }
 
 function handleWheel(e) {
+  if (window.innerWidth <= 767) return;
   if (isTransitioning.value) {
     e.preventDefault();
     return;
@@ -527,6 +555,7 @@ const handleTouchStart = (e) => {
 };
 const handleTouchEnd = (e) => {
   if (isTransitioning.value) return;
+  if (window.innerWidth <= 767) return;
   const dy = touchStartY - e.changedTouches[0].clientY;
   if (currentSlide.value < LAST_SLIDE && dy > 50)
     goToSlide(currentSlide.value + 1);
@@ -2045,6 +2074,11 @@ const t = computed(() => copy[lang.value] ?? copy["PT"]);
   }
 }
 
+/* Mobile nav arrows — hidden on desktop */
+.sp-mobile-nav {
+  display: none;
+}
+
 /* ── Mobile ─────────────────────────────────────────── */
 @media (max-width: 767px) {
   .sp-highlights {
@@ -2120,21 +2154,25 @@ const t = computed(() => copy[lang.value] ?? copy["PT"]);
 
   .sp-slide--ch3 {
     flex-direction: column;
-    padding: 1.5rem;
-    gap: 1rem;
+    padding: 0;
+    gap: 0;
     overflow-y: auto;
     align-items: flex-start;
   }
   .sp-ch3-body {
     flex: none;
     width: 100%;
-    padding: 0 0 0.5rem;
+    padding: 1.5rem 1.5rem 1rem;
     justify-content: flex-start;
   }
   .sp-ch3-image {
-    flex: 0 0 200px;
+    flex: 0 0 300px;
     width: 100%;
-    align-self: center;
+    align-self: stretch;
+  }
+  .sp-ch3-img {
+    object-fit: contain;
+    object-position: bottom center;
   }
 
   .sp-slide--ch4 {
@@ -2175,7 +2213,57 @@ const t = computed(() => copy[lang.value] ?? copy["PT"]);
   }
 
   .sp-scroll-hint {
-    bottom: 1.5rem;
+    display: none;
+  }
+
+  .sp-mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    gap: 0.25rem;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 100px;
+    padding: 0.3rem 0.5rem;
+  }
+  .sp-nav-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #f0eff8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s, color 0.2s;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .sp-nav-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+  .sp-nav-btn:not(:disabled):active {
+    color: #f0185a;
+  }
+  .sp-nav-counter {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.9);
+    min-width: 2.75rem;
+    text-align: center;
+  }
+  .sp-nav-total {
+    color: rgba(255, 255, 255, 0.45);
   }
 
   .sp-ep-btns {

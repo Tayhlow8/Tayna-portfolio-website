@@ -90,8 +90,9 @@
 
     </template>
 
-    <!-- Back to top — global, all routes -->
+    <!-- Back to top — all routes except /historia -->
     <button
+      v-if="route.path !== '/historia'"
       class="btt-btn"
       :class="{ 'btt-btn--visible': showBtt }"
       @click="scrollToTop"
