@@ -158,65 +158,67 @@
       </div>
     </section>
 
-    <!-- ── MOBILE PROBLEMS ───────────────────────────────────── -->
+    <!-- ── MOBILE PROBLEMS + RESULTS (side by side on desktop) ── -->
     <section class="case-section">
-      <div class="case-wrap case-wrap--narrow">
-        <div class="section-label" aria-hidden="true">04 · Mobile-Specific Issues</div>
-        <h2 class="section-heading">Mobile was a different beast</h2>
-        <p class="section-body">
-          The desktop issues were significant, but mobile had its own layer of problems that heatmap
-          analysis made impossible to ignore.
-        </p>
-        <div class="mobile-issues-list">
-          <div v-for="(m, i) in mobileIssues" :key="i" class="mobile-issue">
-            <span class="mobile-issue-marker" aria-hidden="true"></span>
-            <p>{{ m }}</p>
+      <div class="case-wrap">
+        <div class="case-two-col">
+
+          <!-- LEFT: Mobile Issues (04) + Learnings (06) -->
+          <div class="two-col-left">
+            <div class="section-label" aria-hidden="true">04 · Mobile-Specific Issues</div>
+            <h2 class="section-heading">Mobile was a different beast</h2>
+            <p class="section-body">
+              The desktop issues were significant, but mobile had its own layer of problems that heatmap
+              analysis made impossible to ignore.
+            </p>
+            <div class="mobile-issues-list">
+              <div v-for="(m, i) in mobileIssues" :key="i" class="mobile-issue">
+                <span class="mobile-issue-marker" aria-hidden="true"></span>
+                <p>{{ m }}</p>
+              </div>
+            </div>
+
+            <div class="col-learnings">
+              <div class="section-label" aria-hidden="true">06 · Learnings</div>
+              <h2 class="section-heading">What I took from this</h2>
+              <p class="section-body">
+                Platform constraints are not an excuse — they're a design brief. Working within VTEX's
+                limited checkout customization options forced me to be precise: every change had to count,
+                and every decision needed to be justifiable by data, not aesthetics alone. The discipline
+                of working with heatmaps and clickmaps as primary research artifacts also reinforced how
+                much behavioral evidence already exists in running products — before you run a single
+                interview or write a single survey.
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ── RESULTS ───────────────────────────────────────────── -->
-    <section class="case-section case-section--alt">
-      <div class="case-wrap case-wrap--narrow">
-        <div class="section-label" aria-hidden="true">05 · Results</div>
-        <h2 class="section-heading">The test won</h2>
-        <p class="section-body">
-          The redesigned variant was tested against the original in a controlled A/B experiment.
-          All three primary metrics improved — validating the hypothesis that clarity, hierarchy, and
-          brand consistency directly drive conversion in high-stakes checkout flows.
-        </p>
+          <!-- RIGHT: Results (05) -->
+          <div class="two-col-right">
+            <div class="section-label" aria-hidden="true">05 · Results</div>
+            <h2 class="section-heading">The test won</h2>
+            <p class="section-body">
+              The redesigned variant was tested against the original in a controlled A/B experiment.
+              All three primary metrics improved — validating the hypothesis that clarity, hierarchy, and
+              brand consistency directly drive conversion in high-stakes checkout flows.
+            </p>
 
-        <div class="results-cards">
-          <div v-for="(r, i) in results" :key="i" class="result-card">
-            <span class="result-card-num">{{ r.num }}</span>
-            <span class="result-card-label">{{ r.label }}</span>
-            <p class="result-card-desc">{{ r.desc }}</p>
+            <div class="results-cards">
+              <div v-for="(r, i) in results" :key="i" class="result-card">
+                <span class="result-card-num">{{ r.num }}</span>
+                <span class="result-card-label">{{ r.label }}</span>
+                <p class="result-card-desc">{{ r.desc }}</p>
+              </div>
+            </div>
+
+            <p class="section-body" style="margin-top: 2rem;">
+              Within the constraints of the VTEX platform — which limits the degree of checkout
+              customisation available to designers — these gains demonstrate that well-reasoned
+              UX improvements, grounded in real behavioral data, move the needle even when you
+              can't fully control the canvas.
+            </p>
           </div>
+
         </div>
-
-        <p class="section-body" style="margin-top: 2.5rem;">
-          Within the constraints of the VTEX platform — which limits the degree of checkout
-          customisation available to designers — these gains demonstrate that well-reasoned
-          UX improvements, grounded in real behavioral data, move the needle even when you
-          can't fully control the canvas.
-        </p>
-      </div>
-    </section>
-
-    <!-- ── LEARNINGS ─────────────────────────────────────────── -->
-    <section class="case-section">
-      <div class="case-wrap case-wrap--narrow">
-        <div class="section-label" aria-hidden="true">06 · Learnings</div>
-        <h2 class="section-heading">What I took from this</h2>
-        <p class="section-body">
-          Platform constraints are not an excuse — they're a design brief. Working within VTEX's
-          limited checkout customization options forced me to be precise: every change had to count,
-          and every decision needed to be justifiable by data, not aesthetics alone. The discipline
-          of working with heatmaps and clickmaps as primary research artifacts also reinforced how
-          much behavioral evidence already exists in running products — before you run a single
-          interview or write a single survey.
-        </p>
       </div>
     </section>
 
@@ -396,10 +398,7 @@ const results = [
 .case-wrap {
   position: relative;
   z-index: 2;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding-left: clamp(1.5rem, 7vw, 7rem);
-  padding-right: clamp(1.5rem, 7vw, 7rem);
+  padding: 0 1.5rem;
 }
 .case-wrap--narrow { max-width: 680px; }
 
@@ -764,6 +763,50 @@ const results = [
   margin: .5rem 0 0;
 }
 
+/* ── LEARNINGS INSIDE LEFT COL ───────────────────────────── */
+.col-learnings {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── TWO-COLUMN CONTENT LAYOUT ──────────────────────────── */
+.case-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .case-two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: start;
+  }
+
+  .two-col-left {
+    padding-right: 4rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .two-col-right {
+    padding-left: 4rem;
+  }
+
+  .two-col-right .results-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .two-col-right .result-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .two-col-right .result-card:last-child {
+    border-bottom: none;
+  }
+}
+
 /* ── FOOTER NAV ──────────────────────────────────────────── */
 .case-footer-nav {
   border-top: 1px solid var(--border);
@@ -800,6 +843,16 @@ const results = [
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .case-wrap { padding: 0 3rem; }
+}
+@media (min-width: 1024px) {
+  .case-wrap { padding: 0 7rem; }
+}
+@media (min-width: 1400px) {
+  .case-wrap { padding: 0 10rem; }
+}
+
 @media (max-width: 640px) {
   .case-meta-row { gap: 1rem; }
   .case-meta-divider { display: none; }

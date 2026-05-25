@@ -61,7 +61,12 @@
             alt="Interface Unica — análise de crédito"
             loading="lazy"
             class="rc-screen-img rc-zoomable"
-            @click="openLightbox(creditDashImg, 'Interface Unica — análise de crédito')"
+            @click="
+              openLightbox(
+                creditDashImg,
+                'Interface Unica — análise de crédito',
+              )
+            "
           />
         </div>
       </div>
@@ -222,7 +227,13 @@
             alt="User flow mapping"
             class="rc-disc-img rc-zoomable"
             loading="lazy"
-            @click="openLightbox(userFlowImg, t.discoveryImg1Caption, t.discoveryImg1Caption)"
+            @click="
+              openLightbox(
+                userFlowImg,
+                t.discoveryImg1Caption,
+                t.discoveryImg1Caption,
+              )
+            "
           />
           <figcaption class="rc-disc-caption">
             {{ t.discoveryImg1Caption }}
@@ -234,7 +245,13 @@
             alt="Design critique session"
             class="rc-disc-img rc-zoomable"
             loading="lazy"
-            @click="openLightbox(designCritiqueImg, t.discoveryImg2Caption, t.discoveryImg2Caption)"
+            @click="
+              openLightbox(
+                designCritiqueImg,
+                t.discoveryImg2Caption,
+                t.discoveryImg2Caption,
+              )
+            "
           />
           <figcaption class="rc-disc-caption">
             {{ t.discoveryImg2Caption }}
@@ -286,7 +303,13 @@
                     :alt="s.title"
                     loading="lazy"
                     class="rc-screen-img rc-zoomable"
-                    @click="openLightbox(oldView[i] ? s.oldImg : s.img, s.title, s.title)"
+                    @click="
+                      openLightbox(
+                        oldView[i] ? s.oldImg : s.img,
+                        s.title,
+                        s.title,
+                      )
+                    "
                   />
                 </Transition>
                 <button
@@ -548,7 +571,7 @@
       </div>
       <blockquote class="rc-deliv-quote">{{ t.delivQuote }}</blockquote>
       <h3 class="rc-sub-heading">{{ t.impactHeading }}</h3>
-      <p class="rc-impact-method">{{ t.impactMethodology }}</p>
+      <p class="rc-impact-method" v-html="t.impactMethodology"></p>
       <div class="rc-impact-grid">
         <div v-for="m in t.metrics" :key="m.num" class="rc-metric">
           <b class="rc-metric-n">{{ m.num }}</b
@@ -632,18 +655,29 @@
             @click="closeLightbox"
             aria-label="Fechar"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
           <figure class="rc-lb-figure" @click.stop>
             <img :src="lightboxSrc" :alt="lightboxAlt" class="rc-lb-img" />
-            <figcaption v-if="lightboxCaption" class="rc-lb-caption">{{ lightboxCaption }}</figcaption>
+            <figcaption v-if="lightboxCaption" class="rc-lb-caption">
+              {{ lightboxCaption }}
+            </figcaption>
           </figure>
         </div>
       </Transition>
     </Teleport>
-
   </div>
 </template>
 
@@ -678,22 +712,22 @@ const toggleOld = (i) => {
 };
 
 const lightboxSrc = ref(null);
-const lightboxAlt = ref('');
-const lightboxCaption = ref('');
-function openLightbox(src, alt, caption = '') {
+const lightboxAlt = ref("");
+const lightboxCaption = ref("");
+function openLightbox(src, alt, caption = "") {
   lightboxSrc.value = src;
-  lightboxAlt.value = alt || '';
-  lightboxCaption.value = caption || '';
+  lightboxAlt.value = alt || "";
+  lightboxCaption.value = caption || "";
 }
 function closeLightbox() {
   lightboxSrc.value = null;
-  lightboxCaption.value = '';
+  lightboxCaption.value = "";
 }
 function onKeydownLightbox(e) {
-  if (e.key === 'Escape') closeLightbox();
+  if (e.key === "Escape") closeLightbox();
 }
-onMounted(() => window.addEventListener('keydown', onKeydownLightbox));
-onUnmounted(() => window.removeEventListener('keydown', onKeydownLightbox));
+onMounted(() => window.addEventListener("keydown", onKeydownLightbox));
+onUnmounted(() => window.removeEventListener("keydown", onKeydownLightbox));
 const cRefs = ref([]);
 const setRef = (el, i) => {
   if (el) cRefs.value[i] = el;
@@ -709,7 +743,6 @@ onMounted(() => {
   cRefs.value[0] && observer.observe(cRefs.value[0]);
 });
 onUnmounted(() => observer?.disconnect());
-
 
 const screensCopy = {
   PT: [
@@ -850,11 +883,11 @@ const designScreens = computed(() => {
   return texts.map((s, i) => ({ ...s, ...imgs[i] }));
 });
 const tocItems = computed(() => [
-  { num: '01', label: t.value.overviewLabel,  id: 'rc-overview'     },
-  { num: '02', label: t.value.discoveryLabel, id: 'rc-discovery'    },
-  { num: '03', label: t.value.designLabel,    id: 'rc-design'       },
-  { num: '04', label: t.value.delivLabel,     id: 'rc-deliverables' },
-  { num: '05', label: t.value.reflexLabel,    id: 'rc-reflexoes'    },
+  { num: "01", label: t.value.overviewLabel, id: "rc-overview" },
+  { num: "02", label: t.value.discoveryLabel, id: "rc-discovery" },
+  { num: "03", label: t.value.designLabel, id: "rc-design" },
+  { num: "04", label: t.value.delivLabel, id: "rc-deliverables" },
+  { num: "05", label: t.value.reflexLabel, id: "rc-reflexoes" },
 ]);
 
 const palette = [
@@ -1051,7 +1084,7 @@ const copy = {
     impactHeading: "Impacto do Projeto",
     impactHeading: "Impacto do Projeto",
     impactMethodology:
-      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem própria. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Medimos então cada tarefa separadamente dentro da mesma jornada e aplicamos um NPS ao final de cada jornada completa, pedindo ao usuário a percepção de tempo estimado em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%). 131 de 603 usuários responderam.",
+      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Medimos então cada tarefa <b>separadamente</b> dentro da mesma jornada e aplicamos um NPS ao final de cada jornada completa, pedindo ao usuário a <b>percepção</b> de tempo estimado em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%). 131 de 603 usuários responderam.",
     metrics: [
       {
         num: "42%",
@@ -2707,6 +2740,10 @@ const t = computed(() => copy[lang.value] || copy["PT"]);
   margin-bottom: 1.75rem;
   border-left: 2px solid rgba(240, 24, 90, 0.3);
   padding-left: 1rem;
+}
+.rc-impact-method b {
+  font-weight: 800;
+  color: var(--fg, #f0eff8);
 }
 .rc-impact-grid {
   display: grid;
