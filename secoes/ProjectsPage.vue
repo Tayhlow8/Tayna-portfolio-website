@@ -94,7 +94,8 @@ import imgMaster   from '../imagens cases/master globo/master goblo cover.png'
 import imgYSL      from '../imagens cases/YSL Y intense/mobile exp.avif'
 import imgLancome  from '../imagens cases/Lancme brazil/foto 1 lancome.avif'
 import imgNV8      from '../clientes/nv8 case cover.png'
-import imgDermaClub from '../imagens cases/dermaclub/checkout after.avif'
+import imgDermaClub   from '../imagens cases/dermaclub/checkout after.avif'
+import imgIteration  from '../src/assets/iteration/Iteration thumb.png'
 
 const props = defineProps({
   lang:  { type: String, default: 'PT' },
@@ -348,8 +349,42 @@ const svgLancome = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg
   <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(224,112,160,.35)" letter-spacing="2">BEAUTY · E-COMMERCE · LANCÔME BRAZIL</text>
 </svg>`
 
+const svgIteration = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
+  <defs>
+    <linearGradient id="it-path" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F0185A" stop-opacity=".12"/><stop offset="35%" stop-color="#F0185A" stop-opacity=".85"/><stop offset="75%" stop-color="#8B2FD4" stop-opacity=".75"/><stop offset="100%" stop-color="#8B2FD4" stop-opacity=".18"/></linearGradient>
+    <radialGradient id="it-glow2" cx="55%" cy="55%"><stop offset="0%" stop-color="#F0185A" stop-opacity=".16"/><stop offset="100%" stop-color="#F0185A" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="560" height="315" fill="#070510"/>
+  <ellipse cx="300" cy="175" rx="240" ry="130" fill="url(#it-glow2)"/>
+  <line x1="0" y1="105" x2="560" y2="105" stroke="rgba(240,24,90,.05)" stroke-width="1"/>
+  <line x1="0" y1="210" x2="560" y2="210" stroke="rgba(240,24,90,.05)" stroke-width="1"/>
+  <line x1="186" y1="0" x2="186" y2="315" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="3 7"/>
+  <line x1="372" y1="0" x2="372" y2="315" stroke="rgba(255,255,255,.04)" stroke-width="1" stroke-dasharray="3 7"/>
+  <text x="93"  y="24" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.18)" letter-spacing="2">LEGACY</text>
+  <text x="279" y="24" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.22)" letter-spacing="2">MIRROR</text>
+  <text x="466" y="24" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(240,24,90,.55)" letter-spacing="2">REDESIGN</text>
+  <path d="M30,105 L186,105 Q210,105 225,125 L280,162 Q310,175 372,178 L530,182" stroke="rgba(240,24,90,.22)" stroke-width="1.5" fill="none" stroke-dasharray="7 5"/>
+  <path d="M30,158 L186,158 L372,158 Q400,157 440,152 L530,148" stroke="url(#it-path)" stroke-width="2.5" fill="none"/>
+  <path d="M30,210 L186,210 Q215,210 228,190 L280,162 Q310,155 372,157" stroke="rgba(139,47,212,.22)" stroke-width="1.5" fill="none" stroke-dasharray="7 5"/>
+  <circle cx="30"  cy="105" r="3.5" fill="none" stroke="rgba(240,24,90,.35)" stroke-width="1.5"/><circle cx="30"  cy="105" r="1.5" fill="rgba(240,24,90,.4)"/>
+  <circle cx="30"  cy="210" r="3.5" fill="none" stroke="rgba(139,47,212,.35)" stroke-width="1.5"/><circle cx="30"  cy="210" r="1.5" fill="rgba(139,47,212,.4)"/>
+  <circle cx="186" cy="158" r="6"   fill="rgba(240,24,90,.06)" stroke="rgba(240,24,90,.55)" stroke-width="1.5"/><circle cx="186" cy="158" r="2.5" fill="#F0185A"/>
+  <circle cx="372" cy="158" r="8"   fill="rgba(240,24,90,.1)"  stroke="rgba(240,24,90,.7)"  stroke-width="1.5"/><circle cx="372" cy="158" r="3.5" fill="#F0185A"/>
+  <circle cx="530" cy="148" r="11"  fill="rgba(240,24,90,.12)" stroke="#F0185A" stroke-width="2"/><circle cx="530" cy="148" r="5" fill="#F0185A"/>
+  <circle cx="530" cy="148" r="17"  fill="none" stroke="rgba(240,24,90,.22)" stroke-width="1" stroke-dasharray="3 5"/>
+  <line x1="280" y1="162" x2="372" y2="158" stroke="rgba(240,24,90,.18)" stroke-width="1"/>
+  <path d="M426,140 Q446,118 462,128 Q475,136 471,153" stroke="rgba(240,24,90,.38)" stroke-width="1.2" fill="none"/>
+  <polygon points="470,153 465,147 475,145" fill="rgba(240,24,90,.5)"/>
+  <line x1="14" y1="90" x2="14" y2="225" stroke="rgba(240,24,90,.1)" stroke-width="1"/>
+  <text x="7" y="109"  font-family="monospace" font-size="8" fill="rgba(240,24,90,.4)"   letter-spacing="1">v1</text>
+  <text x="7" y="162"  font-family="monospace" font-size="8" fill="rgba(240,24,90,.88)"  letter-spacing="1">v2</text>
+  <text x="7" y="214"  font-family="monospace" font-size="8" fill="rgba(139,47,212,.45)" letter-spacing="1">v3</text>
+  <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(240,24,90,.35)" letter-spacing="2">PROCESS · ITERATION · ERP · RODOBENS 2024</text>
+</svg>`
+
 // ── Projects data ────────────────────────────────────────────────
 const projects = [
+  // ── 1 ──
   {
     slug  : 'rodobens',
     client: 'Rodobens',
@@ -367,6 +402,25 @@ const projects = [
     image: imgRodobens,
     svg  : svgRodobens,
   },
+  // ── 2 ──
+  {
+    slug  : 'rodobens-iteration',
+    client: 'Rodobens · NV8',
+    year  : '2024',
+    title : { PT: 'O Processo de Iteração', EN: 'The Iteration Process', ES: 'El Proceso de Iteración', DE: 'Der Iterationsprozess' },
+    desc  : {
+      PT: 'Como espelhar intencionalmente um sistema legado quebrado desbloqueou as decisões de design que não chegaríamos de outra forma — um deep-dive no processo por trás de uma tela ERP complexa.',
+      EN: 'How intentionally mirroring a broken legacy system unlocked the design decisions we couldn\'t have reached any other way — a deep dive into the process behind a complex ERP screen.',
+      ES: 'Cómo reflejar intencionalmente un sistema legacy roto desbloqueó las decisiones de diseño — un deep-dive en el proceso detrás de una pantalla ERP compleja.',
+      DE: 'Wie das bewusste Spiegeln eines defekten Legacy-Systems Designentscheidungen ermöglichte — ein Deep-Dive in den Prozess hinter einem komplexen ERP-Bildschirm.',
+    },
+    tags : ['Process Design', 'Iteration', 'Systems Thinking'],
+    type : 'Process Case · Enterprise',
+    bg   : '#070510',
+    image: imgIteration,
+    svg  : svgIteration,
+  },
+  // ── 3 ──
   {
     slug  : 'master-globo',
     client: 'Master Globo',
@@ -384,6 +438,7 @@ const projects = [
     image: imgMaster,
     svg  : svgMaster,
   },
+  // ── 4 ──
   {
     slug  : 'yves-saint-laurent',
     client: 'Yves Saint Laurent',
@@ -401,23 +456,7 @@ const projects = [
     image: imgYSL,
     svg  : svgYSL,
   },
-  {
-    slug  : 'lancome-brazil',
-    client: 'Lancôme Brazil',
-    year  : '2023',
-    title : { PT: "Lancome's sensorial experience", EN: "Lancome's sensorial experience", ES: "Lancome's sensorial experience", DE: "Lancome's sensorial experience" },
-    desc  : {
-      PT: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-      EN: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-      ES: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-      DE: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-    },
-    tags : ['Beauty', 'Brand Experience', 'Exhibition'],
-    type : 'Retail · Beauty',
-    bg   : '#100710',
-    image: imgLancome,
-    svg  : svgLancome,
-  },
+  // ── 5 ──
   {
     slug  : 'nv8',
     client: 'NV8 Tecnologia',
@@ -435,6 +474,7 @@ const projects = [
     image: imgNV8,
     svg  : svgNV8,
   },
+  // ── 6 — right of NV8 ──
   {
     slug  : 'dermaclub',
     path  : '/work/dermaclub',
@@ -451,6 +491,24 @@ const projects = [
     type : 'Beauty · E-commerce',
     bg   : '#070f11',
     image: imgDermaClub,
+  },
+  // ── 7 — featured full-width closer ──
+  {
+    slug  : 'lancome-brazil',
+    client: 'Lancôme Brazil',
+    year  : '2023',
+    title : { PT: "Lancome's sensorial experience", EN: "Lancome's sensorial experience", ES: "Lancome's sensorial experience", DE: "Lancome's sensorial experience" },
+    desc  : {
+      PT: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
+      EN: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
+      ES: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
+      DE: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
+    },
+    tags : ['Beauty', 'Brand Experience', 'Exhibition'],
+    type : 'Retail · Beauty',
+    bg   : '#100710',
+    image: imgLancome,
+    svg  : svgLancome,
   },
 ]
 
@@ -731,6 +789,7 @@ onUnmounted(() => observer?.disconnect())
 .project-card:nth-child(4) { transition-delay: .26s }
 .project-card:nth-child(5) { transition-delay: .05s }
 .project-card:nth-child(6) { transition-delay: .12s }
+.project-card:nth-child(7) { transition-delay: .19s }
 
 /* ── Thumbnail ──────────────────────────────────────────────── */
 .card-thumb {
@@ -886,9 +945,9 @@ onUnmounted(() => observer?.disconnect())
 }
 
 /* ── Responsive — design-system breakpoints ─────────────────── */
-/* 5th card spans full width (both mobile and desktop) */
+/* 7th card (Lancôme) spans full width as a featured closer */
 .project-card:last-child { grid-column: 1 / -1 }
-.project-card:last-child .card-thumb { aspect-ratio: 21 / 7 }
+.project-card:last-child .card-thumb { aspect-ratio: 3 / 1 }
 .project-card:last-child .card-title { font-size: clamp(1.6rem, 3vw, 2.4rem) }
 
 @media (min-width: 640px) {

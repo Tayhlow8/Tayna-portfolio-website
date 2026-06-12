@@ -36,6 +36,13 @@
       :theme="theme"
     />
 
+    <!-- ── Case: Rodobens · Iteration process ────────────── -->
+    <IterationCase
+      v-else-if="route.params.slug === 'rodobens-iteration'"
+      :lang="lang"
+      :theme="theme"
+    />
+
     <!-- ── Case: Master Globo ────────────────────────────── -->
     <MasterGloboCase
       v-else-if="route.params.slug === 'master-globo'"
@@ -125,6 +132,7 @@ import TestimonialsSection from '../secoes/TestimonialsSection.vue'
 import ContactSection     from '../secoes/ContactSection.vue'
 import StoryPage          from '../secoes/StoryPage.vue'
 import RodobensCase       from '../secoes/RodobensCase.vue'
+import IterationCase      from '../secoes/IterationCase.vue'
 import MasterGloboCase    from '../secoes/MasterGloboCase.vue'
 import LancomeCase        from '../secoes/LancomeCase.vue'
 import YSLCase            from '../secoes/YSLCase.vue'

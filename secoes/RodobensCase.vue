@@ -1084,7 +1084,7 @@ const copy = {
     impactHeading: "Impacto do Projeto",
     impactHeading: "Impacto do Projeto",
     impactMethodology:
-      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Medimos então cada tarefa <b>separadamente</b> dentro da mesma jornada e aplicamos um NPS ao final de cada jornada completa, pedindo ao usuário a <b>percepção</b> de tempo estimado em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%). 131 de 603 usuários responderam.",
+      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Medimos então cada tarefa <b>separadamente</b> dentro da mesma jornada e aplicamos um NPS ao final de cada jornada completa, pedindo ao usuário a <b>percepção</b> de tempo estimado em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%). 311 de 603 usuários responderam.",
     metrics: [
       {
         num: "42%",
@@ -1105,7 +1105,7 @@ const copy = {
         label: "queda nas propostas devolvidas por erro de digitação",
       },
       {
-        num: "131",
+        num: "311",
         label: "usuários responderam ao NPS de percepção de tempo",
       },
     ],
@@ -1322,15 +1322,14 @@ const copy = {
       "We delivered final navigable screens, beyond the wireframe contract, as well as full business rule documentation, validated flows, and a system people can actually use — no workarounds, no WhatsApp as a work tool.",
     impactHeading: "Project Impact",
     impactMethodology:
-      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. So we measured each task <b>individually</b> within the same journey, then applied an NPS at the end of each completed journey asking users to estimate <b>perceived</b> time compared to the legacy system. We classified responses as: much worse (−10%), worse (−5%), same (0%), faster (+5%), or much faster (+10%). 131 of 603 users responded.",
+      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. So we measured each task <b>individually</b> within the same journey, then applied an NPS at the end of each completed journey asking users to estimate <b>perceived</b> time compared to the legacy system. We classified responses as: much worse (−10%), worse (−5%), same (0%), faster (+5%), or much faster (+10%). 311 of 603 users responded.",
     metrics: [
       {
         num: "42%",
-        label:
-          "perceived efficiency gain on the registration journey — best NPS result",
+        label: "perceived efficiency gain on the registration journey",
       },
       {
-        num: "31%",
+        num: "72%",
         label: "perceived efficiency gain on the simulation journey",
       },
       {
@@ -1342,7 +1341,7 @@ const copy = {
         num: "25%",
         label: "drop in proposals returned due to data entry errors",
       },
-      { num: "131", label: "users responded to the perceived time NPS" },
+      { num: "311", label: "users responded to the perceived time NPS" },
     ],
     reflexLabel: "Reflections & Learnings",
     teamHeading: "Team",

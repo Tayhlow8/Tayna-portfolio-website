@@ -113,11 +113,11 @@
 
 <script setup>
 import { computed } from 'vue'
-import rodobensCover from '../../imagens cases/rodobens/case rodobens cover 1.png'
-import masterCover   from '../../imagens cases/master globo/master globo avatars.avif'
-import lancomeCover  from '../../imagens cases/Lancme brazil/case desktp.avif'
-import yslCover      from '../../imagens cases/YSL Y intense/mobile exp.avif'
-import nv8Cover      from '../../clientes/nv8 case cover.png'
+import rodobensCover   from '../../imagens cases/rodobens/case rodobens cover 1.png'
+import iterationCover  from '../assets/iteration/Iteration thumb.png'
+import masterCover     from '../../imagens cases/master globo/master globo avatars.avif'
+import lancomeCover    from '../../imagens cases/Lancme brazil/case desktp.avif'
+import nv8Cover        from '../../clientes/nv8 case cover.png'
 
 const props = defineProps({
   theme: { type: String, default: 'light' },
@@ -330,6 +330,18 @@ const projects = computed(() => {
       featured: true,
     },
     {
+      slug    : 'rodobens-iteration',
+      client  : 'Rodobens · NV8',
+      year    : '2024',
+      category: t.value.categories.product,
+      title   : ({ PT: 'O Processo de Iteração', EN: 'The Iteration Process', ES: 'El Proceso de Iteración', DE: 'Der Iterationsprozess' })[l] || 'The Iteration Process',
+      desc    : ({ PT: 'Como espelhar intencionalmente um sistema legado quebrado desbloqueou as decisões de design que não chegaríamos de outra forma — um deep-dive no processo por trás de uma tela ERP complexa.', EN: "How intentionally mirroring a broken legacy system unlocked the design decisions we couldn't have reached any other way — a deep dive into the process behind a complex ERP screen.", ES: 'Cómo reflejar intencionalmente un sistema legacy roto desbloqueó las decisiones de diseño — un deep-dive en el proceso detrás de una pantalla ERP compleja.', DE: 'Wie das bewusste Spiegeln eines defekten Legacy-Systems Designentscheidungen ermöglichte — ein Deep-Dive in den Prozess hinter einem komplexen ERP-Bildschirm.' })[l] || '',
+      tags    : ['Process Design', 'Iteration', 'Systems Thinking'],
+      bg      : '#070510',
+      image   : iterationCover,
+      featured: false,
+    },
+    {
       slug    : 'master-globo',
       client  : 'Master Globo',
       year    : '2025',
@@ -353,19 +365,6 @@ const projects = computed(() => {
       bg      : 'linear-gradient(135deg, #110810 0%, #1a0d18 100%)',
       visual  : visualLancome,
       image   : lancomeCover,
-      featured: false,
-    },
-    {
-      slug    : 'yves-saint-laurent',
-      client  : 'Yves Saint Laurent',
-      year    : '2023',
-      category: t.value.categories.brand,
-      title   : ({ PT: 'Experiência Digital YSL', EN: 'YSL Digital Experience', ES: 'Experiencia Digital YSL', DE: 'YSL Digitale Erfahrung' })[l] || 'YSL Digital Experience',
-      desc    : ({ PT: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.", EN: "Crafting a digital experience worthy of one of the world's most iconic brands — where rock'n'roll meets luxury.", ES: "Creación de una experiencia digital a la altura de una de las marcas más icónicas del mundo. Donde el rock'n'roll se encuentra con el lujo.", DE: "Gestaltung eines digitalen Erlebnisses für eine der ikonischsten Marken der Welt — wo Rock'n'Roll auf Luxus trifft." })[l] || '',
-      tags    : ['Luxury', 'E-commerce', 'Brand Experience'],
-      bg      : 'linear-gradient(135deg, #0d0d0d 0%, #1a1010 100%)',
-      visual  : visualYSL,
-      image   : yslCover,
       featured: false,
     },
     {
