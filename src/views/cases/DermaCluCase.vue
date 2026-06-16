@@ -1,6 +1,5 @@
 <template>
   <article ref="rootEl" :class="['case-page', `theme-${theme}`]">
-
     <NavBar v-model:lang="lang" v-model:theme="theme" />
 
     <!-- Grain overlay -->
@@ -20,8 +19,8 @@
         </h1>
 
         <p class="case-subtitle">
-          Redesigning a broken checkout experience through heatmap-driven insights —
-          and shipping a variant that lifted revenue by&nbsp;+7.1%.
+          Redesigning a broken checkout experience through heatmap-driven
+          insights — and shipping a variant that lifted revenue by&nbsp;+7.1%.
         </p>
 
         <div class="case-meta-row">
@@ -58,7 +57,7 @@
           </div>
           <div class="result-divider" aria-hidden="true"></div>
           <div class="result-item">
-            <span class="result-num">+3.93%</span>
+            <span class="result-num">+32%</span>
             <span class="result-label">Checkout CTR</span>
           </div>
         </div>
@@ -69,16 +68,21 @@
     <section class="case-section">
       <div class="case-wrap case-wrap--narrow">
         <div class="section-label" aria-hidden="true">01 · Context</div>
-        <h2 class="section-heading">The&nbsp;problem with&nbsp;VTEX checkout</h2>
+        <h2 class="section-heading">
+          The&nbsp;problem with&nbsp;VTEX checkout
+        </h2>
         <p class="section-body">
-          DermaClub is L'Oréal Group's dermocosmetics loyalty brand in Brazil, operating on VTEX — a
-          platform that gives designers limited control over the checkout flow. Despite that constraint,
-          heatmap and clickmap data made it undeniable: the existing checkout was fragmenting users'
-          attention at exactly the wrong moment, causing drop-off before the final purchase confirmation.
+          DermaClub is L'Oréal Group's dermocosmetics loyalty brand in Brazil,
+          operating on VTEX — a platform that gives designers limited control
+          over the checkout flow. Despite that constraint, heatmap and clickmap
+          data made it undeniable: the existing checkout was fragmenting users'
+          attention at exactly the wrong moment, causing drop-off before the
+          final purchase confirmation.
         </p>
         <p class="section-body">
-          The hypothesis was straightforward — fix the broken elements, reorganize the information
-          hierarchy, and align the visual language with the brand guide. Then let the test decide.
+          The hypothesis was straightforward — fix the broken elements,
+          reorganize the information hierarchy, and align the visual language
+          with the brand guide. Then let the test decide.
         </p>
       </div>
     </section>
@@ -86,8 +90,10 @@
     <!-- ── BEFORE / AFTER ────────────────────────────────────── -->
     <section class="case-section">
       <div class="case-wrap">
-        <div class="section-label" aria-hidden="true">02 · Before &amp; After</div>
-        <h2 class="section-heading case-wrap--narrow" style="max-width:none">
+        <div class="section-label" aria-hidden="true">
+          02 · Before &amp; After
+        </div>
+        <h2 class="section-heading case-wrap--narrow" style="max-width: none">
           Side by side
         </h2>
 
@@ -106,9 +112,14 @@
             <ul class="ba-issues" aria-label="Issues identified">
               <li>Broken layout elements across desktop &amp; mobile</li>
               <li>Poor contrast between brand pink and orange tones</li>
-              <li>Loyalty point info grouped at completion step — wrong moment</li>
+              <li>
+                Loyalty point info grouped at completion step — wrong moment
+              </li>
               <li>Coupon, discount, and total scattered at page bottom</li>
-              <li>On mobile: elements overflowed the grid, CTA buried below fold, non-clickable breadcrumb receiving significant tap traffic</li>
+              <li>
+                On mobile: elements overflowed the grid, CTA buried below fold,
+                non-clickable breadcrumb receiving significant tap traffic
+              </li>
             </ul>
           </div>
 
@@ -123,12 +134,29 @@
                 loading="lazy"
               />
             </div>
-            <ul class="ba-issues ba-issues--after" aria-label="Improvements shipped">
-              <li>Light background improves readability at a high-stakes decision moment</li>
-              <li>Loyalty info simplified and repositioned — progressive disclosure in action</li>
-              <li>Rounded edges &amp; brand-correct contrast colors restore visual hierarchy</li>
-              <li>Consistent styling across cart items despite platform grouping constraints</li>
-              <li>Free shipping surfaced prominently — a proven conversion lever</li>
+            <ul
+              class="ba-issues ba-issues--after"
+              aria-label="Improvements shipped"
+            >
+              <li>
+                Light background improves readability at a high-stakes decision
+                moment
+              </li>
+              <li>
+                Loyalty info simplified and repositioned — progressive
+                disclosure in action
+              </li>
+              <li>
+                Rounded edges &amp; brand-correct contrast colors restore visual
+                hierarchy
+              </li>
+              <li>
+                Consistent styling across cart items despite platform grouping
+                constraints
+              </li>
+              <li>
+                Free shipping surfaced prominently — a proven conversion lever
+              </li>
             </ul>
           </div>
         </div>
@@ -138,8 +166,10 @@
     <!-- ── DESIGN DECISIONS ──────────────────────────────────── -->
     <section class="case-section case-section--alt">
       <div class="case-wrap">
-        <div class="section-label" aria-hidden="true">03 · Design Decisions</div>
-        <h2 class="section-heading case-wrap--narrow" style="max-width:none">
+        <div class="section-label" aria-hidden="true">
+          03 · Design Decisions
+        </div>
+        <h2 class="section-heading case-wrap--narrow" style="max-width: none">
           Every change had a reason
         </h2>
 
@@ -150,7 +180,9 @@
             class="decision-card"
             :style="`--anim-delay: ${i * 0.07}s`"
           >
-            <div class="decision-num" aria-hidden="true">{{ String(i + 1).padStart(2, '0') }}</div>
+            <div class="decision-num" aria-hidden="true">
+              {{ String(i + 1).padStart(2, "0") }}
+            </div>
             <h3 class="decision-title">{{ d.title }}</h3>
             <p class="decision-body">{{ d.body }}</p>
           </div>
@@ -162,14 +194,15 @@
     <section class="case-section">
       <div class="case-wrap">
         <div class="case-two-col">
-
           <!-- LEFT: Mobile Issues (04) + Learnings (06) -->
           <div class="two-col-left">
-            <div class="section-label" aria-hidden="true">04 · Mobile-Specific Issues</div>
+            <div class="section-label" aria-hidden="true">
+              04 · Mobile-Specific Issues
+            </div>
             <h2 class="section-heading">Mobile was a different beast</h2>
             <p class="section-body">
-              The desktop issues were significant, but mobile had its own layer of problems that heatmap
-              analysis made impossible to ignore.
+              The desktop issues were significant, but mobile had its own layer
+              of problems that heatmap analysis made impossible to ignore.
             </p>
             <div class="mobile-issues-list">
               <div v-for="(m, i) in mobileIssues" :key="i" class="mobile-issue">
@@ -182,11 +215,13 @@
               <div class="section-label" aria-hidden="true">06 · Learnings</div>
               <h2 class="section-heading">What I took from this</h2>
               <p class="section-body">
-                Platform constraints are not an excuse — they're a design brief. Working within VTEX's
-                limited checkout customization options forced me to be precise: every change had to count,
-                and every decision needed to be justifiable by data, not aesthetics alone. The discipline
-                of working with heatmaps and clickmaps as primary research artifacts also reinforced how
-                much behavioral evidence already exists in running products — before you run a single
+                Platform constraints are not an excuse — they're a design brief.
+                Working within VTEX's limited checkout customization options
+                forced me to be precise: every change had to count, and every
+                decision needed to be justifiable by data, not aesthetics alone.
+                The discipline of working with heatmaps and clickmaps as primary
+                research artifacts also reinforced how much behavioral evidence
+                already exists in running products — before you run a single
                 interview or write a single survey.
               </p>
             </div>
@@ -197,9 +232,11 @@
             <div class="section-label" aria-hidden="true">05 · Results</div>
             <h2 class="section-heading">The test won</h2>
             <p class="section-body">
-              The redesigned variant was tested against the original in a controlled A/B experiment.
-              All three primary metrics improved — validating the hypothesis that clarity, hierarchy, and
-              brand consistency directly drive conversion in high-stakes checkout flows.
+              The redesigned variant was tested against the original in a
+              controlled A/B experiment. All three primary metrics improved —
+              validating the hypothesis that clarity, hierarchy, and brand
+              consistency directly drive conversion in high-stakes checkout
+              flows.
             </p>
 
             <div class="results-cards">
@@ -210,14 +247,14 @@
               </div>
             </div>
 
-            <p class="section-body" style="margin-top: 2rem;">
-              Within the constraints of the VTEX platform — which limits the degree of checkout
-              customisation available to designers — these gains demonstrate that well-reasoned
-              UX improvements, grounded in real behavioral data, move the needle even when you
-              can't fully control the canvas.
+            <p class="section-body" style="margin-top: 2rem">
+              Within the constraints of the VTEX platform — which limits the
+              degree of checkout customisation available to designers — these
+              gains demonstrate that well-reasoned UX improvements, grounded in
+              real behavioral data, move the needle even when you can't fully
+              control the canvas.
             </p>
           </div>
-
         </div>
       </div>
     </section>
@@ -233,129 +270,136 @@
             <span class="case-nav-arr" aria-hidden="true">←</span>
             All work
           </router-link>
-          <router-link to="/work/lancome" class="case-nav-link case-nav-link--next">
+          <router-link
+            to="/work/lancome"
+            class="case-nav-link case-nav-link--next"
+          >
             Next case
             <span class="case-nav-arr" aria-hidden="true">→</span>
           </router-link>
         </div>
       </div>
     </nav>
-
   </article>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import NavBar        from '../../../secoes/NavBar.vue'
-import { useLang }   from '../../composables/useLang'
-import ContactSection from '../../../secoes/ContactSection.vue'
-import imgBefore from '../../../imagens cases/dermaclub/checkout before.avif'
-import imgAfter  from '../../../imagens cases/dermaclub/checkout after.avif'
+import { ref, onMounted, onUnmounted } from "vue";
+import NavBar from "../../../secoes/NavBar.vue";
+import { useLang } from "../../composables/useLang";
+import ContactSection from "../../../secoes/ContactSection.vue";
+import imgBefore from "../../../imagens cases/dermaclub/checkout before.avif";
+import imgAfter from "../../../imagens cases/dermaclub/checkout after.avif";
 
 const props = defineProps({
-  lang:  { type: String, default: 'EN' },
-  theme: { type: String, default: 'light' }
-})
+  lang: { type: String, default: "EN" },
+  theme: { type: String, default: "light" },
+});
 
-const { lang } = useLang()
-const theme = ref(props.theme)
+const { lang } = useLang();
+const theme = ref(props.theme);
 
 // ── Parallax ─────────────────────────────────────────────────
-const rootEl = ref(null)
-let rafId = null
+const rootEl = ref(null);
+let rafId = null;
 
-function updateParallax () {
-  if (!rootEl.value) return
-  const vh = window.innerHeight
-  rootEl.value.querySelectorAll('.result-num, .result-card-num').forEach(el => {
-    const rect = el.getBoundingClientRect()
-    if (rect.top > vh || rect.bottom < 0) { el.style.transform = ''; return }
-    // t: 0 when element center is at top of viewport, 1 when at bottom
-    const t      = (rect.top + rect.height / 2) / vh
-    // shift from +25px (entering from bottom) to -25px (leaving top)
-    el.style.transform = `translateY(${(t - 0.5) * 50}px)`
-  })
+function updateParallax() {
+  if (!rootEl.value) return;
+  const vh = window.innerHeight;
+  rootEl.value
+    .querySelectorAll(".result-num, .result-card-num")
+    .forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top > vh || rect.bottom < 0) {
+        el.style.transform = "";
+        return;
+      }
+      // t: 0 when element center is at top of viewport, 1 when at bottom
+      const t = (rect.top + rect.height / 2) / vh;
+      // shift from +25px (entering from bottom) to -25px (leaving top)
+      el.style.transform = `translateY(${(t - 0.5) * 50}px)`;
+    });
 }
 
-function onScroll () {
-  if (rafId) cancelAnimationFrame(rafId)
-  rafId = requestAnimationFrame(updateParallax)
+function onScroll() {
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(updateParallax);
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-})
+  window.addEventListener("scroll", onScroll, { passive: true });
+});
 onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-  if (rafId) cancelAnimationFrame(rafId)
-})
+  window.removeEventListener("scroll", onScroll);
+  if (rafId) cancelAnimationFrame(rafId);
+});
 
 const decisions = [
   {
-    title: 'Light background for a cleaner reading environment',
-    body: 'A lighter surface reduces eye strain and strips away visual noise at the most critical decision-making step. Users need focus, not stimulation, right before they commit to a purchase.'
+    title: "Light background for a cleaner reading environment",
+    body: "A lighter surface reduces eye strain and strips away visual noise at the most critical decision-making step. Users need focus, not stimulation, right before they commit to a purchase.",
   },
   {
-    title: 'Progressive disclosure for loyalty points',
-    body: "Centering and minimizing the scoring block respects a core UX principle: show information when it's contextually useful, not just because it exists. Loyalty data during order confirmation competes with the CTA for attention it shouldn't have."
+    title: "Progressive disclosure for loyalty points",
+    body: "Centering and minimizing the scoring block respects a core UX principle: show information when it's contextually useful, not just because it exists. Loyalty data during order confirmation competes with the CTA for attention it shouldn't have.",
   },
   {
-    title: 'Rounded edges and brand-correct contrast colors',
-    body: 'Aligning with the official brand guide resolved both accessibility and identity issues simultaneously. Softer box edges reduced perceived interaction cost; corrected contrast values ensured WCAG compliance and clearer visual hierarchy.'
+    title: "Rounded edges and brand-correct contrast colors",
+    body: "Aligning with the official brand guide resolved both accessibility and identity issues simultaneously. Softer box edges reduced perceived interaction cost; corrected contrast values ensured WCAG compliance and clearer visual hierarchy.",
   },
   {
-    title: 'Visual unity despite platform grouping constraints',
-    body: "VTEX prevented us from grouping product samples into a single container. We compensated through consistent styling — matching spacing, backgrounds, typography, and interaction states — so the interface felt intentional, not fragmented."
+    title: "Visual unity despite platform grouping constraints",
+    body: "VTEX prevented us from grouping product samples into a single container. We compensated through consistent styling — matching spacing, backgrounds, typography, and interaction states — so the interface felt intentional, not fragmented.",
   },
   {
-    title: 'Free shipping made unmissable',
-    body: "Free shipping is one of the strongest known drivers of checkout completion. We elevated its visual prominence so it delivers its positive reinforcement precisely where cart abandonment risk peaks."
+    title: "Free shipping made unmissable",
+    body: "Free shipping is one of the strongest known drivers of checkout completion. We elevated its visual prominence so it delivers its positive reinforcement precisely where cart abandonment risk peaks.",
   },
   {
-    title: 'ZIP code editing after selection',
-    body: "Removing the need to restart the checkout flow to correct an address reduces a significant friction point. This aligns with Nielsen's error prevention and recovery heuristics — users should always feel in control."
+    title: "ZIP code editing after selection",
+    body: "Removing the need to restart the checkout flow to correct an address reduces a significant friction point. This aligns with Nielsen's error prevention and recovery heuristics — users should always feel in control.",
   },
   {
-    title: 'Consistent box alignment',
-    body: 'Predictable layout rhythm reduces cognitive effort during scanning. When boxes align, users can process cart details faster — the interface stops being an obstacle and becomes a guide.'
-  }
-]
+    title: "Consistent box alignment",
+    body: "Predictable layout rhythm reduces cognitive effort during scanning. When boxes align, users can process cart details faster — the interface stops being an obstacle and becomes a guide.",
+  },
+];
 
 const mobileIssues = [
-  'Elements overflowed the grid and broke the layout on small screens.',
-  'Button hierarchy was flat — primary CTA did not stand out visually.',
-  'No scrollbar indicators left users unaware that content continued below the fold.',
-  'Heatmap data showed significant tap volume on the breadcrumb at the top — a non-interactive element — indicating user confusion about navigation and progress.'
-]
+  "Elements overflowed the grid and broke the layout on small screens.",
+  "Button hierarchy was flat — primary CTA did not stand out visually.",
+  "No scrollbar indicators left users unaware that content continued below the fold.",
+  "Heatmap data showed significant tap volume on the breadcrumb at the top — a non-interactive element — indicating user confusion about navigation and progress.",
+];
 
 const results = [
   {
-    num: '+7.10%',
-    label: 'Revenue',
-    desc: 'The cleaner hierarchy and reduced friction at checkout drove measurable uplift in overall revenue during the test window.'
+    num: "+7.10%",
+    label: "Revenue",
+    desc: "The cleaner hierarchy and reduced friction at checkout drove measurable uplift in overall revenue during the test window.",
   },
   {
-    num: '+5.71%',
-    label: 'Conversion Rate',
-    desc: 'More users who entered the checkout flow completed their purchase — a direct reflection of reduced cognitive load and fewer layout obstacles.'
+    num: "+5.71%",
+    label: "Conversion Rate",
+    desc: "More users who entered the checkout flow completed their purchase — a direct reflection of reduced cognitive load and fewer layout obstacles.",
   },
   {
-    num: '+3.93%',
-    label: 'Checkout CTR',
-    desc: 'More users clicked through to initiate checkout from the cart, suggesting the improved cart UI also built confidence earlier in the funnel.'
-  }
-]
+    num: "+32%",
+    label: "Checkout CTR",
+    desc: "More users clicked through to initiate checkout from the cart, suggesting the improved cart UI also built confidence earlier in the funnel.",
+  },
+];
 </script>
 
 <style scoped>
 /* ── TOKENS (local) ───────────────────────────────────────── */
 .case-page {
-  --accent:        #F0185A;
-  --accent-glow:   rgba(240, 24, 90, .12);
-  --accent-soft:   rgba(240, 24, 90, .4);
-  --font-display:  'Clash Display', sans-serif;
-  --font-body:     'DM Sans', sans-serif;
-  --ease-expo:     cubic-bezier(.16, 1, .3, 1);
+  --accent: #f0185a;
+  --accent-glow: rgba(240, 24, 90, 0.12);
+  --accent-soft: rgba(240, 24, 90, 0.4);
+  --font-display: "Clash Display", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   position: relative;
   overflow-x: hidden;
@@ -364,33 +408,36 @@ const results = [
 }
 
 .theme-dark {
-  --bg:           #070711;
-  --fg:           #F0EFF8;
-  --fg-muted:     #6B6A82;
-  --fg-faint:     #22213A;
-  --border:       rgba(255, 255, 255, .07);
-  --ghost-border: rgba(255, 255, 255, .11);
-  --alt-bg:       #0C0C1A;
+  --bg: #070711;
+  --fg: #f0eff8;
+  --fg-muted: #6b6a82;
+  --fg-faint: #22213a;
+  --border: rgba(255, 255, 255, 0.07);
+  --ghost-border: rgba(255, 255, 255, 0.11);
+  --alt-bg: #0c0c1a;
 }
 .theme-light {
-  --bg:           #F5F3FF;
-  --fg:           #0D0C1A;
-  --fg-muted:     #62607A;
-  --fg-faint:     #D2CFEA;
-  --border:       rgba(0, 0, 0, .08);
-  --ghost-border: rgba(13, 12, 26, .12);
-  --alt-bg:       #EDEAF8;
+  --bg: #f5f3ff;
+  --fg: #0d0c1a;
+  --fg-muted: #62607a;
+  --fg-faint: #d2cfea;
+  --border: rgba(0, 0, 0, 0.08);
+  --ghost-border: rgba(13, 12, 26, 0.12);
+  --alt-bg: #edeaf8;
 }
 
 /* ── BASE ────────────────────────────────────────────────── */
-.case-page { background: var(--bg); color: var(--fg); }
+.case-page {
+  background: var(--bg);
+  color: var(--fg);
+}
 
 .grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: .04;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
 }
@@ -400,7 +447,9 @@ const results = [
   z-index: 2;
   padding: 0 1.5rem;
 }
-.case-wrap--narrow { max-width: 680px; }
+.case-wrap--narrow {
+  max-width: 680px;
+}
 
 /* ── HERO ────────────────────────────────────────────────── */
 .case-hero {
@@ -412,10 +461,10 @@ const results = [
 .case-eyebrow {
   display: flex;
   align-items: center;
-  gap: .5rem;
-  font-size: .6rem;
+  gap: 0.5rem;
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: .16em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--fg-muted);
   margin-bottom: 2rem;
@@ -435,8 +484,8 @@ const results = [
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(3.2rem, 10vw, 7rem);
-  line-height: .87;
-  letter-spacing: -.025em;
+  line-height: 0.87;
+  letter-spacing: -0.025em;
   margin-bottom: 2rem;
 }
 .case-title em {
@@ -445,7 +494,7 @@ const results = [
 }
 
 .case-subtitle {
-  font-size: clamp(.875rem, 2vw, 1.05rem);
+  font-size: clamp(0.875rem, 2vw, 1.05rem);
   font-weight: 300;
   line-height: 1.8;
   color: var(--fg-muted);
@@ -459,19 +508,23 @@ const results = [
   gap: 2rem;
   flex-wrap: wrap;
 }
-.case-meta-item { display: flex; flex-direction: column; gap: .3rem; }
+.case-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 .case-meta-label {
-  font-size: .5rem;
+  font-size: 0.5rem;
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
 }
 .case-meta-value {
   font-family: var(--font-display);
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   color: var(--fg);
 }
 .case-meta-divider {
@@ -490,7 +543,7 @@ const results = [
   overflow: hidden;
 }
 .results-band::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: var(--accent-glow);
@@ -502,7 +555,12 @@ const results = [
   gap: 3rem;
   flex-wrap: wrap;
 }
-.result-item { display: flex; flex-direction: column; align-items: center; gap: .4rem; }
+.result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
 .result-num {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3rem);
@@ -513,9 +571,9 @@ const results = [
   display: inline-block;
 }
 .result-label {
-  font-size: .55rem;
+  font-size: 0.55rem;
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
 }
@@ -526,10 +584,16 @@ const results = [
 }
 
 /* ── SECTIONS ────────────────────────────────────────────── */
-.case-section { padding: clamp(4rem, 8vw, 7rem) 0; position: relative; z-index: 2; }
-.case-section--alt { background: var(--alt-bg); }
+.case-section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  position: relative;
+  z-index: 2;
+}
+.case-section--alt {
+  background: var(--alt-bg);
+}
 .case-section--alt::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-top: 1px solid var(--border);
@@ -538,18 +602,18 @@ const results = [
 }
 
 .section-label {
-  font-size: .55rem;
+  font-size: 0.55rem;
   font-weight: 500;
-  letter-spacing: .18em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 .section-label::before {
-  content: '';
+  content: "";
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -562,19 +626,21 @@ const results = [
   font-weight: 600;
   font-size: clamp(1.4rem, 4vw, 2.4rem);
   line-height: 1.15;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
 }
 
 .section-body {
-  font-size: clamp(.875rem, 2vw, .975rem);
+  font-size: clamp(0.875rem, 2vw, 0.975rem);
   font-weight: 300;
   line-height: 1.85;
   color: var(--fg-muted);
   max-width: 62ch;
   margin-bottom: 1.25rem;
 }
-.section-body:last-child { margin-bottom: 0; }
+.section-body:last-child {
+  margin-bottom: 0;
+}
 
 /* ── BEFORE / AFTER ──────────────────────────────────────── */
 .ba-grid {
@@ -585,27 +651,44 @@ const results = [
   border: 1px solid var(--border);
 }
 @media (max-width: 768px) {
-  .ba-grid { grid-template-columns: 1fr; }
+  .ba-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.ba-col { display: flex; flex-direction: column; }
-.ba-col:first-child { border-right: 1px solid var(--border); }
+.ba-col {
+  display: flex;
+  flex-direction: column;
+}
+.ba-col:first-child {
+  border-right: 1px solid var(--border);
+}
 
 @media (max-width: 768px) {
-  .ba-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .ba-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
 }
 
 .ba-badge {
   display: inline-block;
-  font-size: .5rem;
+  font-size: 0.5rem;
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--border);
 }
-.ba-badge--before { color: var(--fg-muted); background: transparent; }
-.ba-badge--after  { color: #fff; background: var(--accent); border-color: var(--accent); }
+.ba-badge--before {
+  color: var(--fg-muted);
+  background: transparent;
+}
+.ba-badge--after {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
 
 .ba-image-wrap {
   overflow: hidden;
@@ -619,9 +702,11 @@ const results = [
   object-fit: cover;
   object-position: top;
   display: block;
-  transition: transform .6s var(--ease-expo);
+  transition: transform 0.6s var(--ease-expo);
 }
-.ba-image-wrap:hover .ba-image { transform: scale(1.02); }
+.ba-image-wrap:hover .ba-image {
+  transform: scale(1.02);
+}
 
 .ba-issues {
   list-style: none;
@@ -630,10 +715,10 @@ const results = [
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: .75rem;
+  gap: 0.75rem;
 }
 .ba-issues li {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 300;
   line-height: 1.6;
   color: var(--fg-muted);
@@ -641,13 +726,18 @@ const results = [
   position: relative;
 }
 .ba-issues li::before {
-  content: '—';
+  content: "—";
   position: absolute;
   left: 0;
   color: var(--fg-faint);
 }
-.ba-issues--after li { color: var(--fg); }
-.ba-issues--after li::before { color: var(--accent); content: '+'; }
+.ba-issues--after li {
+  color: var(--fg);
+}
+.ba-issues--after li::before {
+  color: var(--accent);
+  content: "+";
+}
 
 /* ── DECISIONS GRID ──────────────────────────────────────── */
 .decisions-grid {
@@ -662,30 +752,32 @@ const results = [
   padding: 2rem 1.75rem;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  transition: background .2s ease;
+  transition: background 0.2s ease;
 }
-.decision-card:hover { background: var(--accent-glow); }
+.decision-card:hover {
+  background: var(--accent-glow);
+}
 
 .decision-num {
   font-family: var(--font-display);
-  font-size: .7rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--accent);
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   margin-bottom: 1rem;
 }
 
 .decision-title {
   font-family: var(--font-display);
-  font-size: .95rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
   color: var(--fg);
 }
 
 .decision-body {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 300;
   line-height: 1.75;
   color: var(--fg-muted);
@@ -708,10 +800,10 @@ const results = [
   width: 1px;
   height: 1.4rem;
   background: var(--accent);
-  margin-top: .1rem;
+  margin-top: 0.1rem;
 }
 .mobile-issue p {
-  font-size: .875rem;
+  font-size: 0.875rem;
   font-weight: 300;
   line-height: 1.75;
   color: var(--fg-muted);
@@ -727,7 +819,9 @@ const results = [
   border: 1px solid var(--border);
 }
 @media (max-width: 640px) {
-  .results-cards { grid-template-columns: 1fr; }
+  .results-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .result-card {
@@ -735,9 +829,11 @@ const results = [
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
-.result-card:last-child { border-right: none; }
+.result-card:last-child {
+  border-right: none;
+}
 
 .result-card-num {
   font-family: var(--font-display);
@@ -749,18 +845,18 @@ const results = [
   display: inline-block;
 }
 .result-card-label {
-  font-size: .55rem;
+  font-size: 0.55rem;
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg);
 }
 .result-card-desc {
-  font-size: .78rem;
+  font-size: 0.78rem;
   font-weight: 300;
   line-height: 1.7;
   color: var(--fg-muted);
-  margin: .5rem 0 0;
+  margin: 0.5rem 0 0;
 }
 
 /* ── LEARNINGS INSIDE LEFT COL ───────────────────────────── */
@@ -822,42 +918,74 @@ const results = [
 .case-nav-link {
   display: flex;
   align-items: center;
-  gap: .75rem;
-  font-size: .6rem;
+  gap: 0.75rem;
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: .14em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
   text-decoration: none;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
-.case-nav-link:hover { color: var(--accent); }
-.case-nav-arr { font-size: 1rem; transition: transform .2s ease; }
-.case-nav-link--back:hover .case-nav-arr { transform: translateX(-4px); }
-.case-nav-link--next:hover .case-nav-arr { transform: translateX(4px); }
+.case-nav-link:hover {
+  color: var(--accent);
+}
+.case-nav-arr {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+.case-nav-link--back:hover .case-nav-arr {
+  transform: translateX(-4px);
+}
+.case-nav-link--next:hover .case-nav-arr {
+  transform: translateX(4px);
+}
 
 /* ── ANIMATIONS ──────────────────────────────────────────── */
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: .4; transform: scale(.8); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────── */
 @media (min-width: 640px) {
-  .case-wrap { padding: 0 3rem; }
+  .case-wrap {
+    padding: 0 3rem;
+  }
 }
 @media (min-width: 1024px) {
-  .case-wrap { padding: 0 7rem; }
+  .case-wrap {
+    padding: 0 7rem;
+  }
 }
 @media (min-width: 1400px) {
-  .case-wrap { padding: 0 10rem; }
+  .case-wrap {
+    padding: 0 10rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .case-meta-row { gap: 1rem; }
-  .case-meta-divider { display: none; }
-  .results-grid { gap: 1.5rem; }
-  .result-divider { display: none; }
-  .decisions-grid { grid-template-columns: 1fr; }
+  .case-meta-row {
+    gap: 1rem;
+  }
+  .case-meta-divider {
+    display: none;
+  }
+  .results-grid {
+    gap: 1.5rem;
+  }
+  .result-divider {
+    display: none;
+  }
+  .decisions-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
