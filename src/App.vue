@@ -83,13 +83,13 @@
         :lang="lang"
       />
 
-      <BrandsSection   :theme="theme" :lang="lang" />
-      <ProjectsSection :theme="theme" :lang="lang" />
-
       <AboutSection
         :theme="theme"
         :lang="lang"
       />
+
+      <ProjectsSection :theme="theme" :lang="lang" />
+      <BrandsSection   :theme="theme" :lang="lang" />
 
       <ProcessSection      :theme="theme" :lang="lang" />
       <TestimonialsSection :theme="theme" :lang="lang" />
@@ -180,7 +180,10 @@ watch(
   font-family  : var(--font-body);
   min-height   : 100svh;
   position     : relative;
-  overflow-x   : hidden;
+  /* overflow-x:hidden alone forces overflow-y:auto, which creates a new
+     scroll container and silently breaks position:sticky on child sections.
+     Fix: clip only visually without creating a scroll container. */
+  overflow-x   : clip;
   transition   : background 0.5s ease, color 0.5s ease;
 }
 
@@ -228,10 +231,10 @@ watch(
 /* Respiro intencional entre seções */
 .brands-root,
 .projects-root,
-.ab-root,
 .ps-root {
   margin-top: var(--sp-24);
 }
+/* ab-root is position:sticky — margin lives on ab-driver (set in component) */
 @media print {
   .btt-btn { display: none !important; }
 }

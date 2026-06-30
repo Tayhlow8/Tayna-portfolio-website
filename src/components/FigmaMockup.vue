@@ -129,7 +129,7 @@ defineProps({
 .fm-avatar {
   display: flex; align-items: center; justify-content: center;
   width: 18px; height: 18px; border-radius: 50%;
-  background: #F0185A; font-size: 0.38rem; font-weight: 700;
+  background: #DB1552; font-size: 0.38rem; font-weight: 700;
   color: white; letter-spacing: 0.02em;
 }
 
@@ -165,10 +165,10 @@ defineProps({
   font-weight: 700; font-size: 14px;
   letter-spacing: -0.02em; line-height: 1.2; color: #F0EFF8;
 }
-.fm-el-head em { font-style: italic; color: #F0185A; }
+.fm-el-head em { font-style: italic; color: #DB1552; }
 
 /* Sub */
-.fm-el-sub { font-size: 7px; font-weight: 400; color: #6B6A82; line-height: 1.4; }
+.fm-el-sub { font-size: 7px; font-weight: 400; color: #777691; line-height: 1.4; }
 
 /* Rule */
 .fm-el-rule {
@@ -182,7 +182,7 @@ defineProps({
   position: relative;
   display: inline-flex; align-items: center; justify-content: center;
   align-self: flex-start;
-  background: #F0185A; color: white;
+  background: #DB1552; color: white;
   font-size: 6px; font-weight: 600; letter-spacing: 0.1em;
   text-transform: uppercase; padding: 5px 10px; white-space: nowrap;
 }
@@ -190,14 +190,14 @@ defineProps({
 /* Selection */
 .fm-sel {
   position: absolute; inset: -2px;
-  border: 1.5px solid #F0185A; pointer-events: none; opacity: 0;
+  border: 1.5px solid #DB1552; pointer-events: none; opacity: 0;
 }
 .fm-sel--h { animation: fm-sel-h  9s ease-in-out infinite; }
 .fm-sel--b { animation: fm-sel-b  9s ease-in-out infinite; }
 
 .fm-hnd {
   position: absolute; width: 5px; height: 5px;
-  background: white; border: 1.5px solid #F0185A; border-radius: 1px;
+  background: white; border: 1.5px solid #DB1552; border-radius: 1px;
 }
 .fm-hnd--tl { top: -3px;    left: -3px;  }
 .fm-hnd--tr { top: -3px;    right: -3px; }
@@ -207,7 +207,7 @@ defineProps({
 /* Tooltips */
 .fm-tip {
   position: absolute;
-  background: #F0185A; color: white;
+  background: #DB1552; color: white;
   font-size: 0.38rem; font-weight: 600; letter-spacing: 0.08em;
   text-transform: uppercase; padding: 2px 6px;
   white-space: nowrap; opacity: 0; pointer-events: none; z-index: 6;

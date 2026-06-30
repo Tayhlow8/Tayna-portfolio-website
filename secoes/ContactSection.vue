@@ -1,5 +1,5 @@
 <template>
-  <section id="contato" class="ct-root">
+  <section id="contato" class="ct-root" aria-labelledby="contato-heading">
 
     <!-- Grain decorativo -->
     <div class="ct-grain" aria-hidden="true"></div>
@@ -24,7 +24,7 @@
       </div>
 
       <!-- Título principal -->
-      <h2 class="ct-title" v-html="t.title"></h2>
+      <h2 id="contato-heading" class="ct-title" v-html="t.title"></h2>
 
       <!-- Subtítulo -->
       <p class="ct-sub">{{ t.sub }}</p>

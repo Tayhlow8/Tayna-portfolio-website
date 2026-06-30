@@ -352,7 +352,7 @@ async function askQuick (btn) {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #6B6A82;
+  color: #9A98B4;
   transition: background .2s, color .2s, border-color .2s;
   -webkit-tap-highlight-color: transparent;
 }
@@ -401,7 +401,7 @@ async function askQuick (btn) {
 .cw-header-sub {
   font-size: 10px; font-weight: 500;
   letter-spacing: .12em; text-transform: uppercase;
-  color: #6B6A82; margin-top: 3px;
+  color: #9A98B4; margin-top: 3px;
 }
 
 /* ── Body / messages ── */
@@ -451,7 +451,7 @@ async function askQuick (btn) {
 }
 .cw-dots span {
   width: 5px; height: 5px; border-radius: 50%;
-  background: #6B6A82;
+  background: #9A98B4;
   animation: cw-dot-bounce 1.2s ease-in-out infinite;
 }
 .cw-dots span:nth-child(2) { animation-delay: .2s; }
@@ -503,7 +503,7 @@ async function askQuick (btn) {
 .cw-qbtn:hover .cw-qbtn-icon { background: rgba(240,24,90,.18); }
 
 .cw-qbtn-arr {
-  margin-left: auto; color: #6B6A82; font-size: 12px;
+  margin-left: auto; color: #9A98B4; font-size: 12px;
   transition: transform .2s, color .2s;
 }
 .cw-qbtn:hover .cw-qbtn-arr { transform: translateX(3px); color: #F0185A; }
@@ -544,7 +544,7 @@ async function askQuick (btn) {
   border-top: 1px solid rgba(255,255,255,.05);
   font-family: 'DM Sans', sans-serif;
   font-size: 11px; font-weight: 300;
-  color: #6B6A82;
+  color: #9A98B4;
   flex-shrink: 0;
 }
 .cw-footer-link {

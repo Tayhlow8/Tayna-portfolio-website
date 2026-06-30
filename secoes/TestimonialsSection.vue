@@ -1,5 +1,5 @@
 <template>
-  <section id="recomendacoes" class="tm-root">
+  <section id="recomendacoes" class="tm-root" aria-labelledby="recomendacoes-heading">
 
     <!-- Label de seção -->
     <div class="tm-top-rule">
@@ -20,10 +20,10 @@
     </div>
 
     <!-- Título -->
-    <h2 class="tm-title" v-html="t.title"></h2>
+    <h2 id="recomendacoes-heading" class="tm-title" v-html="t.title"></h2>
 
     <!-- Marquee wrapper (fade nas bordas) -->
-    <div class="tm-stage" :aria-label="t.sectionLabel">
+    <div class="tm-stage" role="region" :aria-label="t.sectionLabel">
       <div class="tm-track">
         <!-- Duplicamos os cards pra o loop ser seamless -->
         <template v-for="pass in 2" :key="pass">

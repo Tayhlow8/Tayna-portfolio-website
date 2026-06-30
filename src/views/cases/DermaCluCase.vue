@@ -729,7 +729,7 @@ const results = [
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--fg-faint);
+  color: var(--fg-muted);
 }
 .ba-issues--after li {
   color: var(--fg);

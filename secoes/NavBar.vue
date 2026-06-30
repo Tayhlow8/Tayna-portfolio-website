@@ -1,5 +1,5 @@
 <template>
-  <nav class="pf-nav" role="navigation" aria-label="Main navigation">
+  <nav class="pf-nav" :class="{ 'pf-nav--scrolled': scrolled }" aria-label="Main navigation">
 
     <!-- LOGO -->
     <router-link to="/" class="nav-logo" aria-label="Tayná Schultz — Home">
@@ -7,14 +7,13 @@
     </router-link>
 
     <!-- DESKTOP NAV LINKS (centered) -->
-    <div class="nav-links" role="list">
+    <div class="nav-links">
       <router-link
         v-for="link in navLinks"
         :key="link.to"
         :to="link.to"
         class="nav-link"
         :class="{ active: route.path === link.to || (link.to !== '/' && route.path.startsWith(link.to)) }"
-        role="listitem"
       >
         {{ link.label[lang] || link.label['PT'] }}
       </router-link>
@@ -28,7 +27,7 @@
         <button
           class="nav-lang-btn"
           :class="{ open: langOpen }"
-          aria-haspopup="listbox"
+          aria-haspopup="menu"
           :aria-expanded="langOpen"
           @click.stop="toggleLang"
         >
@@ -45,7 +44,7 @@
         <div
           class="nav-lang-dropdown"
           :class="{ open: langOpen }"
-          role="listbox"
+          role="menu"
           aria-label="Selecionar idioma"
         >
           <button
@@ -53,6 +52,8 @@
             :key="opt.code"
             class="lang-option"
             :class="{ selected: lang === opt.code }"
+            role="menuitem"
+            :aria-current="lang === opt.code ? 'true' : undefined"
             @click="selectLang(opt.code)"
           >
             <span class="lang-flag">{{ opt.flag }}</span>
@@ -177,6 +178,16 @@ function onClickOutside (e) {
 onMounted(()   => document.addEventListener('click', onClickOutside))
 onUnmounted(() => document.removeEventListener('click', onClickOutside))
 
+// ── Scroll-aware background ────────────────────────────────
+const scrolled = ref(false)
+
+function onScroll () {
+  scrolled.value = window.scrollY > 60
+}
+
+onMounted(()   => window.addEventListener('scroll', onScroll, { passive: true }))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
+
 // ── Theme ──────────────────────────────────────────────────
 function toggleTheme () {
   emit('update:theme', props.theme === 'dark' ? 'light' : 'dark')
@@ -247,15 +258,16 @@ const drawerBg = computed(() =>
   height: 56px;
   padding: 0 clamp(1rem, 5vw, 4rem);
 
-  background: var(--glass-bg);
-  border-bottom: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-
-  box-shadow:
-    inset 0 -1px 0 var(--glass-border),
-    0 8px 32px var(--glass-shadow),
-    0 2px 8px rgba(0,0,0,.08);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    backdrop-filter 0.4s ease;
 
   animation: nav-in .8s cubic-bezier(.16,1,.3,1) both;
 }
@@ -263,6 +275,17 @@ const drawerBg = computed(() =>
 @keyframes nav-in {
   from { opacity:0; transform:translateY(-16px); filter:blur(8px); }
   to   { opacity:1; transform:translateY(0);     filter:blur(0);   }
+}
+
+.pf-nav--scrolled {
+  background: var(--glass-bg);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow:
+    inset 0 -1px 0 var(--glass-border),
+    0 8px 32px var(--glass-shadow),
+    0 2px 8px rgba(0,0,0,.08);
 }
 
 .pf-nav::before {

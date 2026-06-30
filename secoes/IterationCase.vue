@@ -462,7 +462,7 @@ const copy = {
     tag: "Process · Iteration · Systems Design · 2026",
     contextChip: "Part of the Rodobens · Única Platform project",
     title:
-      "The <em>Iteration Process</em> Behind<br><em>a Complex ERP journey.</em>",
+      "The <em>Iteration Process</em> Behind<br><em>a Complex ERP Journey.</em>",
     subtitle:
       "How intentionally mirroring a broken legacy system unlocked the design decisions we couldn't have reached any other way.",
     roles: [
@@ -567,10 +567,23 @@ const copy = {
 
     kpisBtn: "Read the full Rodobens case study →",
     kpis: [
-      { num: "42%", label: "perceived efficiency gain on the registration journey" },
-      { num: "72%", label: "perceived efficiency gain on the simulation journey" },
-      { num: "92%", label: "reduction in registration time with native integration vs. previous manual copy" },
-      { num: "25%", label: "drop in proposals returned due to data entry errors" },
+      {
+        num: "42%",
+        label: "perceived efficiency gain on the registration journey",
+      },
+      {
+        num: "72%",
+        label: "perceived efficiency gain on the simulation journey",
+      },
+      {
+        num: "92%",
+        label:
+          "reduction in registration time with native integration vs. previous manual copy",
+      },
+      {
+        num: "25%",
+        label: "drop in proposals returned due to data entry errors",
+      },
       { num: "311", label: "users responded to the perceived time NPS" },
     ],
 
@@ -584,7 +597,7 @@ const copy = {
     tag: "Processo · Iteração · Design de Sistemas · 2024",
     contextChip: "Parte do projeto Rodobens · Plataforma Única",
     title:
-      "O <em>Processo de Iteração</em> por Trás<br><em>de uma Tela ERP Complexa.</em>",
+      "O <em>Processo de iteração</em> por irás<br><em>de uma jornada ERP complexa.</em>",
     subtitle:
       "Como espelhar intencionalmente um sistema legado quebrado desbloqueou decisões de design que não conseguiríamos chegar de outra forma.",
     roles: [
@@ -677,11 +690,27 @@ const copy = {
       "Copiar não é desistir. Às vezes, mostrar exatamente o que existe é o caminho mais rápido para ver o que precisa mudar.",
     kpisBtn: "Ler o case completo do Rodobens →",
     kpis: [
-      { num: "42%", label: "ganho percebido de eficiência na jornada de cadastro" },
-      { num: "72%", label: "ganho percebido de eficiência na jornada de simulação" },
-      { num: "92%", label: "redução no tempo de cadastro com integração nativa vs. cópia manual anterior" },
-      { num: "25%", label: "queda nas propostas devolvidas por erro de digitação" },
-      { num: "311", label: "usuários responderam ao NPS de percepção de tempo" },
+      {
+        num: "42%",
+        label: "ganho percebido de eficiência na jornada de cadastro",
+      },
+      {
+        num: "72%",
+        label: "ganho percebido de eficiência na jornada de simulação",
+      },
+      {
+        num: "92%",
+        label:
+          "redução no tempo de cadastro com integração nativa vs. cópia manual anterior",
+      },
+      {
+        num: "25%",
+        label: "queda nas propostas devolvidas por erro de digitação",
+      },
+      {
+        num: "311",
+        label: "usuários responderam ao NPS de percepção de tempo",
+      },
     ],
     footerRodobens: "Voltar ao case Rodobens",
     footerProjects: "Todos os projetos",
@@ -786,11 +815,27 @@ const copy = {
       "Copiar no es rendirse. A veces, mostrar exactamente lo que existe es el camino más rápido para ver lo que necesita cambiar.",
     kpisBtn: "Leer el case completo de Rodobens →",
     kpis: [
-      { num: "42%", label: "ganancia de eficiencia percibida en el journey de registro" },
-      { num: "72%", label: "ganancia de eficiencia percibida en el journey de simulación" },
-      { num: "92%", label: "reducción en el tiempo de registro con integración nativa vs. copia manual anterior" },
-      { num: "25%", label: "caída en propuestas devueltas por error de digitación" },
-      { num: "311", label: "usuarios respondieron al NPS de percepción de tiempo" },
+      {
+        num: "42%",
+        label: "ganancia de eficiencia percibida en el journey de registro",
+      },
+      {
+        num: "72%",
+        label: "ganancia de eficiencia percibida en el journey de simulación",
+      },
+      {
+        num: "92%",
+        label:
+          "reducción en el tiempo de registro con integración nativa vs. copia manual anterior",
+      },
+      {
+        num: "25%",
+        label: "caída en propuestas devueltas por error de digitación",
+      },
+      {
+        num: "311",
+        label: "usuarios respondieron al NPS de percepción de tiempo",
+      },
     ],
     footerRodobens: "Volver al case Rodobens",
     footerProjects: "Todos los proyectos",
@@ -895,11 +940,28 @@ const copy = {
       "Kopieren bedeutet nicht aufzugeben. Manchmal ist das Zeigen von genau dem, was existiert, der schnellste Weg zu sehen, was sich ändern muss.",
     kpisBtn: "Vollständigen Rodobens Case lesen →",
     kpis: [
-      { num: "42%", label: "wahrgenommener Effizienzgewinn auf der Registrierungs-Journey" },
-      { num: "72%", label: "wahrgenommener Effizienzgewinn auf der Simulations-Journey" },
-      { num: "92%", label: "Reduzierung der Registrierungszeit mit nativer Integration vs. manuellem Kopieren" },
-      { num: "25%", label: "Rückgang bei zurückgesandten Angeboten durch Dateneingabefehler" },
-      { num: "311", label: "Nutzer antworteten auf die wahrgenommene Zeit-NPS" },
+      {
+        num: "42%",
+        label: "wahrgenommener Effizienzgewinn auf der Registrierungs-Journey",
+      },
+      {
+        num: "72%",
+        label: "wahrgenommener Effizienzgewinn auf der Simulations-Journey",
+      },
+      {
+        num: "92%",
+        label:
+          "Reduzierung der Registrierungszeit mit nativer Integration vs. manuellem Kopieren",
+      },
+      {
+        num: "25%",
+        label:
+          "Rückgang bei zurückgesandten Angeboten durch Dateneingabefehler",
+      },
+      {
+        num: "311",
+        label: "Nutzer antworteten auf die wahrgenommene Zeit-NPS",
+      },
     ],
     footerRodobens: "Zurück zum Rodobens Case",
     footerProjects: "Alle Projekte",
@@ -1905,7 +1967,9 @@ const d2Slides = computed(() => [
   text-transform: uppercase;
   color: var(--accent);
   padding: 0.85rem 1.5rem;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
   display: inline-block;
 }
 .it-kpis-btn:hover {

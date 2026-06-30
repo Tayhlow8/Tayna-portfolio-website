@@ -1,5 +1,5 @@
 <template>
-  <section id="processo" class="ps-root" ref="sectionRef">
+  <section id="processo" class="ps-root" ref="sectionRef" aria-labelledby="processo-heading">
 
     <!-- Label de seção -->
     <div class="ps-top-rule">
@@ -8,7 +8,7 @@
     </div>
 
     <!-- Título editorial -->
-    <h2 class="ps-title" v-html="t.title"></h2>
+    <h2 id="processo-heading" class="ps-title" v-html="t.title"></h2>
 
     <!-- Grid de etapas -->
     <div class="ps-track">
