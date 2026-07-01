@@ -19,8 +19,10 @@
         </h1>
 
         <p class="case-subtitle">
-          Redesigning a broken checkout experience through heatmap-driven
-          insights — and shipping a variant that lifted revenue by&nbsp;+7.1%.
+          Redesigning a broken checkout experience through UX research and
+          heatmap analysis — grounded in a cognitive-load hypothesis and Nielsen
+          Norman usability heuristics — and shipping a variant that lifted
+          revenue by&nbsp;+7.1%.
         </p>
 
         <div class="case-meta-row">
@@ -66,24 +68,60 @@
 
     <!-- ── CONTEXT ────────────────────────────────────────────── -->
     <section class="case-section">
-      <div class="case-wrap case-wrap--narrow">
-        <div class="section-label" aria-hidden="true">01 · Context</div>
-        <h2 class="section-heading">
-          The&nbsp;problem with&nbsp;VTEX checkout
-        </h2>
-        <p class="section-body">
-          DermaClub is L'Oréal Group's dermocosmetics loyalty brand in Brazil,
-          operating on VTEX — a platform that gives designers limited control
-          over the checkout flow. Despite that constraint, heatmap and clickmap
-          data made it undeniable: the existing checkout was fragmenting users'
-          attention at exactly the wrong moment, causing drop-off before the
-          final purchase confirmation.
-        </p>
-        <p class="section-body">
-          The hypothesis was straightforward — fix the broken elements,
-          reorganize the information hierarchy, and align the visual language
-          with the brand guide. Then let the test decide.
-        </p>
+      <div class="case-wrap">
+        <div class="context-grid">
+          <div class="context-text">
+            <div class="section-label" aria-hidden="true">01 · Context</div>
+            <h2 class="section-heading">
+              The&nbsp;problem with&nbsp;VTEX checkout
+            </h2>
+            <p class="section-body">
+              DermaClub is L'Oréal Group's dermocosmetics loyalty brand in
+              Brazil, operating on VTEX — a platform that gives designers
+              limited control over the checkout flow. Because I'd worked with
+              VTEX checkout before, I knew its limitations firsthand: the moment
+              I saw the page alongside the e-commerce funnel rates, I recognized
+              the root cause as excessive checkout customization — at that point
+              VTEX simply couldn't handle the volume of custom content it was
+              being asked to render. That experience let me understand why
+              products appeared duplicated and why the page stretched into a
+              long, never-ending scroll — and I fixed those errors too. Before
+              proposing a single change, I ran a UX research pass over the live
+              checkout: auditing the flow heuristically, mapping the funnel
+              drop-off, and — most importantly — reading the behavioral evidence
+              users had already left behind.
+            </p>
+            <p class="section-body">
+              Heatmap and clickmap analysis was the backbone of that research.
+              Attention maps showed gaze and interaction scattering across the
+              page instead of converging on the primary action; click data
+              exposed taps landing on non-interactive elements. The signal was
+              undeniable: the existing checkout was fragmenting users' attention
+              at exactly the wrong moment, forcing them to hunt for order
+              details, loyalty points, and the confirm button all at once —
+              driving drop-off right before the final purchase confirmation.
+            </p>
+            <p class="section-body">
+              That pointed to a clear hypothesis:
+              <strong>reduce cognitive load</strong>, and conversion follows.
+              Every proposed change had to lower the mental effort of scanning,
+              deciding, and confirming — anchored in Nielsen Norman usability
+              heuristics like <em>aesthetic and minimalist design</em>,
+              <em>recognition rather than recall</em>, and
+              <em>user control and freedom</em>. Fix the broken elements,
+              reorganize the information hierarchy, align the visual language
+              with the brand guide — then let an A/B test decide.
+            </p>
+          </div>
+          <div class="context-image-wrap">
+            <img
+              :src="imgContext"
+              alt="DermaClub checkout screen highlighting the fragmented layout identified through heatmap analysis"
+              class="context-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -234,9 +272,9 @@
             <p class="section-body">
               The redesigned variant was tested against the original in a
               controlled A/B experiment. All three primary metrics improved —
-              validating the hypothesis that clarity, hierarchy, and brand
-              consistency directly drive conversion in high-stakes checkout
-              flows.
+              validating the cognitive-load hypothesis: when a high-stakes
+              checkout demands less mental effort to scan, decide, and confirm,
+              more users convert.
             </p>
 
             <div class="results-cards">
@@ -290,6 +328,7 @@ import { useLang } from "../../composables/useLang";
 import ContactSection from "../../../secoes/ContactSection.vue";
 import imgBefore from "../../../imagens cases/dermaclub/checkout before.avif";
 import imgAfter from "../../../imagens cases/dermaclub/checkout after.avif";
+import imgContext from "../../assets/dermaclub checkout.png";
 
 const props = defineProps({
   lang: { type: String, default: "EN" },
@@ -640,6 +679,51 @@ const results = [
 }
 .section-body:last-child {
   margin-bottom: 0;
+}
+.section-body strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+.section-body em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ── CONTEXT GRID ────────────────────────────────────────── */
+.context-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .context-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.context-text .section-body {
+  max-width: 56ch;
+}
+
+.context-image-wrap {
+  overflow: hidden;
+  background: var(--fg-faint);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  aspect-ratio: 4 / 3;
+}
+.context-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.6s var(--ease-expo);
+}
+.context-image-wrap:hover .context-image {
+  transform: scale(1.02);
 }
 
 /* ── BEFORE / AFTER ──────────────────────────────────────── */
