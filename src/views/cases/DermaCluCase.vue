@@ -78,10 +78,13 @@
             <p class="section-body">
               DermaClub is L'Oréal Group's dermocosmetics loyalty brand in
               Brazil, operating on VTEX — a platform that gives designers
-              limited control over the checkout flow. Because I'd worked with
-              VTEX checkout before, I knew its limitations firsthand: the moment
-              I saw the page alongside the e-commerce funnel rates, I recognized
-              the root cause as excessive checkout customization — at that point
+              limited control over the checkout flow. The funnel told the story of
+              where the friction lived: a healthy 70% of users advanced from the
+              product page into checkout, but once there, 80% bounced before
+              completing the purchase. Because I'd worked with VTEX checkout
+              before, I knew its limitations firsthand: the moment I saw the page
+              alongside those e-commerce funnel rates, I recognized the root
+              cause as excessive checkout customization — at that point
               VTEX simply couldn't handle the volume of custom content it was
               being asked to render. That experience let me understand why
               products appeared duplicated and why the page stretched into a
