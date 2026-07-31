@@ -1,6 +1,5 @@
 <template>
   <div :class="['pp-root', `theme-${theme}`]">
-
     <!-- Ambient -->
     <div class="pp-ambient" aria-hidden="true">
       <div class="pp-glow"></div>
@@ -30,9 +29,12 @@
             :style="{ '--si': i }"
           >
             <div class="hero-stat-n">
-              <span class="hero-stat-prefix">{{ stat.prefix }}</span>{{ statCounts[i] }}
+              <span class="hero-stat-prefix">{{ stat.prefix }}</span
+              >{{ statCounts[i] }}
             </div>
-            <div class="hero-stat-t">{{ t.statLabels[i].replace(/^[+\d]+\s*/, '') }}</div>
+            <div class="hero-stat-t">
+              {{ t.statLabels[i].replace(/^[+\d]+\s*/, "") }}
+            </div>
           </div>
         </div>
       </div>
@@ -47,12 +49,17 @@
           :to="project.path || `/projetos/${project.slug}`"
           class="project-card"
           :class="{ visible: visible[i] }"
-          :ref="el => setRef(el, i)"
+          :ref="(el) => setRef(el, i)"
         >
           <!-- Thumbnail -->
           <div class="card-thumb" :style="{ background: project.bg }">
             <span class="card-index">{{ pad(i + 1) }}</span>
-            <img v-if="project.image" :src="project.image" class="card-thumb-img" alt="" />
+            <img
+              v-if="project.image"
+              :src="project.image"
+              class="card-thumb-img"
+              alt=""
+            />
             <div v-else class="card-thumb-svg" v-html="project.svg"></div>
           </div>
 
@@ -62,10 +69,14 @@
               <span class="card-client">{{ project.client }}</span>
               <span class="card-year">{{ project.year }}</span>
             </div>
-            <h2 class="card-title">{{ project.title[lang] || project.title.EN }}</h2>
+            <h2 class="card-title">
+              {{ project.title[lang] || project.title.EN }}
+            </h2>
             <p class="card-desc">{{ project.desc[lang] || project.desc.EN }}</p>
             <div class="card-tags">
-              <span v-for="tag in project.tags" :key="tag" class="card-tag">{{ tag }}</span>
+              <span v-for="tag in project.tags" :key="tag" class="card-tag">{{
+                tag
+              }}</span>
             </div>
           </div>
 
@@ -80,102 +91,117 @@
         </router-link>
       </div>
     </section>
-
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import NavBar from './NavBar.vue'
-import { useLang } from '../src/composables/useLang'
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import NavBar from "./NavBar.vue";
+import { useLang } from "../src/composables/useLang";
 
-import imgRodobens from '../imagens cases/rodobens/case rodobens cover 1.png'
-import imgMaster   from '../imagens cases/master globo/master goblo cover.png'
-import imgYSL      from '../imagens cases/YSL Y intense/mobile exp.avif'
-import imgLancome  from '../imagens cases/Lancme brazil/foto 1 lancome.avif'
-import imgNV8      from '../clientes/nv8 case cover.png'
-import imgDermaClub   from '../imagens cases/dermaclub/checkout after.avif'
-import imgIteration  from '../src/assets/iteration/Iteration thumb.png'
+import imgRodobens from "../imagens cases/rodobens/case rodobens cover 1.png";
+import imgMaster from "../imagens cases/master globo/master goblo cover.png";
+import imgYSL from "../imagens cases/YSL Y intense/mobile exp.avif";
+import imgLancome from "../imagens cases/Lancme brazil/foto 1 lancome.avif";
+import imgNV8 from "../clientes/nv8 case cover.png";
+import imgDermaClub from "../imagens cases/dermaclub/checkout after.avif";
+import imgIteration from "../src/assets/iteration/Iteration thumb.png";
 
 const props = defineProps({
-  lang:  { type: String, default: 'PT' },
-  theme: { type: String, default: 'light' },
-})
+  lang: { type: String, default: "PT" },
+  theme: { type: String, default: "light" },
+});
 
-const { lang } = useLang()
-const theme = ref(props.theme)
+const { lang } = useLang();
+const theme = ref(props.theme);
 
 // ── Helpers ─────────────────────────────────────────────────────
-const pad = n => String(n).padStart(2, '0')
+const pad = (n) => String(n).padStart(2, "0");
 
 // ── Stats definition (prefix + target, labels come from i18n) ───
 const statDefs = [
-  { prefix: '+', target: 300  },
-  { prefix: '+', target: 6    },
-  { prefix: '',  target: 2026 },
-]
+  { prefix: "+", target: 300 },
+  { prefix: "+", target: 6 },
+  { prefix: "", target: 2026 },
+];
 
 // Displayed values (animated)
-const statCounts = ref(statDefs.map(() => 0))
+const statCounts = ref(statDefs.map(() => 0));
 
-function runCountUp () {
-  const duration = 1400 // ms
-  const start    = performance.now()
+function runCountUp() {
+  const duration = 1400; // ms
+  const start = performance.now();
 
-  const ease = t => 1 - Math.pow(1 - t, 4) // ease-out quart
+  const ease = (t) => 1 - Math.pow(1 - t, 4); // ease-out quart
 
-  function tick (now) {
-    const progress = Math.min((now - start) / duration, 1)
-    const e = ease(progress)
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const e = ease(progress);
     statDefs.forEach((def, i) => {
-      statCounts.value[i] = Math.round(e * def.target)
-    })
-    if (progress < 1) requestAnimationFrame(tick)
+      statCounts.value[i] = Math.round(e * def.target);
+    });
+    if (progress < 1) requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick)
+  requestAnimationFrame(tick);
 }
 
 // ── i18n ────────────────────────────────────────────────────────
 const copy = {
   PT: {
-    eyebrow : 'Trabalho selecionado',
-    title   : 'PRO<em>JETOS</em>',
-    desc    : 'De checkout de e-commerce a plataformas enterprise e experiências de marca de luxo — seis projetos que mostram como o design conecta complexidade de negócio e necessidades humanas reais.',
-    count   : '06 projetos',
-    sort    : 'Por recência',
-    viewCase: 'Ver case',
-    statLabels: ['+300 experiências desenhadas', '+6 diferentes setores', '2026 trabalho mais recente'],
+    eyebrow: "Trabalho selecionado",
+    title: "PRO<em>JETOS</em>",
+    desc: "De checkout de e-commerce a plataformas enterprise e experiências de marca de luxo — seis projetos que mostram como o design conecta complexidade de negócio e necessidades humanas reais.",
+    count: "06 projetos",
+    sort: "Por recência",
+    viewCase: "Ver case",
+    statLabels: [
+      "+300 experiências desenhadas",
+      "+6 diferentes setores",
+      "2026 trabalho mais recente",
+    ],
   },
   EN: {
-    eyebrow : 'Selected work',
-    title   : 'PRO<em>JECTS</em>',
-    desc    : 'From e-commerce checkout optimization to enterprise platforms and luxury brand experiences — six projects that show how design bridges business complexity and real human needs.',
-    count   : '06 projects',
-    sort    : 'Sorted by recency',
-    viewCase: 'View case study',
-    statLabels: ['+300 experiences designed', '+6 different sectors', '2026 latest work'],
+    eyebrow: "Selected work",
+    title: "PRO<em>JECTS</em>",
+    desc: "From e-commerce checkout optimization to enterprise platforms and luxury brand experiences — six projects that show how design bridges business complexity and real human needs.",
+    count: "06 projects",
+    sort: "Sorted by recency",
+    viewCase: "View case study",
+    statLabels: [
+      "+300 experiences designed",
+      "+6 different sectors",
+      "2026 latest work",
+    ],
   },
   ES: {
-    eyebrow : 'Trabajo seleccionado',
-    title   : 'PRO<em>YECTOS</em>',
-    desc    : 'De la optimización de checkout e-commerce a plataformas enterprise y experiencias de marca de lujo — seis proyectos que demuestran cómo el diseño conecta complejidad empresarial con necesidades humanas.',
-    count   : '06 proyectos',
-    sort    : 'Por recencia',
-    viewCase: 'Ver caso de estudio',
-    statLabels: ['+300 experiencias diseñadas', '+6 sectores diferentes', '2026 trabajo más reciente'],
+    eyebrow: "Trabajo seleccionado",
+    title: "PRO<em>YECTOS</em>",
+    desc: "De la optimización de checkout e-commerce a plataformas enterprise y experiencias de marca de lujo — seis proyectos que demuestran cómo el diseño conecta complejidad empresarial con necesidades humanas.",
+    count: "06 proyectos",
+    sort: "Por recencia",
+    viewCase: "Ver caso de estudio",
+    statLabels: [
+      "+300 experiencias diseñadas",
+      "+6 sectores diferentes",
+      "2026 trabajo más reciente",
+    ],
   },
   DE: {
-    eyebrow : 'Ausgewählte Arbeit',
-    title   : 'PRO<em>JEKTE</em>',
-    desc    : 'Von Checkout-Optimierung über Enterprise-Plattformen bis zu Luxusmarkenerlebnissen — sechs Projekte, die zeigen, wie Design Geschäftskomplexität und menschliche Bedürfnisse verbindet.',
-    count   : '06 Projekte',
-    sort    : 'Nach Aktualität',
-    viewCase: 'Case ansehen',
-    statLabels: ['+300 gestaltete Erfahrungen', '+6 verschiedene Sektoren', '2026 neueste Arbeit'],
+    eyebrow: "Ausgewählte Arbeit",
+    title: "PRO<em>JEKTE</em>",
+    desc: "Von Checkout-Optimierung über Enterprise-Plattformen bis zu Luxusmarkenerlebnissen — sechs Projekte, die zeigen, wie Design Geschäftskomplexität und menschliche Bedürfnisse verbindet.",
+    count: "06 Projekte",
+    sort: "Nach Aktualität",
+    viewCase: "Case ansehen",
+    statLabels: [
+      "+300 gestaltete Erfahrungen",
+      "+6 verschiedene Sektoren",
+      "2026 neueste Arbeit",
+    ],
   },
-}
+};
 
-const t = computed(() => copy[lang.value] ?? copy.PT)
+const t = computed(() => copy[lang.value] ?? copy.PT);
 
 // ── SVG thumbnails ───────────────────────────────────────────────
 const svgRodobens = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
@@ -208,7 +234,7 @@ const svgRodobens = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/sv
     <line x1="20" y1="34" x2="14" y2="34" stroke="rgba(240,24,90,.5)" stroke-width="1.5"/>
   </g>
   <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(240,24,90,.35)" letter-spacing="2">CREDIT · LEASING · ENTERPRISE SYSTEM</text>
-</svg>`
+</svg>`;
 
 const svgMaster = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
   <defs>
@@ -247,7 +273,7 @@ const svgMaster = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg"
     <rect x="380" y="-8"  width="4" height="10" fill="rgba(0,200,100,.3)" rx="1"/>
   </g>
   <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(0,200,100,.35)" letter-spacing="2">BROADCAST · DASHBOARD · MEDIA PLATFORM</text>
-</svg>`
+</svg>`;
 
 const svgYSL = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
   <defs>
@@ -277,7 +303,7 @@ const svgYSL = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" pr
   <line x1="240" y1="240" x2="320" y2="240" stroke="rgba(201,168,76,.4)" stroke-width="1"/>
   <circle cx="280" cy="240" r="2.5" fill="rgba(201,168,76,.6)"/>
   <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(201,168,76,.35)" letter-spacing="3">LUXURY · DIGITAL EXPERIENCE · YSL</text>
-</svg>`
+</svg>`;
 
 const svgNV8 = `<svg viewBox="0 0 1120 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
   <defs>
@@ -316,7 +342,7 @@ const svgNV8 = `<svg viewBox="0 0 1120 320" xmlns="http://www.w3.org/2000/svg" p
   <line x1="207" y1="120" x2="516" y2="156" stroke="rgba(12,253,181,.15)" stroke-width="1" stroke-dasharray="4 4"/>
   <line x1="913" y1="120" x2="604" y2="156" stroke="rgba(12,191,253,.15)" stroke-width="1" stroke-dasharray="4 4"/>
   <text x="24" y="307" font-family="monospace" font-size="8" fill="rgba(12,253,181,.35)" letter-spacing="2">SOFTWARE HOUSE · WEBSITE REDESIGN · NV8 TECNOLOGIA</text>
-</svg>`
+</svg>`;
 
 const svgLancome = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
   <defs>
@@ -347,7 +373,7 @@ const svgLancome = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg
   <circle cx="135" cy="235" r="1.5" fill="rgba(224,112,160,.35)"/>
   <line x1="60" y1="262" x2="500" y2="262" stroke="rgba(224,112,160,.12)" stroke-width="1"/>
   <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(224,112,160,.35)" letter-spacing="2">BEAUTY · E-COMMERCE · LANCÔME BRAZIL</text>
-</svg>`
+</svg>`;
 
 const svgIteration = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block">
   <defs>
@@ -380,235 +406,294 @@ const svgIteration = `<svg viewBox="0 0 560 315" xmlns="http://www.w3.org/2000/s
   <text x="7" y="162"  font-family="monospace" font-size="8" fill="rgba(240,24,90,.88)"  letter-spacing="1">v2</text>
   <text x="7" y="214"  font-family="monospace" font-size="8" fill="rgba(139,47,212,.45)" letter-spacing="1">v3</text>
   <text x="24" y="299" font-family="monospace" font-size="8" fill="rgba(240,24,90,.35)" letter-spacing="2">PROCESS · ITERATION · ERP · RODOBENS 2024</text>
-</svg>`
+</svg>`;
 
 // ── Projects data ────────────────────────────────────────────────
 const projects = [
   // ── 1 ──
   {
-    slug  : 'rodobens',
-    client: 'Rodobens',
-    year  : '2026',
-    title : { PT: 'Sistema de Crédito & Leasing', EN: 'Credit & Leasing System', ES: 'Sistema de Crédito y Leasing', DE: 'Kredit- & Leasing-System' },
-    desc  : {
-      PT: 'Modernização de uma plataforma enterprise legada para um dos maiores conglomerados financeiros do Brasil — reconstruindo 75 anos de fluxo de crédito em um produto escalável e navegável.',
-      EN: 'Modernization of a legacy enterprise platform for one of Brazil\'s largest financial conglomerates — rebuilding 75 years of credit workflow into a scalable, navigable product.',
-      ES: 'Modernización de una plataforma enterprise heredada para uno de los mayores conglomerados financieros de Brasil.',
-      DE: 'Modernisierung einer Legacy-Enterprise-Plattform für eines der größten Finanzkonglomerate Brasiliens.',
+    slug: "rodobens",
+    client: "Rodobens",
+    year: "2026",
+    title: {
+      PT: "Sistema de Crédito & Leasing",
+      EN: "Credit & Leasing System",
+      ES: "Sistema de Crédito y Leasing",
+      DE: "Kredit- & Leasing-System",
     },
-    tags : ['Product Design', 'Design System', 'B2B · Fintech'],
-    type : 'Enterprise · Internal tool',
-    bg   : '#070510',
+    desc: {
+      PT: "Modernização de uma plataforma enterprise legada para um dos maiores conglomerados financeiros do Brasil — reconstruindo 75 anos de fluxo de crédito em um produto escalável e navegável.",
+      EN: "Modernization of a legacy enterprise platform for one of Brazil's largest financial conglomerates — rebuilding 75 years of credit workflow into a scalable, navigable product.",
+      ES: "Modernización de una plataforma enterprise heredada para uno de los mayores conglomerados financieros de Brasil.",
+      DE: "Modernisierung einer Legacy-Enterprise-Plattform für eines der größten Finanzkonglomerate Brasiliens.",
+    },
+    tags: ["Product Design", "Design System", "B2B · Fintech"],
+    type: "Enterprise · Internal tool",
+    bg: "#070510",
     image: imgRodobens,
-    svg  : svgRodobens,
+    svg: svgRodobens,
   },
   // ── 2 ──
   {
-    slug  : 'rodobens-iteration',
-    client: 'Rodobens · NV8',
-    year  : '2024',
-    title : { PT: 'O Processo de Iteração', EN: 'The Iteration Process', ES: 'El Proceso de Iteración', DE: 'Der Iterationsprozess' },
-    desc  : {
-      PT: 'Como espelhar intencionalmente um sistema legado quebrado desbloqueou as decisões de design que não chegaríamos de outra forma — um deep-dive no processo por trás de uma tela ERP complexa.',
-      EN: 'How intentionally mirroring a broken legacy system unlocked the design decisions we couldn\'t have reached any other way — a deep dive into the process behind a complex ERP screen.',
-      ES: 'Cómo reflejar intencionalmente un sistema legacy roto desbloqueó las decisiones de diseño — un deep-dive en el proceso detrás de una pantalla ERP compleja.',
-      DE: 'Wie das bewusste Spiegeln eines defekten Legacy-Systems Designentscheidungen ermöglichte — ein Deep-Dive in den Prozess hinter einem komplexen ERP-Bildschirm.',
+    slug: "rodobens-iteration",
+    client: "Rodobens · NV8",
+    year: "2026",
+    title: {
+      PT: "O Processo de Iteração",
+      EN: "The Iteration Process",
+      ES: "El Proceso de Iteración",
+      DE: "Der Iterationsprozess",
     },
-    tags : ['Process Design', 'Iteration', 'Systems Thinking'],
-    type : 'Process Case · Enterprise',
-    bg   : '#070510',
+    desc: {
+      PT: "Como espelhar intencionalmente um sistema legado quebrado desbloqueou as decisões de design que não chegaríamos de outra forma — um deep-dive no processo por trás de uma tela ERP complexa.",
+      EN: "How intentionally mirroring a broken legacy system unlocked the design decisions we couldn't have reached any other way — a deep dive into the process behind a complex ERP screen.",
+      ES: "Cómo reflejar intencionalmente un sistema legacy roto desbloqueó las decisiones de diseño — un deep-dive en el proceso detrás de una pantalla ERP compleja.",
+      DE: "Wie das bewusste Spiegeln eines defekten Legacy-Systems Designentscheidungen ermöglichte — ein Deep-Dive in den Prozess hinter einem komplexen ERP-Bildschirm.",
+    },
+    tags: ["Process Design", "Iteration", "Systems Thinking"],
+    type: "Process Case · Enterprise",
+    bg: "#070510",
     image: imgIteration,
-    svg  : svgIteration,
+    svg: svgIteration,
   },
   // ── 3 ──
   {
-    slug  : 'master-globo',
-    client: 'Master Globo',
-    year  : '2025',
-    title : { PT: 'UX Research to product launch', EN: 'UX Research to product launch', ES: 'UX Research to product launch', DE: 'UX Research to product launch' },
-    desc  : {
-      PT: 'Pesquisa quantitativa e qualitativa e dashboard usando a base de dados da plataforma educacional para o lançamento de um novo formato de produto.',
-      EN: "Quantitative and qualitative research and dashboard using the educational platform's database for the launch of a new product format.",
-      ES: 'Investigación cuantitativa y cualitativa y dashboard usando la base de datos de la plataforma educativa para el lanzamiento de un nuevo formato de producto.',
-      DE: 'Quantitative und qualitative Forschung sowie Dashboard mit der Datenbank der Bildungsplattform für den Launch eines neuen Produktformats.',
+    slug: "master-globo",
+    client: "Master Globo",
+    year: "2025",
+    title: {
+      PT: "UX Research to product launch",
+      EN: "UX Research to product launch",
+      ES: "UX Research to product launch",
+      DE: "UX Research to product launch",
     },
-    tags : ['UX Research', 'Media & Broadcast', 'B2B'],
-    type : 'Enterprise · Media',
-    bg   : '#07100a',
+    desc: {
+      PT: "Pesquisa quantitativa e qualitativa e dashboard usando a base de dados da plataforma educacional para o lançamento de um novo formato de produto.",
+      EN: "Quantitative and qualitative research and dashboard using the educational platform's database for the launch of a new product format.",
+      ES: "Investigación cuantitativa y cualitativa y dashboard usando la base de datos de la plataforma educativa para el lanzamiento de un nuevo formato de producto.",
+      DE: "Quantitative und qualitative Forschung sowie Dashboard mit der Datenbank der Bildungsplattform für den Launch eines neuen Produktformats.",
+    },
+    tags: ["UX Research", "Media & Broadcast", "B2B"],
+    type: "Enterprise · Media",
+    bg: "#07100a",
     image: imgMaster,
-    svg  : svgMaster,
+    svg: svgMaster,
   },
   // ── 4 ──
   {
-    slug  : 'yves-saint-laurent',
-    client: 'Yves Saint Laurent',
-    year  : '2023',
-    title : { PT: 'Experiência Digital', EN: 'Digital Experience', ES: 'Experiencia Digital', DE: 'Digitale Erfahrung' },
-    desc  : {
+    slug: "yves-saint-laurent",
+    client: "Yves Saint Laurent",
+    year: "2023",
+    title: {
+      PT: "Experiência Digital",
+      EN: "Digital Experience",
+      ES: "Experiencia Digital",
+      DE: "Digitale Erfahrung",
+    },
+    desc: {
       PT: "Criação de uma experiência digital à altura para uma das marcas mais icônicas do mundo. Onde o rock'n'roll encontra o luxo.",
       EN: "Creating a worthy digital experience for one of the world's most iconic brands. Where rock'n'roll meets luxury.",
       ES: "Creación de una experiencia digital a la altura de una de las marcas más icónicas del mundo. Donde el rock'n'roll se encuentra con el lujo.",
       DE: "Schaffung eines würdigen digitalen Erlebnisses für eine der ikonischsten Marken der Welt. Wo Rock'n'Roll auf Luxus trifft.",
     },
-    tags : ['Luxury', 'E-commerce', 'Brand Experience'],
-    type : 'Retail · Fashion',
-    bg   : '#100707',
+    tags: ["Luxury", "E-commerce", "Brand Experience"],
+    type: "Retail · Fashion",
+    bg: "#100707",
     image: imgYSL,
-    svg  : svgYSL,
+    svg: svgYSL,
   },
   // ── 5 ──
   {
-    slug  : 'nv8',
-    client: 'NV8 Tecnologia',
-    year  : '2025',
-    title : { PT: 'Redesign do Website', EN: 'Website Redesign', ES: 'Rediseño del Website', DE: 'Website Redesign' },
-    desc  : {
-      PT: 'Construindo a presença digital de uma software house brasileira do zero — sombria, cinematográfica, maximalista. Um design system, estratégia de motion e site completo para falar com devs e decisores.',
-      EN: 'Building the digital presence of a Brazilian software house from the ground up — dark, cinematic, maximalist. A design system, motion strategy, and full website built to speak to developers and decision-makers alike.',
-      ES: 'Construyendo la presencia digital de una software house brasileña desde cero — oscura, cinematográfica, maximalista. Un design system, estrategia de motion y sitio completo.',
-      DE: 'Aufbau der digitalen Präsenz eines brasilianischen Software-Hauses von Grund auf — dunkel, cinematisch, maximalistisch. Design System, Motion-Strategie und vollständige Website.',
+    slug: "nv8",
+    client: "NV8 Tecnologia",
+    year: "2025",
+    title: {
+      PT: "Redesign do Website",
+      EN: "Website Redesign",
+      ES: "Rediseño del Website",
+      DE: "Website Redesign",
     },
-    tags: ['Web Design', 'Design System', 'Motion', 'Software House'],
-    type: 'B2B · Software',
-    bg   : '#07070f',
+    desc: {
+      PT: "Construindo a presença digital de uma software house brasileira do zero — sombria, cinematográfica, maximalista. Um design system, estratégia de motion e site completo para falar com devs e decisores.",
+      EN: "Building the digital presence of a Brazilian software house from the ground up — dark, cinematic, maximalist. A design system, motion strategy, and full website built to speak to developers and decision-makers alike.",
+      ES: "Construyendo la presencia digital de una software house brasileña desde cero — oscura, cinematográfica, maximalista. Un design system, estrategia de motion y sitio completo.",
+      DE: "Aufbau der digitalen Präsenz eines brasilianischen Software-Hauses von Grund auf — dunkel, cinematisch, maximalistisch. Design System, Motion-Strategie und vollständige Website.",
+    },
+    tags: ["Web Design", "Design System", "Motion", "Software House"],
+    type: "B2B · Software",
+    bg: "#07070f",
     image: imgNV8,
-    svg  : svgNV8,
+    svg: svgNV8,
   },
   // ── 6 — right of NV8 ──
   {
-    slug  : 'dermaclub',
-    path  : '/work/dermaclub',
-    client: 'L\'Oréal · DermaClub',
-    year  : '2024',
-    title : { PT: 'Checkout A/B Test', EN: 'Checkout A/B Test', ES: 'Checkout A/B Test', DE: 'Checkout A/B Test' },
-    desc  : {
-      PT: 'Redesign de um checkout quebrado orientado por heatmaps e dados de comportamento — uma variante que aumentou a receita em +7,1% para a maior plataforma de skincare por assinatura do Brasil.',
-      EN: 'Redesigning a broken checkout experience through heatmap-driven insights — shipping a variant that lifted revenue by +7.1% for Brazil\'s largest subscription skincare platform.',
-      ES: 'Rediseño de una experiencia de checkout rota mediante heatmaps — una variante que aumentó los ingresos en +7,1% para la mayor plataforma de skincare por suscripción de Brasil.',
-      DE: 'Redesign eines fehlerhaften Checkouts auf Basis von Heatmap-Daten — eine Variante, die den Umsatz um +7,1% für Brasiliens größte Abo-Skincare-Plattform steigerte.',
+    slug: "dermaclub",
+    path: "/work/dermaclub",
+    client: "L'Oréal · DermaClub",
+    year: "2024",
+    title: {
+      PT: "Checkout A/B Test",
+      EN: "Checkout A/B Test",
+      ES: "Checkout A/B Test",
+      DE: "Checkout A/B Test",
     },
-    tags : ['E-commerce', 'A/B Testing', 'Checkout UX'],
-    type : 'Beauty · E-commerce',
-    bg   : '#070f11',
+    desc: {
+      PT: "Redesign de um checkout quebrado orientado por heatmaps e dados de comportamento — uma variante que aumentou a receita em +7,1% para a maior plataforma de skincare por assinatura do Brasil.",
+      EN: "Redesigning a broken checkout experience through heatmap-driven insights — shipping a variant that lifted revenue by +7.1% for Brazil's largest subscription skincare platform.",
+      ES: "Rediseño de una experiencia de checkout rota mediante heatmaps — una variante que aumentó los ingresos en +7,1% para la mayor plataforma de skincare por suscripción de Brasil.",
+      DE: "Redesign eines fehlerhaften Checkouts auf Basis von Heatmap-Daten — eine Variante, die den Umsatz um +7,1% für Brasiliens größte Abo-Skincare-Plattform steigerte.",
+    },
+    tags: ["E-commerce", "A/B Testing", "Checkout UX"],
+    type: "Beauty · E-commerce",
+    bg: "#070f11",
     image: imgDermaClub,
   },
   // ── 7 — featured full-width closer ──
   {
-    slug  : 'lancome-brazil',
-    client: 'Lancôme Brazil',
-    year  : '2023',
-    title : { PT: "Lancome's sensorial experience", EN: "Lancome's sensorial experience", ES: "Lancome's sensorial experience", DE: "Lancome's sensorial experience" },
-    desc  : {
-      PT: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-      EN: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-      ES: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
-      DE: 'An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.',
+    slug: "lancome-brazil",
+    client: "Lancôme Brazil",
+    year: "2023",
+    title: {
+      PT: "Lancome's sensorial experience",
+      EN: "Lancome's sensorial experience",
+      ES: "Lancome's sensorial experience",
+      DE: "Lancome's sensorial experience",
     },
-    tags : ['Beauty', 'Brand Experience', 'Exhibition'],
-    type : 'Retail · Beauty',
-    bg   : '#100710',
+    desc: {
+      PT: "An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.",
+      EN: "An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.",
+      ES: "An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.",
+      DE: "An immersive, invitation-only sensorial exhibition in São Paulo celebrating the history of Lancôme through perfume, jewelry, fashion, sound, and haute cuisine — designed to engage all five human senses.",
+    },
+    tags: ["Beauty", "Brand Experience", "Exhibition"],
+    type: "Retail · Beauty",
+    bg: "#100710",
     image: imgLancome,
-    svg  : svgLancome,
+    svg: svgLancome,
   },
-]
+];
 
 // ── Scroll reveal ────────────────────────────────────────────────
-const cardRefs = ref([])
-const visible  = ref({})
+const cardRefs = ref([]);
+const visible = ref({});
 
-function setRef (el, i) {
-  if (el) cardRefs.value[i] = el
+function setRef(el, i) {
+  if (el) cardRefs.value[i] = el;
 }
 
-let observer = null
+let observer = null;
 
 onMounted(() => {
   // Count-up dispara após a animação de entrada do hero
-  setTimeout(runCountUp, 600)
+  setTimeout(runCountUp, 600);
 
   observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        const i = cardRefs.value.findIndex(r => r === entry.target || r?.$el === entry.target)
-        if (entry.isIntersecting && i !== -1) visible.value = { ...visible.value, [i]: true }
-      })
+    (entries) => {
+      entries.forEach((entry) => {
+        const i = cardRefs.value.findIndex(
+          (r) => r === entry.target || r?.$el === entry.target,
+        );
+        if (entry.isIntersecting && i !== -1)
+          visible.value = { ...visible.value, [i]: true };
+      });
     },
-    { threshold: 0.08 }
-  )
-  cardRefs.value.forEach(el => el && observer.observe(el.$el ?? el))
-})
+    { threshold: 0.08 },
+  );
+  cardRefs.value.forEach((el) => el && observer.observe(el.$el ?? el));
+});
 
-onUnmounted(() => observer?.disconnect())
+onUnmounted(() => observer?.disconnect());
 </script>
 
 <style scoped>
 /* ── Tokens ───────────────────────────────────────────────── */
 .pp-root {
-  font-family : var(--font-body, 'DM Sans', sans-serif);
-  min-height  : 100svh;
-  position    : relative;
-  overflow-x  : hidden;
-  background  : var(--bg);
-  color       : var(--fg);
-  transition  : background .5s ease, color .5s ease;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+  min-height: 100svh;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  transition:
+    background 0.5s ease,
+    color 0.5s ease;
 }
 
 .theme-dark {
-  --bg           : #070711;
-  --fg           : #F0EFF8;
-  --fg-muted     : #6B6A82;
-  --fg-faint     : #22213A;
-  --border       : rgba(255,255,255,.07);
-  --ghost-border : rgba(255,255,255,.11);
-  --btn-fill     : #070711;
-  --grain-opacity: .04;
-  --accent       : #F0185A;
-  --accent-glow  : rgba(240,24,90,.12);
-  --accent-soft  : rgba(240,24,90,.4);
-  --glass-bg     : rgba(7,7,17,.45);
-  --glass-border : rgba(255,255,255,.09);
-  --glass-hi     : rgba(255,255,255,.06);
-  --glass-shadow : rgba(0,0,0,.45);
+  --bg: #070711;
+  --fg: #f0eff8;
+  --fg-muted: #6b6a82;
+  --fg-faint: #22213a;
+  --border: rgba(255, 255, 255, 0.07);
+  --ghost-border: rgba(255, 255, 255, 0.11);
+  --btn-fill: #070711;
+  --grain-opacity: 0.04;
+  --accent: #f0185a;
+  --accent-glow: rgba(240, 24, 90, 0.12);
+  --accent-soft: rgba(240, 24, 90, 0.4);
+  --glass-bg: rgba(7, 7, 17, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-hi: rgba(255, 255, 255, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
 }
 .theme-light {
-  --bg           : #F5F3FF;
-  --fg           : #0D0C1A;
-  --fg-muted     : #62607A;
-  --fg-faint     : #D2CFEA;
-  --border       : rgba(0,0,0,.08);
-  --ghost-border : rgba(13,12,26,.12);
-  --btn-fill     : #F5F3FF;
-  --grain-opacity: .025;
-  --accent       : #F0185A;
-  --accent-glow  : rgba(240,24,90,.12);
-  --accent-soft  : rgba(240,24,90,.4);
-  --glass-bg     : rgba(245,243,255,.52);
-  --glass-border : rgba(240,24,90,.13);
-  --glass-hi     : rgba(255,255,255,.72);
-  --glass-shadow : rgba(13,12,26,.12);
+  --bg: #f5f3ff;
+  --fg: #0d0c1a;
+  --fg-muted: #62607a;
+  --fg-faint: #d2cfea;
+  --border: rgba(0, 0, 0, 0.08);
+  --ghost-border: rgba(13, 12, 26, 0.12);
+  --btn-fill: #f5f3ff;
+  --grain-opacity: 0.025;
+  --accent: #f0185a;
+  --accent-glow: rgba(240, 24, 90, 0.12);
+  --accent-soft: rgba(240, 24, 90, 0.4);
+  --glass-bg: rgba(245, 243, 255, 0.52);
+  --glass-border: rgba(240, 24, 90, 0.13);
+  --glass-hi: rgba(255, 255, 255, 0.72);
+  --glass-shadow: rgba(13, 12, 26, 0.12);
 }
 
 /* ── Ambient ──────────────────────────────────────────────── */
-.pp-ambient { position:fixed; inset:0; pointer-events:none; z-index:0 }
-.pp-glow {
-  position   : absolute;
-  top        : -15%; right: -8%;
-  width      : 65vw; height: 65vw;
-  background : radial-gradient(ellipse at 65% 25%, var(--accent-glow) 0%, transparent 62%);
+.pp-ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 }
-.theme-light .pp-glow { opacity: .55 }
+.pp-glow {
+  position: absolute;
+  top: -15%;
+  right: -8%;
+  width: 65vw;
+  height: 65vw;
+  background: radial-gradient(
+    ellipse at 65% 25%,
+    var(--accent-glow) 0%,
+    transparent 62%
+  );
+}
+.theme-light .pp-glow {
+  opacity: 0.55;
+}
 .pp-glow-bl {
-  position   : absolute;
-  bottom     : -10%; left: -5%;
-  width      : 50vw; height: 50vw;
-  background : radial-gradient(ellipse at 30% 70%, rgba(240,24,90,.05) 0%, transparent 65%);
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(
+    ellipse at 30% 70%,
+    rgba(240, 24, 90, 0.05) 0%,
+    transparent 65%
+  );
 }
 .pp-grain {
-  position         : absolute;
-  inset            : 0;
-  opacity          : var(--grain-opacity);
-  background-image : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  background-size  : 180px 180px;
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
 /* ── Hero ─────────────────────────────────────────────────── */
@@ -616,88 +701,104 @@ onUnmounted(() => observer?.disconnect())
    Lados: seguem breakpoints do design-system.html
    Mobile 1.5rem · 640 3rem · 1024 4rem */
 .projects-hero {
-  position        : relative;
-  z-index         : 1;
-  max-width       : 1120px;
-  margin          : 0 auto;
-  padding         : calc(56px + var(--sp-20, 5rem)) var(--sp-6, 1.5rem) var(--sp-12, 3rem);
-  display         : flex;
-  flex-direction  : column;
-  gap             : var(--sp-8, 2rem);
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: calc(56px + var(--sp-20, 5rem)) var(--sp-6, 1.5rem)
+    var(--sp-12, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8, 2rem);
 }
 
 .hero-eyebrow {
-  display        : flex;
-  align-items    : center;
-  gap            : .5rem;
-  font-size      : .6rem;
-  font-weight    : 500;
-  letter-spacing : .16em;
-  text-transform : uppercase;
-  color          : var(--fg-muted);
-  margin-bottom  : var(--sp-6, 1.5rem);
-  animation      : pf-up .8s cubic-bezier(.16,1,.3,1) .1s both;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: var(--sp-6, 1.5rem);
+  animation: pf-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 .pf-dot {
-  width         : 5px;
-  height        : 5px;
-  border-radius : 50%;
-  background    : var(--accent);
-  flex-shrink   : 0;
-  animation     : pf-pulse 2.5s ease-in-out infinite;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pf-pulse 2.5s ease-in-out infinite;
 }
 
 .hero-title {
-  font-family    : var(--font-display, 'Clash Display', sans-serif);
-  font-weight    : 700;
-  font-size      : clamp(2.8rem, 10vw, 5rem);
-  line-height    : .88;
-  letter-spacing : -.025em;
-  margin-bottom  : var(--sp-6, 1.5rem);
-  animation      : pf-up .85s cubic-bezier(.16,1,.3,1) .18s both;
+  font-family: var(--font-display, "Clash Display", sans-serif);
+  font-weight: 700;
+  font-size: clamp(2.8rem, 10vw, 5rem);
+  line-height: 0.88;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--sp-6, 1.5rem);
+  animation: pf-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
 }
-.hero-title :deep(em) { font-style: italic; color: var(--accent) }
+.hero-title :deep(em) {
+  font-style: italic;
+  color: var(--accent);
+}
 
 .hero-rule {
-  width      : 100%;
-  height     : 1px;
-  background : linear-gradient(90deg, rgba(240,24,90,.55) 0%, transparent 65%);
-  animation  : pf-up .85s cubic-bezier(.16,1,.3,1) .24s both;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(240, 24, 90, 0.55) 0%,
+    transparent 65%
+  );
+  animation: pf-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
 }
 
-.hero-right { animation: pf-up .85s cubic-bezier(.16,1,.3,1) .3s both }
+.hero-right {
+  animation: pf-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
 
 .hero-desc {
-  font-size     : clamp(.88rem, 1.4vw, .96rem);
-  font-weight   : 300;
-  line-height   : 1.85;
-  color         : var(--fg-muted);
-  max-width     : 44ch;
-  margin-bottom : var(--sp-8, 2rem);
+  font-size: clamp(0.88rem, 1.4vw, 0.96rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fg-muted);
+  max-width: 44ch;
+  margin-bottom: var(--sp-8, 2rem);
 }
 
-.hero-stats { display: flex; gap: var(--sp-8, 2rem); flex-wrap: wrap }
+.hero-stats {
+  display: flex;
+  gap: var(--sp-8, 2rem);
+  flex-wrap: wrap;
+}
 
 .hero-stat-item {
-  display   : flex;
+  display: flex;
   flex-direction: column;
-  gap       : 4px;
+  gap: 4px;
   /* parallax ascending: cada stat sobe com delay escalonado */
-  animation : stat-ascend .9s cubic-bezier(.16,1,.3,1) both;
-  animation-delay: calc(.45s + var(--si) * .15s);
+  animation: stat-ascend 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.45s + var(--si) * 0.15s);
 }
 
 .hero-stat-n {
-  font-family  : var(--font-display, 'Clash Display', sans-serif);
-  font-size    : clamp(1.6rem, 3vw, 2.2rem);
-  font-weight  : 700;
-  color        : var(--accent);
-  line-height  : 1;
+  font-family: var(--font-display, "Clash Display", sans-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
   /* clip para o número ascender dentro do seu container */
-  overflow     : hidden;
+  overflow: hidden;
 }
 
-.hero-stat-prefix { color: var(--accent) }
+.hero-stat-prefix {
+  color: var(--accent);
+}
 
 /* o número em si tem o movimento ascendente interno */
 .hero-stat-n {
@@ -705,276 +806,362 @@ onUnmounted(() => observer?.disconnect())
 }
 
 .hero-stat-t {
-  font-size      : .5rem;
-  font-weight    : 500;
-  letter-spacing : .14em;
-  text-transform : uppercase;
-  color          : var(--fg-muted);
-  animation      : stat-label-in .7s cubic-bezier(.16,1,.3,1) both;
-  animation-delay: calc(.6s + var(--si) * .15s);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  animation: stat-label-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.6s + var(--si) * 0.15s);
 }
 
 @keyframes stat-ascend {
   from {
-    opacity   : 0;
-    transform : translateY(32px);
-    filter    : blur(6px);
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(6px);
   }
   to {
-    opacity   : 1;
-    transform : translateY(0);
-    filter    : blur(0);
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 @keyframes stat-label-in {
-  from { opacity: 0; transform: translateY(10px) }
-  to   { opacity: 1; transform: translateY(0) }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Projects section ─────────────────────────────────────── */
 .projects-section {
-  position  : relative;
-  z-index   : 1;
-  max-width : 1120px;
-  margin    : 0 auto;
-  padding   : 0 var(--sp-6, 1.5rem) var(--sp-24, 6rem);
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--sp-6, 1.5rem) var(--sp-24, 6rem);
 }
 
 .projects-bar {
-  display         : flex;
-  align-items     : center;
-  justify-content : space-between;
-  padding         : var(--sp-4, 1rem) 0;
-  border-top      : 1px solid var(--border);
-  margin-bottom   : var(--sp-8, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-4, 1rem) 0;
+  border-top: 1px solid var(--border);
+  margin-bottom: var(--sp-8, 2rem);
 }
 .projects-count,
 .projects-sort {
-  font-size      : .5rem;
-  font-weight    : 500;
-  letter-spacing : .16em;
-  text-transform : uppercase;
-  color          : var(--fg-muted);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
 /* ── Grid ─────────────────────────────────────────────────── */
 .projects-grid {
-  display               : grid;
-  grid-template-columns : 1fr;
-  gap                   : var(--sp-6, 1.5rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6, 1.5rem);
 }
 
 /* ── Card ─────────────────────────────────────────────────── */
 .project-card {
-  position        : relative;
-  border          : 1px solid var(--border);
-  cursor          : pointer;
-  display         : flex;
-  flex-direction  : column;
-  text-decoration : none;
-  color           : inherit;
-  opacity         : 0;
-  transform       : translateY(28px);
-  transition      : opacity .65s cubic-bezier(.16,1,.3,1),
-                    transform .65s cubic-bezier(.16,1,.3,1),
-                    border-color .3s;
+  position: relative;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s;
 }
-.project-card.visible   { opacity: 1; transform: translateY(0) }
-.project-card:hover     { border-color: var(--accent-soft) }
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.project-card:hover {
+  border-color: var(--accent-soft);
+}
 
-.project-card:nth-child(1) { transition-delay: .05s }
-.project-card:nth-child(2) { transition-delay: .12s }
-.project-card:nth-child(3) { transition-delay: .19s }
-.project-card:nth-child(4) { transition-delay: .26s }
-.project-card:nth-child(5) { transition-delay: .05s }
-.project-card:nth-child(6) { transition-delay: .12s }
-.project-card:nth-child(7) { transition-delay: .19s }
+.project-card:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.project-card:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.project-card:nth-child(3) {
+  transition-delay: 0.19s;
+}
+.project-card:nth-child(4) {
+  transition-delay: 0.26s;
+}
+.project-card:nth-child(5) {
+  transition-delay: 0.05s;
+}
+.project-card:nth-child(6) {
+  transition-delay: 0.12s;
+}
+.project-card:nth-child(7) {
+  transition-delay: 0.19s;
+}
 
 /* ── Thumbnail ──────────────────────────────────────────────── */
 .card-thumb {
-  position     : relative;
-  width        : 100%;
-  aspect-ratio : 16 / 9;
-  overflow     : hidden;
-  flex-shrink  : 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 .card-thumb-img {
-  position   : absolute;
-  inset      : 0;
-  width      : 100%;
-  height     : 100%;
-  object-fit : cover;
-  display    : block;
-  transition : transform .7s cubic-bezier(.16,1,.3,1);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.project-card:hover .card-thumb-img { transform: scale(1.04) }
+.project-card:hover .card-thumb-img {
+  transform: scale(1.04);
+}
 
 .card-thumb-svg {
-  width   : 100%;
-  height  : 100%;
-  display : block;
-  transition: transform .7s cubic-bezier(.16,1,.3,1);
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.project-card:hover .card-thumb-svg { transform: scale(1.04) }
-.card-thumb-svg :deep(svg) { width: 100%; height: 100%; display: block }
+.project-card:hover .card-thumb-svg {
+  transform: scale(1.04);
+}
+.card-thumb-svg :deep(svg) {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
 .card-thumb::after {
-  content    : '';
-  position   : absolute;
-  inset      : 0;
-  background : linear-gradient(135deg, var(--accent-glow) 0%, transparent 55%);
-  opacity    : 0;
-  transition : opacity .4s;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s;
 }
-.project-card:hover .card-thumb::after { opacity: 1 }
+.project-card:hover .card-thumb::after {
+  opacity: 1;
+}
 
 .card-index {
-  position        : absolute;
-  top             : var(--sp-4, 1rem);
-  left            : var(--sp-4, 1rem);
-  font-family     : var(--font-display, 'Clash Display', sans-serif);
-  font-size       : .6rem;
-  font-weight     : 700;
-  color           : var(--accent);
-  letter-spacing  : .08em;
-  background      : var(--glass-bg);
-  border          : 1px solid var(--glass-border);
-  backdrop-filter : blur(8px);
+  position: absolute;
+  top: var(--sp-4, 1rem);
+  left: var(--sp-4, 1rem);
+  font-family: var(--font-display, "Clash Display", sans-serif);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding         : 3px 9px;
-  z-index         : 2;
+  padding: 3px 9px;
+  z-index: 2;
 }
 
 /* ── Card body ──────────────────────────────────────────────── */
 .card-body {
-  padding        : var(--sp-6, 1.5rem);
-  display        : flex;
-  flex-direction : column;
-  gap            : var(--sp-4, 1rem);
-  flex           : 1;
+  padding: var(--sp-6, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4, 1rem);
+  flex: 1;
 }
-.card-meta { display: flex; align-items: center; gap: var(--sp-3, .75rem) }
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3, 0.75rem);
+}
 
 .card-client {
-  font-size      : .5rem;
-  font-weight    : 500;
-  letter-spacing : .12em;
-  text-transform : uppercase;
-  color          : var(--fg-muted);
-  padding        : 2px 8px;
-  border         : 1px solid var(--border);
-  transition     : border-color .3s, color .3s;
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  transition:
+    border-color 0.3s,
+    color 0.3s;
 }
-.project-card:hover .card-client { border-color: var(--accent-soft); color: var(--accent) }
+.project-card:hover .card-client {
+  border-color: var(--accent-soft);
+  color: var(--accent);
+}
 
 .card-year {
-  font-size      : .5rem;
-  font-weight    : 500;
-  letter-spacing : .14em;
-  text-transform : uppercase;
-  color          : var(--fg-muted);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
 .card-title {
-  font-family    : var(--font-display, 'Clash Display', sans-serif);
-  font-weight    : 700;
-  font-size      : clamp(1.3rem, 2.5vw, 1.9rem);
-  line-height    : .95;
-  letter-spacing : -.02em;
-  transition     : color .3s;
+  font-family: var(--font-display, "Clash Display", sans-serif);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
 }
-.project-card:hover .card-title { color: var(--accent) }
+.project-card:hover .card-title {
+  color: var(--accent);
+}
 
 .card-desc {
-  font-size   : clamp(.8rem, 1.2vw, .88rem);
-  font-weight : 300;
-  line-height : 1.85;
-  color       : var(--fg-muted);
+  font-size: clamp(0.8rem, 1.2vw, 0.88rem);
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--fg-muted);
 }
 
 .card-tags {
-  display     : flex;
-  flex-wrap   : wrap;
-  gap         : var(--sp-2, .5rem);
-  margin-top  : auto;
-  padding-top : var(--sp-2, .5rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2, 0.5rem);
+  margin-top: auto;
+  padding-top: var(--sp-2, 0.5rem);
 }
 .card-tag {
-  font-size      : .48rem;
-  font-weight    : 500;
-  letter-spacing : .12em;
-  text-transform : uppercase;
-  color          : var(--fg-muted);
-  padding        : 3px 10px;
-  border         : 1px solid var(--border);
-  transition     : border-color .3s;
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
 }
-.project-card:hover .card-tag { border-color: rgba(240,24,90,.2) }
+.project-card:hover .card-tag {
+  border-color: rgba(240, 24, 90, 0.2);
+}
 
 /* ── Card footer ────────────────────────────────────────────── */
 .card-footer {
-  padding         : var(--sp-4, 1rem) var(--sp-6, 1.5rem);
-  border-top      : 1px solid var(--border);
-  display         : flex;
-  align-items     : center;
-  justify-content : space-between;
-  transition      : border-color .3s;
+  padding: var(--sp-4, 1rem) var(--sp-6, 1.5rem);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.3s;
 }
-.project-card:hover .card-footer { border-color: var(--accent-soft) }
+.project-card:hover .card-footer {
+  border-color: var(--accent-soft);
+}
 
 .card-cta {
-  display        : inline-flex;
-  align-items    : center;
-  gap            : var(--sp-2, .5rem);
-  font-size      : .55rem;
-  font-weight    : 500;
-  letter-spacing : .13em;
-  text-transform : uppercase;
-  color          : var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2, 0.5rem);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
-.card-cta-arrow { transition: transform .3s cubic-bezier(.16,1,.3,1) }
-.project-card:hover .card-cta-arrow { transform: translateX(5px) }
+.card-cta-arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover .card-cta-arrow {
+  transform: translateX(5px);
+}
 
 .card-type {
-  font-size      : .48rem;
-  font-weight    : 500;
-  letter-spacing : .12em;
-  text-transform : uppercase;
-  color          : var(--fg-faint);
+  font-size: 0.48rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
 }
 
 /* ── Responsive — design-system breakpoints ─────────────────── */
 /* 7th card (Lancôme) spans full width as a featured closer */
-.project-card:last-child { grid-column: 1 / -1 }
-.project-card:last-child .card-thumb { aspect-ratio: 3 / 1 }
-.project-card:last-child .card-title { font-size: clamp(1.6rem, 3vw, 2.4rem) }
+.project-card:last-child {
+  grid-column: 1 / -1;
+}
+.project-card:last-child .card-thumb {
+  aspect-ratio: 3 / 1;
+}
+.project-card:last-child .card-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
 
 @media (min-width: 640px) {
-  .projects-hero    { padding: calc(56px + var(--sp-20, 5rem)) var(--sp-12, 3rem) var(--sp-12, 3rem) }
-  .projects-section { padding: 0 var(--sp-12, 3rem) var(--sp-24, 6rem) }
-  .projects-grid    { grid-template-columns: 1fr 1fr }
+  .projects-hero {
+    padding: calc(56px + var(--sp-20, 5rem)) var(--sp-12, 3rem)
+      var(--sp-12, 3rem);
+  }
+  .projects-section {
+    padding: 0 var(--sp-12, 3rem) var(--sp-24, 6rem);
+  }
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (min-width: 1024px) {
   .projects-hero {
-    padding              : calc(56px + var(--sp-20, 5rem)) var(--sp-16, 4rem) var(--sp-12, 3rem);
-    display              : grid;
+    padding: calc(56px + var(--sp-20, 5rem)) var(--sp-16, 4rem)
+      var(--sp-12, 3rem);
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap                  : var(--sp-16, 4rem);
-    align-items          : end;
-    flex-direction       : unset;
+    gap: var(--sp-16, 4rem);
+    align-items: end;
+    flex-direction: unset;
   }
-  .projects-section { padding: 0 var(--sp-16, 4rem) var(--sp-24, 6rem) }
+  .projects-section {
+    padding: 0 var(--sp-16, 4rem) var(--sp-24, 6rem);
+  }
 }
 
 /* ── Keyframes ──────────────────────────────────────────────── */
 @keyframes pf-up {
-  from { opacity: 0; transform: translateY(24px); filter: blur(8px) }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0)   }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 @keyframes pf-pulse {
-  0%, 100% { opacity: 1;  transform: scale(1)   }
-  50%      { opacity: .3; transform: scale(.75) }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.75);
+  }
 }
 </style>
