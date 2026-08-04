@@ -1,5 +1,5 @@
 <template>
-  <nav class="pf-nav" :class="{ 'pf-nav--scrolled': scrolled }" aria-label="Main navigation">
+  <nav class="pf-nav" :class="{ 'pf-nav--scrolled': scrolled, 'pf-nav--home': isHome }" aria-label="Main navigation">
 
     <!-- LOGO -->
     <router-link to="/" class="nav-logo" aria-label="Tayná Schultz — Home">
@@ -178,6 +178,9 @@ function onClickOutside (e) {
 onMounted(()   => document.addEventListener('click', onClickOutside))
 onUnmounted(() => document.removeEventListener('click', onClickOutside))
 
+// ── Home route (nav sits over the hero image) ─────────────
+const isHome = computed(() => route.path === '/')
+
 // ── Scroll-aware background ────────────────────────────────
 const scrolled = ref(false)
 
@@ -353,6 +356,9 @@ const drawerBg = computed(() =>
 
 .nav-link:hover { color: var(--fg); }
 .nav-link:hover::after { left: 1.25rem; right: 1.25rem; }
+
+/* Over the homepage hero image (before scroll), hover white for contrast */
+.pf-nav--home:not(.pf-nav--scrolled) .nav-link:hover { color: #fff; }
 
 .nav-link.active { color: var(--accent); }
 .nav-link.active::after { left: 1.25rem; right: 1.25rem; }
