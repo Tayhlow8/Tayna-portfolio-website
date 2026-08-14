@@ -104,7 +104,7 @@ import imgMaster from "../imagens cases/master globo/master goblo cover.png";
 import imgYSL from "../imagens cases/YSL Y intense/mobile exp.avif";
 import imgLancome from "../imagens cases/Lancme brazil/foto 1 lancome.avif";
 import imgNV8 from "../clientes/nv8 case cover.png";
-import imgDermaClub from "../imagens cases/dermaclub/checkout after.avif";
+import imgDermaClub from "../imagens cases/dermaclub/power bi.jpeg";
 import imgIteration from "../src/assets/iteration/Iteration thumb.png";
 
 const props = defineProps({
