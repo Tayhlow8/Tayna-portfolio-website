@@ -307,7 +307,7 @@ const copy = {
     resultsAria: "Key results",
     resRevenue: "Revenue",
     resConversion: "Conversion Rate",
-    resCTR: "Checkout CTR",
+    resCTR: "Pass Through Rate",
     problemLabel: "01 · The Problem",
     problemHeading: "An urgent conversion problem",
     problemBody1:
@@ -421,7 +421,7 @@ const copy = {
       },
       {
         num: "+32%",
-        label: "Checkout CTR",
+        label: "Pass Through Rate",
         desc: "Far more users advanced from the first step into the next — evidence that clearing promo clutter and highlighting the CTA moved people forward.",
       },
     ],
@@ -443,7 +443,7 @@ const copy = {
     resultsAria: "Principais resultados",
     resRevenue: "Receita",
     resConversion: "Taxa de Conversão",
-    resCTR: "CTR no Checkout",
+    resCTR: "Taxa de Passagem",
     problemLabel: "01 · O Problema",
     problemHeading: "Um problema urgente de conversão",
     problemBody1:
@@ -557,7 +557,7 @@ const copy = {
       },
       {
         num: "+32%",
-        label: "CTR no Checkout",
+        label: "Taxa de Passagem",
         desc: "Muito mais usuários avançaram do primeiro passo para o seguinte — evidência de que limpar o ruído promocional e destacar a CTA moveu as pessoas adiante.",
       },
     ],
@@ -579,7 +579,7 @@ const copy = {
     resultsAria: "Resultados clave",
     resRevenue: "Ingresos",
     resConversion: "Tasa de Conversión",
-    resCTR: "CTR de Checkout",
+    resCTR: "Tasa de Paso",
     problemLabel: "01 · El Problema",
     problemHeading: "Un problema urgente de conversión",
     problemBody1:
@@ -693,7 +693,7 @@ const copy = {
       },
       {
         num: "+32%",
-        label: "CTR de Checkout",
+        label: "Tasa de Paso",
         desc: "Muchos más usuarios avanzaron del primer paso al siguiente — evidencia de que limpiar el ruido promocional y destacar la CTA movió a las personas hacia adelante.",
       },
     ],
@@ -715,7 +715,7 @@ const copy = {
     resultsAria: "Wichtigste Ergebnisse",
     resRevenue: "Umsatz",
     resConversion: "Conversion-Rate",
-    resCTR: "Checkout-CTR",
+    resCTR: "Durchlaufrate",
     problemLabel: "01 · Das Problem",
     problemHeading: "Ein dringendes Conversion-Problem",
     problemBody1:
@@ -829,7 +829,7 @@ const copy = {
       },
       {
         num: "+32%",
-        label: "Checkout-CTR",
+        label: "Durchlaufrate",
         desc: "Weit mehr Nutzer:innen gingen vom ersten Schritt zum nächsten über — ein Beleg dafür, dass das Entfernen des Werbe-Rauschens und das Hervorheben der CTA die Menschen voranbrachte.",
       },
     ],

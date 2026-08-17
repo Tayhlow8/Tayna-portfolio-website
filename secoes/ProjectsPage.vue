@@ -100,11 +100,11 @@ import NavBar from "./NavBar.vue";
 import { useLang } from "../src/composables/useLang";
 
 import imgRodobens from "../imagens cases/rodobens/case rodobens cover 1.png";
-import imgMaster from "../imagens cases/master globo/master goblo cover.png";
+import imgMaster from "../imagens cases/dermaclub/power bi.jpeg";
 import imgYSL from "../imagens cases/YSL Y intense/mobile exp.avif";
 import imgLancome from "../imagens cases/Lancme brazil/foto 1 lancome.avif";
 import imgNV8 from "../clientes/nv8 case cover.png";
-import imgDermaClub from "../imagens cases/dermaclub/power bi.jpeg";
+import imgDermaClub from "../imagens cases/dermaclub/dermacover.webp";
 import imgIteration from "../src/assets/iteration/Iteration thumb.png";
 
 const props = defineProps({
