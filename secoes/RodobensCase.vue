@@ -1084,29 +1084,20 @@ const copy = {
     impactHeading: "Impacto do Projeto",
     impactHeading: "Impacto do Projeto",
     impactMethodology:
-      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Medimos então cada tarefa <b>separadamente</b> dentro da mesma jornada e aplicamos um NPS ao final de cada jornada completa, pedindo ao usuário a <b>percepção</b> de tempo estimado em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%). 311 de 603 usuários responderam.",
+      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Os testes foram conduzidos em <b>ambiente de homologação (staging)</b> e, por restrições de tempo de projeto, cobriram apenas a jornada principal — a de <b>simulação</b>; as demais jornadas não puderam ser testadas. Medimos cada tarefa <b>separadamente</b> dentro da jornada e aplicamos um NPS ao final, pedindo ao usuário a <b>percepção</b> de tempo e esforço em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%).",
     metrics: [
-      {
-        num: "42%",
-        label:
-          "ganho percebido de eficiência na jornada de cadastro — melhor resultado do NPS",
-      },
-      {
-        num: "31%",
-        label: "ganho percebido de eficiência na jornada de simulação",
-      },
       {
         num: "92%",
         label:
-          "redução no tempo de cadastro com integração nativa vs. cópia manual anterior",
+          "ganho percebido de eficiência sobre o legado na jornada de simulação",
+      },
+      {
+        num: "70%",
+        label: "ganho percebido de agilidade na jornada de simulação",
       },
       {
         num: "25%",
-        label: "queda nas propostas devolvidas por erro de digitação",
-      },
-      {
-        num: "311",
-        label: "usuários responderam ao NPS de percepção de tempo",
+        label: "queda em erros de digitação nas propostas",
       },
     ],
     reflexLabel: "Reflexões & Aprendizados",
@@ -1322,26 +1313,21 @@ const copy = {
       "We delivered final navigable screens, beyond the wireframe contract, as well as full business rule documentation, validated flows, and a system people can actually use — no workarounds, no WhatsApp as a work tool.",
     impactHeading: "Project Impact",
     impactMethodology:
-      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. So we measured each task <b>individually</b> within the same journey, then applied an NPS at the end of each completed journey asking users to estimate <b>perceived</b> time compared to the legacy system. We classified responses as: much worse (−10%), worse (−5%), same (0%), faster (+5%), or much faster (+10%). 311 of 603 users responded.",
+      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. Testing was run in a <b>staging (homologation) environment</b> and, due to project time constraints, covered only the main journey — <b>simulation</b>; the remaining journeys could not be tested. We measured each task <b>individually</b> within the journey, then applied an NPS at the end asking users to estimate <b>perceived</b> time and effort compared to the legacy system. We classified responses as: much worse (−10%), worse (−5%), same (0%), faster (+5%), or much faster (+10%).",
     metrics: [
-      {
-        num: "42%",
-        label: "perceived efficiency gain on the registration journey",
-      },
-      {
-        num: "72%",
-        label: "perceived efficiency gain on the simulation journey",
-      },
       {
         num: "92%",
         label:
-          "reduction in registration time with native integration vs. previous manual copy",
+          "perceived efficiency gain over the legacy system on the simulation journey",
+      },
+      {
+        num: "70%",
+        label: "perceived speed/agility gain on the simulation journey",
       },
       {
         num: "25%",
-        label: "drop in proposals returned due to data entry errors",
+        label: "drop in data entry errors on proposals",
       },
-      { num: "311", label: "users responded to the perceived time NPS" },
     ],
     reflexLabel: "Reflections & Learnings",
     teamHeading: "Team",
@@ -1556,12 +1542,22 @@ const copy = {
     delivQuote:
       "Entregamos pantallas navegables en versión final, más allá del contrato de wireframes, junto con toda la documentación de reglas de negocio, flujos validados y un sistema escalable, integrado y con usabilidad mejorada.",
     impactHeading: "Impacto del Proyecto",
+    impactMethodology:
+      "Medir el éxito de una plataforma como esta requirió un enfoque <b>propio</b>. El tiempo total de journey no era un indicador confiable — variables externas como la respuesta del cliente, las firmas y las aprobaciones de terceros distorsionaban cualquier medición. Las pruebas se realizaron en <b>ambiente de homologación (staging)</b> y, por restricciones de tiempo de proyecto, cubrieron solo el journey principal — el de <b>simulación</b>; los demás journeys no pudieron probarse. Medimos cada tarea <b>por separado</b> dentro del journey y aplicamos un NPS al final, pidiendo al usuario la <b>percepción</b> de tiempo y esfuerzo en relación al legado. Clasificamos las respuestas en: muy malo (−10%), malo (−5%), igual (0%), más rápido (+5%) y mucho más rápido (+10%).",
     metrics: [
-      { num: "129", label: "perfiles de acceso mapeados" },
-      { num: "603", label: "usuarios contemplados" },
-      { num: "6", label: "meses de migración" },
-      { num: "7", label: "años de sistema legado modernizado" },
-      { num: "100%", label: "de las reglas de negocio documentadas" },
+      {
+        num: "92%",
+        label:
+          "ganancia percibida de eficiencia sobre el legado en el journey de simulación",
+      },
+      {
+        num: "70%",
+        label: "ganancia percibida de agilidad en el journey de simulación",
+      },
+      {
+        num: "25%",
+        label: "caída en errores de tipeo en las propuestas",
+      },
     ],
     reflexLabel: "Reflexiones & Aprendizajes",
     teamHeading: "Equipo",
@@ -1775,12 +1771,22 @@ const copy = {
     delivQuote:
       "Wir lieferten finale navigierbare Screens — über den Wireframe-Vertrag hinaus — sowie die vollständige Dokumentation der Geschäftsregeln, validierte Flows und ein skalierbares, integriertes System mit verbesserter Usability.",
     impactHeading: "Projektauswirkungen",
+    impactMethodology:
+      "Den Erfolg einer solchen Plattform zu messen erforderte einen <b>eigenen</b> Ansatz. Die gesamte Journey-Zeit war als Metrik unzuverlässig — zu viele externe Variablen wie Kundenreaktion, Unterschriften und Freigaben Dritter. Die Tests wurden in einer <b>Staging-Umgebung (Homologation)</b> durchgeführt und deckten aus Projektzeitgründen nur die Haupt-Journey ab — die <b>Simulation</b>; die übrigen Journeys konnten nicht getestet werden. Wir maßen jede Aufgabe <b>einzeln</b> innerhalb der Journey und wendeten am Ende ein NPS an, bei dem die Nutzer die <b>wahrgenommene</b> Zeit und den Aufwand im Vergleich zum Altsystem einschätzten. Wir klassifizierten die Antworten als: viel schlechter (−10%), schlechter (−5%), gleich (0%), schneller (+5%) und viel schneller (+10%).",
     metrics: [
-      { num: "129", label: "kartierte Zugriffsprofile" },
-      { num: "603", label: "betroffene Nutzer" },
-      { num: "6", label: "Migrationsmonate" },
-      { num: "7", label: "Jahre modernisiertes Legacy-System" },
-      { num: "100%", label: "der dokumentierten Geschäftsregeln" },
+      {
+        num: "92%",
+        label:
+          "wahrgenommener Effizienzgewinn gegenüber dem Altsystem in der Simulations-Journey",
+      },
+      {
+        num: "70%",
+        label: "wahrgenommener Geschwindigkeits-/Agilitätsgewinn in der Simulations-Journey",
+      },
+      {
+        num: "25%",
+        label: "Rückgang der Tippfehler in Anträgen",
+      },
     ],
     reflexLabel: "Reflexionen & Erkenntnisse",
     teamHeading: "Team",
