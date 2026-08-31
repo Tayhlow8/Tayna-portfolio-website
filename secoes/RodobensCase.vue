@@ -1113,17 +1113,17 @@ const copy = {
       {
         question: "Qual foi o conflito real que você resolveu?",
         answer:
-          "Um stakeholder defendeu uma tela inicial genérica e igual para todos os perfis de usuário para acelerar a entrega. Defendi o contrário — um dashboard personalizado por perfil de acesso. O argumento tinha três camadas: primeiro, o uso de Nuxt UI v3 significava que a versão personalizada não exigiria tempo extra de prototipação; segundo, os atalhos de acesso rápido personalizados eliminariam diretamente a dor mais unânime de todas as entrevistas — uma tela inicial que os próprios usuários descreviam como inútil; terceiro, uma tela em branco ou estática replicaria exatamente o fracasso do sistema legado que estávamos substituindo, e a tela inicial é a primeira coisa que 603 usuários veem todos os dias. O stakeholder aceitou o argumento. O dashboard personalizado foi entregue.",
+          "O prazo empurrava para entregar sem validação — 'está pronto, pode subir'. Bati o pé para testar, no mínimo, a jornada mais crítica de ponta a ponta antes de dar o redesenho como concluído. Com um legado de 7 anos carregando 100+ bugs e 603 usuários dependendo dele todos os dias, subir sem nenhuma evidência de que a nova versão funcionava melhor era um risco que eu não aceitava correr. Não dava tempo de validar tudo — mas dava para validar o que mais importava. Garanti o teste da jornada de simulação em ambiente de homologação e usei esse resultado como prova de que a direção estava certa antes de escalar para o resto.",
       },
       {
         question: "O que abriu mão para resolvê-lo?",
         answer:
-          "Sacrifiquei pesquisa exploratória de longo prazo e relatórios extensos, priorizando shadowing intensivo, entrevistas direcionadas e documentação viva através de user flows — ferramentas que serviam simultaneamente ao time de design e engenharia. Uma pesquisa mais ampla teria gerado dados melhores. Um discovery focado gerou os dados certos no momento certo.",
+          "Abri mão de amplitude em favor de profundidade — duas vezes. No discovery, troquei pesquisa exploratória ampla por shadowing intensivo e entrevistas direcionadas às dores que travavam 603 pessoas todos os dias. Na validação, com o tempo de projeto contra, testei a fundo apenas a jornada principal — a de simulação, em ambiente de homologação — em vez de espalhar o teste por todas as jornadas e não validar nenhuma direito. Menos cobertura, sinal mais confiável.",
       },
       {
         question: "Maturidade demonstrada",
         answer:
-          "Defender uma decisão de design sob pressão de prazo — com argumento técnico (biblioteca reduz tempo de implementação), argumento de usuário (100% dos entrevistados apontaram a tela inicial) e argumento de negócio (repetir o padrão legado minaria a confiança no novo sistema) — e conseguir os três. Alinhamento entre expectativas da diretoria e realidade dos 603 usuários. Atuação como elo entre necessidades do cliente e viabilidade do produto em integrações complexas (B3, Autbank).",
+          "Reconhecer que profundidade valia mais que cobertura — e assumir isso abertamente. Priorizei validar bem a jornada mais crítica em vez de entregar números frágeis sobre todas, e deixei explícito o que não foi testado e por quê. Tratar limitação de escopo como decisão consciente, não como lacuna a esconder, é o que separa um trade-off sênior de um corte de canto. E sustentar essa priorização sob pressão de prazo exigiu alinhar as expectativas da diretoria à realidade dos 603 usuários — atuando como elo entre a necessidade do cliente e a viabilidade do produto em integrações complexas (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
@@ -1342,17 +1342,17 @@ const copy = {
       {
         question: "What was the real conflict you solved?",
         answer:
-          "A stakeholder pushed for a single, generic home screen across all user profiles to speed up delivery. I pushed back — and defended a personalized dashboard per access profile. My argument had three layers: first, using Nuxt UI v3 meant the personalized version required no extra prototyping time; second, quick-access shortcuts tailored to each profile would directly eliminate the most universally reported pain point from interviews — a home screen that users described as completely useless; third, a blank or static home screen would have replicated the exact failure of the legacy system we were replacing, and the home screen is the first thing 603 users see every single day. The stakeholder accepted the argument. The personalized dashboard shipped.",
+          "The deadline pushed to ship without validation — 'it's ready, let's go live.' I held my ground to test, at minimum, the most critical journey end-to-end before calling the redesign done. With a 7-year legacy carrying 100+ bugs and 603 users depending on it every day, shipping with no evidence the new version actually worked better was a risk I wasn't willing to take. There wasn't time to validate everything — but there was time to validate what mattered most. I secured testing of the simulation journey in a staging environment and used that result as proof the direction was right before scaling to the rest.",
       },
       {
         question: "What did you give up to solve it?",
         answer:
-          "I sacrificed long-term exploratory research and extensive reports, prioritizing intensive shadowing, targeted interviews, and living documentation through user flows — tools that served both the design and engineering teams simultaneously. Broad research would have produced better data. Focused discovery produced the right data at the right time.",
+          "I traded breadth for depth — twice. In discovery, I swapped broad exploratory research for intensive shadowing and interviews targeted at the pain points that blocked 603 people every day. In validation, with project time against me, I tested only the main journey deeply — simulation, in a staging environment — instead of spreading testing across every journey and validating none of them properly. Less coverage, more reliable signal.",
       },
       {
         question: "Demonstrated maturity",
         answer:
-          "Defending a design decision under delivery pressure — with a technical argument (library reduces implementation time), a user argument (100% of interviewees flagged the home screen), and a business argument (repeating the legacy pattern would undermine trust in the new system) — and landing all three. Aligning board expectations with the reality of 603 users. Acting as the link between client needs and product feasibility across complex integrations (B3, Autbank).",
+          "Recognizing that depth was worth more than coverage — and owning that openly. I prioritized validating the most critical journey well over shipping fragile numbers across all of them, and made explicit what wasn't tested and why. Treating a scope limitation as a deliberate decision, not a gap to hide, is what separates a senior trade-off from cutting a corner. And holding that prioritization under deadline pressure meant aligning board expectations with the reality of 603 users — acting as the link between client needs and product feasibility across complex integrations (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
@@ -1572,17 +1572,17 @@ const copy = {
       {
         question: "¿Cuál fue el conflicto real que resolviste?",
         answer:
-          "Un stakeholder defendió una pantalla de inicio genérica e igual para todos los perfiles de usuario para acelerar la entrega. Defendí lo contrario — un dashboard personalizado por perfil de acceso. El argumento tenía tres capas: primero, el uso de Nuxt UI v3 significaba que la versión personalizada no requería tiempo extra de prototipado; segundo, los accesos directos personalizados eliminarían directamente el problema más unánime de todas las entrevistas — una pantalla inicial que los propios usuarios describían como inútil; tercero, una pantalla en blanco replicaría exactamente el fracaso del sistema legado que estábamos reemplazando. El stakeholder aceptó el argumento. El dashboard personalizado fue entregado.",
+          "El plazo empujaba a entregar sin validación — 'está listo, subámoslo'. Insistí en probar, como mínimo, el journey más crítico de punta a punta antes de dar el rediseño por terminado. Con un legado de 7 años cargando 100+ bugs y 603 usuarios dependiendo de él todos los días, subir sin ninguna evidencia de que la nueva versión funcionaba mejor era un riesgo que no estaba dispuesta a correr. No había tiempo de validar todo — pero sí de validar lo que más importaba. Aseguré la prueba del journey de simulación en ambiente de homologación y usé ese resultado como prueba de que la dirección era la correcta antes de escalar al resto.",
       },
       {
         question: "¿A qué renunciaste para resolverlo?",
         answer:
-          "Sacrifiqué la investigación exploratoria de largo plazo y los informes extensos, priorizando shadowing intensivo, entrevistas dirigidas y documentación viva a través de user flows. Una investigación más amplia habría generado mejores datos. Un discovery enfocado generó los datos correctos en el momento correcto.",
+          "Renuncié a amplitud a favor de profundidad — dos veces. En el discovery, cambié investigación exploratoria amplia por shadowing intensivo y entrevistas dirigidas a los dolores que trababan a 603 personas todos los días. En la validación, con el tiempo de proyecto en contra, probé a fondo solo el journey principal — el de simulación, en ambiente de homologación — en vez de repartir la prueba por todos los journeys y no validar ninguno bien. Menos cobertura, señal más confiable.",
       },
       {
         question: "Madurez demostrada",
         answer:
-          "Defender una decisión de diseño bajo presión de entrega — con argumento técnico (la librería reduce el tiempo de implementación), argumento de usuario (el 100% de los entrevistados señaló la pantalla de inicio) y argumento de negocio (repetir el patrón legacy minaría la confianza en el nuevo sistema) — y lograr los tres. Alineación entre expectativas de la dirección y la realidad de los 603 usuarios. Actuación como nexo entre las necesidades del cliente y la viabilidad del producto.",
+          "Reconocer que la profundidad valía más que la cobertura — y asumirlo abiertamente. Prioricé validar bien el journey más crítico en vez de entregar números frágiles sobre todos, y dejé explícito qué no se probó y por qué. Tratar una limitación de alcance como decisión consciente, no como una brecha a esconder, es lo que separa un trade-off sénior de un recorte fácil. Y sostener esa priorización bajo presión de entrega exigió alinear las expectativas de la dirección con la realidad de los 603 usuarios — actuando como nexo entre las necesidades del cliente y la viabilidad del producto en integraciones complejas (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
@@ -1801,17 +1801,17 @@ const copy = {
       {
         question: "Was war der eigentliche Konflikt, den du gelöst hast?",
         answer:
-          "Ein Stakeholder forderte einen einheitlichen, generischen Startbildschirm für alle Nutzerprofile, um die Lieferung zu beschleunigen. Ich widersprach — und verteidigte ein personalisiertes Dashboard pro Zugriffsprofil. Das Argument hatte drei Ebenen: Erstens bedeutete die Verwendung von Nuxt UI v3, dass die personalisierte Version keine zusätzliche Prototyping-Zeit erforderte; zweitens würden personalisierte Schnellzugriffe den am häufigsten genannten Schmerzpunkt aus den Interviews direkt beseitigen — einen Startbildschirm, den Nutzer als völlig nutzlos beschrieben; drittens würde ein leerer Bildschirm exakt das Versagen des Legacy-Systems wiederholen. Der Stakeholder akzeptierte das Argument. Das personalisierte Dashboard wurde geliefert.",
+          "Der Termin drängte, ohne Validierung auszuliefern — 'es ist fertig, lass es live gehen.' Ich bestand darauf, mindestens die kritischste Journey End-to-End zu testen, bevor ich das Redesign als abgeschlossen betrachtete. Bei einem 7 Jahre alten Legacy-System mit 100+ Bugs und 603 Nutzern, die täglich davon abhängen, war es ein Risiko, das ich nicht eingehen wollte: ohne jeden Beleg auszuliefern, dass die neue Version wirklich besser funktioniert. Es war keine Zeit, alles zu validieren — aber Zeit, das Wichtigste zu validieren. Ich sicherte den Test der Simulations-Journey in einer Staging-Umgebung und nutzte dieses Ergebnis als Beleg, dass die Richtung stimmte, bevor auf den Rest skaliert wurde.",
       },
       {
         question: "Worauf hast du verzichtet, um es zu lösen?",
         answer:
-          "Ich verzichtete auf langfristige explorative Forschung und umfangreiche Berichte, priorisierte stattdessen intensives Shadowing, gezielte Interviews und lebende Dokumentation durch User Flows. Breitere Forschung hätte bessere Daten geliefert. Fokussierte Discovery lieferte die richtigen Daten zum richtigen Zeitpunkt.",
+          "Ich tauschte Breite gegen Tiefe — zweimal. Im Discovery ersetzte ich breite explorative Forschung durch intensives Shadowing und gezielte Interviews zu den Schmerzpunkten, die 603 Menschen täglich blockierten. In der Validierung testete ich mit knapper Projektzeit nur die Haupt-Journey gründlich — die Simulation, in einer Staging-Umgebung — statt den Test über alle Journeys zu verteilen und keine richtig zu validieren. Weniger Abdeckung, verlässlicheres Signal.",
       },
       {
         question: "Gezeigte Reife",
         answer:
-          "Eine Design-Entscheidung unter Lieferdruck zu verteidigen — mit technischem Argument (Bibliothek reduziert Implementierungszeit), Nutzerargument (100% der Befragten nannten den Startbildschirm) und Geschäftsargument (das Legacy-Muster zu wiederholen würde das Vertrauen in das neue System untergraben) — und alle drei zu landen. Abstimmung zwischen Erwartungen der Geschäftsführung und der Realität der 603 Nutzer. Funktion als Bindeglied zwischen Kundenbedürfnissen und Produktmachbarkeit.",
+          "Zu erkennen, dass Tiefe mehr wert war als Abdeckung — und das offen zu vertreten. Ich priorisierte, die kritischste Journey gut zu validieren, statt fragile Zahlen über alle zu liefern, und machte explizit, was nicht getestet wurde und warum. Eine Scope-Beschränkung als bewusste Entscheidung zu behandeln, nicht als zu verbergende Lücke, unterscheidet einen Senior-Trade-off vom Abkürzen. Und diese Priorisierung unter Termindruck zu halten, erforderte, die Erwartungen der Geschäftsführung mit der Realität der 603 Nutzer in Einklang zu bringen — als Bindeglied zwischen Kundenbedürfnissen und Produktmachbarkeit bei komplexen Integrationen (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
