@@ -969,12 +969,12 @@ const copy = {
     ],
     designLabel: "Solução de Design",
     designIntro:
-      "Durante o discovery e mapeamento dos perfis de acesso, optamos pela utilização da library <b>Nuxt UI v.3</b> adaptada para o cliente visando a redução do tempo em produção e iteração de componentes. O uso de uma lib no projeto também facilita a escalabilidade de projetos internos. O sistema cresceu em cima de si mesmo por 7 anos — sem padrão, sem hierarquia, e com fluxos que exigiam 6 cliques para tarefas que deveriam ter 2..",
+      "Durante o discovery e mapeamento dos perfis de acesso, optamos pela utilização de uma <b>biblioteca de componentes já existente</b>, adaptada para o cliente visando a redução do tempo em produção e iteração de componentes. O uso de uma lib no projeto também facilita a escalabilidade de projetos internos. O sistema cresceu em cima de si mesmo por 7 anos — sem padrão, sem hierarquia, e com fluxos que exigiam 6 cliques para tarefas que deveriam ter 2..",
     principlesLabel: "Melhorias percebidas",
     dsBannerTitle:
       "De HTML legacy a Design System moderno: evolução guiada por dados de usuário",
     dsBannerSub:
-      "Utilizamos Nuxt UI v3 como fundação, customizando componentes estrategicamente para atender as necessidades específicas do setor financeiro e os 603 usuários da plataforma.",
+      "Utilizamos um UI kit já existente como fundação, customizando componentes estrategicamente para atender as necessidades específicas do setor financeiro e os 603 usuários da plataforma.",
     principles: [
       {
         title: "Redução de Carga Cognitiva",
@@ -1008,7 +1008,7 @@ const copy = {
       },
     ],
     decisionTitle: "Decisão Estratégica: Biblioteca vs. Custom",
-    decisionSub: "Por que escolhemos Nuxt UI v3 como fundação:",
+    decisionSub: "Por que escolhemos um UI kit já existente como fundação:",
     decisionBenefitsTitle: "Benefícios da Biblioteca",
     decisionBenefits: [
       {
@@ -1052,7 +1052,7 @@ const copy = {
       },
     ],
     decisionQuote:
-      "A escolha de Nuxt UI v3 não foi sobre economizar tempo — foi sobre investir o tempo certo no que realmente importava: entender as 129 permissões de acesso, traduzir regras de negócio complexas em interfaces intuitivas, e garantir que cada componente refletisse as necessidades reais dos 603 usuários.",
+      "A escolha de um UI kit já existente não foi sobre economizar tempo — foi sobre investir o tempo certo no que realmente importava: entender as 129 permissões de acesso, traduzir regras de negócio complexas em interfaces intuitivas, e garantir que cada componente refletisse as necessidades reais dos 603 usuários.",
     compsTitle: "Componentes-Chave do Sistema",
     badge1: "Aprovado",
     badge2: "Pendente",
@@ -1199,12 +1199,12 @@ const copy = {
     ],
     designLabel: "Design Solution",
     designIntro:
-      "During the discovery and access profile mapping, we chose to use the <b>Nuxt UI v.3</b> library adapted for the client to reduce production time and component iteration. Using a library also facilitates scalability for internal projects. The system had grown on top of itself for 7 years — no standards, no hierarchy, and flows that required 6 clicks for tasks that should have taken 2..",
+      "During the discovery and access profile mapping, we chose to use an <b>existing component library</b> adapted for the client to reduce production time and component iteration. Using a library also facilitates scalability for internal projects. The system had grown on top of itself for 7 years — no standards, no hierarchy, and flows that required 6 clicks for tasks that should have taken 2..",
     principlesLabel: "Perceived Improvements",
     dsBannerTitle:
       "From legacy HTML to modern Design System: evolution guided by user data",
     dsBannerSub:
-      "We used Nuxt UI v3 as foundation, strategically customizing components to meet the specific needs of the financial sector and the 603 platform users.",
+      "We used an existing UI-kit as our foundation, strategically customizing components to meet the specific needs of the financial sector and the 603 platform users.",
     principles: [
       {
         title: "Cognitive Load Reduction",
@@ -1238,7 +1238,7 @@ const copy = {
       },
     ],
     decisionTitle: "Strategic Decision: Library vs. Custom",
-    decisionSub: "Why we chose Nuxt UI v3 as foundation:",
+    decisionSub: "Why we chose an existing UI-kit foundation:",
     decisionBenefitsTitle: "Library Benefits",
     decisionBenefits: [
       {
@@ -1282,7 +1282,7 @@ const copy = {
       },
     ],
     decisionQuote:
-      "The choice of Nuxt UI v3 wasn't about saving time — it was about investing the right time in what truly mattered: understanding the 129 access permissions and translating complex business rules into intuitive interfaces.",
+      "The choice to build on an existing UI-kit wasn't about saving time — it was about investing the right time in what truly mattered: understanding the 129 access permissions and translating complex business rules into intuitive interfaces.",
     compsTitle: "Key System Components",
     badge1: "Approved",
     badge2: "Pending",
@@ -1429,12 +1429,12 @@ const copy = {
     ],
     designLabel: "Solución de Diseño",
     designIntro:
-      "Durante el discovery y mapeo de perfiles de acceso, optamos por utilizar la librería <b>Nuxt UI v.3</b> adaptada para el cliente, con el objetivo de reducir el tiempo de producción e iteración de componentes. El uso de una lib en el proyecto también facilita la escalabilidad de proyectos internos. El sistema actual del cliente fue construido a base de remiendos, por lo que el layout no seguía estandarizaciones ni jerarquías, y requería muchos pasos para realizar tareas simples.",
+      "Durante el discovery y mapeo de perfiles de acceso, optamos por utilizar una <b>biblioteca de componentes ya existente</b> adaptada para el cliente, con el objetivo de reducir el tiempo de producción e iteración de componentes. El uso de una lib en el proyecto también facilita la escalabilidad de proyectos internos. El sistema actual del cliente fue construido a base de remiendos, por lo que el layout no seguía estandarizaciones ni jerarquías, y requería muchos pasos para realizar tareas simples.",
     principlesLabel: "Mejoras percibidas",
     dsBannerTitle:
       "De HTML legacy a Design System moderno: evolución guiada por datos de usuario",
     dsBannerSub:
-      "Usamos Nuxt UI v3 como base, personalizando componentes estratégicamente para satisfacer las necesidades específicas del sector financiero y los 603 usuarios de la plataforma.",
+      "Usamos un UI kit ya existente como base, personalizando componentes estratégicamente para satisfacer las necesidades específicas del sector financiero y los 603 usuarios de la plataforma.",
     principles: [
       {
         title: "Reducción de Carga Cognitiva",
@@ -1468,7 +1468,7 @@ const copy = {
       },
     ],
     decisionTitle: "Decisión Estratégica: Librería vs. Custom",
-    decisionSub: "¿Por qué elegimos Nuxt UI v3 como base?",
+    decisionSub: "¿Por qué elegimos un UI kit ya existente como base?",
     decisionBenefitsTitle: "Beneficios de la Librería",
     decisionBenefits: [
       {
@@ -1512,7 +1512,7 @@ const copy = {
       },
     ],
     decisionQuote:
-      "La elección de Nuxt UI v3 no fue sobre ahorrar tiempo — fue sobre invertir el tiempo correcto en lo que realmente importaba: entender los 129 permisos de acceso, traducir reglas de negocio complejas en interfaces intuitivas, y garantizar que cada componente reflejara las necesidades reales de los 603 usuarios.",
+      "La elección de un UI kit ya existente no fue sobre ahorrar tiempo — fue sobre invertir el tiempo correcto en lo que realmente importaba: entender los 129 permisos de acceso, traducir reglas de negocio complejas en interfaces intuitivas, y garantizar que cada componente reflejara las necesidades reales de los 603 usuarios.",
     compsTitle: "Componentes Clave del Sistema",
     badge1: "Aprobado",
     badge2: "Pendiente",
@@ -1658,12 +1658,12 @@ const copy = {
     ],
     designLabel: "Design-Lösung",
     designIntro:
-      "Während der Discovery und der Kartierung der Zugriffsprofile entschieden wir uns für den Einsatz der <b>Nuxt UI v.3</b>-Bibliothek, angepasst für den Kunden, um die Produktionszeit und Komponenteniteration zu reduzieren. Das bestehende System des Kunden war auf Flickwerk aufgebaut — das Layout folgte keinen Standards oder Hierarchien.",
+      "Während der Discovery und der Kartierung der Zugriffsprofile entschieden wir uns für den Einsatz einer <b>vorhandenen Komponentenbibliothek</b>, angepasst für den Kunden, um die Produktionszeit und Komponenteniteration zu reduzieren. Das bestehende System des Kunden war auf Flickwerk aufgebaut — das Layout folgte keinen Standards oder Hierarchien.",
     principlesLabel: "Wahrgenommene Verbesserungen",
     dsBannerTitle:
       "Von Legacy-HTML zum modernen Design System: Entwicklung durch Nutzerdaten",
     dsBannerSub:
-      "Wir nutzten Nuxt UI v3 als Grundlage und passten Komponenten strategisch an die spezifischen Anforderungen des Finanzsektors und der 603 Plattformnutzer an.",
+      "Wir nutzten ein bestehendes UI-Kit als Grundlage und passten Komponenten strategisch an die spezifischen Anforderungen des Finanzsektors und der 603 Plattformnutzer an.",
     principles: [
       {
         title: "Reduzierung der kognitiven Last",
@@ -1697,7 +1697,7 @@ const copy = {
       },
     ],
     decisionTitle: "Strategische Entscheidung: Bibliothek vs. Custom",
-    decisionSub: "Warum wir Nuxt UI v3 als Grundlage gewählt haben:",
+    decisionSub: "Warum wir ein bestehendes UI-Kit als Grundlage gewählt haben:",
     decisionBenefitsTitle: "Vorteile der Bibliothek",
     decisionBenefits: [
       {
@@ -1741,7 +1741,7 @@ const copy = {
       },
     ],
     decisionQuote:
-      "Die Wahl von Nuxt UI v3 war keine Frage der Zeitersparnis — es ging darum, die richtige Zeit in das zu investieren, was wirklich zählte: die 129 Zugriffsberechtigungen zu verstehen und komplexe Geschäftsregeln in intuitive Interfaces zu übersetzen.",
+      "Die Wahl eines bestehenden UI-Kits war keine Frage der Zeitersparnis — es ging darum, die richtige Zeit in das zu investieren, was wirklich zählte: die 129 Zugriffsberechtigungen zu verstehen und komplexe Geschäftsregeln in intuitive Interfaces zu übersetzen.",
     compsTitle: "Schlüsselkomponenten des Systems",
     badge1: "Genehmigt",
     badge2: "Ausstehend",
