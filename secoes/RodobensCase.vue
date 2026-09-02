@@ -993,7 +993,7 @@ const copy = {
       },
       {
         title: "Formulários Progressivos",
-        body: "Formulários progressivos em 4–5 etapas — contribuíram para a queda de 25% em erros de digitação",
+        body: "Formulários progressivos em 4–5 etapas — contribuíram para a queda de 100% em erros de digitação",
         color: "#F0185A",
       },
       {
@@ -1096,8 +1096,9 @@ const copy = {
         label: "ganho percebido de agilidade na jornada de simulação",
       },
       {
-        num: "25%",
-        label: "queda em erros de digitação nas propostas",
+        num: "100%",
+        label:
+          "redução de erros de digitação nas propostas causados por entrada manual de dados",
       },
     ],
     reflexLabel: "Reflexões & Aprendizados",
@@ -1223,7 +1224,7 @@ const copy = {
       },
       {
         title: "Progressive Forms",
-        body: "Progressive forms in 4–5 steps — contributed to the 25% drop in data entry errors",
+        body: "Progressive forms in 4–5 steps — contributed to the 100% drop in data entry errors",
         color: "#F0185A",
       },
       {
@@ -1325,8 +1326,9 @@ const copy = {
         label: "perceived speed/agility gain on the simulation journey",
       },
       {
-        num: "25%",
-        label: "drop in data entry errors on proposals",
+        num: "100%",
+        label:
+          "reduction in typing errors in proposals caused by manual data entry",
       },
     ],
     reflexLabel: "Reflections & Learnings",
@@ -1555,8 +1557,9 @@ const copy = {
         label: "ganancia percibida de agilidad en el journey de simulación",
       },
       {
-        num: "25%",
-        label: "caída en errores de tipeo en las propuestas",
+        num: "100%",
+        label:
+          "reducción de errores de tipeo en las propuestas causados por entrada manual de datos",
       },
     ],
     reflexLabel: "Reflexiones & Aprendizajes",
@@ -1784,8 +1787,9 @@ const copy = {
         label: "wahrgenommener Geschwindigkeits-/Agilitätsgewinn in der Simulations-Journey",
       },
       {
-        num: "25%",
-        label: "Rückgang der Tippfehler in Anträgen",
+        num: "100%",
+        label:
+          "Reduktion von Tippfehlern in Anträgen durch manuelle Dateneingabe",
       },
     ],
     reflexLabel: "Reflexionen & Erkenntnisse",
