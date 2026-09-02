@@ -364,7 +364,7 @@
           </div>
         </div>
         <div class="it-metric-card">
-          <span class="it-metric-n">72%</span>
+          <span class="it-metric-n">92%</span>
           <span class="it-metric-l">{{ t.metricLabel }}</span>
           <span class="it-metric-sub">{{ t.metricSub }}</span>
         </div>
@@ -558,7 +558,7 @@ const copy = {
       "Would we have tested each journey separately with users? Yes — and we would have caught things earlier. The timeline didn't allow it. What it did allow was treating every touchpoint, including presentations, as a design surface.",
     ],
     metricLabel: "perceived efficiency gain",
-    metricSub: "on the full simulation journey vs. legacy",
+    metricSub: "over the legacy system, on the simulation journey",
 
     // Section 06
     principleLabel: "Principle",
@@ -568,23 +568,18 @@ const copy = {
     kpisBtn: "Read the full Rodobens case study →",
     kpis: [
       {
-        num: "42%",
-        label: "perceived efficiency gain on the registration journey",
-      },
-      {
-        num: "72%",
-        label: "perceived efficiency gain on the simulation journey",
-      },
-      {
         num: "92%",
         label:
-          "reduction in registration time with native integration vs. previous manual copy",
+          "perceived efficiency gain over the legacy system on the simulation journey",
+      },
+      {
+        num: "70%",
+        label: "perceived speed/agility gain on the simulation journey",
       },
       {
         num: "25%",
-        label: "drop in proposals returned due to data entry errors",
+        label: "drop in data entry errors on proposals",
       },
-      { num: "311", label: "users responded to the perceived time NPS" },
     ],
 
     // Footer
@@ -683,33 +678,25 @@ const copy = {
       "O instinto de copiar o legado não era fuga — era um método de pesquisa para o qual ainda não tínhamos nome. Ao mostrar a todos exatamente o que existia, limpo mas estruturalmente inalterado, criamos um ponto de referência compartilhado que liberou a sala para discordar. Os problemas ficaram visíveis para todos ao mesmo tempo, o que fez a iteração parecer colaborativa, não top-down.",
       "Teríamos testado cada jornada separadamente com usuários? Sim — e teríamos detectado coisas mais cedo. O timeline não permitiu. O que permitiu foi tratar cada touchpoint, incluindo apresentações, como uma superfície de design.",
     ],
-    metricLabel: "ganho de eficiência percebida",
-    metricSub: "na jornada de simulação completa vs. legado",
+    metricLabel: "ganho percebido de eficiência",
+    metricSub: "sobre o legado, na jornada de simulação",
     principleLabel: "Princípio",
     quote:
       "Copiar não é desistir. Às vezes, mostrar exatamente o que existe é o caminho mais rápido para ver o que precisa mudar.",
     kpisBtn: "Ler o case completo do Rodobens →",
     kpis: [
       {
-        num: "42%",
-        label: "ganho percebido de eficiência na jornada de cadastro",
-      },
-      {
-        num: "72%",
-        label: "ganho percebido de eficiência na jornada de simulação",
-      },
-      {
         num: "92%",
         label:
-          "redução no tempo de cadastro com integração nativa vs. cópia manual anterior",
+          "ganho percebido de eficiência sobre o legado na jornada de simulação",
+      },
+      {
+        num: "70%",
+        label: "ganho percebido de agilidade na jornada de simulação",
       },
       {
         num: "25%",
-        label: "queda nas propostas devolvidas por erro de digitação",
-      },
-      {
-        num: "311",
-        label: "usuários responderam ao NPS de percepção de tempo",
+        label: "queda em erros de digitação nas propostas",
       },
     ],
     footerRodobens: "Voltar ao case Rodobens",
@@ -808,33 +795,25 @@ const copy = {
       "El instinto de copiar el legacy no era evasión — era un método de investigación para el que aún no teníamos nombre. Al mostrar a todos exactamente lo que existía, limpio pero estructuralmente sin cambios, creamos un punto de referencia compartido que liberó la sala para disentir.",
       "¿Habríamos probado cada journey por separado con usuarios? Sí. El cronograma no lo permitió. Lo que sí permitió fue tratar cada touchpoint, incluyendo presentaciones, como una superficie de diseño.",
     ],
-    metricLabel: "ganancia de eficiencia percibida",
-    metricSub: "en el journey de simulación completo vs. legacy",
+    metricLabel: "ganancia percibida de eficiencia",
+    metricSub: "sobre el legado, en el journey de simulación",
     principleLabel: "Principio",
     quote:
       "Copiar no es rendirse. A veces, mostrar exactamente lo que existe es el camino más rápido para ver lo que necesita cambiar.",
     kpisBtn: "Leer el case completo de Rodobens →",
     kpis: [
       {
-        num: "42%",
-        label: "ganancia de eficiencia percibida en el journey de registro",
-      },
-      {
-        num: "72%",
-        label: "ganancia de eficiencia percibida en el journey de simulación",
-      },
-      {
         num: "92%",
         label:
-          "reducción en el tiempo de registro con integración nativa vs. copia manual anterior",
+          "ganancia percibida de eficiencia sobre el legado en el journey de simulación",
+      },
+      {
+        num: "70%",
+        label: "ganancia percibida de agilidad en el journey de simulación",
       },
       {
         num: "25%",
-        label: "caída en propuestas devueltas por error de digitación",
-      },
-      {
-        num: "311",
-        label: "usuarios respondieron al NPS de percepción de tiempo",
+        label: "caída en errores de tipeo en las propuestas",
       },
     ],
     footerRodobens: "Volver al case Rodobens",
@@ -934,33 +913,25 @@ const copy = {
       "Hätten wir jede Journey separat mit Nutzern getestet? Ja. Der Zeitplan ließ es nicht zu. Was er erlaubte, war, jeden Touchpoint, einschließlich Präsentationen, als Designoberfläche zu behandeln.",
     ],
     metricLabel: "wahrgenommener Effizienzgewinn",
-    metricSub: "auf der vollständigen Simulations-Journey vs. Legacy",
+    metricSub: "gegenüber dem Altsystem, in der Simulations-Journey",
     principleLabel: "Prinzip",
     quote:
       "Kopieren bedeutet nicht aufzugeben. Manchmal ist das Zeigen von genau dem, was existiert, der schnellste Weg zu sehen, was sich ändern muss.",
     kpisBtn: "Vollständigen Rodobens Case lesen →",
     kpis: [
       {
-        num: "42%",
-        label: "wahrgenommener Effizienzgewinn auf der Registrierungs-Journey",
-      },
-      {
-        num: "72%",
-        label: "wahrgenommener Effizienzgewinn auf der Simulations-Journey",
-      },
-      {
         num: "92%",
         label:
-          "Reduzierung der Registrierungszeit mit nativer Integration vs. manuellem Kopieren",
+          "wahrgenommener Effizienzgewinn gegenüber dem Altsystem in der Simulations-Journey",
+      },
+      {
+        num: "70%",
+        label:
+          "wahrgenommener Geschwindigkeits-/Agilitätsgewinn in der Simulations-Journey",
       },
       {
         num: "25%",
-        label:
-          "Rückgang bei zurückgesandten Angeboten durch Dateneingabefehler",
-      },
-      {
-        num: "311",
-        label: "Nutzer antworteten auf die wahrgenommene Zeit-NPS",
+        label: "Rückgang der Tippfehler in Anträgen",
       },
     ],
     footerRodobens: "Zurück zum Rodobens Case",
