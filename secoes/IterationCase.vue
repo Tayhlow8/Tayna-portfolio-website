@@ -364,7 +364,7 @@
           </div>
         </div>
         <div class="it-metric-card">
-          <span class="it-metric-n">92%</span>
+          <span class="it-metric-n">85%+</span>
           <span class="it-metric-l">{{ t.metricLabel }}</span>
           <span class="it-metric-sub">{{ t.metricSub }}</span>
         </div>
@@ -555,10 +555,10 @@ const copy = {
     learnedTitle: "The copy was<br><em>the research method.</em>",
     learnedBody: [
       "The instinct to copy the legacy wasn't avoidance — it was a research method we didn't have a better name for at the time. By showing everyone exactly what existed, cleaned up but structurally unchanged, we created a shared reference point that freed the room to disagree with it. The problems became visible to everyone at the same time, which made the iteration feel collaborative rather than top-down.",
-      "Would we have tested each journey separately with users? Yes — and we would have caught things earlier. The timeline didn't allow it. What it did allow was treating every touchpoint, including presentations, as a design surface.",
+      "Would we have run formal usability testing on every journey with users? Yes — that's exactly why it's scoped as phase 2. What the timeline did allow was getting every flow validated and approved by users and stakeholders directly in the room, and treating every touchpoint, including presentations, as a design surface.",
     ],
-    metricLabel: "perceived efficiency gain",
-    metricSub: "over the legacy system, on the simulation journey",
+    metricLabel: "of user complaints resolved",
+    metricSub: "flows validated and approved by users and stakeholders",
 
     // Section 06
     principleLabel: "Principle",
@@ -568,17 +568,8 @@ const copy = {
     kpisBtn: "Read the full Rodobens case study →",
     kpis: [
       {
-        num: "92%",
-        label:
-          "perceived efficiency gain over the legacy system on the simulation journey",
-      },
-      {
-        num: "70%",
-        label: "perceived speed/agility gain on the simulation journey",
-      },
-      {
-        num: "25%",
-        label: "drop in data entry errors on proposals",
+        num: "85%+",
+        label: "of user complaints resolved",
       },
     ],
 
@@ -676,27 +667,18 @@ const copy = {
     learnedTitle: "A cópia era<br><em>o método de pesquisa.</em>",
     learnedBody: [
       "O instinto de copiar o legado não era fuga — era um método de pesquisa para o qual ainda não tínhamos nome. Ao mostrar a todos exatamente o que existia, limpo mas estruturalmente inalterado, criamos um ponto de referência compartilhado que liberou a sala para discordar. Os problemas ficaram visíveis para todos ao mesmo tempo, o que fez a iteração parecer colaborativa, não top-down.",
-      "Teríamos testado cada jornada separadamente com usuários? Sim — e teríamos detectado coisas mais cedo. O timeline não permitiu. O que permitiu foi tratar cada touchpoint, incluindo apresentações, como uma superfície de design.",
+      "Teríamos rodado testes formais de usabilidade em cada jornada separadamente com usuários? Sim — por isso ficou definido como fase 2. O que o timeline permitiu foi validar e aprovar cada fluxo com usuários e stakeholders direto na sala, e tratar cada touchpoint, incluindo apresentações, como uma superfície de design.",
     ],
-    metricLabel: "ganho percebido de eficiência",
-    metricSub: "sobre o legado, na jornada de simulação",
+    metricLabel: "das queixas dos usuários foram resolvidas",
+    metricSub: "fluxos validados e aprovados por usuários e stakeholders",
     principleLabel: "Princípio",
     quote:
       "Copiar não é desistir. Às vezes, mostrar exatamente o que existe é o caminho mais rápido para ver o que precisa mudar.",
     kpisBtn: "Ler o case completo do Rodobens →",
     kpis: [
       {
-        num: "92%",
-        label:
-          "ganho percebido de eficiência sobre o legado na jornada de simulação",
-      },
-      {
-        num: "70%",
-        label: "ganho percebido de agilidade na jornada de simulação",
-      },
-      {
-        num: "25%",
-        label: "queda em erros de digitação nas propostas",
+        num: "85%+",
+        label: "das queixas dos usuários foram resolvidas",
       },
     ],
     footerRodobens: "Voltar ao case Rodobens",
@@ -793,27 +775,18 @@ const copy = {
     learnedTitle: "La copia era<br><em>el método de investigación.</em>",
     learnedBody: [
       "El instinto de copiar el legacy no era evasión — era un método de investigación para el que aún no teníamos nombre. Al mostrar a todos exactamente lo que existía, limpio pero estructuralmente sin cambios, creamos un punto de referencia compartido que liberó la sala para disentir.",
-      "¿Habríamos probado cada journey por separado con usuarios? Sí. El cronograma no lo permitió. Lo que sí permitió fue tratar cada touchpoint, incluyendo presentaciones, como una superficie de diseño.",
+      "¿Habríamos corrido pruebas formales de usabilidad en cada journey por separado con usuarios? Sí — por eso quedó definido como fase 2. Lo que el cronograma sí permitió fue validar y aprobar cada flujo con usuarios y stakeholders directamente en la sala, y tratar cada touchpoint, incluyendo presentaciones, como una superficie de diseño.",
     ],
-    metricLabel: "ganancia percibida de eficiencia",
-    metricSub: "sobre el legado, en el journey de simulación",
+    metricLabel: "de las quejas de los usuarios resueltas",
+    metricSub: "flujos validados y aprobados por usuarios y stakeholders",
     principleLabel: "Principio",
     quote:
       "Copiar no es rendirse. A veces, mostrar exactamente lo que existe es el camino más rápido para ver lo que necesita cambiar.",
     kpisBtn: "Leer el case completo de Rodobens →",
     kpis: [
       {
-        num: "92%",
-        label:
-          "ganancia percibida de eficiencia sobre el legado en el journey de simulación",
-      },
-      {
-        num: "70%",
-        label: "ganancia percibida de agilidad en el journey de simulación",
-      },
-      {
-        num: "25%",
-        label: "caída en errores de tipeo en las propuestas",
+        num: "85%+",
+        label: "de las quejas de los usuarios resueltas",
       },
     ],
     footerRodobens: "Volver al case Rodobens",
@@ -910,28 +883,18 @@ const copy = {
     learnedTitle: "Die Kopie war<br><em>die Forschungsmethode.</em>",
     learnedBody: [
       "Der Instinkt, das Legacy zu kopieren, war kein Ausweichen — es war eine Forschungsmethode, für die wir damals noch keinen besseren Namen hatten. Indem wir allen genau das zeigten, was existierte, aufgeräumt aber strukturell unverändert, schufen wir einen gemeinsamen Referenzpunkt, der den Raum befreite, zu widersprechen.",
-      "Hätten wir jede Journey separat mit Nutzern getestet? Ja. Der Zeitplan ließ es nicht zu. Was er erlaubte, war, jeden Touchpoint, einschließlich Präsentationen, als Designoberfläche zu behandeln.",
+      "Hätten wir formale Usability-Tests für jede Journey separat mit Nutzern durchgeführt? Ja — deshalb wurde das als Phase 2 eingeplant. Was der Zeitplan erlaubte, war, jeden Flow direkt im Raum mit Nutzern und Stakeholdern zu validieren und freizugeben, und jeden Touchpoint, einschließlich Präsentationen, als Designoberfläche zu behandeln.",
     ],
-    metricLabel: "wahrgenommener Effizienzgewinn",
-    metricSub: "gegenüber dem Altsystem, in der Simulations-Journey",
+    metricLabel: "der Nutzerbeschwerden gelöst",
+    metricSub: "Flows von Nutzern und Stakeholdern validiert und freigegeben",
     principleLabel: "Prinzip",
     quote:
       "Kopieren bedeutet nicht aufzugeben. Manchmal ist das Zeigen von genau dem, was existiert, der schnellste Weg zu sehen, was sich ändern muss.",
     kpisBtn: "Vollständigen Rodobens Case lesen →",
     kpis: [
       {
-        num: "92%",
-        label:
-          "wahrgenommener Effizienzgewinn gegenüber dem Altsystem in der Simulations-Journey",
-      },
-      {
-        num: "70%",
-        label:
-          "wahrgenommener Geschwindigkeits-/Agilitätsgewinn in der Simulations-Journey",
-      },
-      {
-        num: "25%",
-        label: "Rückgang der Tippfehler in Anträgen",
+        num: "85%+",
+        label: "der Nutzerbeschwerden gelöst",
       },
     ],
     footerRodobens: "Zurück zum Rodobens Case",

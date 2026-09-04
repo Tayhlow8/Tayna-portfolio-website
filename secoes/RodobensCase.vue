@@ -1084,20 +1084,11 @@ const copy = {
     impactHeading: "Impacto do Projeto",
     impactHeading: "Impacto do Projeto",
     impactMethodology:
-      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Os testes foram conduzidos em <b>ambiente de homologação (staging)</b> e, por restrições de tempo de projeto, cobriram apenas a jornada principal — a de <b>simulação</b>; as demais jornadas não puderam ser testadas. Medimos cada tarefa <b>separadamente</b> dentro da jornada e aplicamos um NPS ao final, pedindo ao usuário a <b>percepção</b> de tempo e esforço em relação ao legado. Classificamos as respostas em: muito ruim (−10%), ruim (−5%), igual (0%), mais rápido (+5%) e muito mais rápido (+10%).",
+      "Medir o sucesso de uma plataforma como essa exigiu uma abordagem <b>própria</b>. O tempo total de jornada não era um indicador confiável — variáveis externas como resposta do cliente, assinaturas e aprovações de terceiros distorciam qualquer medição. Por restrições de tempo de projeto, os fluxos de todas as jornadas foram <b>validados e aprovados por usuários e stakeholders</b> antes do handoff, com a fase formal de testes de usabilidade planejada como <b>fase 2</b> do projeto. O indicador mais direto de sucesso: <b>mais de 85%</b> das queixas levantadas pelos usuários no discovery foram resolvidas pelo redesenho.",
     metrics: [
       {
-        num: "92%",
-        label:
-          "ganho percebido de eficiência sobre o legado na jornada de simulação",
-      },
-      {
-        num: "70%",
-        label: "ganho percebido de agilidade na jornada de simulação",
-      },
-      {
-        num: "25%",
-        label: "queda em erros de digitação nas propostas",
+        num: "85%+",
+        label: "das queixas dos usuários foram resolvidas",
       },
     ],
     reflexLabel: "Reflexões & Aprendizados",
@@ -1113,17 +1104,17 @@ const copy = {
       {
         question: "Qual foi o conflito real que você resolveu?",
         answer:
-          "O prazo empurrava para entregar sem validação — 'está pronto, pode subir'. Bati o pé para testar, no mínimo, a jornada mais crítica de ponta a ponta antes de dar o redesenho como concluído. Com um legado de 7 anos carregando 100+ bugs e 603 usuários dependendo dele todos os dias, subir sem nenhuma evidência de que a nova versão funcionava melhor era um risco que eu não aceitava correr. Não dava tempo de validar tudo — mas dava para validar o que mais importava. Garanti o teste da jornada de simulação em ambiente de homologação e usei esse resultado como prova de que a direção estava certa antes de escalar para o resto.",
+          "O prazo empurrava para entregar sem validação — 'está pronto, pode subir'. Bati o pé para validar, no mínimo, a jornada mais crítica de ponta a ponta com usuários e stakeholders antes de dar o redesenho como concluído. Com um legado de 7 anos carregando 100+ bugs e 603 usuários dependendo dele todos os dias, subir sem nenhuma evidência de que a nova versão resolvia as dores reais era um risco que eu não aceitava correr. Não dava tempo para rodar testes formais de usabilidade — isso ficou definido como fase 2 do projeto —, mas dava para garantir que os fluxos estivessem validados e aprovados por quem usa e por quem decide. Usei a taxa de resolução das queixas mapeadas no discovery (mais de 85%) como prova de que a direção estava certa antes de escalar para o resto.",
       },
       {
         question: "O que abriu mão para resolvê-lo?",
         answer:
-          "Abri mão de amplitude em favor de profundidade — duas vezes. No discovery, troquei pesquisa exploratória ampla por shadowing intensivo e entrevistas direcionadas às dores que travavam 603 pessoas todos os dias. Na validação, com o tempo de projeto contra, testei a fundo apenas a jornada principal — a de simulação, em ambiente de homologação — em vez de espalhar o teste por todas as jornadas e não validar nenhuma direito. Menos cobertura, sinal mais confiável.",
+          "Abri mão de amplitude em favor de profundidade — duas vezes. No discovery, troquei pesquisa exploratória ampla por shadowing intensivo e entrevistas direcionadas às dores que travavam 603 pessoas todos os dias. Na validação, com o tempo de projeto contra, priorizei aprovar a fundo os fluxos da jornada principal — a de simulação — com usuários e stakeholders, em vez de buscar validação superficial em todas as jornadas ao mesmo tempo. Deixei os testes formais de usabilidade para a fase 2, quando caberiam com o rigor que mereciam. Menos cobertura imediata, aprovação mais confiável.",
       },
       {
         question: "Maturidade demonstrada",
         answer:
-          "Reconhecer que profundidade valia mais que cobertura — e assumir isso abertamente. Priorizei validar bem a jornada mais crítica em vez de entregar números frágeis sobre todas, e deixei explícito o que não foi testado e por quê. Tratar limitação de escopo como decisão consciente, não como lacuna a esconder, é o que separa um trade-off sênior de um corte de canto. E sustentar essa priorização sob pressão de prazo exigiu alinhar as expectativas da diretoria à realidade dos 603 usuários — atuando como elo entre a necessidade do cliente e a viabilidade do produto em integrações complexas (B3, Autbank).",
+          "Reconhecer que profundidade valia mais que cobertura — e assumir isso abertamente. Priorizei aprovar bem a jornada mais crítica com usuários e stakeholders em vez de perseguir validação rasa em todas, e deixei explícito que a fase de testes formais de usabilidade ficaria para a fase 2, e por quê. Tratar limitação de escopo como decisão consciente, não como lacuna a esconder, é o que separa um trade-off sênior de um corte de canto. E sustentar essa priorização sob pressão de prazo exigiu alinhar as expectativas da diretoria à realidade dos 603 usuários — atuando como elo entre a necessidade do cliente e a viabilidade do produto em integrações complexas (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
@@ -1313,20 +1304,11 @@ const copy = {
       "We delivered final navigable screens, beyond the wireframe contract, as well as full business rule documentation, validated flows, and a system people can actually use — no workarounds, no WhatsApp as a work tool.",
     impactHeading: "Project Impact",
     impactMethodology:
-      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. Testing was run in a <b>staging (homologation) environment</b> and, due to project time constraints, covered only the main journey — <b>simulation</b>; the remaining journeys could not be tested. We measured each task <b>individually</b> within the journey, then applied an NPS at the end asking users to estimate <b>perceived</b> time and effort compared to the legacy system. We classified responses as: much worse (−10%), worse (−5%), same (0%), faster (+5%), or much faster (+10%).",
+      "Measuring success in a platform like this required a <b>custom</b> approach. Full journey time was unreliable as a metric — too many external variables like client response time, document signing, and third-party approvals. Given the project timeline, every journey's flows were <b>validated and approved by users and stakeholders</b> before handoff, with formal usability testing scoped as <b>phase 2</b> of the project. The clearest signal of success: <b>more than 85%</b> of the complaints users raised during discovery were resolved by the redesign.",
     metrics: [
       {
-        num: "92%",
-        label:
-          "perceived efficiency gain over the legacy system on the simulation journey",
-      },
-      {
-        num: "70%",
-        label: "perceived speed/agility gain on the simulation journey",
-      },
-      {
-        num: "25%",
-        label: "drop in data entry errors on proposals",
+        num: "85%+",
+        label: "of user complaints resolved",
       },
     ],
     reflexLabel: "Reflections & Learnings",
@@ -1342,17 +1324,17 @@ const copy = {
       {
         question: "What was the real conflict you solved?",
         answer:
-          "The deadline pushed to ship without validation — 'it's ready, let's go live.' I held my ground to test, at minimum, the most critical journey end-to-end before calling the redesign done. With a 7-year legacy carrying 100+ bugs and 603 users depending on it every day, shipping with no evidence the new version actually worked better was a risk I wasn't willing to take. There wasn't time to validate everything — but there was time to validate what mattered most. I secured testing of the simulation journey in a staging environment and used that result as proof the direction was right before scaling to the rest.",
+          "The deadline pushed to ship without validation — 'it's ready, let's go live.' I held my ground to validate, at minimum, the most critical journey end-to-end with users and stakeholders before calling the redesign done. With a 7-year legacy carrying 100+ bugs and 603 users depending on it every day, shipping with no evidence the new version actually solved their real pain points was a risk I wasn't willing to take. There wasn't time to run formal usability testing — that got scoped as phase 2 — but there was time to make sure the flows were validated and signed off by the people who use the system and the people who decide on it. I used the complaint resolution rate from discovery (over 85%) as proof the direction was right before scaling to the rest.",
       },
       {
         question: "What did you give up to solve it?",
         answer:
-          "I traded breadth for depth — twice. In discovery, I swapped broad exploratory research for intensive shadowing and interviews targeted at the pain points that blocked 603 people every day. In validation, with project time against me, I tested only the main journey deeply — simulation, in a staging environment — instead of spreading testing across every journey and validating none of them properly. Less coverage, more reliable signal.",
+          "I traded breadth for depth — twice. In discovery, I swapped broad exploratory research for intensive shadowing and interviews targeted at the pain points that blocked 603 people every day. In validation, with project time against me, I prioritized getting deep sign-off on the main journey — simulation — from users and stakeholders, instead of chasing shallow approval across every journey at once. Formal usability testing got pushed to phase 2, where it could get the rigor it deserved. Less immediate coverage, more reliable approval.",
       },
       {
         question: "Demonstrated maturity",
         answer:
-          "Recognizing that depth was worth more than coverage — and owning that openly. I prioritized validating the most critical journey well over shipping fragile numbers across all of them, and made explicit what wasn't tested and why. Treating a scope limitation as a deliberate decision, not a gap to hide, is what separates a senior trade-off from cutting a corner. And holding that prioritization under deadline pressure meant aligning board expectations with the reality of 603 users — acting as the link between client needs and product feasibility across complex integrations (B3, Autbank).",
+          "Recognizing that depth was worth more than coverage — and owning that openly. I prioritized getting real sign-off on the most critical journey over chasing shallow approval across all of them, and made explicit that formal usability testing would be phase 2, and why. Treating a scope limitation as a deliberate decision, not a gap to hide, is what separates a senior trade-off from cutting a corner. And holding that prioritization under deadline pressure meant aligning board expectations with the reality of 603 users — acting as the link between client needs and product feasibility across complex integrations (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
@@ -1543,20 +1525,11 @@ const copy = {
       "Entregamos pantallas navegables en versión final, más allá del contrato de wireframes, junto con toda la documentación de reglas de negocio, flujos validados y un sistema escalable, integrado y con usabilidad mejorada.",
     impactHeading: "Impacto del Proyecto",
     impactMethodology:
-      "Medir el éxito de una plataforma como esta requirió un enfoque <b>propio</b>. El tiempo total de journey no era un indicador confiable — variables externas como la respuesta del cliente, las firmas y las aprobaciones de terceros distorsionaban cualquier medición. Las pruebas se realizaron en <b>ambiente de homologación (staging)</b> y, por restricciones de tiempo de proyecto, cubrieron solo el journey principal — el de <b>simulación</b>; los demás journeys no pudieron probarse. Medimos cada tarea <b>por separado</b> dentro del journey y aplicamos un NPS al final, pidiendo al usuario la <b>percepción</b> de tiempo y esfuerzo en relación al legado. Clasificamos las respuestas en: muy malo (−10%), malo (−5%), igual (0%), más rápido (+5%) y mucho más rápido (+10%).",
+      "Medir el éxito de una plataforma como esta requirió un enfoque <b>propio</b>. El tiempo total de journey no era un indicador confiable — variables externas como la respuesta del cliente, las firmas y las aprobaciones de terceros distorsionaban cualquier medición. Por las restricciones de tiempo del proyecto, los flujos de todos los journeys fueron <b>validados y aprobados por usuarios y stakeholders</b> antes del handoff, dejando las pruebas formales de usabilidad planificadas como <b>fase 2</b> del proyecto. La señal más clara de éxito: <b>más del 85%</b> de las quejas que los usuarios plantearon en el discovery fueron resueltas por el rediseño.",
     metrics: [
       {
-        num: "92%",
-        label:
-          "ganancia percibida de eficiencia sobre el legado en el journey de simulación",
-      },
-      {
-        num: "70%",
-        label: "ganancia percibida de agilidad en el journey de simulación",
-      },
-      {
-        num: "25%",
-        label: "caída en errores de tipeo en las propuestas",
+        num: "85%+",
+        label: "de las quejas de los usuarios resueltas",
       },
     ],
     reflexLabel: "Reflexiones & Aprendizajes",
@@ -1572,17 +1545,17 @@ const copy = {
       {
         question: "¿Cuál fue el conflicto real que resolviste?",
         answer:
-          "El plazo empujaba a entregar sin validación — 'está listo, subámoslo'. Insistí en probar, como mínimo, el journey más crítico de punta a punta antes de dar el rediseño por terminado. Con un legado de 7 años cargando 100+ bugs y 603 usuarios dependiendo de él todos los días, subir sin ninguna evidencia de que la nueva versión funcionaba mejor era un riesgo que no estaba dispuesta a correr. No había tiempo de validar todo — pero sí de validar lo que más importaba. Aseguré la prueba del journey de simulación en ambiente de homologación y usé ese resultado como prueba de que la dirección era la correcta antes de escalar al resto.",
+          "El plazo empujaba a entregar sin validación — 'está listo, subámoslo'. Insistí en validar, como mínimo, el journey más crítico de punta a punta con usuarios y stakeholders antes de dar el rediseño por terminado. Con un legado de 7 años cargando 100+ bugs y 603 usuarios dependiendo de él todos los días, subir sin ninguna evidencia de que la nueva versión resolvía sus dolores reales era un riesgo que no estaba dispuesta a correr. No había tiempo para pruebas formales de usabilidad — eso quedó definido como fase 2 —, pero sí para asegurar que los flujos estuvieran validados y aprobados por quienes los usan y quienes deciden. Usé la tasa de resolución de quejas del discovery (más del 85%) como prueba de que la dirección era la correcta antes de escalar al resto.",
       },
       {
         question: "¿A qué renunciaste para resolverlo?",
         answer:
-          "Renuncié a amplitud a favor de profundidad — dos veces. En el discovery, cambié investigación exploratoria amplia por shadowing intensivo y entrevistas dirigidas a los dolores que trababan a 603 personas todos los días. En la validación, con el tiempo de proyecto en contra, probé a fondo solo el journey principal — el de simulación, en ambiente de homologación — en vez de repartir la prueba por todos los journeys y no validar ninguno bien. Menos cobertura, señal más confiable.",
+          "Renuncié a amplitud a favor de profundidad — dos veces. En el discovery, cambié investigación exploratoria amplia por shadowing intensivo y entrevistas dirigidas a los dolores que trababan a 603 personas todos los días. En la validación, con el tiempo de proyecto en contra, prioricé conseguir una aprobación a fondo del journey principal — el de simulación — con usuarios y stakeholders, en vez de perseguir una validación superficial en todos los journeys a la vez. Las pruebas formales de usabilidad quedaron para la fase 2, donde tendrían el rigor que merecían. Menos cobertura inmediata, aprobación más confiable.",
       },
       {
         question: "Madurez demostrada",
         answer:
-          "Reconocer que la profundidad valía más que la cobertura — y asumirlo abiertamente. Prioricé validar bien el journey más crítico en vez de entregar números frágiles sobre todos, y dejé explícito qué no se probó y por qué. Tratar una limitación de alcance como decisión consciente, no como una brecha a esconder, es lo que separa un trade-off sénior de un recorte fácil. Y sostener esa priorización bajo presión de entrega exigió alinear las expectativas de la dirección con la realidad de los 603 usuarios — actuando como nexo entre las necesidades del cliente y la viabilidad del producto en integraciones complejas (B3, Autbank).",
+          "Reconocer que la profundidad valía más que la cobertura — y asumirlo abiertamente. Prioricé conseguir una aprobación real del journey más crítico en vez de perseguir una validación superficial en todos, y dejé explícito que las pruebas formales de usabilidad serían la fase 2, y por qué. Tratar una limitación de alcance como decisión consciente, no como una brecha a esconder, es lo que separa un trade-off sénior de un recorte fácil. Y sostener esa priorización bajo presión de entrega exigió alinear las expectativas de la dirección con la realidad de los 603 usuarios — actuando como nexo entre las necesidades del cliente y la viabilidad del producto en integraciones complejas (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
@@ -1772,20 +1745,11 @@ const copy = {
       "Wir lieferten finale navigierbare Screens — über den Wireframe-Vertrag hinaus — sowie die vollständige Dokumentation der Geschäftsregeln, validierte Flows und ein skalierbares, integriertes System mit verbesserter Usability.",
     impactHeading: "Projektauswirkungen",
     impactMethodology:
-      "Den Erfolg einer solchen Plattform zu messen erforderte einen <b>eigenen</b> Ansatz. Die gesamte Journey-Zeit war als Metrik unzuverlässig — zu viele externe Variablen wie Kundenreaktion, Unterschriften und Freigaben Dritter. Die Tests wurden in einer <b>Staging-Umgebung (Homologation)</b> durchgeführt und deckten aus Projektzeitgründen nur die Haupt-Journey ab — die <b>Simulation</b>; die übrigen Journeys konnten nicht getestet werden. Wir maßen jede Aufgabe <b>einzeln</b> innerhalb der Journey und wendeten am Ende ein NPS an, bei dem die Nutzer die <b>wahrgenommene</b> Zeit und den Aufwand im Vergleich zum Altsystem einschätzten. Wir klassifizierten die Antworten als: viel schlechter (−10%), schlechter (−5%), gleich (0%), schneller (+5%) und viel schneller (+10%).",
+      "Den Erfolg einer solchen Plattform zu messen erforderte einen <b>eigenen</b> Ansatz. Die gesamte Journey-Zeit war als Metrik unzuverlässig — zu viele externe Variablen wie Kundenreaktion, Unterschriften und Freigaben Dritter. Aufgrund der Projektzeit wurden die Flows aller Journeys von <b>Nutzern und Stakeholdern validiert und freigegeben</b>, bevor sie ins Handoff gingen — formale Usability-Tests waren als <b>Phase 2</b> des Projekts vorgesehen. Das klarste Erfolgssignal: <b>Mehr als 85%</b> der im Discovery erfassten Nutzerbeschwerden wurden durch das Redesign gelöst.",
     metrics: [
       {
-        num: "92%",
-        label:
-          "wahrgenommener Effizienzgewinn gegenüber dem Altsystem in der Simulations-Journey",
-      },
-      {
-        num: "70%",
-        label: "wahrgenommener Geschwindigkeits-/Agilitätsgewinn in der Simulations-Journey",
-      },
-      {
-        num: "25%",
-        label: "Rückgang der Tippfehler in Anträgen",
+        num: "85%+",
+        label: "der Nutzerbeschwerden gelöst",
       },
     ],
     reflexLabel: "Reflexionen & Erkenntnisse",
@@ -1801,17 +1765,17 @@ const copy = {
       {
         question: "Was war der eigentliche Konflikt, den du gelöst hast?",
         answer:
-          "Der Termin drängte, ohne Validierung auszuliefern — 'es ist fertig, lass es live gehen.' Ich bestand darauf, mindestens die kritischste Journey End-to-End zu testen, bevor ich das Redesign als abgeschlossen betrachtete. Bei einem 7 Jahre alten Legacy-System mit 100+ Bugs und 603 Nutzern, die täglich davon abhängen, war es ein Risiko, das ich nicht eingehen wollte: ohne jeden Beleg auszuliefern, dass die neue Version wirklich besser funktioniert. Es war keine Zeit, alles zu validieren — aber Zeit, das Wichtigste zu validieren. Ich sicherte den Test der Simulations-Journey in einer Staging-Umgebung und nutzte dieses Ergebnis als Beleg, dass die Richtung stimmte, bevor auf den Rest skaliert wurde.",
+          "Der Termin drängte, ohne Validierung auszuliefern — 'es ist fertig, lass es live gehen.' Ich bestand darauf, mindestens die kritischste Journey End-to-End mit Nutzern und Stakeholdern zu validieren, bevor ich das Redesign als abgeschlossen betrachtete. Bei einem 7 Jahre alten Legacy-System mit 100+ Bugs und 603 Nutzern, die täglich davon abhängen, war es ein Risiko, das ich nicht eingehen wollte: ohne jeden Beleg auszuliefern, dass die neue Version ihre tatsächlichen Probleme löst. Es war keine Zeit für formale Usability-Tests — die wurden als Phase 2 eingeplant —, aber Zeit, um sicherzustellen, dass die Flows von den Menschen, die sie nutzen, und denen, die entscheiden, validiert und freigegeben waren. Ich nutzte die Beschwerdelösungsquote aus dem Discovery (über 85%) als Beleg, dass die Richtung stimmte, bevor auf den Rest skaliert wurde.",
       },
       {
         question: "Worauf hast du verzichtet, um es zu lösen?",
         answer:
-          "Ich tauschte Breite gegen Tiefe — zweimal. Im Discovery ersetzte ich breite explorative Forschung durch intensives Shadowing und gezielte Interviews zu den Schmerzpunkten, die 603 Menschen täglich blockierten. In der Validierung testete ich mit knapper Projektzeit nur die Haupt-Journey gründlich — die Simulation, in einer Staging-Umgebung — statt den Test über alle Journeys zu verteilen und keine richtig zu validieren. Weniger Abdeckung, verlässlicheres Signal.",
+          "Ich tauschte Breite gegen Tiefe — zweimal. Im Discovery ersetzte ich breite explorative Forschung durch intensives Shadowing und gezielte Interviews zu den Schmerzpunkten, die 603 Menschen täglich blockierten. In der Validierung priorisierte ich mit knapper Projektzeit eine gründliche Freigabe der Haupt-Journey — der Simulation — durch Nutzer und Stakeholder, statt eine oberflächliche Validierung über alle Journeys zu verteilen. Formale Usability-Tests wurden auf Phase 2 verschoben, wo sie die nötige Sorgfalt bekommen würden. Weniger unmittelbare Abdeckung, verlässlichere Freigabe.",
       },
       {
         question: "Gezeigte Reife",
         answer:
-          "Zu erkennen, dass Tiefe mehr wert war als Abdeckung — und das offen zu vertreten. Ich priorisierte, die kritischste Journey gut zu validieren, statt fragile Zahlen über alle zu liefern, und machte explizit, was nicht getestet wurde und warum. Eine Scope-Beschränkung als bewusste Entscheidung zu behandeln, nicht als zu verbergende Lücke, unterscheidet einen Senior-Trade-off vom Abkürzen. Und diese Priorisierung unter Termindruck zu halten, erforderte, die Erwartungen der Geschäftsführung mit der Realität der 603 Nutzer in Einklang zu bringen — als Bindeglied zwischen Kundenbedürfnissen und Produktmachbarkeit bei komplexen Integrationen (B3, Autbank).",
+          "Zu erkennen, dass Tiefe mehr wert war als Abdeckung — und das offen zu vertreten. Ich priorisierte eine echte Freigabe der kritischsten Journey, statt oberflächliche Validierung über alle zu jagen, und machte explizit, dass formale Usability-Tests Phase 2 sein würden, und warum. Eine Scope-Beschränkung als bewusste Entscheidung zu behandeln, nicht als zu verbergende Lücke, unterscheidet einen Senior-Trade-off vom Abkürzen. Und diese Priorisierung unter Termindruck zu halten, erforderte, die Erwartungen der Geschäftsführung mit der Realität der 603 Nutzer in Einklang zu bringen — als Bindeglied zwischen Kundenbedürfnissen und Produktmachbarkeit bei komplexen Integrationen (B3, Autbank).",
       },
     ],
     footerTag: "Rodobens Unica Platform · 2026",
