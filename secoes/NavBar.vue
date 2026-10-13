@@ -147,8 +147,9 @@ const router = useRouter()
 const navLinks = [
   { to: '/',         num: '01', label: { PT: 'Início',        EN: 'Home',         ES: 'Inicio',      DE: 'Start'           } },
   { to: '/projetos', num: '02', label: { PT: 'Projetos',       EN: 'Projects',     ES: 'Proyectos',   DE: 'Projekte'        } },
-  { to: '/historia', num: '03', label: { PT: 'Minha história', EN: 'My story',     ES: 'Mi historia', DE: 'Meine Geschichte'} },
-  { to: '/cv',       num: '04', label: { PT: 'CV',             EN: 'CV',           ES: 'CV',          DE: 'CV'              } },
+  { to: '/servicos', num: '03', label: { PT: 'Serviços',       EN: 'Services',     ES: 'Servicios',   DE: 'Leistungen'      } },
+  { to: '/historia', num: '04', label: { PT: 'Minha história', EN: 'My story',     ES: 'Mi historia', DE: 'Meine Geschichte'} },
+  { to: '/cv',       num: '05', label: { PT: 'CV',             EN: 'CV',           ES: 'CV',          DE: 'CV'              } },
 ]
 
 // ── Language ───────────────────────────────────────────────
@@ -658,7 +659,14 @@ const drawerBg = computed(() =>
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 768px) {
+/* 5 links: aperta o padding antes de colidir com os controles da direita */
+@media (max-width: 1200px) {
+  .nav-link { padding: 0 .8rem; }
+  .nav-link:hover::after,
+  .nav-link.active::after { left: .8rem; right: .8rem; }
+}
+
+@media (max-width: 960px) {
   .nav-links      { display: none; }
   .nav-cta-desktop { display: none; }
   .nav-hamburger  { display: flex; }

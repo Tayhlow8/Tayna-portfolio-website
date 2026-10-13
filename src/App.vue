@@ -15,6 +15,13 @@
       :theme="theme"
     />
 
+    <!-- ── Serviços e valores ────────────────────────────── -->
+    <ServicosPage
+      v-else-if="route.path === '/servicos'"
+      :lang="lang"
+      :theme="theme"
+    />
+
     <!-- ── CV ────────────────────────────────────────────── -->
     <CVPage
       v-else-if="route.path === '/cv'"
@@ -137,6 +144,7 @@ import MasterGloboCase    from '../secoes/MasterGloboCase.vue'
 import LancomeCase        from '../secoes/LancomeCase.vue'
 import YSLCase            from '../secoes/YSLCase.vue'
 import CVPage             from '../secoes/CVPage.vue'
+import ServicosPage       from '../secoes/ServicosPage.vue'
 import NV8Case           from '../secoes/NV8Case.vue'
 import ChatWidget         from '../secoes/ChatWidget.vue'
 import DermaCluCase       from './views/cases/DermaCluCase.vue'
